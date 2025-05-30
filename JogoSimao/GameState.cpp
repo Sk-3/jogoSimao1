@@ -12,7 +12,6 @@ namespace Fases{
 		characters.push_back(player);
 	}
 
-
 	GameState::~GameState() {
 		for (auto& obstacul : obstaculos) {
 			delete obstacul;
@@ -27,7 +26,6 @@ namespace Fases{
 
 	void GameState::handleEvent()
 	{
-
 
 		if (player2) {
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
@@ -71,12 +69,11 @@ namespace Fases{
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 			player->moveDown();
 		}
-
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
 			player->dash();
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-			dispararProjetil(player);
+			player->atirar(&projeteis);
 		}
 		sf::Event ev;
 		while (window->pollEvent(ev)) {
@@ -106,15 +103,19 @@ namespace Fases{
 
 	void GameState::dispararProjetil(Entidades::Personagens::Character* character)
 	{
-		sf::Vector2f position = character->getPosition();
-		position.y += (character->getBounds().height / 2);
 
-		if (character->getDirection() != Directions::LEFT) {
-			position.x += character->getBounds().width;
+		if(character->getClockTiro() > character->getTiroCoooldown()){
+
+			sf::Vector2f position = character->getPosition();
+			position.y += (character->getBounds().height / 2);
+			if (character->getDirection() != Directions::LEFT) {
+				position.x += character->getBounds().width;
 		
-		}
+			}
 
-		projeteis.push_back(new Entidades::Projetil(sf::Vector2f(10.0, 10.0), position, character->getDirection()));
+			projeteis.push_back(new Entidades::Projetil(sf::Vector2f(10.0, 10.0), position, character->getDirection()));
+			character->resetClockTiro();
+		}
 	}
 
 	void GameState::removerProjeteis()
@@ -138,7 +139,7 @@ namespace Fases{
 			if (persona->vivo()) {
 				personagensVivos.push_back(persona);
 			}
-			else {
+			else { 
 				delete persona;
 			}
 		}

@@ -18,8 +18,6 @@ namespace Gerenciadores{
 		this->characters = characters;
 	}
 
-
-
 	GerenciadorColisao::~GerenciadorColisao()
 	{
 	

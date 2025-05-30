@@ -1,4 +1,5 @@
 #pragma once
+#include "Subject.h"
 #include "Entity.h"
 #include "TipoPersonagem.h"
 /**
@@ -16,9 +17,11 @@ namespace Entidades{
 	}
 
 	namespace Personagens {
-		class Character : public Entity
+		class Character : public Entity, public Subject
 		{
 		protected:
+			sf::Clock Clocktiro;
+			float tiroCooldown;
 			TipoPersonagem tipo;
 			float maxSpeed;
 			float moveSpeed;
@@ -46,7 +49,9 @@ namespace Entidades{
 			const bool vivo() const;
 			virtual void executar() = 0;
 			virtual void draw();
-
+			const float getClockTiro() const;
+			const float getTiroCoooldown() const;
+			void resetClockTiro();
 		};
 	}
 }

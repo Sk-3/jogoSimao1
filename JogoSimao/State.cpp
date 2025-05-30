@@ -2,7 +2,6 @@
 State::State()
 :Ente()
 {
-	//this->gerEstado = gerEstado;
 	action2 = Actions::NADA;
 	window = pGerGraphic->getWindow();
 	font = pGerGraphic->getFont();

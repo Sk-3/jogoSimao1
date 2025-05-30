@@ -4,8 +4,10 @@
 namespace Entidades{
 	namespace Personagens{
 		Character::Character()
-			:Entity()
+			:Entity(), Subject()
 		{
+			Clocktiro.restart();
+			tiroCooldown = 0.2;
 			jumps = 2;
 			health = 10;
 			power = 0;
@@ -15,8 +17,9 @@ namespace Entidades{
 		}
 
 		Character::Character(sf::Vector2f size, sf::Vector2f pos)
-			:Entity(size, pos)
+			:Entity(size, pos), Subject()
 		{
+			tiroCooldown = 0.2;
 			tipo = TipoPersonagem::INMIGO; 
 			maxSpeed = 6;
 			moveSpeed = 120;
@@ -89,9 +92,22 @@ namespace Entidades{
 		{
 			pGerGraphic->getWindow()->draw(shape);
 		}
+		const float Character::getTiroCoooldown() const
+		{
+			return tiroCooldown;
+		}
 		const bool Character::vivo() const
 		{
 			return (health > 0);
+		}
+		const float Character::getClockTiro() const
+		{
+			return Clocktiro.getElapsedTime().asSeconds();
+		}
+
+		void Character::resetClockTiro()
+		{
+			Clocktiro.restart();
 		}
 	}
 }

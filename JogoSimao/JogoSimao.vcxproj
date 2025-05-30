@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cachorro.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -154,6 +155,8 @@
     <ClCompile Include="MenuPrincipal.cpp" />
     <ClCompile Include="MenuSelectLvl.cpp" />
     <ClCompile Include="menuState.cpp" />
+    <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="ObserverCharacter.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Plataforma.cpp" />
@@ -161,12 +164,15 @@
     <ClCompile Include="Principal.cpp" />
     <ClCompile Include="Projetil.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="Subject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Cachorro.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CharacterActions.h" />
     <ClInclude Include="Directions.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entity.h" />
@@ -185,6 +191,8 @@
     <ClInclude Include="MenuPrincipal.h" />
     <ClInclude Include="MenuSelectLvl.h" />
     <ClInclude Include="menuState.h" />
+    <ClInclude Include="CharacterObserver.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Plataforma.h" />
@@ -192,6 +200,7 @@
     <ClInclude Include="Principal.h" />
     <ClInclude Include="Projetil.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="Subject.h" />
     <ClInclude Include="TipoPersonagem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

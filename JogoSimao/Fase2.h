@@ -1,7 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "Inimigo.h"
-
+#include "Cachorro.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 * 
@@ -15,10 +15,12 @@ namespace Fases{
 	class Fase2 : public GameState
 	{
 	private:
-	
+		
 	public:
 		Fase2();
 		~Fase2();
 		void executar();
+		virtual void criarInimigos();
+		void criarEstruturas();
 	};
 }

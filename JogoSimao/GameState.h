@@ -42,5 +42,7 @@ namespace Fases{
 		virtual void executar() = 0;
 		void removerProjeteis();
 		void removerPersonagens();
+		virtual void criarInimigos() = 0;
+		virtual void criarEstruturas() = 0;
 	};
 }

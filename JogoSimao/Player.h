@@ -9,10 +9,12 @@
 */
 
 namespace Entidades{
+	class Projetil;
 	namespace Personagens{
 		class Player : public Character
 		{
 		private:
+			
 			float maxSpeed;
 			sf::Vector2f center;
 		public:
@@ -27,6 +29,7 @@ namespace Entidades{
 			void stopAxisX();
 			void executar(); 
 			void draw()override;
+			void atirar(std::vector<Projetil*>* projeteis);
 		};
 	}
 

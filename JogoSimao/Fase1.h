@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "Inimigo.h"
 #include "Cachorro.h"
+#include "Boss.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 *
@@ -15,10 +16,12 @@ namespace Fases{
 	class Fase1 : public GameState
 	{
 	private:
-
+		Entidades::Personagens::Boss* boss;
 	public:
 		Fase1();
 		~Fase1();
 		void executar();
+		void criarInimigos();
+		void criarEstruturas();
 	};
 }

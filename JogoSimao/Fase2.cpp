@@ -5,9 +5,8 @@ namespace Fases{
 	{
 		//Criação das plataformas da fase
 		
-			for (int i = 0; i <= 30; i++) {
-				obstaculos.push_back(new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670)));
-			}
+		criarEstruturas();
+		criarInimigos();
 
 	}
 
@@ -46,8 +45,20 @@ namespace Fases{
 
 	}
 
+	void Fase2::criarInimigos() {
+		characters.push_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 100), sf::Vector2f(100, 300)));
+		characters.push_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 100), sf::Vector2f(900, 300)));
+		characters.push_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 100), sf::Vector2f(300, 300)));
+
+		characters.push_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 100), sf::Vector2f(500, 300)));
+
+		characters.push_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 100), sf::Vector2f(700, 300)));
+	}
 
 
-
-
+	void Fase2::criarEstruturas() {
+		for (int i = 0; i <= 30; i++) {
+			obstaculos.push_back(new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670)));
+		}
+	}
 }
