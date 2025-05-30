@@ -2,7 +2,7 @@
 
 
 
-Gravidade::Gravidade(std::vector<Entidades::Character*>* characters, std::vector<Entidades::Projetil*>* projeteis)
+Gravidade::Gravidade(std::vector<Entidades::Personagens::Character*>* characters, std::vector<Entidades::Projetil*>* projeteis)
 {
 	gravityForce.x = 0;
 	gravityForce.y = 0.2;

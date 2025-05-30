@@ -20,5 +20,5 @@ namespace Fases{
 		Fase1();
 		~Fase1();
 		void executar();
-};
+	};
 }

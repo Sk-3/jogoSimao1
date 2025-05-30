@@ -6,7 +6,7 @@ namespace Fases{
 		//Criação das plataformas da fase
 		
 			for (int i = 0; i <= 30; i++) {
-				obstaculos.push_back(new Entidades::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670)));
+				obstaculos.push_back(new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670)));
 			}
 
 	}

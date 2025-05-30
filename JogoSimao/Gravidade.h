@@ -14,9 +14,9 @@ class Gravidade
 {
 	sf::Vector2f gravityForce;
 	std::vector<Entidades::Projetil*>* projeteis;
-	std::vector<Entidades::Character*>* characters;
+	std::vector<Entidades::Personagens::Character*>* characters;
 public:
-	Gravidade(std::vector<Entidades::Character*>* characters, std::vector<Entidades::Projetil*>* projeteis);
+	Gravidade(std::vector<Entidades::Personagens::Character*>* characters, std::vector<Entidades::Projetil*>* projeteis);
 	void executar();
 	void aplyGravity();
 };

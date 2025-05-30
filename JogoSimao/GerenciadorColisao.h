@@ -19,14 +19,14 @@ namespace Gerenciadores{
 	class GerenciadorColisao : public Ente
 	{
 	private:
-		std::vector<Entidades::Character*>* characters;
-		std::vector<Entidades::Obstaculo*>* obstaculos;
+		std::vector<Entidades::Personagens::Character*>* characters;
+		std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos;
 		std::vector<Entidades::Projetil*>* projeteis;
 	public:
 
 		void executar();
 		GerenciadorColisao();
-		GerenciadorColisao(std::vector<Entidades::Character*>* characters, std::vector<Entidades::Obstaculo*>*, std::vector<Entidades::Projetil*>* projeteis);
+		GerenciadorColisao(std::vector<Entidades::Personagens::Character*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>*, std::vector<Entidades::Projetil*>* projeteis);
 		~GerenciadorColisao();
 	
 	

@@ -4,7 +4,7 @@ namespace Fases{
 	GameState::GameState():
 		State(), gravity(&characters, &projeteis),
 		colision(&characters, &obstaculos, &projeteis),
-		player(new Entidades::Player()), view(pGerGraphic->getStdView())
+		player(new Entidades::Personagens::Player()), view(pGerGraphic->getStdView())
 	{
 		hud.setPlayer(player);
 		player2 = nullptr;
@@ -87,7 +87,7 @@ namespace Fases{
 			case sf::Event::KeyPressed:
 				if (ev.key.code == sf::Keyboard::P) {
 					if (!player2) {
-						player2 = new Entidades::Player();
+						player2 = new Entidades::Personagens::Player();
 						characters.push_back(player2);
 					}
 				}
@@ -104,7 +104,7 @@ namespace Fases{
 		}
 	}
 
-	void GameState::dispararProjetil(Entidades::Character* character)
+	void GameState::dispararProjetil(Entidades::Personagens::Character* character)
 	{
 		sf::Vector2f position = character->getPosition();
 		position.y += (character->getBounds().height / 2);
@@ -133,8 +133,8 @@ namespace Fases{
 
 	void GameState::removerPersonagens()
 	{
-		std::vector<Entidades::Character*> personagensVivos;
-		for (Entidades::Character* persona : characters) {
+		std::vector<Entidades::Personagens::Character*> personagensVivos;
+		for (Entidades::Personagens::Character* persona : characters) {
 			if (persona->vivo()) {
 				personagensVivos.push_back(persona);
 			}

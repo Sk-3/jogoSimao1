@@ -6,16 +6,16 @@
 *	Classe abstrata inimigo
 */
 namespace Entidades{
-
-	class Inimigo : public Character
-	{
-	protected:
-		int nivel_maldade;
-	public:
-		Inimigo(sf::Vector2f size, sf::Vector2f pos);
-		Inimigo();
-		~Inimigo();
-		virtual void executar() = 0; 
-	};
-
+	namespace Personagens{
+		class Inimigo : public Character
+		{
+		protected:
+			int nivel_maldade;
+		public:
+			Inimigo(sf::Vector2f size, sf::Vector2f pos);
+			Inimigo();
+			~Inimigo();
+			virtual void executar() = 0; 
+		};
+	}
 }

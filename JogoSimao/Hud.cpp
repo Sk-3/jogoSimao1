@@ -12,7 +12,7 @@ Hud::~Hud()
 {
 }
 
-void Hud::setPlayer(Entidades::Player* player)
+void Hud::setPlayer(Entidades::Personagens::Player* player)
 {
 	this->player = player;
 }

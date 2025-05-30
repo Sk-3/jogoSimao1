@@ -10,7 +10,7 @@ namespace Gerenciadores{
 	{
 	
 	}
-	GerenciadorColisao::GerenciadorColisao(std::vector<Entidades::Character*>* characters, std::vector<Entidades::Obstaculo*>* obstaculos, std::vector<Entidades::Projetil*>* projeteis)
+	GerenciadorColisao::GerenciadorColisao(std::vector<Entidades::Personagens::Character*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos, std::vector<Entidades::Projetil*>* projeteis)
 		:Ente()
 	{
 		this->projeteis = projeteis;

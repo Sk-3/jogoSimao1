@@ -7,18 +7,21 @@
 *
 *	
 */
-namespace Entidades{
-	class Plataforma : public Obstaculo
-	{
-	private:
 
-	public:
-		Plataforma(sf::Vector2f size, sf::Vector2f pos);
-		Plataforma(); 
-		~Plataforma(); 
-		virtual void obstacular(Player* pPlayer);
-		void executar();
-	};
+namespace Entidades {
+	namespace Obstaculos {
+		class Plataforma : public Obstaculo
+		{
+		private:
+
+		public:
+			Plataforma(sf::Vector2f size, sf::Vector2f pos);
+			Plataforma();
+			~Plataforma();
+			virtual void obstacular(Personagens::Player* pPlayer);
+			void executar();
+		};
+
+	}
 
 }
-

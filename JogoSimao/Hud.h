@@ -6,12 +6,12 @@ class Hud : public Ente
 {
 private:
 	sf::Clock hudClock;
-	Entidades::Player* player;
+	Entidades::Personagens::Player* player;
 	sf::Text hud;
 public:
 	Hud();
 	~Hud();
-	void setPlayer(Entidades::Player* player);
+	void setPlayer(Entidades::Personagens::Player* player);
 	void draw();
 	void executar();
 

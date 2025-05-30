@@ -1,5 +1,4 @@
 #include "Projetil.h"
-#include "iostream"
 #include "Character.h"
 
 namespace Entidades{
@@ -22,12 +21,12 @@ namespace Entidades{
 	Projetil::Projetil()
 		:Entity()
 	{
+		dano = 0;
 		ativo = 1;
 	}
 
 	Projetil::~Projetil()
 	{
-		std::cout << "Projetil deletado";
 	}
 
 	void Projetil::executar()
@@ -51,7 +50,7 @@ namespace Entidades{
 		return ativo;
 	}
 
-	void Projetil::danifica(Character* personagem)
+	void Projetil::danifica(Personagens::Character* personagem)
 	{
 		personagem->tiraVida(dano);
 	}

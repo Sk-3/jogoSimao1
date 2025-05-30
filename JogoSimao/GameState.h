@@ -27,18 +27,18 @@ namespace Fases{
 		Gravidade gravity;
 		Hud hud;
 		
-		Entidades::Player* player2;
-		Entidades::Player* player;
+		Entidades::Personagens::Player* player2;
+		Entidades::Personagens::Player* player;
 		
 		std::vector<Entidades::Entity*> entidades;
 		std::vector<Entidades::Projetil*> projeteis;
-		std::vector<Entidades::Obstaculo*> obstaculos;
-		std::vector<Entidades::Character*> characters;
+		std::vector<Entidades::Obstaculos::Obstaculo*> obstaculos;
+		std::vector<Entidades::Personagens::Character*> characters;
 	public:
 		~GameState();
 		GameState();
 		virtual void handleEvent();
-		void dispararProjetil(Entidades::Character* character);
+		void dispararProjetil(Entidades::Personagens::Character* character);
 		virtual void executar() = 0;
 		void removerProjeteis();
 		void removerPersonagens();

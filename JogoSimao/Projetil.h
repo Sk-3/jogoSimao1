@@ -2,8 +2,9 @@
 #include "Entity.h"
 
 namespace Entidades{
-	class Character;
-
+	namespace Personagens {
+		class Character;
+	}
 	class Projetil :public Entity
 	{
 	private:
@@ -16,7 +17,7 @@ namespace Entidades{
 		void executar();
 		void desativar();
 		bool Ativado();
-		void danifica(Character* personagem);
+		void danifica(Personagens::Character* personagem);
 	};
 
 }
