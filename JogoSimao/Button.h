@@ -3,6 +3,7 @@
 #include <string>
 #include "Entity.h"
 #include <iostream>
+#include <cstdlib>
 #include "Actions.h"
 
 /**
@@ -17,6 +18,8 @@ namespace Entidades{
 	class Button : public Entity
 	{
 	private:
+
+
 		sf::Text buttonText;
 		Actions buttonAction;
 		Actions actualAction;
