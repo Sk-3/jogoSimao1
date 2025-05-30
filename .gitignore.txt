@@ -1,4 +1,0 @@
-JogoSimao/Release/
-Release/
-Debug/
-.vs/
