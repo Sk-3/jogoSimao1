@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Felipe\\Documents\\JogoSimao\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2A400A5E-2ADA-4250-8345-24D1877ED65D}|JogoSimao\\JogoSimao.vcxproj|C:\\Users\\Felipe\\Documents\\JogoSimao\\JogoSimao\\Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2A400A5E-2ADA-4250-8345-24D1877ED65D}|JogoSimao\\JogoSimao.vcxproj|solutionrelative:JogoSimao\\Button.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +14,25 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Button.h",
+              "DocumentMoniker": "C:\\Users\\Felipe\\Documents\\JogoSimao\\JogoSimao\\Button.h",
+              "RelativeDocumentMoniker": "JogoSimao\\Button.h",
+              "ToolTip": "C:\\Users\\Felipe\\Documents\\JogoSimao\\JogoSimao\\Button.h",
+              "RelativeToolTip": "JogoSimao\\Button.h",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-30T11:40:40.147Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"

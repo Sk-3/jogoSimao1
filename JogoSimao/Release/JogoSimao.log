@@ -1,1 +1,15 @@
-﻿  JogoSimao.vcxproj -> C:\Users\Felipe\Documents\JogoSimao\Release\JogoSimao.exe
+﻿  Button.cpp
+  GameOver.cpp
+  GerenciadorEstado.cpp
+  MenuPrincipal.cpp
+  MenuSelectLvl.cpp
+  PauseState.cpp
+  Principal.cpp
+  menuState.cpp
+  main.cpp
+  Gerando código
+  0 of 619 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finalizada a geração de código
+  JogoSimao.vcxproj -> C:\Users\Felipe\Documents\JogoSimao\Release\JogoSimao.exe
