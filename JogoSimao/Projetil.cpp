@@ -3,11 +3,9 @@
 
 namespace Entidades{
 
-	Projetil::Projetil(sf::Vector2f size, sf::Vector2f pos, Directions direction)
-		:Entity(size, pos), dano(3)
+	Projetil::Projetil(sf::Vector2f size, sf::Vector2f pos, Directions direction, TipoPersonagem tipo)
+		:Entity(size, pos), dano(3), tipo(tipo), ativo(1)
 	{
-
-
 		clock.restart();
 		if (direction == Directions::LEFT) {
 			speed = sf::Vector2f(-35.f, 0.f);
@@ -15,7 +13,6 @@ namespace Entidades{
 		else {
 			speed = sf::Vector2f(35.f, 0.f);
 		}
-		ativo = 1;
 	}
 
 	Projetil::Projetil()
@@ -44,7 +41,15 @@ namespace Entidades{
 	{
 		ativo = 0; 
 	}
+	void Projetil::setTipo(TipoPersonagem tipo)
+	{
+		this->tipo = tipo;
+	}
 
+	const TipoPersonagem Projetil::getTipo() const
+	{
+		return tipo;
+	}
 	bool Projetil::Ativado()
 	{
 		return ativo;

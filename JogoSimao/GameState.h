@@ -38,7 +38,6 @@ namespace Fases{
 		~GameState();
 		GameState();
 		virtual void handleEvent();
-		void dispararProjetil(Entidades::Personagens::Character* character);
 		virtual void executar() = 0;
 		void removerProjeteis();
 		void removerPersonagens();

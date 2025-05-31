@@ -1,5 +1,6 @@
 #include "Character.h"
 #include "Obstaculo.h"
+#include "Projetil.h"
 
 namespace Entidades{
 	namespace Personagens{
@@ -20,7 +21,7 @@ namespace Entidades{
 			:Entity(size, pos), Subject()
 		{
 			tiroCooldown = 0.2;
-			tipo = TipoPersonagem::INMIGO; 
+			tipo = TipoPersonagem::INIMIGO; 
 			maxSpeed = 6;
 			moveSpeed = 120;
 			jumps = 2;
@@ -76,6 +77,8 @@ namespace Entidades{
 		{
 			return tipo;
 		}
+
+		
 
 		const Directions Character::getDirection() const
 		{

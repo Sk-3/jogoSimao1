@@ -34,7 +34,7 @@ namespace Gerenciadores{
 			}
 			for (auto& charact : *characters) {
 				if (projBounds.intersects(charact->getBounds())) {
-					if (charact->getTipo() == TipoPersonagem::INMIGO) {
+					if (charact->getTipo() != projet->getTipo()) {
 						projet->desativar();
 						projet->danifica(charact);
 					}

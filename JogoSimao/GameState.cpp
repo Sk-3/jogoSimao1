@@ -101,23 +101,6 @@ namespace Fases{
 		}
 	}
 
-	void GameState::dispararProjetil(Entidades::Personagens::Character* character)
-	{
-
-		if(character->getClockTiro() > character->getTiroCoooldown()){
-
-			sf::Vector2f position = character->getPosition();
-			position.y += (character->getBounds().height / 2);
-			if (character->getDirection() != Directions::LEFT) {
-				position.x += character->getBounds().width;
-		
-			}
-
-			projeteis.push_back(new Entidades::Projetil(sf::Vector2f(10.0, 10.0), position, character->getDirection()));
-			character->resetClockTiro();
-		}
-	}
-
 	void GameState::removerProjeteis()
 	{
 		std::vector<Entidades::Projetil*> projeteisAtivos;

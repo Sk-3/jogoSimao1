@@ -2,5 +2,5 @@
 enum class TipoPersonagem
 {
 	PLAYER,
-	INMIGO
+	INIMIGO
 };
