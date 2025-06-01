@@ -109,7 +109,7 @@ namespace Entidades{
 				if (getDirection() != Directions::LEFT) {
 					position.x += getBounds().width;
 				}
-				projeteis->push_back(new Projetil(sf::Vector2f(10.0, 10.0), position, getDirection(), tipo));
+				projeteis->emplace_back(new Projetil(sf::Vector2f(10.0, 10.0), position, getDirection(), tipo));
 				resetClockTiro(); 
 			}
 		}

@@ -39,6 +39,7 @@ namespace Fases{
 		GameState();
 		virtual void handleEvent();
 		virtual void executar() = 0;
+		virtual void executarJanela();
 		void removerProjeteis();
 		void removerPersonagens();
 		virtual void criarInimigos() = 0;

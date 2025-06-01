@@ -7,5 +7,6 @@ private:
 public:
 	GameOver();
 	~GameOver();
+	void handleEvent() override;
 };
 

@@ -5,8 +5,13 @@ namespace Fases{
 		GameState()
 	{
 		//Criação das plataformas da fase
+		
+		projeteis.reserve(100);
+		characters.reserve(20);
+		obstaculos.reserve(100);
 		criarEstruturas();
 		criarInimigos();
+		
 	}
 
 	Fase1::~Fase1()
@@ -15,35 +20,26 @@ namespace Fases{
 
 	void Fase1::executar()
 	{
-		window->clear();
-		pGerGraphic->getWindow()->setView(view);
-		view.setCenter(player->getPosition());
-
-		
+		executarJanela();
 		handleEvent();
-		
-	
-		//dispararProjetil(boss);
-		
 		for (auto const& obst : obstaculos) {
 			obst->executar();
 		}
-
 		for (auto const& charact : characters) {
 			charact->executar();
 		}
-
 		for (auto const& projetil : projeteis) {
 			projetil->executar();
 		}
 		colision.executar();
 		gravity.executar();
+		hud.executar();
+
+
+
 		for (auto const& charact : characters) {
 			charact->draw();
 		}
-
-
-		hud.executar();
 		hud.draw();
 		removerProjeteis();
 		if (!player->vivo())
@@ -57,19 +53,23 @@ namespace Fases{
 
 	void Fase1::criarInimigos()
 	{
-
-		characters.push_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 100), sf::Vector2f(100, 300)));
-		characters.push_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 100), sf::Vector2f(900, 300)));
-		characters.push_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 100), sf::Vector2f(300, 300)));
-		characters.push_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 100), sf::Vector2f(500, 300)));
-		characters.push_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 100), sf::Vector2f(700, 300)));
-		
-		boss = new Entidades::Personagens::Boss(sf::Vector2f(200, 200), sf::Vector2f(900, 300), player, &projeteis);
-		characters.push_back(boss);
+		/***
+		* @brief Inicizaliza os inimigos da fase no construtor
+		* @details Cria os inimigos e adiciona na lista de personagens
+		* @return void
+		*/
+		characters.emplace_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 50), sf::Vector2f(900, 300)));
+		characters.emplace_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 50), sf::Vector2f(700, 300)));
+		characters.emplace_back(new Entidades::Personagens::Boss(sf::Vector2f(100, 200), sf::Vector2f(1500, 300), player, &projeteis));
 	}
 
 	void Fase1::criarEstruturas()
 	{
+		/***
+		* @brief Inicizaliza as estruturas da fase no construtor
+		* @details Cria as estruturas e adiciona na lista de obstaculos
+		* @return void
+		*/
 		for (int i = 0; i <= 30; i++) {
 			obstaculos.push_back(new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670)));
 		}

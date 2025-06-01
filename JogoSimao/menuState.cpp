@@ -11,7 +11,11 @@ menuState::menuState()
 
 void menuState::readButtons()
 {
-	//Se o action atual do botão for diferente de NADA, então mudar o estado atual do estado pro estado do botão
+	/**
+	* @brief le os botoes do menu e executa a acao
+	* @details Percorre o vetor de botoes e verifica se a acao do botao houve alguma alteracao,
+	*		   Caso tenha ocorrido, a acao do menuState eh alterada para a acao do botao
+	*/
 	for (const auto& x : buttonVector) {
 		if (x->getAction() != Actions::NADA) {
 
@@ -24,12 +28,21 @@ void menuState::readButtons()
 
 void menuState::execButtons()
 {
+	/**
+	*@brief executa os botoes do menu
+	*@return void
+	*/
 	for (const auto& buttons : buttonVector) {
 		buttons->executar();
 	}
 }
 
 void menuState::executar() {
+	/**
+	*@brief executa o menuState
+	*@details Atualiza a posicao do mouse, limpa a janela e le e executa os botoes
+	*@return void
+	*/
 	pGerGraphic->getWindow()->clear();
 	pGerGraphic->updateMousePosition();
 	handleEvent();
@@ -39,6 +52,10 @@ void menuState::executar() {
 
 void menuState::handleEvent()
 {
+	/**
+	*@brief trata os eventos de teclado e mouse do menuState
+	*@return void
+	*/
 	sf::Event ev;
 	while(this->window->pollEvent(ev)){
 		switch (ev.type) {
@@ -67,6 +84,11 @@ void menuState::handleEvent()
 
 void menuState::mouseClick()
 {
+	/**
+	*@brief trata o clique do mouse no menuState
+	*@details Verifica se o mouse esta sobre algum botao e executa a acao do botao
+	*@return void
+	*/
 	for (const auto& x : buttonVector) {
 		if (x->getClicked(mousePos)) {
 			x->action();

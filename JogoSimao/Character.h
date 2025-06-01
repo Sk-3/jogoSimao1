@@ -20,14 +20,17 @@ namespace Entidades{
 		class Character : public Entity, public Subject
 		{
 		protected:
+			//clock que controla o tempo de tiro do personagem
 			sf::Clock Clocktiro;
 			float tiroCooldown;
+			//tipo do personagem, usado para identificar o personagem e suas habilidades
 			TipoPersonagem tipo;
 			float maxSpeed;
 			float moveSpeed;
 			int health; 
 			int power;
 			int jumps;
+			//direção do personagem, usada para saber se o personagem está virado para a direita ou esquerda
 			Directions direction;
 		public:
 			//construtor padrão

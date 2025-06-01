@@ -26,7 +26,12 @@ namespace Fases{
 
 	void GameState::handleEvent()
 	{
-
+		/**
+		* @brief Gerencia os eventos de teclado
+		* @details Verifica as teclas pressionadas e executa as ações correspondentes para o jogador e o jogador 2 (se existir).
+		* @return void
+		*/
+		//Ações do jogador secundario
 		if (player2) {
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 				player2->moveLeft();
@@ -52,28 +57,30 @@ namespace Fases{
 			}
 		}
 
+		//Ações do jogador principal
+		if(player){
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+				player->moveLeft();
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+				player->moveRight();
+			}
+			else {
+				player->stopAxisX();
+			}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-			player->moveLeft();
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-			player->moveRight();
-		}
-		else {
-			player->stopAxisX();
-		}
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-			player->moveUp();
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-			player->moveDown();
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
-			player->dash();
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-			player->atirar(&projeteis);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+				player->moveUp();
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+				player->moveDown();
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
+				player->dash();
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+				player->atirar(&projeteis);
+			}
 		}
 		sf::Event ev;
 		while (window->pollEvent(ev)) {
@@ -99,6 +106,18 @@ namespace Fases{
 				}
 			}
 		}
+	}
+
+	void GameState::executarJanela()
+	{
+		/**
+		* @brief Executa a janela
+		* @details Limpa a janela, define a view e atualiza o centro da view com a posição do jogador.
+		* @return void
+		*/
+		window->clear();
+		pGerGraphic->getWindow()->setView(view);
+		view.setCenter(player->getPosition());
 	}
 
 	void GameState::removerProjeteis()

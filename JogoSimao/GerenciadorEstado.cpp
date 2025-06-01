@@ -14,24 +14,19 @@ namespace Gerenciadores {
 	GerenciadorEstado::GerenciadorEstado()
 		:Ente()
 	{
+		/**
+		* @brief Inicializa o gerenciador de estados com o menu principal.
+		*/
 		push(new MenuPrincipal());
 	}
 
-	/*
-	void GerenciadorEstado::execute()
-	{
-		while (pGerGraphic->isOpen()) {
-			handleEvent();
-			update();
-			draw();
-
-		}
-
-	}
-	*/
-
 	void GerenciadorEstado::handleEvent()
 	{
+		/**
+		* @brief Trata os eventos do estado atual do jogo.
+		* @details Verifica se há algum estado na pilha e chama o método handleEvent do estado atual.
+		* @return void
+		*/
 		if (!stack.empty()) {
 			stack.back()->handleEvent();
 		}
@@ -39,6 +34,11 @@ namespace Gerenciadores {
 
 	void GerenciadorEstado::update()
 	{
+		/**
+		*@brief Atualiza o estado atual do jogo, verificando a ação a ser tomada.
+		*@details Dependendo da ação, pode-se mudar de fase, voltar ao menu principal, selecionar uma fase, ou entrar no estado de pausa.
+		*@return void
+		*/
 		switch (stack.back()->getAction()) {
 		case Actions::VOLTAR_1_MENU: {
 			pop();
@@ -82,7 +82,11 @@ namespace Gerenciadores {
 
 	void GerenciadorEstado::executar()
 	{
-
+		/**
+		* @brief Executa o estado atual do jogo.
+		* @details Verifica se há algum estado na pilha e chama o método executar do estado atual.
+		* @return void
+		*/
 		if (stack.empty()) {
 			pGerGraphic->getWindow()->close();
 			return;
@@ -97,6 +101,11 @@ namespace Gerenciadores {
 
 	void GerenciadorEstado::pop()
 	{
+		/**
+		* @brief Remove o estado atual da pilha de estados.
+		* @details Verifica se há algum estado na pilha, deleta o estado atual e ajusta o estado anterior.
+		* @return void
+		*/
 		if (!stack.empty()) {
 			delete stack.back();
 			stack.pop_back();
@@ -108,12 +117,18 @@ namespace Gerenciadores {
 
 	void GerenciadorEstado::push(State* newState)
 	{
-		stack.push_back(newState);
+		/**
+		* @brief Adiciona um novo estado à pilha de estados.
+		*/
+		stack.emplace_back(newState);
 	}
 
 	void GerenciadorEstado::clear()
 	{
-
+		/**
+		* @brief Limpa a pilha de estados, deletando todos os estados nela contidos.
+		* @return void
+		*/
 		int i;
 
 		for (i = stack.size() - 1; i >= 0; i--) {
