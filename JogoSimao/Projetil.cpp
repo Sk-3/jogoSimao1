@@ -69,15 +69,29 @@ namespace Entidades{
 
 	const TipoPersonagem Projetil::getTipo() const
 	{
+		/**
+		*@brief Retorna o tipo do projetil
+		*@return TipoPersonagem Tipo do personagem que disparou o projetil
+		*/
 		return tipo;
 	}
 	bool Projetil::Ativado()
 	{
+		/**
+		*@brief Verifica se o projetil esta ativo
+		*@return bool Retorna true se o projetil esta ativo, false caso contrario
+		*/
 		return ativo;
 	}
 
 	void Projetil::danifica(Personagens::Character* personagem)
 	{
+		/**
+		*@brief Aplica dano ao personagem atingido pelo projetil
+		*@param personagem Ponteiro para o personagem que foi atingido pelo projetil
+		*@details Utilizando a referencia do personagem, chama o metodo tiraVida para aplicar o dano do projetil.
+		*@return void
+		*/
 		personagem->tiraVida(dano);
 	}
 

@@ -17,6 +17,9 @@ namespace Entidades{
 
 		void Plataforma::obstacular(Personagens::Player* pPlayer)
 		{
+			/**
+			*
+			*/
 			pPlayer->changeSpeed(sf::Vector2f(0.f, 5.f));
 		}
 

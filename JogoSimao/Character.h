@@ -38,23 +38,32 @@ namespace Entidades{
 			//define posição e tamanho inicial do personagem
 			Character(sf::Vector2f size, sf::Vector2f pos);
 			~Character();
-			//Funções que não permitem o jogador entrar dentro do obstaculo passado como parametro
-			virtual void hitTop(Obstaculos::Obstaculo* obstaculo);
-			//se atinge o chão, é movido pra cima, e assim é com todas as outras funções
-			virtual void hitGround(Obstaculos::Obstaculo* obstaculo);
-			virtual void hitLeft (Obstaculos::Obstaculo* obstaculo);
-			virtual void hitRight(Obstaculos::Obstaculo* obstaculo);
+
+			//RELACIONADO A COLISÃO
+				//Funções que não permitem o jogador entrar dentro do obstaculo passado como parametro
+				virtual void hitTop(Obstaculos::Obstaculo* obstaculo);
+				virtual void hitGround(Obstaculos::Obstaculo* obstaculo);
+				virtual void hitLeft (Obstaculos::Obstaculo* obstaculo);
+				virtual void hitRight(Obstaculos::Obstaculo* obstaculo);
 	
-			void tiraVida(int dano);
-			const TipoPersonagem getTipo() const;
-			const Directions getDirection() const;
-			const int getHealth() const;
-			const bool vivo() const;
+			//GETTERS
+				const TipoPersonagem getTipo() const;
+				const Directions getDirection() const;
+				const int getHealth() const;
+				const float getClockTiro() const;
+				const float getTiroCoooldown() const;
+				const bool vivo() const;
+
+			//SETTERS
+				void tiraVida(int dano);
+				void resetClockTiro();
+				void setMoveSpeed(float moveSpeed);
+				
+
+			//FUNÇÕES BASE
 			virtual void executar() = 0;
 			virtual void draw();
-			const float getClockTiro() const;
-			const float getTiroCoooldown() const;
-			void resetClockTiro();
+			
 		};
 	}
 }

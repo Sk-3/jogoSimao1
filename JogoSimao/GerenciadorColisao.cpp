@@ -13,6 +13,13 @@ namespace Gerenciadores{
 	GerenciadorColisao::GerenciadorColisao(std::vector<Entidades::Personagens::Character*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos, std::vector<Entidades::Projetil*>* projeteis)
 		:Ente()
 	{
+		/**
+		* @brief Construtor da classe GerenciadorColisao.
+		* @param characters Ponteiro para vetor de ponteiros para personagens.
+		* @param obstaculos Ponteiro para vetor de ponteiros para obstáculos.
+		* @param projeteis Ponteiro para vetor de ponteiros para projéteis.
+		* 
+		*/
 		this->projeteis = projeteis;
 		this->obstaculos = obstaculos;
 		this->characters = characters;
@@ -25,6 +32,12 @@ namespace Gerenciadores{
 
 	void GerenciadorColisao::colision()
 	{
+		/**
+		* @brief Verifica colisões entre personagens, obstáculos e projéteis.
+		* @details Esta função percorre os vetores de personagens, obstáculos e projéteis, verificando se há interseção entre eles.
+		* caso haja interseção, as ações apropriadas são executadas, como desativar projéteis ou aplicar dano aos personagens.
+		* @return void
+		*/
 		for (auto& projet : *projeteis) {
 			sf::FloatRect projBounds = projet->getBounds();
 			for (const auto& obst : *obstaculos) {

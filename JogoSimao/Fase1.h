@@ -1,7 +1,7 @@
 #pragma once
 #include "GameState.h"
-#include "Inimigo.h"
 #include "Cachorro.h"
+#include "Atirador.h"
 #include "Boss.h"
 /**
 *	Felipe Simbalista: 25/05/2025
@@ -16,7 +16,6 @@ namespace Fases{
 	class Fase1 : public GameState
 	{
 	private:
-		Entidades::Personagens::Boss* boss;
 	public:
 		Fase1();
 		~Fase1();

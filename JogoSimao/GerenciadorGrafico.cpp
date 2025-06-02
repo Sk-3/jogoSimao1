@@ -16,7 +16,7 @@ namespace Gerenciadores {
 
 		window = new sf::RenderWindow(sf::VideoMode(winWidth, winHeight), "Menu Teste", sf::Style::Close | sf::Style::Titlebar);
 		font = new sf::Font();
-		if (!font->loadFromFile("C://Users//Felipe//Documents//menuTeste//menuTeste//TypeLightSans-KV84p.otf")) {
+		if (!font->loadFromFile("..//JogoSimao//TypeLightSans-KV84p.otf")) {
 			std::cerr << "Erro ao carregar a fonte";
 		}
 	}
@@ -105,6 +105,11 @@ namespace Gerenciadores {
 
 	void GerenciadorGrafico::setFrameLimit(int fps)
 	{
+		/**
+		* @brief Define o limite de quadros por segundo (FPS) para a janela.
+		* @param fps O número máximo de quadros por segundo que a janela deve renderizar.
+		* @return void
+		*/
 		window->setFramerateLimit(fps);
 	}
 

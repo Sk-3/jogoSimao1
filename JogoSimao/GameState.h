@@ -21,6 +21,10 @@
 namespace Fases{
 	class GameState : public State
 	{
+
+		typedef struct{
+
+		}ArraysDoJogo;
 	protected:
 		sf::View view;
 		Gerenciadores::GerenciadorColisao colision;

@@ -139,6 +139,8 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EstadoCachorroAtacar.cpp" />
+    <ClCompile Include="EstadoCachorroSeguir.cpp" />
     <ClCompile Include="Fase1.cpp" />
     <ClCompile Include="Fase2.cpp" />
     <ClCompile Include="GameOver.cpp" />
@@ -151,7 +153,7 @@
     <ClCompile Include="Inimigo.cpp" />
     <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="main.cpp">
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Felipe\Documents\menuTeste\SFML-2.6.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\SFML-2.6.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="MenuPrincipal.cpp" />
     <ClCompile Include="MenuSelectLvl.cpp" />
@@ -178,6 +180,9 @@
     <ClInclude Include="Directions.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EstadoCachorro.h" />
+    <ClInclude Include="EstadoCachorroAtacar.h" />
+    <ClInclude Include="EstadoCachorroSeguir.h" />
     <ClInclude Include="Fase1.h" />
     <ClInclude Include="Fase2.h" />
     <ClInclude Include="GameOver.h" />

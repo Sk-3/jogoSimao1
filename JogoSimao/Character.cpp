@@ -29,7 +29,7 @@ namespace Entidades{
 			tiroCooldown = 0.2;
 			tipo = TipoPersonagem::INIMIGO; 
 			maxSpeed = 6;
-			moveSpeed = 120;
+			moveSpeed = 3;
 			jumps = 2;
 			health = 10;
 			power = 0;
@@ -117,6 +117,11 @@ namespace Entidades{
 		void Character::resetClockTiro()
 		{
 			Clocktiro.restart();
+		}
+		void Character::setMoveSpeed(float moveSpeed)
+
+		{
+			this->moveSpeed = moveSpeed;
 		}
 	}
 }

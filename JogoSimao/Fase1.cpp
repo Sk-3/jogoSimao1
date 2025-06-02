@@ -58,9 +58,12 @@ namespace Fases{
 		* @details Cria os inimigos e adiciona na lista de personagens
 		* @return void
 		*/
-		characters.emplace_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 50), sf::Vector2f(900, 300)));
-		characters.emplace_back(new Entidades::Personagens::Cachorro(sf::Vector2f(100, 50), sf::Vector2f(700, 300)));
-		characters.emplace_back(new Entidades::Personagens::Boss(sf::Vector2f(100, 200), sf::Vector2f(1500, 300), player, &projeteis));
+
+		Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(60, 100), sf::Vector2f(500, 300), player, &projeteis, &characters);
+		
+		characters.emplace_back(atirador);
+
+		//characters.emplace_back(new Entidades::Personagens::Boss(sf::Vector2f(100, 200), sf::Vector2f(1500, 300), player, &projeteis));
 	}
 
 	void Fase1::criarEstruturas()
