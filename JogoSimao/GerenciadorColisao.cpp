@@ -6,12 +6,12 @@ namespace Gerenciadores{
 		colision();
 	
 	}
-	GerenciadorColisao::GerenciadorColisao():Ente(), characters(nullptr), obstaculos(nullptr), projeteis(nullptr)
+	GerenciadorColisao::GerenciadorColisao(): characters(nullptr), obstaculos(nullptr), projeteis(nullptr)
 	{
 	
 	}
 	GerenciadorColisao::GerenciadorColisao(std::vector<Entidades::Personagens::Character*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos, std::vector<Entidades::Projetil*>* projeteis)
-		:Ente()
+		
 	{
 		/**
 		* @brief Construtor da classe GerenciadorColisao.

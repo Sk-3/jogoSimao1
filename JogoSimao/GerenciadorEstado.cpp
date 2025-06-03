@@ -44,6 +44,10 @@ namespace Gerenciadores {
 			pop();
 			break;
 		}
+		case Actions::MENU_RANKING: {
+			push(new MenuRanking());
+			break;
+		}
 		case Actions::FASE_1: {
 			push(new Fases::Fase1());
 			break;

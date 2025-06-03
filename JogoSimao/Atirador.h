@@ -16,11 +16,12 @@ namespace Entidades{
 		{  
 		private:  
 			std::vector<Character*>* personagens;
-			std::array<Cachorro*, 3> cachorros;
+			std::vector<Cachorro*> cachorros;
 		public:  
 			Atirador(sf::Vector2f size, sf::Vector2f pos, Character* player, std::vector<Projetil*>* projeteis, std::vector<Character*>* personagens);  
 			Atirador();  
 			~Atirador();  
+			void eliminarCachorros();
 			void executar();  
 		};  
 	}  

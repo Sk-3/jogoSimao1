@@ -12,7 +12,7 @@ MenuPrincipal::MenuPrincipal()
 
 	quit = new Entidades::Button(sf::Vector2f(200.f, 100.f), sf::Vector2f(200.f, 400.f), "Quit Game", Actions::VOLTAR_1_MENU);
 
-	ranking = new Entidades::Button(sf::Vector2f(200.f, 100.f), sf::Vector2f(200.f, 500.f), "Ranking", Actions::VOLTAR_1_MENU);
+	ranking = new Entidades::Button(sf::Vector2f(200.f, 100.f), sf::Vector2f(200.f, 500.f), "Ranking", Actions::MENU_RANKING);
 	buttonVector.push_back(start);
 	buttonVector.push_back(quit);
 	buttonVector.push_back(ranking);

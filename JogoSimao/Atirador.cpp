@@ -10,13 +10,14 @@ namespace Entidades{
 
 			sf::Vector2f posCachorro = pos;
 			
+
+
 			pos.x -= 50;
-			cachorros[0] = new Cachorro(size, posCachorro, player, projeteis, this);
+			cachorros.emplace_back(new Cachorro(size, posCachorro, player, projeteis, this));
 			personagens->emplace_back(cachorros[0]);
 			pos.x += 100;
-			cachorros[1] = new Cachorro(size, posCachorro, player, projeteis, this);
+			cachorros.emplace_back(new Cachorro(size, posCachorro, player, projeteis, this));
 			personagens->emplace_back(cachorros[1]);
-
 			Clocktiro.restart();
 			range = 1000;
 			shape.setFillColor(sf::Color::Magenta);
@@ -30,19 +31,34 @@ namespace Entidades{
 		{
 		}
 
+		void Atirador::eliminarCachorros()
+		{
+			std::vector<Cachorro*> novoArray;
+			for (const auto& cachorro : cachorros) {
+				if (cachorro->vivo()) {
+					novoArray.emplace_back(cachorro);
+				}
+			}
+
+			cachorros = novoArray;
+		}
+
 		void Atirador::executar() {
 			/**
 			*@brief Executa o atirador
 			*@return void
 			*/
+			eliminarCachorros();
 			if (jogadorNoAlcance()) {
-				cachorros[0]->mandarAtacar();
-				cachorros[1]->mandarAtacar();
+				for (const auto& cach : cachorros) {
+					cach->mandarAtacar();
+				}
 
 			}
 			else {
-				cachorros[0]->mandarSeguir();
-				cachorros[1]->mandarSeguir();
+				for (const auto& cach : cachorros) {
+					cach->mandarSeguir();
+				}
 			}
 
 			move();

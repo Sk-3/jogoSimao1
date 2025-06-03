@@ -3,7 +3,6 @@
 #include "Obstaculo.h"
 #include "Projetil.h"
 #include "vector"
-#include "Ente.h"
 
 /**
 *	Felipe Simbalista: 25/05/2025
@@ -16,7 +15,7 @@
 */
 
 namespace Gerenciadores{
-	class GerenciadorColisao : public Ente
+	class GerenciadorColisao
 	{
 	private:
 		std::vector<Entidades::Personagens::Character*>* characters;

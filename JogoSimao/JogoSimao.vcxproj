@@ -156,6 +156,7 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\SFML-2.6.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="MenuPrincipal.cpp" />
+    <ClCompile Include="MenuRanking.cpp" />
     <ClCompile Include="MenuSelectLvl.cpp" />
     <ClCompile Include="menuState.cpp" />
     <ClCompile Include="Observer.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaEntidades.h" />
     <ClInclude Include="MenuPrincipal.h" />
+    <ClInclude Include="MenuRanking.h" />
     <ClInclude Include="MenuSelectLvl.h" />
     <ClInclude Include="menuState.h" />
     <ClInclude Include="CharacterObserver.h" />

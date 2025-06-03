@@ -11,6 +11,7 @@
 class MenuSelectLvl : public menuState
 {
 private:
+	Entidades::Button* voltar;
 	Entidades::Button* level1;
 	Entidades::Button* level2;
 public:
