@@ -3,6 +3,7 @@
 #include "Cachorro.h"
 #include "Atirador.h"
 #include "Boss.h"
+#include "Espinhos.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 *

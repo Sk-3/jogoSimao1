@@ -1,6 +1,6 @@
 #include "GerenciadorGrafico.h"
 #include <iostream>
-#include "Entity.h"
+#include "Ente.h"
 namespace Gerenciadores {
 	GerenciadorGrafico* GerenciadorGrafico::pGerGraphic = NULL;
 	GerenciadorGrafico::GerenciadorGrafico()
@@ -39,6 +39,16 @@ namespace Gerenciadores {
 		*/
 		window->display();
 	}
+	void GerenciadorGrafico::desenharEnte(Ente* ente)
+	{
+		/**
+		*@brief Desenha a figura do ente
+		*@param ente figura que será desenhada
+		*/
+
+		window->draw(*ente->getFigura());
+
+	}
 	bool GerenciadorGrafico::isOpen()
 	{
 		/**
@@ -47,11 +57,6 @@ namespace Gerenciadores {
 		*/
 		return window->isOpen();
 	}
-
-	//void GerenciadorGrafico::desenharEnte(Entity* entity)
-	//{
-	//	window->draw(entity->getShape());
-	//}
 
 	const sf::FloatRect GerenciadorGrafico::getStdView() const
 	{

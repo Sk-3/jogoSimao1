@@ -14,14 +14,16 @@ namespace Entidades{
 		class Obstaculo : public Entity
 		{
 		protected:
+			bool colidivel;
 			bool isColiding;
 			bool danoso;
 		public:
 			Obstaculo(sf::Vector2f size, sf::Vector2f pos);
 			Obstaculo();
 			~Obstaculo();
+			const bool ehColidivel();
 			void setIsColiding(bool col);
-			virtual void obstacular(Personagens::Player* pPlayer) = 0;
+			virtual void obstacular(Personagens::Character* pPlayer) = 0;
 			virtual void executar() = 0; 
 		};
 	}

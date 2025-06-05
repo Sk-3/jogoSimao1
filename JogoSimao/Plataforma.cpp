@@ -4,6 +4,7 @@ namespace Entidades{
 		Plataforma::Plataforma(sf::Vector2f size, sf::Vector2f pos)
 			:Obstaculo(size, pos)
 		{
+			colidivel = 1;
 		}
 
 		Plataforma::Plataforma()
@@ -15,12 +16,11 @@ namespace Entidades{
 		{
 		}
 
-		void Plataforma::obstacular(Personagens::Player* pPlayer)
+		void Plataforma::obstacular(Personagens::Character* pPlayer)
 		{
 			/**
 			*
 			*/
-			pPlayer->changeSpeed(sf::Vector2f(0.f, 5.f));
 		}
 
 		void Plataforma::executar()
@@ -33,9 +33,6 @@ namespace Entidades{
 			else {
 				shape.setFillColor(sf::Color::White);
 			}
-
-			//desenha a plataforma
-			pGerGraphic->getWindow()->draw(shape);
 		}
 
 	}

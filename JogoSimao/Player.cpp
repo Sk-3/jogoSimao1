@@ -2,15 +2,27 @@
 #include "Projetil.h"
 namespace Entidades{
 	namespace Personagens{
-		Player::Player() {
+		Player::Player()
+			:Character()
+		{
 			tipo = TipoPersonagem::PLAYER;
 			jumps = 2;
-			position = sf::Vector2f(300.f, 0.f);
 
+			position = sf::Vector2f(300.f, 0.f);
+			shape.setPosition(position);
 			maxSpeed = 6;
 			shape.setSize(sf::Vector2f(100.f, 100.f));
 			shape.setFillColor(sf::Color::Blue);
-			shape.setPosition(position);
+			
+		}
+
+		Player::Player(sf::Vector2f size, sf::Vector2f pos)
+			:Character(size, pos)
+		{
+			tipo = TipoPersonagem::PLAYER;
+			maxSpeed = 6;
+			jumps = 2;
+			shape.setFillColor(sf::Color::Blue);
 		}
 
 		sf::Vector2f Player::getPosition()

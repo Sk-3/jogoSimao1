@@ -45,7 +45,6 @@ namespace Entidades{
 		}
 		if(ativo){
 			move();
-			pGerGraphic->getWindow()->draw(shape);
 		}
 	}
 

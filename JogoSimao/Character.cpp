@@ -36,6 +36,7 @@ namespace Entidades{
 			speed.x = 0;
 			speed.y = 0;
 			direction = Directions::RIGHT;
+			setFigura(&shape);
 		}
 
 		Character::~Character()
@@ -83,8 +84,6 @@ namespace Entidades{
 		{
 			return tipo;
 		}
-
-		
 
 		const Directions Character::getDirection() const
 		{

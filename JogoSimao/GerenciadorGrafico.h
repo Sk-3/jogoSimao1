@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+
 /**
 *	Felipe Simbalista: 25/05/2025
 *
@@ -11,8 +12,7 @@
 * 
 *
 */
-class Entity;
-
+class Ente;
 
 namespace Gerenciadores{
 	class GerenciadorGrafico
@@ -32,6 +32,7 @@ namespace Gerenciadores{
 	public:
 		~GerenciadorGrafico();
 		//getters	
+		
 		const sf::FloatRect getStdView()const;
 		static GerenciadorGrafico* getGerGraphic();
 		sf::Vector2i* getMousePosition();
@@ -41,7 +42,7 @@ namespace Gerenciadores{
 		//void desenharEnte(Entity* entity);
 	
 		void display();
-
+		void desenharEnte(Ente* ente);
 		void updateMousePosition();
 		void setFrameLimit(int fps);
 	};

@@ -1,6 +1,15 @@
 #include "Entity.h"
 namespace Entidades{
+	const sf::Vector2f Entity::getCenter()
+	{
+		sf::Vector2f center;
 
+		center.x = shape.getGlobalBounds().left + shape.getGlobalBounds().width / 2.f;
+
+		center.y = shape.getGlobalBounds().top + shape.getGlobalBounds().height / 2.f;
+
+		return center;
+	}
 	const sf::Vector2f Entity::getPosition()
 	{
 		/***
@@ -51,6 +60,7 @@ namespace Entidades{
 		*/
 		shape.setSize(shapeSize);
 		shape.setPosition(pos);
+		setFigura(&shape);
 	}
 
 	Entity::~Entity()

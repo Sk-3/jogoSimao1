@@ -14,7 +14,7 @@ namespace Entidades{
 		buttonText.setFont(*(pGerGraphic->getFont()));
 		buttonText.setString(txt);
 		buttonText.setCharacterSize(30);
-
+		setFigura(&buttonText);
 	}
 	Button::~Button() {
 
@@ -30,7 +30,7 @@ namespace Entidades{
 
 	void Button::executar()
 	{
-		pGerGraphic->getWindow()->draw(buttonText);
+		
 	}
 
 	bool Button::getClicked(sf::Vector2i* mousePos)

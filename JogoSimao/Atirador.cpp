@@ -10,14 +10,17 @@ namespace Entidades{
 
 			sf::Vector2f posCachorro = pos;
 			
-
+			
 
 			pos.x -= 50;
-			cachorros.emplace_back(new Cachorro(size, posCachorro, player, projeteis, this));
-			personagens->emplace_back(cachorros[0]);
+
+			Cachorro* tempCachorro = new Cachorro(size, posCachorro, player, projeteis, this);
+			cachorros.emplace_back(tempCachorro);
+			personagens->emplace_back(tempCachorro);
 			pos.x += 100;
-			cachorros.emplace_back(new Cachorro(size, posCachorro, player, projeteis, this));
-			personagens->emplace_back(cachorros[1]);
+			tempCachorro = new Cachorro(size, posCachorro, player, projeteis, this);
+			cachorros.emplace_back(tempCachorro);
+			personagens->emplace_back(tempCachorro);
 			Clocktiro.restart();
 			range = 1000;
 			shape.setFillColor(sf::Color::Magenta);

@@ -19,6 +19,7 @@ namespace Entidades{
 			sf::Vector2f center;
 		public:
 			Player();
+			Player(sf::Vector2f size, sf::Vector2f pos);
 			sf::Vector2f getPosition();
 			//Adicionam velocidade ao vetor de velocidade do jogador
 			void moveUp();

@@ -3,14 +3,23 @@ Gerenciadores::GerenciadorGrafico* Ente::pGerGraphic(Gerenciadores::GerenciadorG
 Ente::Ente():
 	id(0)
 {
-
+	figura = nullptr;
 }
 
-void Ente::drawEnte(Ente* ente)
+void Ente::desenhar()
 {
-	
+	pGerGraphic->desenharEnte(this); 
 }
-
 Ente::~Ente()
 {
+}
+
+sf::Drawable* Ente::getFigura()
+{
+	return figura;
+}
+
+void Ente::setFigura(sf::Drawable* fig)
+{
+	figura = fig;;
 }

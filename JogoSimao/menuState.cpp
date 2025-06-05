@@ -34,6 +34,7 @@ void menuState::execButtons()
 	*/
 	for (const auto& buttons : buttonVector) {
 		buttons->executar();
+		buttons->desenhar();
 	}
 }
 

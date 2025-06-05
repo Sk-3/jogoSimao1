@@ -24,6 +24,7 @@ namespace Entidades{
 		sf::RectangleShape shape;
 		sf::Vector2f speed;
 	public:
+		const sf::Vector2f getCenter();
 		const sf::Vector2f getPosition();
 		void move();
 		void changeSpeed(sf::Vector2f addSpeed);

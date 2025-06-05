@@ -18,7 +18,7 @@ namespace Entidades {
 			Plataforma(sf::Vector2f size, sf::Vector2f pos);
 			Plataforma();
 			~Plataforma();
-			virtual void obstacular(Personagens::Player* pPlayer);
+			virtual void obstacular(Personagens::Character* pPlayer);
 			void executar();
 		};
 

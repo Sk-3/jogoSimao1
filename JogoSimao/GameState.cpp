@@ -4,7 +4,7 @@ namespace Fases{
 	GameState::GameState():
 		State(), gravity(&characters, &projeteis),
 		colision(&characters, &obstaculos, &projeteis),
-		player(new Entidades::Personagens::Player()), view(pGerGraphic->getStdView())
+		player(new Entidades::Personagens::Player(sf::Vector2f(80, 120), sf::Vector2f(100, 100))), view(pGerGraphic->getStdView())
 	{
 		hud.setPlayer(player);
 		player2 = nullptr;

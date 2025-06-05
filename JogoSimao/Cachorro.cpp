@@ -10,6 +10,7 @@ namespace Entidades{
 			*@detail Construtor que inicializa o tamanho, a posicao do cachorro e a cor
 			*/
 			shape.setFillColor(sf::Color::Blue);
+			health = 1;
 			mandarSeguir();
 		}
 

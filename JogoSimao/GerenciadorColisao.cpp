@@ -30,14 +30,15 @@ namespace Gerenciadores{
 	
 	}
 
-	void GerenciadorColisao::colision()
+	const bool GerenciadorColisao::verificarColisao(Entidades::Entity* pe1, Entidades::Entity* pe2)
 	{
-		/**
-		* @brief Verifica colisões entre personagens, obstáculos e projéteis.
-		* @details Esta função percorre os vetores de personagens, obstáculos e projéteis, verificando se há interseção entre eles.
-		* caso haja interseção, as ações apropriadas são executadas, como desativar projéteis ou aplicar dano aos personagens.
-		* @return void
-		*/
+		sf::FloatRect ent1Bounds = pe1->getBounds();
+		sf::FloatRect ent2Bounds = pe2->getBounds();
+		return ent1Bounds.intersects(ent2Bounds);
+	}
+
+	void GerenciadorColisao::tratarColisaoProjeteis()
+	{
 		for (auto& projet : *projeteis) {
 			sf::FloatRect projBounds = projet->getBounds();
 			for (const auto& obst : *obstaculos) {
@@ -54,69 +55,94 @@ namespace Gerenciadores{
 				}
 			}
 		}
+	}
 
-
-
+	void GerenciadorColisao::tratarColisaoPersonagens()
+	{
 		for (auto& charact : *characters) {
-			sf::FloatRect characterBounds = charact->getBounds();
 			for (const auto& obstac : *obstaculos) {
-				sf::FloatRect obstaculoBounds = obstac->getBounds();
-
-				if (characterBounds.intersects(obstaculoBounds)) {
-					obstac->setIsColiding(1);
-				
-
-					//Centro do personagem
-					float charCenterX = characterBounds.left + characterBounds.width / 2.f;
-					float charCenterY = characterBounds.top + characterBounds.height / 2.f;
-				
-					//Centro do obstaculo
-					float obstCenterX = obstaculoBounds.left + obstaculoBounds.width / 2.0f;
-					float obstCenterY = obstaculoBounds.top + obstaculoBounds.height / 2.0f;
-
-					//Sobreposição em cada eixo
-				
-					float overlapX = std::min(characterBounds.left + characterBounds.width, obstaculoBounds.left + obstaculoBounds.width) - std::max(characterBounds.left, obstaculoBounds.left);
-					//interseção no eixo X
-
-
-					float overlapY = std::min(characterBounds.top + characterBounds.height, obstaculoBounds.top + obstaculoBounds.height) - std::max(characterBounds.top, obstaculoBounds.top);
-					//interseção no eixo y
-
-					// Determinar a direção da colisão pela menor sobreposição
-					if (overlapX < overlapY) {
-						if (charCenterX < obstCenterX) {
-							// Personagem está mais à esquerda que o centro do obstáculo,
-							// então o lado DIREITO do personagem colidiu com o lado ESQUERDO do obstáculo.
-							charact->hitRight(obstac); 
-						}
-						else {
-							// Personagem está mais à direita que o centro do obstáculo,
-							// então o lado ESQUERDO do personagem colidiu com o lado DIREITO do obstáculo.
-							charact->hitLeft(obstac);
-						}
+				if (verificarColisao(obstac, charact)) {
+					if (obstac->ehColidivel()) {
+						empurrarPersonagem(charact, obstac);
 					}
-					else {
-					
-						if (charCenterY < obstCenterY) {
-							// Personagem está mais acima que o centro do obstáculo,
-							// então a parte de BAIXO do personagem colidiu com a parte de CIMA do obstáculo.
-							charact->hitGround(obstac);
-						}
-						else {
-							// Personagem está mais abaixo que o centro do obstáculo,
-							// então a parte de CIMA do personagem colidiu com a parte de BAIXO do obstáculo.
-							charact->hitTop(obstac);
-						}
-					}
-
+					obstac->obstacular(charact);
 				}
-				else {
-					obstac->setIsColiding(0);
-				}
-
 			}
 		}
+	}
+
+	void GerenciadorColisao::empurrarPersonagem(Entidades::Personagens::Character* personagem, Entidades::Obstaculos::Obstaculo* obstaculo)
+	{
+
+		/**
+		*@Autor Felipe Simbalista
+		* 
+		*@brief Realiza a lógica de empurrar o personagem com base no tamanho das intercecoes dos eixos X e Y com o objeto
+		*@param personagem: Referência para um personagem
+		*@param obstaculo: Referencia para um obstaculo
+		*
+		*/
+		sf::FloatRect characterBounds = personagem->getBounds();
+		sf::FloatRect obstaculoBounds = obstaculo->getBounds();
+		
+		//Centro do personagem
+		float charCenterX = characterBounds.left + characterBounds.width / 2.f;
+		float charCenterY = characterBounds.top + characterBounds.height / 2.f;
+
+		//Centro do obstaculo
+		float obstCenterX = obstaculoBounds.left + obstaculoBounds.width / 2.0f;
+		float obstCenterY = obstaculoBounds.top + obstaculoBounds.height / 2.0f;
+
+		//Sobreposição em cada eixo
+
+		float overlapX = std::min(characterBounds.left + characterBounds.width, obstaculoBounds.left + obstaculoBounds.width) - std::max(characterBounds.left, obstaculoBounds.left);
+		//interseção no eixo X
+
+
+		float overlapY = std::min(characterBounds.top + characterBounds.height, obstaculoBounds.top + obstaculoBounds.height) - std::max(characterBounds.top, obstaculoBounds.top);
+		//interseção no eixo y
+
+		// Determinar a direção da colisão pela menor sobreposição
+		if (overlapX < overlapY) {
+			if (charCenterX < obstCenterX) {
+				// Personagem está mais à esquerda que o centro do obstáculo,
+				// então o lado DIREITO do personagem colidiu com o lado ESQUERDO do obstáculo.
+				personagem->hitRight(obstaculo);
+			}
+			else {
+				// Personagem está mais à direita que o centro do obstáculo,
+				// então o lado ESQUERDO do personagem colidiu com o lado DIREITO do obstáculo.
+				personagem->hitLeft(obstaculo);
+			}
+		}
+		else {
+
+			if (charCenterY < obstCenterY) {
+				// Personagem está mais acima que o centro do obstáculo,
+				// então a parte de BAIXO do personagem colidiu com a parte de CIMA do obstáculo.
+				personagem->hitGround(obstaculo);
+			}
+			else {
+				// Personagem está mais abaixo que o centro do obstáculo,
+				// então a parte de CIMA do personagem colidiu com a parte de BAIXO do obstáculo.
+				personagem->hitTop(obstaculo);
+			}
+		}
+	}
+
+	void GerenciadorColisao::colision()
+	{
+		/**
+		* Felipe simbalista
+		* @brief Verifica colisões entre personagens, obstáculos e projéteis.
+		* @details Esta função percorre os vetores de personagens, obstáculos e projéteis, verificando se há interseção entre eles.
+		* caso haja interseção, as ações apropriadas são executadas, como desativar projéteis ou aplicar dano aos personagens.
+		* @return void
+		*/
+		tratarColisaoProjeteis();
+		tratarColisaoPersonagens();
+
+		
 	}
 
 }

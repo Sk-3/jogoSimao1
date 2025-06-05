@@ -6,9 +6,6 @@ namespace Fases{
 	{
 		//Criação das plataformas da fase
 		
-		projeteis.reserve(100);
-		characters.reserve(20);
-		obstaculos.reserve(100);
 		criarEstruturas();
 		criarInimigos();
 		
@@ -20,6 +17,15 @@ namespace Fases{
 
 	void Fase1::executar()
 	{
+		/**
+		*@brief funcao principal da fase
+		*@details Centraliza a camera no jogador e logo após gerencia os eventos de input e executa as entidades
+		*	caso alguma entidade colida com a outra, o gerenciador de colisoes trata isso, e após o tratamento
+		*	as entidades são desenhadas na tela
+		*	no final remove os personagens e projeteis da tela
+		*	caso o player morra, aciona tela de game over
+		*/
+
 		executarJanela();
 		handleEvent();
 		for (auto const& obst : obstaculos) {
@@ -31,14 +37,19 @@ namespace Fases{
 		for (auto const& projetil : projeteis) {
 			projetil->executar();
 		}
-		colision.executar();
 		gravity.executar();
+		colision.executar();
+		
 		hud.executar();
 
-
-
 		for (auto const& charact : characters) {
-			charact->draw();
+			charact->desenhar();
+		}
+		for (auto const& projetil : projeteis) {
+			projetil->desenhar();
+		}
+		for (auto const& obst : obstaculos) {
+			obst->desenhar();
 		}
 		hud.draw();
 		removerProjeteis();
@@ -63,7 +74,7 @@ namespace Fases{
 		
 		characters.emplace_back(atirador);
 
-		//characters.emplace_back(new Entidades::Personagens::Boss(sf::Vector2f(100, 200), sf::Vector2f(1500, 300), player, &projeteis));
+		characters.emplace_back(new Entidades::Personagens::Boss(sf::Vector2f(100, 200), sf::Vector2f(1500, 300), player, &projeteis));
 	}
 
 	void Fase1::criarEstruturas()
@@ -73,7 +84,13 @@ namespace Fases{
 		* @details Cria as estruturas e adiciona na lista de obstaculos
 		* @return void
 		*/
+
+
 		for (int i = 0; i <= 30; i++) {
+
+			if(i%4 == 0){
+				obstaculos.push_back(new Entidades::Obstaculos::Espinhos(sf::Vector2f(10.f, 10.f), sf::Vector2f(100 * i, 500)));
+			}
 			obstaculos.push_back(new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670)));
 		}
 	}

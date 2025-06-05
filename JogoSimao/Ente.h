@@ -15,12 +15,17 @@ protected:
 	sf::Clock clock;
 	int id;
 	static Gerenciadores::GerenciadorGrafico* pGerGraphic;
+	sf::Drawable* figura;
 public:
 
 	Ente();
-	void drawEnte(Ente* ente);
+	virtual void desenhar();
 	virtual ~Ente();
-
 	virtual void executar() = 0;
+	//GETTERS
+	sf::Drawable* getFigura();
+	//SETTERS
+	void setFigura(sf::Drawable* figura);
+
 };
 
