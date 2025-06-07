@@ -2,6 +2,7 @@
 #include "Subject.h"
 #include "Entity.h"
 #include "TipoPersonagem.h"
+
 /**
 *	Felipe Simbalista: 25/05/2025
 * Classe abstrata de personagens
@@ -10,6 +11,8 @@
 *		controlar seus status(health, speed, power, jumps)
 *		movimentar o personagem com base na sua velocidade
 */
+
+class Arma;
 namespace Entidades{
 
 	namespace Obstaculos{
@@ -23,6 +26,7 @@ namespace Entidades{
 			//clock que controla o tempo de tiro do personagem
 			sf::Clock Clocktiro;
 			float tiroCooldown;
+			Arma* arma;
 			//tipo do personagem, usado para identificar o personagem e suas habilidades
 			TipoPersonagem tipo;
 			float maxSpeed;
@@ -62,7 +66,6 @@ namespace Entidades{
 
 			//FUNÇÕES BASE
 			virtual void executar() = 0;
-			virtual void draw();
 			
 		};
 	}

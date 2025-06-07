@@ -1,4 +1,5 @@
 #include "Inimigo.h"
+#include "Arma.h"
 namespace Entidades{
 	namespace Personagens {
 		Inimigo::Inimigo(sf::Vector2f size, sf::Vector2f pos, Character* player, std::vector<Projetil*>* projeteis)
@@ -8,13 +9,6 @@ namespace Entidades{
 			shape.setFillColor(sf::Color::Red);
 		}
 
-		Inimigo::Inimigo()
-		{
-			nivel_maldade = 0;
-			shape.setFillColor(sf::Color::Green);
-			shape.setSize(sf::Vector2f(50.f, 50.f));
-			shape.setPosition(sf::Vector2f(100.f, 100.f));
-		}
 		Inimigo::~Inimigo() {
 
 		}
@@ -30,8 +24,8 @@ namespace Entidades{
 
 			//Vetor do boss até o jogador:
 			sf::Vector2f dist;
-			dist.x = pPlayer->getPosition().x - getPosition().x;
-			dist.y = pPlayer->getPosition().y - getPosition().y;
+			dist.x = pPlayer->getCenter().x - getCenter().x;
+			dist.y = pPlayer->getCenter().y - getCenter().y;
 			//modulo da distancia
 			double modDist = sqrt((dist.x * dist.x) + (dist.y * dist.y));
 			if (modDist < range) {
@@ -45,6 +39,10 @@ namespace Entidades{
 		const Character* Inimigo::getPlayer() const
 		{
 			return pPlayer;
+		}
+
+		void Inimigo::atirar() {
+			arma->atirar();
 		}
 
 		void Inimigo::executar()

@@ -16,15 +16,16 @@ namespace Entidades{
 			float range;
 		public:
 			Inimigo(sf::Vector2f size, sf::Vector2f pos, Character* player, std::vector<Projetil*>* projeteis);
-			Inimigo();
 			~Inimigo();
 			
 			//GETTERS
 			const Character* getPlayer() const;
 			//SETTERS
-			
-			virtual void executar() = 0;
+	
 
+
+			virtual void executar() = 0;
+			void atirar();
 			virtual void perseguirJogador();
 			virtual bool jogadorNoAlcance();
 		};

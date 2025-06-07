@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Arma.cpp" />
     <ClCompile Include="Atirador.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Button.cpp" />
@@ -174,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actions.h" />
+    <ClInclude Include="Arma.h" />
     <ClInclude Include="Atirador.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Button.h" />

@@ -1,5 +1,6 @@
 #include "Cachorro.h"
 #include <iostream>
+
 namespace Entidades{
 	namespace Personagens{
 		Cachorro::Cachorro(sf::Vector2f size, sf::Vector2f pos, Character* player, std::vector<Projetil*>* projeteis, Character* dono)
@@ -11,12 +12,9 @@ namespace Entidades{
 			*/
 			shape.setFillColor(sf::Color::Blue);
 			health = 1;
+			range = 200;
 			mandarSeguir();
-		}
-
-		Cachorro::Cachorro()
-		{
-			
+			arma = new Arma(pProjeteis, this, 1);
 		}
 
 

@@ -4,12 +4,13 @@ namespace Fases{
 	GameState::GameState():
 		State(), gravity(&characters, &projeteis),
 		colision(&characters, &obstaculos, &projeteis),
-		player(new Entidades::Personagens::Player(sf::Vector2f(80, 120), sf::Vector2f(100, 100))), view(pGerGraphic->getStdView())
+		player(new Entidades::Personagens::Player(sf::Vector2f(80, 120), sf::Vector2f(100, 100), &projeteis)), view(pGerGraphic->getStdView())
 	{
 		hud.setPlayer(player);
 		player2 = nullptr;
 		pGerGraphic->getWindow()->setView(view);
 		characters.push_back(player);
+		listaEntidades.inserirNoFim(player);
 	}
 
 	GameState::~GameState() {
@@ -79,7 +80,7 @@ namespace Fases{
 				player->dash();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-				player->atirar(&projeteis);
+				player->atirar();
 			}
 		}
 		sf::Event ev;

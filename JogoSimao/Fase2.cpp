@@ -44,7 +44,7 @@ namespace Fases{
 		colision.executar();
 		gravity.executar();
 		for (auto const& charact : characters) {
-			charact->draw();
+			charact->desenhar();
 		}
 		hud.executar();
 		hud.draw();

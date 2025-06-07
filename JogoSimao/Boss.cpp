@@ -13,16 +13,14 @@ namespace Entidades{
 			* @param player Ponteiro para o jogador, usado para perseguir o jogador.
 			* @param projeteis Vetor de projeteis, usado para adicionar novos projeteis.
 			*/
+
+			arma = new Arma(pProjeteis, this, 0.5);
 			Clocktiro.restart();
 			range = 1000;
 			pProjeteis = projeteis;
 			pPlayer = player;
 			shape.setFillColor(sf::Color::Magenta);
 			health = 30;
-		}
-
-		Boss::Boss()
-		{
 		}
 
 		Boss::~Boss()
@@ -44,18 +42,10 @@ namespace Entidades{
 		void Boss::atirar()
 		{
 			/**
-			*@brief Adiciona um projetil a pProjeteis se o cooldown de tiro estiver pronto.
+			*@brief Executa o metodo atirar da arma 
 			* 
 			*/
-			if (getClockTiro() > getTiroCoooldown()) {
-				sf::Vector2f position = getPosition();
-				position.y += (getBounds().height / 2);
-				if (getDirection() != Directions::LEFT) {
-					position.x += getBounds().width;
-				}
-				pProjeteis->emplace_back(new Projetil(sf::Vector2f(10.0, 10.0), position, getDirection(), tipo));
-				resetClockTiro();
-			}
+			arma->atirar();
 		}
 	}
 }

@@ -2,7 +2,7 @@
 #include "Inimigo.h"  
 #include "Projetil.h"  
 #include "Cachorro.h" 
-#include <array>
+#include "Arma.h"
 /**  
 * @file Atirador.h  
 * @brief Declaração da classe Atirador, que herda de Inimigo.  
@@ -19,8 +19,8 @@ namespace Entidades{
 			std::vector<Cachorro*> cachorros;
 		public:  
 			Atirador(sf::Vector2f size, sf::Vector2f pos, Character* player, std::vector<Projetil*>* projeteis, std::vector<Character*>* personagens);  
-			Atirador();  
 			~Atirador();  
+			void inicializarCachorros();
 			void eliminarCachorros();
 			void executar();  
 		};  

@@ -1,7 +1,7 @@
 #include "Character.h"
 #include "Obstaculo.h"
 #include "Projetil.h"
-
+#include "Arma.h"
 namespace Entidades{
 	namespace Personagens{
 		Character::Character()
@@ -26,7 +26,7 @@ namespace Entidades{
 			*@param pos Posicao inicial do personagem.
 			*
 			*/
-			tiroCooldown = 0.2;
+			arma = nullptr;
 			tipo = TipoPersonagem::INIMIGO; 
 			maxSpeed = 6;
 			moveSpeed = 3;
@@ -41,7 +41,45 @@ namespace Entidades{
 
 		Character::~Character()
 		{
+			if (arma) {
+				delete arma;
+			}
 		}
+
+		
+		
+		//GETTERS
+
+		const TipoPersonagem Character::getTipo() const
+		{
+			return tipo;
+		}
+
+		const float Character::getTiroCoooldown() const
+		{
+			return tiroCooldown;
+		}
+		const bool Character::vivo() const
+		{
+			return (health > 0);
+		}
+		const Directions Character::getDirection() const
+		{
+			return direction;
+		}
+		const int Character::getHealth() const
+		{
+			return health;
+		}
+
+		const float Character::getClockTiro() const
+		{
+			return Clocktiro.getElapsedTime().asSeconds();
+		}
+
+
+		//SETTERS
+
 
 		void Character::hitTop(Obstaculos::Obstaculo* obstaculo)
 		{
@@ -67,7 +105,7 @@ namespace Entidades{
 
 		void Character::hitRight(Obstaculos::Obstaculo* obstaculo)
 		{
-	
+
 			speed.x = 0;
 			shape.setPosition(obstaculo->getBounds().left - getBounds().width, getBounds().top);
 			if (jumps == 0) {
@@ -80,39 +118,6 @@ namespace Entidades{
 			health -= dano;
 		}
 
-		const TipoPersonagem Character::getTipo() const
-		{
-			return tipo;
-		}
-
-		const Directions Character::getDirection() const
-		{
-			return direction;
-		}
-		const int Character::getHealth() const
-		{
-			return health;
-		}
-		void Character::executar() {
-			move();
-		}
-		void Character::draw()
-		{
-			pGerGraphic->getWindow()->draw(shape);
-		}
-		const float Character::getTiroCoooldown() const
-		{
-			return tiroCooldown;
-		}
-		const bool Character::vivo() const
-		{
-			return (health > 0);
-		}
-		const float Character::getClockTiro() const
-		{
-			return Clocktiro.getElapsedTime().asSeconds();
-		}
-
 		void Character::resetClockTiro()
 		{
 			Clocktiro.restart();
@@ -122,5 +127,10 @@ namespace Entidades{
 		{
 			this->moveSpeed = moveSpeed;
 		}
+
+		void Character::executar() {
+			move();
+		}
+
 	}
 }

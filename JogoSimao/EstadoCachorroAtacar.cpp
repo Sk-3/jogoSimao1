@@ -21,6 +21,9 @@ namespace Entidades {
 			if (cachorro->getPlayer() && cachorro->getPlayer()->getHealth() >= 0) {
 				cachorro->setMoveSpeed(cachorro->getVelocidadeCacando());
 				cachorro->perseguirJogador();
+				if (cachorro->jogadorNoAlcance()) {
+					cachorro->atirar();
+				}
 			}
 			else {
 				cachorro->setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroSeguir()));

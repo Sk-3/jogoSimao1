@@ -1,6 +1,7 @@
 #pragma once
 #include "Inimigo.h"
 #include "Projetil.h"
+#include "Arma.h"
 
 /**
 *	
@@ -19,7 +20,6 @@ namespace Entidades{
 		private:
 		public:
 			Boss(sf::Vector2f size, sf::Vector2f pos, Character* player, std::vector<Projetil*>* projeteis);
-			Boss();
 			~Boss();
 			void executar();
 			void atirar();

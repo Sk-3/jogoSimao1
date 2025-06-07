@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Projetil.h"
+#include "Arma.h"
 namespace Entidades{
 	namespace Personagens{
 		Player::Player()
@@ -16,13 +17,19 @@ namespace Entidades{
 			
 		}
 
-		Player::Player(sf::Vector2f size, sf::Vector2f pos)
+		Player::Player(sf::Vector2f size, sf::Vector2f pos, std::vector<Projetil*>* projeteis)
 			:Character(size, pos)
 		{
+			arma = new Arma(projeteis, this, 0.5);
 			tipo = TipoPersonagem::PLAYER;
 			maxSpeed = 6;
 			jumps = 2;
 			shape.setFillColor(sf::Color::Blue);
+		}
+
+		Player::~Player()
+		{
+			
 		}
 
 		sf::Vector2f Player::getPosition()
@@ -109,21 +116,9 @@ namespace Entidades{
 			move();
 		}
 
-		void Player::draw() {
-			pGerGraphic->getWindow()->draw(shape);
-		}
-
-		void Player::atirar(std::vector<Projetil*>* projeteis)
+		void Player::atirar()
 		{
-			if(getClockTiro() > getTiroCoooldown()){
-				sf::Vector2f position = getPosition();
-				position.y += (getBounds().height / 2);
-				if (getDirection() != Directions::LEFT) {
-					position.x += getBounds().width;
-				}
-				projeteis->emplace_back(new Projetil(sf::Vector2f(10.0, 10.0), position, getDirection(), tipo));
-				resetClockTiro(); 
-			}
+			arma->atirar();
 		}
 
 		

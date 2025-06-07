@@ -7,6 +7,7 @@
 #include "GerenciadorColisao.h"
 #include "Hud.h"
 #include <sstream>
+#include "ListaEntidades.h"
 
 /**
 *	Felipe Simbalista: 25/05/2025
@@ -21,15 +22,13 @@
 namespace Fases{
 	class GameState : public State
 	{
-
-		typedef struct{
-
-		}ArraysDoJogo;
 	protected:
 		sf::View view;
 		Gerenciadores::GerenciadorColisao colision;
 		Gravidade gravity;
 		Hud hud;
+
+		Listas::ListaEntidades listaEntidades;
 		
 		Entidades::Personagens::Player* player2;
 		Entidades::Personagens::Player* player;

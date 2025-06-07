@@ -66,15 +66,17 @@ namespace Fases{
 	{
 		/***
 		* @brief Inicizaliza os inimigos da fase no construtor
-		* @details Cria os inimigos e adiciona na lista de personagens
+		* @details Cria os inimigos e adiciona na lista de personagens e ded entidades
 		* @return void
 		*/
 
 		Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(60, 100), sf::Vector2f(500, 300), player, &projeteis, &characters);
-		
 		characters.emplace_back(atirador);
+		listaEntidades.inserirNoFim(atirador);
 
-		characters.emplace_back(new Entidades::Personagens::Boss(sf::Vector2f(100, 200), sf::Vector2f(1500, 300), player, &projeteis));
+		Entidades::Personagens::Boss* boss = new Entidades::Personagens::Boss(sf::Vector2f(100, 200), sf::Vector2f(1500, 300), player, &projeteis);
+		characters.emplace_back(boss);
+		listaEntidades.inserirNoFim(boss);
 	}
 
 	void Fase1::criarEstruturas()
@@ -85,13 +87,16 @@ namespace Fases{
 		* @return void
 		*/
 
-
 		for (int i = 0; i <= 30; i++) {
 
 			if(i%4 == 0){
-				obstaculos.push_back(new Entidades::Obstaculos::Espinhos(sf::Vector2f(10.f, 10.f), sf::Vector2f(100 * i, 500)));
+				Entidades::Obstaculos::Espinhos* espinho = new Entidades::Obstaculos::Espinhos(sf::Vector2f(10.f, 10.f), sf::Vector2f(100 * i, 500));
+				listaEntidades.inserirNoFim(espinho);
+				obstaculos.push_back(espinho);
 			}
-			obstaculos.push_back(new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670)));
+			Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670));
+			listaEntidades.inserirNoFim(plataforma);
+			obstaculos.push_back(plataforma);
 		}
 	}
 

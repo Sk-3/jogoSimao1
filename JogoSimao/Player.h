@@ -14,12 +14,14 @@ namespace Entidades{
 		class Player : public Character
 		{
 		private:
+
 			
 			float maxSpeed;
 			sf::Vector2f center;
 		public:
 			Player();
-			Player(sf::Vector2f size, sf::Vector2f pos);
+			Player(sf::Vector2f size, sf::Vector2f pos,std::vector<Projetil*>* projeteis);
+			~Player();
 			sf::Vector2f getPosition();
 			//Adicionam velocidade ao vetor de velocidade do jogador
 			void moveUp();
@@ -29,8 +31,7 @@ namespace Entidades{
 			void dash();
 			void stopAxisX();
 			void executar(); 
-			void draw()override;
-			void atirar(std::vector<Projetil*>* projeteis);
+			void atirar();
 		};
 	}
 
