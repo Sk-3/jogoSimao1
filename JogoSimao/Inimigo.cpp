@@ -6,7 +6,6 @@ namespace Entidades{
 			:Character(size, pos), pPlayer(player), pProjeteis(projeteis)
 		{
 			nivel_maldade = 0;
-			shape.setFillColor(sf::Color::Red);
 		}
 
 		Inimigo::~Inimigo() {
@@ -48,7 +47,6 @@ namespace Entidades{
 		void Inimigo::executar()
 		{
 			move();
-			pGerGraphic->getWindow()->draw(shape);
 		}
 
 		void Inimigo::perseguirJogador() {

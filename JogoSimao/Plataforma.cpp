@@ -5,6 +5,10 @@ namespace Entidades{
 			:Obstaculo(size, pos)
 		{
 			colidivel = 1;
+			shape.setTexture(*pGerGraphic->getChaoTexture());
+			shape.setTextureRect(sf::IntRect(192,96,96,32));
+											//top, left, width, height?
+			shape.setScale(1.1,1.1);
 		}
 
 		Plataforma::Plataforma()
@@ -26,13 +30,7 @@ namespace Entidades{
 		void Plataforma::executar()
 		{
 
-			//se esta colidindo, muda a cor pra vermelho, caso contrário fica branco
-			if (isColiding) {
-				shape.setFillColor(sf::Color::Red);
-			}
-			else {
-				shape.setFillColor(sf::Color::White);
-			}
+			
 		}
 
 	}

@@ -7,13 +7,12 @@ namespace Entidades{
 		Personagens::Atirador::Atirador(sf::Vector2f size, sf::Vector2f pos, Character* player, std::vector<Projetil*>* projeteis, std::vector<Character*>* personagens) :
 			Inimigo(size, pos, player, projeteis), personagens(personagens)
 		{
-			arma = new Arma(pProjeteis, this, 0.5);
+			arma = new Arma(pProjeteis, this, Armas::RIFLE);
 
 			inicializarCachorros();
 
 			Clocktiro.restart();
 			range = 1000;
-			shape.setFillColor(sf::Color::Magenta);
 			health = 30;
 			tipo = TipoPersonagem::INIMIGO;
 		}
@@ -55,6 +54,13 @@ namespace Entidades{
 			if (jogadorNoAlcance()) {
 				for (const auto& cach : cachorros) {
 					cach->mandarAtacar();
+				}
+
+				if (pPlayer->getCenter().x > getCenter().x) {
+					direction = Directions::RIGHT;
+				}
+				else {
+					direction = Directions::LEFT;
 				}
 				atirar();
 

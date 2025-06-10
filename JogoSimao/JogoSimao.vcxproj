@@ -176,6 +176,7 @@
   <ItemGroup>
     <ClInclude Include="Actions.h" />
     <ClInclude Include="Arma.h" />
+    <ClInclude Include="Armas.h" />
     <ClInclude Include="Atirador.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Button.h" />

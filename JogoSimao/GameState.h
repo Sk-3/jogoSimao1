@@ -23,17 +23,22 @@ namespace Fases{
 	class GameState : public State
 	{
 	protected:
+		//CONTROLADOR DE JANELA
 		sf::View view;
+		Hud hud;
+		//GERENCIADORES
 		Gerenciadores::GerenciadorColisao colision;
 		Gravidade gravity;
-		Hud hud;
-
-		Listas::ListaEntidades listaEntidades;
 		
+
+		//LISTA ENTIDADES
+		Listas::ListaEntidades listaEntidades;
+
+
+		//PLAYERS
 		Entidades::Personagens::Player* player2;
 		Entidades::Personagens::Player* player;
-		
-		std::vector<Entidades::Entity*> entidades;
+		//VETORES
 		std::vector<Entidades::Projetil*> projeteis;
 		std::vector<Entidades::Obstaculos::Obstaculo*> obstaculos;
 		std::vector<Entidades::Personagens::Character*> characters;

@@ -9,7 +9,9 @@ Hud::Hud()
 	*/
 	player = nullptr;
 	hud.setFont(*(pGerGraphic->getFont()));
+
 	hud.setCharacterSize(30);
+	setFigura(&hud);
 }
 
 Hud::~Hud()
@@ -34,9 +36,9 @@ void Hud::draw()
 	*		  apos isso, desenha o hud na tela com as informacoes do jogador
 	*@return void
 	*/
-	sf::RenderWindow* window = pGerGraphic->getWindow();
-	window->setView(window->getDefaultView());
-	window->draw(hud);
+	pGerGraphic->setView(sf::View(pGerGraphic->getStdView()));
+	
+	desenhar();
 }
 
 void Hud::executar()

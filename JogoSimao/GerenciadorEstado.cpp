@@ -92,7 +92,7 @@ namespace Gerenciadores {
 		* @return void
 		*/
 		if (stack.empty()) {
-			pGerGraphic->getWindow()->close();
+			pGerGraphic->close();
 			return;
 		}
 

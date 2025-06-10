@@ -8,10 +8,12 @@ namespace Fases{
 	{
 		hud.setPlayer(player);
 		player2 = nullptr;
-		pGerGraphic->getWindow()->setView(view);
+		pGerGraphic->setView(view);
 		characters.push_back(player);
 		listaEntidades.inserirNoFim(player);
 	}
+
+	
 
 	GameState::~GameState() {
 		for (auto& obstacul : obstaculos) {
@@ -87,12 +89,12 @@ namespace Fases{
 		while (window->pollEvent(ev)) {
 			switch (ev.type) {
 			case sf::Event::Closed:
-				pGerGraphic->getWindow()->close();
+				pGerGraphic->close();
 				break;
 			case sf::Event::KeyPressed:
 				if (ev.key.code == sf::Keyboard::P) {
 					if (!player2) {
-						player2 = new Entidades::Personagens::Player();
+						player2 = new Entidades::Personagens::Player(sf::Vector2f(80, 120), sf::Vector2f(100, 100), &projeteis);
 						characters.push_back(player2);
 					}
 				}
@@ -117,7 +119,8 @@ namespace Fases{
 		* @return void
 		*/
 		window->clear();
-		pGerGraphic->getWindow()->setView(view);
+		pGerGraphic->desenharBackground();
+		pGerGraphic->setView(view);
 		view.setCenter(player->getPosition());
 	}
 

@@ -46,20 +46,23 @@ namespace Entidades{
 	}
 
 	Entity::Entity():
-		position(sf::Vector2f(0.f,0.f)), shapeSize(sf::Vector2f(50.f, 50.f))
+		position(sf::Vector2f(0.f,0.f))
 	{
 	}
 
 	Entity::Entity(sf::Vector2f size, sf::Vector2f pos) :
-	position(pos), shapeSize(size)
+	position(pos)
 	{
+
 		/***
 		* @brief construtor da classe Entity, inicializa o corpo do objeto com a posicao e tamanho especificados
-		* @param size - tamanho do corpo do objeto
 		* @param pos - posicao do corpo do objeto
 		*/
-		shape.setSize(shapeSize);
+
+		
+		shape.scale(3,3);
 		shape.setPosition(pos);
+		shape.setTexture(*pGerGraphic->getProjetilTexture());
 		setFigura(&shape);
 	}
 

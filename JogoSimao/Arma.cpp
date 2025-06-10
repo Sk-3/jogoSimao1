@@ -6,9 +6,41 @@ Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens:
 {
 	
 }
+Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Character* dono, Armas arma)
+	:pProjeteis(projeteis), pDono(dono)
+{
+	switch (arma) {
+		case Armas::METRALHADORA:{
+			tiroCooldown = 0.2;
+			VelocidadeProjetil = 10;
+			break;
+		}
+		case Armas::ARMACACHORRO:{
+			tiroCooldown = 1;
+			VelocidadeProjetil = 5;
+			break;
+		}
+		case Armas::ARMABOSS: {
+			tiroCooldown = 0.4;
+			VelocidadeProjetil = 15;
+			break;
+		}
+		case Armas::RIFLE:{
+			tiroCooldown = 2;
+			VelocidadeProjetil = 50;
+			break;
+		}
+		default:{
+			break;
+		}
+	}
+	
+}
 Arma::~Arma()
 {
 }
+
+
 
 void Arma::atirar() {
 	/**
@@ -18,11 +50,7 @@ void Arma::atirar() {
 	*@return void
 	*/
 	if (Clocktiro.getElapsedTime().asSeconds() > tiroCooldown) {
-		sf::Vector2f position = pDono->getPosition();
-		position.y += (pDono->getBounds().height / 2);
-		if (pDono->getDirection() != Directions::LEFT) {
-			position.x += pDono->getBounds().width;
-		}
+		sf::Vector2f position = pDono->getCenter();
 		pProjeteis->emplace_back(new Entidades::Projetil(sf::Vector2f(10.0, 10.0), position, pDono->getDirection(), pDono->getTipo()));
 		Clocktiro.restart();
 	}

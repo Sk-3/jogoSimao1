@@ -6,15 +6,14 @@ State::State()
 	*@brief Construtor da classe State, inicializa os atributos
 	*/
 	action2 = Actions::NADA;
-	window = pGerGraphic->getWindow();
-	font = pGerGraphic->getFont();
 	mousePos = pGerGraphic->getMousePosition();
 	view = new sf::View(sf::FloatRect(0,0,1280,720));
-	window->setView(*view);
+	window = pGerGraphic->getWindow();
+	pGerGraphic->setView(*view);
 }
 
 State::~State() {
-	
+	delete view;
 }
 
 const Actions State::getAction() const{

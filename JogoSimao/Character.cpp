@@ -90,7 +90,7 @@ namespace Entidades{
 		void Character::hitGround(Obstaculos::Obstaculo* obstaculo)
 		{
 			speed.y = 0;
-			shape.setPosition(getBounds().left, (obstaculo->getBounds().top - getBounds().height));
+			shape.setPosition(shape.getPosition().x, (obstaculo->getBounds().top - getBounds().height));
 			jumps = 2;
 		}
 

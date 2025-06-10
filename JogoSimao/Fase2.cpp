@@ -25,27 +25,16 @@ namespace Fases{
 		*/
 
 		window->clear();
-		pGerGraphic->getWindow()->setView(view);
+		pGerGraphic->setView(view);
 		handleEvent();
+
 		view.setCenter(player->getPosition());
 
 
-		for (auto const& obst : obstaculos) {
-			obst->executar();
-		}
-
-		for (auto const& charact : characters) {
-			charact->executar();
-		}
-
-		for (auto const& projetil : projeteis) {
-			projetil->executar();
-		}
+		listaEntidades.executar();
 		colision.executar();
 		gravity.executar();
-		for (auto const& charact : characters) {
-			charact->desenhar();
-		}
+		listaEntidades.desenhar();
 		hud.executar();
 		hud.draw();
 
@@ -70,7 +59,9 @@ namespace Fases{
 		* @return void
 		*/
 		for (int i = 0; i <= 30; i++) {
-			obstaculos.push_back(new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670)));
+			Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670));
+			obstaculos.push_back(plat);
+			listaEntidades.inserirNoFim(plat);
 		}
 	}
 }

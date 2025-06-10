@@ -2,6 +2,7 @@
 #include "Subject.h"
 #include "Entity.h"
 #include "TipoPersonagem.h"
+#include "Armas.h"
 
 /**
 *	Felipe Simbalista: 25/05/2025

@@ -14,12 +14,11 @@ namespace Entidades{
 			* @param projeteis Vetor de projeteis, usado para adicionar novos projeteis.
 			*/
 
-			arma = new Arma(pProjeteis, this, 0.5);
+			arma = new Arma(pProjeteis, this, Armas::ARMABOSS);
 			Clocktiro.restart();
 			range = 1000;
 			pProjeteis = projeteis;
 			pPlayer = player;
-			shape.setFillColor(sf::Color::Magenta);
 			health = 30;
 		}
 

@@ -12,19 +12,22 @@ namespace Entidades{
 			position = sf::Vector2f(300.f, 0.f);
 			shape.setPosition(position);
 			maxSpeed = 6;
-			shape.setSize(sf::Vector2f(100.f, 100.f));
-			shape.setFillColor(sf::Color::Blue);
+
+			shape.setTexture(*pGerGraphic->getPlayerTexture());
 			
 		}
 
 		Player::Player(sf::Vector2f size, sf::Vector2f pos, std::vector<Projetil*>* projeteis)
 			:Character(size, pos)
 		{
-			arma = new Arma(projeteis, this, 0.5);
+			arma = new Arma(projeteis, this, Armas::METRALHADORA);
 			tipo = TipoPersonagem::PLAYER;
 			maxSpeed = 6;
 			jumps = 2;
-			shape.setFillColor(sf::Color::Blue);
+			shape.setTexture(*pGerGraphic->getPlayerTexture());
+			shape.setTextureRect(sf::IntRect(0, 0, 16, 16));
+			setFigura(&shape);
+
 		}
 
 		Player::~Player()
@@ -113,6 +116,15 @@ namespace Entidades{
 		void Player::executar()
 		{
 			//move o player a atualiza a posição da camera
+			if (direction == Directions::LEFT) {
+				shape.setScale(-2, 2);
+				shape.setOrigin(getBounds().width, 0);
+				
+			}
+			else {
+				shape.setOrigin(0,0);
+				shape.setScale(2, 2);
+			}
 			move();
 		}
 

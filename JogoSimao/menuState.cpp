@@ -44,7 +44,7 @@ void menuState::executar() {
 	*@details Atualiza a posicao do mouse, limpa a janela e le e executa os botoes
 	*@return void
 	*/
-	pGerGraphic->getWindow()->clear();
+	pGerGraphic->clear();
 	pGerGraphic->updateMousePosition();
 	handleEvent();
 	readButtons();

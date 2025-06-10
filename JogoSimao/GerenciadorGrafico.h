@@ -18,6 +18,21 @@ namespace Gerenciadores{
 	class GerenciadorGrafico
 	{
 	private:
+		//TEXTURA BACKGROUND
+			sf::Texture background1;
+			sf::Sprite backgroundSprite1;
+
+			sf::Texture background2;
+			sf::Sprite backgroundSprite2;
+
+			sf::Texture background3;
+			sf::Sprite backgroundSprite3;
+		//TEXTURAS ENTIDADES
+			sf::Texture projetil;
+			sf::Texture chao;
+			sf::Texture player;
+			sf::Texture goblin;
+
 		float winWidth;
 		float winHeight;
 		sf::FloatRect standartView;
@@ -31,20 +46,30 @@ namespace Gerenciadores{
 	
 	public:
 		~GerenciadorGrafico();
-		//getters	
+		//GETTERS	
+			static GerenciadorGrafico* getGerGraphic();
+			const sf::FloatRect getStdView();
+			sf::Vector2i* getMousePosition();
+			sf::Font* getFont();
+			bool isOpen();
+			sf::RenderWindow* getWindow();
+			sf::Texture* getProjetilTexture();
+			sf::Texture* getChaoTexture();
+			sf::Texture* getGoblinTexture();
+			sf::Texture* getPlayerTexture();
+		//SETTERS
+			void setFrameLimit(int fps);
+			void setView(sf::View);
+
+		//FUNCOES
+			void clear();
+			void close();
+			void display();
+			void carregarTexturas();
+			void desenharBackground();
+			void desenharEnte(Ente* ente);
+			void updateMousePosition();
 		
-		const sf::FloatRect getStdView()const;
-		static GerenciadorGrafico* getGerGraphic();
-		sf::Vector2i* getMousePosition();
-		sf::RenderWindow* getWindow();
-		sf::Font* getFont();
-		bool isOpen();
-		//void desenharEnte(Entity* entity);
-	
-		void display();
-		void desenharEnte(Ente* ente);
-		void updateMousePosition();
-		void setFrameLimit(int fps);
 	};
 
 }

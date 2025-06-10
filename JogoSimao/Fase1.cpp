@@ -25,6 +25,7 @@ namespace Fases{
 		*	no final remove os personagens e projeteis da tela
 		*	caso o player morra, aciona tela de game over
 		*/
+		
 
 		executarJanela();
 		handleEvent();
@@ -70,11 +71,11 @@ namespace Fases{
 		* @return void
 		*/
 
-		Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(60, 100), sf::Vector2f(500, 300), player, &projeteis, &characters);
+		Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(60, 100), sf::Vector2f(1500, 300), player, &projeteis, &characters);
 		characters.emplace_back(atirador);
 		listaEntidades.inserirNoFim(atirador);
 
-		Entidades::Personagens::Boss* boss = new Entidades::Personagens::Boss(sf::Vector2f(100, 200), sf::Vector2f(1500, 300), player, &projeteis);
+		Entidades::Personagens::Boss* boss = new Entidades::Personagens::Boss(sf::Vector2f(100, 200), sf::Vector2f(2500, 300), player, &projeteis);
 		characters.emplace_back(boss);
 		listaEntidades.inserirNoFim(boss);
 	}
@@ -87,22 +88,13 @@ namespace Fases{
 		* @return void
 		*/
 
-		for (int i = 0; i <= 30; i++) {
+		for (int i = 0; i <= 100; i++) {
 
-			if(i%4 == 0){
-				Entidades::Obstaculos::Espinhos* espinho = new Entidades::Obstaculos::Espinhos(sf::Vector2f(10.f, 10.f), sf::Vector2f(100 * i, 500));
-				listaEntidades.inserirNoFim(espinho);
-				obstaculos.push_back(espinho);
-			}
 			Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670));
 			listaEntidades.inserirNoFim(plataforma);
 			obstaculos.push_back(plataforma);
 		}
 	}
-
-
-
-
 
 
 }

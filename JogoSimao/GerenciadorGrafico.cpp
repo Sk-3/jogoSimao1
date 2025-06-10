@@ -14,11 +14,10 @@ namespace Gerenciadores {
 		* @param winHeight Altura da janela.
 		*/
 
-		window = new sf::RenderWindow(sf::VideoMode(winWidth, winHeight), "Menu Teste", sf::Style::Close | sf::Style::Titlebar);
+		window = new sf::RenderWindow(sf::VideoMode(winWidth, winHeight), "Jogo Simao", sf::Style::Close | sf::Style::Titlebar);
 		font = new sf::Font();
-		if (!font->loadFromFile("..//JogoSimao//TypeLightSans-KV84p.otf")) {
-			std::cerr << "Erro ao carregar a fonte";
-		}
+		carregarTexturas();
+
 	}
 
 	GerenciadorGrafico::~GerenciadorGrafico()
@@ -39,6 +38,52 @@ namespace Gerenciadores {
 		*/
 		window->display();
 	}
+	void GerenciadorGrafico::carregarTexturas()
+	{
+		if (!font->loadFromFile("..//JogoSimao//TypeLightSans-KV84p.otf")) {
+			std::cerr << "Erro ao carregar a fonte";
+		}
+		if (!background1.loadFromFile(("..//background//background_layer_1.PNG"))) {
+			std::cout << "Falha ao carregar textura Background_layer_1";
+		}
+		backgroundSprite1.setTexture(background1);
+		backgroundSprite1.setScale(4, 4);
+
+		if (!background2.loadFromFile(("..//background//background_layer_2.PNG"))) {
+			std::cout << "Falha ao carregar textura Background_layer_2";
+		}
+		backgroundSprite2.setTexture(background2);
+		backgroundSprite2.setScale(4, 4);
+
+		if (!background3.loadFromFile(("..//background//background_layer_3.PNG"))) {
+			std::cout << "Falha ao carregar textura Background_layer_3";
+		}
+		backgroundSprite3.setTexture(background3);
+		backgroundSprite3.setScale(4, 4);
+
+
+		if (!projetil.loadFromFile("..//textures//orb.PNG")) {
+			std::cout << "Falha ao carregar textura orb";
+		}
+
+		if (!chao.loadFromFile("..//textures//tileset_32x32.PNG")) {
+			std::cout << "Falha ao carregar textura tileset_32x32.PNG";
+		}
+
+		if (!player.loadFromFile("..//textures//AIM.PNG")) {
+			std::cout << "Falha ao carregar textura Aim.PNG";
+		}
+
+		if (!goblin.loadFromFile("..//textures//goblin.PNG")) {
+			std::cout << "Falha ao carregar textura goblin.PNG";
+		}
+	}
+	void GerenciadorGrafico::desenharBackground()
+	{
+		window->draw(backgroundSprite1);
+		window->draw(backgroundSprite2);
+		window->draw(backgroundSprite3);
+	}
 	void GerenciadorGrafico::desenharEnte(Ente* ente)
 	{
 		/**
@@ -58,10 +103,34 @@ namespace Gerenciadores {
 		return window->isOpen();
 	}
 
-	const sf::FloatRect GerenciadorGrafico::getStdView() const
+	sf::RenderWindow* GerenciadorGrafico::getWindow()
 	{
+		return window;
+	}
 
+	sf::Texture* GerenciadorGrafico::getProjetilTexture() {
+		return &projetil; 
+	}
 
+	sf::Texture* GerenciadorGrafico::getChaoTexture()
+	{
+		return &chao;
+	}
+
+	sf::Texture* GerenciadorGrafico::getGoblinTexture()
+	{
+		return &goblin;
+	}
+
+	sf::Texture* GerenciadorGrafico::getPlayerTexture() {
+		return &player;
+	}
+	void GerenciadorGrafico::clear() {
+		window->clear();
+	}
+
+	const sf::FloatRect GerenciadorGrafico::getStdView()
+	{
 		return standartView;
 	}
 
@@ -79,13 +148,6 @@ namespace Gerenciadores {
 		* @return Um ponteiro para um objeto sf::Vector2i que contém as coordenadas do mouse.
 		*/
 		return &mousePos;
-	}
-	sf::RenderWindow* GerenciadorGrafico::getWindow(){
-		/**
-		* @brief Retorna um ponteiro para a janela de renderização.
-		* @return Um ponteiro para um objeto sf::RenderWindow que representa a janela de renderização.
-		*/
-		return window;
 	}
 	sf::Font* GerenciadorGrafico::getFont()
 	{
@@ -116,6 +178,15 @@ namespace Gerenciadores {
 		* @return void
 		*/
 		window->setFramerateLimit(fps);
+	}
+
+	void GerenciadorGrafico::close() {
+		window->close();
+	}
+
+	void GerenciadorGrafico::setView(sf::View view)
+	{
+		window->setView(view);
 	}
 
 }

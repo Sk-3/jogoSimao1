@@ -10,11 +10,12 @@ namespace Entidades{
 			*@brief Construtor da classe Cachorro
 			*@detail Construtor que inicializa o tamanho, a posicao do cachorro e a cor
 			*/
-			shape.setFillColor(sf::Color::Blue);
 			health = 1;
 			range = 200;
 			mandarSeguir();
-			arma = new Arma(pProjeteis, this, 1);
+			arma = new Arma(pProjeteis, this, Armas::ARMACACHORRO);
+			shape.setTexture(*pGerGraphic->getGoblinTexture());
+			shape.setTextureRect(sf::IntRect(0, 0, 16, 16));
 		}
 
 
@@ -72,6 +73,8 @@ namespace Entidades{
 			*@details Executa o estado atual do cachorro
 			*@return void
 			*/
+
+
 			estadoAtual->atualizar(this);
 
 

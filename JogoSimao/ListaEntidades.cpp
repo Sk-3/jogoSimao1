@@ -66,6 +66,8 @@ namespace Listas
             (*it)->executar();
     }
 
+    
+
     void ListaEntidades::salvar()
     {
         //for (it = inicio(); it != fim(); ++it)

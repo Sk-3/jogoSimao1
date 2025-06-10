@@ -1,6 +1,7 @@
 #pragma once
 #include "Ente.h"
 #include "Directions.h"
+#include <ostream>
 /**
 *	Felipe Simbalista: 25/05/2025
 * 
@@ -20,19 +21,26 @@ namespace Entidades{
 	{
 	protected:
 		sf::Vector2f position;
-		sf::Vector2f shapeSize;
-		sf::RectangleShape shape;
+		sf::Sprite shape;
 		sf::Vector2f speed;
+		std::ostream* buffer;
 	public:
-		const sf::Vector2f getCenter();
-		const sf::Vector2f getPosition();
-		void move();
-		void changeSpeed(sf::Vector2f addSpeed);
-		virtual void executar() = 0;
-		const virtual sf::FloatRect getBounds();
+
 		Entity();
 		Entity(sf::Vector2f size, sf::Vector2f pos);
 		~Entity();
+		//GETTERS
+		const sf::Vector2f getCenter();
+		const sf::Vector2f getPosition();
+		const virtual sf::FloatRect getBounds();
+		//SETTERS
+		void move();
+		void changeSpeed(sf::Vector2f addSpeed);
+		
+		//void salvarDataBuffer();
+		//virtual void salvar() = 0;
+		virtual void executar() = 0;
+		
 	};
 
 }
