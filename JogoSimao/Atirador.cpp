@@ -4,7 +4,7 @@
 namespace Entidades{
 	namespace Personagens
 	{
-		Personagens::Atirador::Atirador(sf::Vector2f size, sf::Vector2f pos, Character* player, std::vector<Projetil*>* projeteis, std::vector<Character*>* personagens) :
+		Personagens::Atirador::Atirador(sf::Vector2f size, sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, std::vector<Personagem*>* personagens) :
 			Inimigo(size, pos, player, projeteis), personagens(personagens)
 		{
 			arma = new Arma(pProjeteis, this, Armas::RIFLE);

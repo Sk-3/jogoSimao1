@@ -1,5 +1,5 @@
 #pragma once
-#include "Character.h"
+#include "Personagem.h"
 #include "Projetil.h"
 /**
 *	Felipe Simbalista: 25/05/2025
@@ -7,19 +7,19 @@
 */
 namespace Entidades{
 	namespace Personagens{
-		class Inimigo : public Character
+		class Inimigo : public Personagem
 		{
 		protected:
 			int nivel_maldade;
 			std::vector<Projetil*>* pProjeteis;
-			Character* pPlayer;
+			Personagem* pPlayer;
 			float range;
 		public:
-			Inimigo(sf::Vector2f size, sf::Vector2f pos, Character* player, std::vector<Projetil*>* projeteis);
+			Inimigo(sf::Vector2f size, sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis);
 			~Inimigo();
 			
 			//GETTERS
-			const Character* getPlayer() const;
+			const Personagem* getPlayer() const;
 			//SETTERS
 	
 

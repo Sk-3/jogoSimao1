@@ -2,7 +2,7 @@
 
 
 
-Gravidade::Gravidade(std::vector<Entidades::Personagens::Character*>* characters, std::vector<Entidades::Projetil*>* projeteis)
+Gravidade::Gravidade(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Projetil*>* projeteis)
 {
 	/**
 	*@brief Construtor da classe Gravidade, que inicializa a força da gravidade e os vetores de personagens e projeteis.

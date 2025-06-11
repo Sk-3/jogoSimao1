@@ -22,6 +22,8 @@ namespace Fases{
 		~Fase1();
 		void executar();
 		void criarInimigos();
+		void criarAtirador();
+		void criarCachorro();
 		void criarEstruturas();
 	};
 }

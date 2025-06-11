@@ -30,7 +30,7 @@ namespace Entidades{
 			isColiding = col;
 		}
 
-		void Obstaculo::obstacular(Personagens::Character* pPlayer)
+		void Obstaculo::obstacular(Personagens::Personagem* pPlayer)
 		{
 		}
 	}

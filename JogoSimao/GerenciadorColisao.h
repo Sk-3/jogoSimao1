@@ -18,21 +18,21 @@ namespace Gerenciadores{
 	class GerenciadorColisao
 	{
 	private:
-		std::vector<Entidades::Personagens::Character*>* characters;
+		std::vector<Entidades::Personagens::Personagem*>* characters;
 		std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos;
 		std::vector<Entidades::Projetil*>* projeteis;
 	public:
 
 		void executar();
 		GerenciadorColisao();
-		GerenciadorColisao(std::vector<Entidades::Personagens::Character*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>*, std::vector<Entidades::Projetil*>* projeteis);
+		GerenciadorColisao(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>*, std::vector<Entidades::Projetil*>* projeteis);
 		~GerenciadorColisao();
 	
 	
 		const bool verificarColisao(Entidades::Entity* pe1, Entidades::Entity* pe2);
 		void tratarColisaoProjeteis();
 		void tratarColisaoPersonagens();
-		void empurrarPersonagem(Entidades::Personagens::Character* personagem, Entidades::Obstaculos::Obstaculo* Obstaculo);
+		void empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Obstaculos::Obstaculo* Obstaculo);
 		void colision();
 	
 	};

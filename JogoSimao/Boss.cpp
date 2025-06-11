@@ -3,7 +3,7 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Boss::Boss(sf::Vector2f size, sf::Vector2f pos, Character* player, std::vector<Projetil*>* projeteis)
+		Boss::Boss(sf::Vector2f size, sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis)
 			:Inimigo(size, pos, player, projeteis)
 		{
 			/**

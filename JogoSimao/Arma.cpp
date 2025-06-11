@@ -1,12 +1,12 @@
 #include "Arma.h"
-#include "Character.h"
+#include "Personagem.h"
 
-Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Character* dono, float tiroCooldow)
+Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* dono, float tiroCooldow)
 	:pProjeteis(projeteis), pDono(dono), tiroCooldown(tiroCooldow)
 {
 	
 }
-Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Character* dono, Armas arma)
+Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* dono, Armas arma)
 	:pProjeteis(projeteis), pDono(dono)
 {
 	switch (arma) {

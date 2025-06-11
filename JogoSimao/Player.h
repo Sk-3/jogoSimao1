@@ -1,5 +1,5 @@
 #pragma once
-#include "Character.h"
+#include "Personagem.h"
 /**
 *	Classe concreta Player
 * 
@@ -11,7 +11,7 @@
 namespace Entidades{
 	class Projetil;
 	namespace Personagens{
-		class Player : public Character
+		class Player : public Personagem
 		{
 		private:
 

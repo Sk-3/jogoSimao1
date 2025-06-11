@@ -140,8 +140,8 @@ namespace Fases{
 
 	void GameState::removerPersonagens()
 	{
-		std::vector<Entidades::Personagens::Character*> personagensVivos;
-		for (Entidades::Personagens::Character* persona : characters) {
+		std::vector<Entidades::Personagens::Personagem*> personagensVivos;
+		for (Entidades::Personagens::Personagem* persona : characters) {
 			if (persona->vivo()) {
 				personagensVivos.push_back(persona);
 			}

@@ -21,7 +21,7 @@ namespace Entidades{
 	}
 
 	namespace Personagens {
-		class Character : public Entity, public Subject
+		class Personagem : public Entity, public Subject
 		{
 		protected:
 			//clock que controla o tempo de tiro do personagem
@@ -39,10 +39,10 @@ namespace Entidades{
 			Directions direction;
 		public:
 			//construtor padrão
-			Character();
+			Personagem();
 			//define posição e tamanho inicial do personagem
-			Character(sf::Vector2f size, sf::Vector2f pos);
-			~Character();
+			Personagem(sf::Vector2f size, sf::Vector2f pos);
+			~Personagem();
 
 			//RELACIONADO A COLISÃO
 				//Funções que não permitem o jogador entrar dentro do obstaculo passado como parametro

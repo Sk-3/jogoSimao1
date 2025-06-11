@@ -20,7 +20,7 @@ namespace Entidades{
 		{
 		}
 
-		void Plataforma::obstacular(Personagens::Character* pPlayer)
+		void Plataforma::obstacular(Personagens::Personagem* pPlayer)
 		{
 			/**
 			*

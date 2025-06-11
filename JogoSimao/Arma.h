@@ -5,7 +5,7 @@
 
 namespace Entidades {
 	namespace Personagens {
-		class Character;
+		class Personagem;
 	}
 }
 
@@ -13,14 +13,14 @@ namespace Entidades {
 class Arma
 {
 private:
-	Entidades::Personagens::Character* pDono;
+	Entidades::Personagens::Personagem* pDono;
 	float VelocidadeProjetil;
 	sf::Clock Clocktiro;
 	float tiroCooldown;
 	std::vector<Entidades::Projetil*>* pProjeteis;
 public:
-	Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Character* pDono, float tiroCooldown);
-	Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Character* pDono, Armas arma);
+	Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* pDono, float tiroCooldown);
+	Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* pDono, Armas arma);
 	~Arma();
 	void atirar();
 

@@ -28,7 +28,7 @@ namespace Entidades {
 
 		}
 
-		void Espinhos::obstacular(Personagens::Character* pPersonagem) {
+		void Espinhos::obstacular(Personagens::Personagem* pPersonagem) {
 			if(getDanoRelogio() > getDanoCooldown()) {
 				danoRelogio.restart();
 				pPersonagem->tiraVida(1);

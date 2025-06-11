@@ -14,7 +14,7 @@ namespace Entidades {
 			~Espinhos();
 			const float getDanoCooldown() const;
 			const float getDanoRelogio() const;
-			void obstacular(Personagens::Character* pPlayer);
+			void obstacular(Personagens::Personagem* pPlayer);
 			void executar();
 		};
 

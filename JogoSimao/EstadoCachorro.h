@@ -2,7 +2,7 @@
 namespace Entidades{
 	namespace Personagens{
 		class Cachorro;
-		class Character;
+		class Personagem;
 
 		class EstadoCachorro
 		{

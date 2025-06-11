@@ -71,13 +71,22 @@ namespace Fases{
 		* @return void
 		*/
 
-		Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(60, 100), sf::Vector2f(1500, 300), player, &projeteis, &characters);
-		characters.emplace_back(atirador);
-		listaEntidades.inserirNoFim(atirador);
+		criarAtirador();
 
 		Entidades::Personagens::Boss* boss = new Entidades::Personagens::Boss(sf::Vector2f(100, 200), sf::Vector2f(2500, 300), player, &projeteis);
 		characters.emplace_back(boss);
 		listaEntidades.inserirNoFim(boss);
+	}
+
+	void Fase1::criarAtirador()
+	{
+		Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(60, 100), sf::Vector2f(1500, 300), player, &projeteis, &characters);
+		characters.emplace_back(atirador);
+		listaEntidades.inserirNoFim(atirador);
+	}
+
+	void Fase1::criarCachorro()
+	{
 	}
 
 	void Fase1::criarEstruturas()
@@ -89,6 +98,9 @@ namespace Fases{
 		*/
 
 		for (int i = 0; i <= 100; i++) {
+			Entidades::Obstaculos::Espinhos* esp = new Entidades::Obstaculos::Espinhos(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 500));
+			listaEntidades.inserirNoFim(esp);
+			obstaculos.push_back(esp);
 
 			Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670));
 			listaEntidades.inserirNoFim(plataforma);

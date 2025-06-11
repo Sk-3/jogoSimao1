@@ -10,7 +10,7 @@ namespace Gerenciadores{
 	{
 	
 	}
-	GerenciadorColisao::GerenciadorColisao(std::vector<Entidades::Personagens::Character*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos, std::vector<Entidades::Projetil*>* projeteis)
+	GerenciadorColisao::GerenciadorColisao(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos, std::vector<Entidades::Projetil*>* projeteis)
 		
 	{
 		/**
@@ -71,7 +71,7 @@ namespace Gerenciadores{
 		}
 	}
 
-	void GerenciadorColisao::empurrarPersonagem(Entidades::Personagens::Character* personagem, Entidades::Obstaculos::Obstaculo* obstaculo)
+	void GerenciadorColisao::empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Obstaculos::Obstaculo* obstaculo)
 	{
 
 		/**

@@ -3,7 +3,7 @@
 #include "TipoPersonagem.h"
 namespace Entidades{
 	namespace Personagens {
-		class Character;
+		class Personagem;
 	}
 	class Projetil :public Entity
 	{
@@ -20,7 +20,7 @@ namespace Entidades{
 		void executar();
 		void desativar();
 		bool Ativado();
-		void danifica(Personagens::Character* personagem);
+		void danifica(Personagens::Personagem* personagem);
 	};
 
 }

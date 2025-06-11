@@ -1,5 +1,5 @@
 #include "Projetil.h"
-#include "Character.h"
+#include "Personagem.h"
 
 namespace Entidades{
 
@@ -83,7 +83,7 @@ namespace Entidades{
 		return ativo;
 	}
 
-	void Projetil::danifica(Personagens::Character* personagem)
+	void Projetil::danifica(Personagens::Personagem* personagem)
 	{
 		/**
 		*@brief Aplica dano ao personagem atingido pelo projetil

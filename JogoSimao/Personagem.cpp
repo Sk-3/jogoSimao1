@@ -1,10 +1,10 @@
-#include "Character.h"
+#include "Personagem.h"
 #include "Obstaculo.h"
 #include "Projetil.h"
 #include "Arma.h"
 namespace Entidades{
 	namespace Personagens{
-		Character::Character()
+		Personagem::Personagem()
 			:Entity(), Subject()
 		{
 			Clocktiro.restart();
@@ -17,7 +17,7 @@ namespace Entidades{
 			direction = Directions::RIGHT;
 		}
 
-		Character::Character(sf::Vector2f size, sf::Vector2f pos)
+		Personagem::Personagem(sf::Vector2f size, sf::Vector2f pos)
 			:Entity(size, pos), Subject()
 		{
 			/***
@@ -39,7 +39,7 @@ namespace Entidades{
 			setFigura(&shape);
 		}
 
-		Character::~Character()
+		Personagem::~Personagem()
 		{
 			if (arma) {
 				delete arma;
@@ -50,29 +50,29 @@ namespace Entidades{
 		
 		//GETTERS
 
-		const TipoPersonagem Character::getTipo() const
+		const TipoPersonagem Personagem::getTipo() const
 		{
 			return tipo;
 		}
 
-		const float Character::getTiroCoooldown() const
+		const float Personagem::getTiroCoooldown() const
 		{
 			return tiroCooldown;
 		}
-		const bool Character::vivo() const
+		const bool Personagem::vivo() const
 		{
 			return (health > 0);
 		}
-		const Directions Character::getDirection() const
+		const Directions Personagem::getDirection() const
 		{
 			return direction;
 		}
-		const int Character::getHealth() const
+		const int Personagem::getHealth() const
 		{
 			return health;
 		}
 
-		const float Character::getClockTiro() const
+		const float Personagem::getClockTiro() const
 		{
 			return Clocktiro.getElapsedTime().asSeconds();
 		}
@@ -81,20 +81,20 @@ namespace Entidades{
 		//SETTERS
 
 
-		void Character::hitTop(Obstaculos::Obstaculo* obstaculo)
+		void Personagem::hitTop(Obstaculos::Obstaculo* obstaculo)
 		{
 			speed.y = 0;
 			shape.setPosition(getBounds().left, obstaculo->getBounds().top + obstaculo->getBounds().height);
 		}
 
-		void Character::hitGround(Obstaculos::Obstaculo* obstaculo)
+		void Personagem::hitGround(Obstaculos::Obstaculo* obstaculo)
 		{
 			speed.y = 0;
 			shape.setPosition(shape.getPosition().x, (obstaculo->getBounds().top - getBounds().height));
 			jumps = 2;
 		}
 
-		void Character::hitLeft(Obstaculos::Obstaculo* obstaculo)
+		void Personagem::hitLeft(Obstaculos::Obstaculo* obstaculo)
 		{
 			speed.x = 0;
 			shape.setPosition(obstaculo->getBounds().left + obstaculo->getBounds().width, getBounds().top);
@@ -103,7 +103,7 @@ namespace Entidades{
 			}
 		}
 
-		void Character::hitRight(Obstaculos::Obstaculo* obstaculo)
+		void Personagem::hitRight(Obstaculos::Obstaculo* obstaculo)
 		{
 
 			speed.x = 0;
@@ -113,22 +113,22 @@ namespace Entidades{
 			}
 		}
 
-		void Character::tiraVida(int dano)
+		void Personagem::tiraVida(int dano)
 		{
 			health -= dano;
 		}
 
-		void Character::resetClockTiro()
+		void Personagem::resetClockTiro()
 		{
 			Clocktiro.restart();
 		}
-		void Character::setMoveSpeed(float moveSpeed)
+		void Personagem::setMoveSpeed(float moveSpeed)
 
 		{
 			this->moveSpeed = moveSpeed;
 		}
 
-		void Character::executar() {
+		void Personagem::executar() {
 			move();
 		}
 

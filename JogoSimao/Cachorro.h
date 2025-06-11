@@ -11,10 +11,10 @@ namespace Entidades{
 		private:
 			float velocidadeSeguindo;
 			float velocidadeCacando;
-			Character* pDono;
+			Personagem* pDono;
 			EstadoCachorro* estadoAtual;
 		public:
-			Cachorro(sf::Vector2f size, sf::Vector2f pos, Character* player, std::vector<Projetil*>* projeteis, Character* dono);
+			Cachorro(sf::Vector2f size, sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, Personagem* dono);
 			~Cachorro();
 			
 

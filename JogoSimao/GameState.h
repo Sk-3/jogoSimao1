@@ -41,7 +41,7 @@ namespace Fases{
 		//VETORES
 		std::vector<Entidades::Projetil*> projeteis;
 		std::vector<Entidades::Obstaculos::Obstaculo*> obstaculos;
-		std::vector<Entidades::Personagens::Character*> characters;
+		std::vector<Entidades::Personagens::Personagem*> characters;
 	public:
 		~GameState();
 		GameState();

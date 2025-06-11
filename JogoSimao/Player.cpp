@@ -4,7 +4,7 @@
 namespace Entidades{
 	namespace Personagens{
 		Player::Player()
-			:Character()
+			:Personagem()
 		{
 			tipo = TipoPersonagem::PLAYER;
 			jumps = 2;
@@ -18,7 +18,7 @@ namespace Entidades{
 		}
 
 		Player::Player(sf::Vector2f size, sf::Vector2f pos, std::vector<Projetil*>* projeteis)
-			:Character(size, pos)
+			:Personagem(size, pos)
 		{
 			arma = new Arma(projeteis, this, Armas::METRALHADORA);
 			tipo = TipoPersonagem::PLAYER;
@@ -117,13 +117,13 @@ namespace Entidades{
 		{
 			//move o player a atualiza a posição da camera
 			if (direction == Directions::LEFT) {
-				shape.setScale(-2, 2);
-				shape.setOrigin(getBounds().width, 0);
+				shape.setScale(-5, 5);
+				//	shape.setOrigin(getBounds().width, 0);
 				
 			}
 			else {
 				shape.setOrigin(0,0);
-				shape.setScale(2, 2);
+				shape.setScale(5, 5);
 			}
 			move();
 		}
