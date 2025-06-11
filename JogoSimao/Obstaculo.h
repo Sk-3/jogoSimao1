@@ -1,5 +1,5 @@
 #pragma once
-#include "Entity.h"
+#include "Entidade.h"
 #include "Player.h"
 
 /**
@@ -11,7 +11,7 @@
 */
 namespace Entidades{
 	namespace Obstaculos {
-		class Obstaculo : public Entity
+		class Obstaculo : public Entidade
 		{
 		protected:
 			bool colidivel;

@@ -1,7 +1,7 @@
 #include "Button.h"
 namespace Entidades{
 	Button::Button(sf::Vector2f size, sf::Vector2f pos, std::string txt, Actions action)
-		:Entity(size, pos), buttonAction(action), actualAction(Actions::NADA)
+		:Entidade(size, pos), buttonAction(action), actualAction(Actions::NADA)
 	{
 		/**
 		*@brief Cria um botao com o tamanho, posicao, texto e acao especificados

@@ -29,7 +29,7 @@ namespace Gerenciadores{
 		~GerenciadorColisao();
 	
 	
-		const bool verificarColisao(Entidades::Entity* pe1, Entidades::Entity* pe2);
+		const bool verificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2);
 		void tratarColisaoProjeteis();
 		void tratarColisaoPersonagens();
 		void empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Obstaculos::Obstaculo* Obstaculo);

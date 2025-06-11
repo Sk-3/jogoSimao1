@@ -2,7 +2,7 @@
 namespace Entidades{
 	namespace Obstaculos{
 		Obstaculo::Obstaculo(sf::Vector2f size, sf::Vector2f pos)
-		:Entity(size, pos)
+		:Entidade(size, pos)
 		{
 			colidivel = 1;
 			isColiding = 0; 

@@ -18,13 +18,13 @@ namespace Listas
         lista.limpar();
     }
 
-    void ListaEntidades::inserirNoFim(Entidades::Entity* ent)
+    void ListaEntidades::inserirNoFim(Entidades::Entidade* ent)
     {
         if (ent)
             lista.inserirNoFim(ent);
     }
 
-    void ListaEntidades::inserirNoInicio(Entidades::Entity* ent)
+    void ListaEntidades::inserirNoInicio(Entidades::Entidade* ent)
     {
         if (ent)
             lista.inserirNoInicio(ent);
@@ -45,17 +45,17 @@ namespace Listas
         return lista.getTam();
     }
 
-    Lista<Entidades::Entity*>::Iterator ListaEntidades::apagar(Lista<Entidades::Entity*>::Iterator iter)
+    Lista<Entidades::Entidade*>::Iterator ListaEntidades::apagar(Lista<Entidades::Entidade*>::Iterator iter)
     {
         return lista.apagar(iter);
     }
 
-    Lista<Entidades::Entity*>::Iterator ListaEntidades::inicio()
+    Lista<Entidades::Entidade*>::Iterator ListaEntidades::inicio()
     {
         return lista.inicio();
     }
 
-    Lista<Entidades::Entity*>::Iterator ListaEntidades::fim()
+    Lista<Entidades::Entidade*>::Iterator ListaEntidades::fim()
     {
         return lista.fim();
     }
@@ -85,7 +85,7 @@ namespace Listas
         it = inicio();
         while (it != fim())
         {
-            Entidades::Entity* temp = *it;
+            Entidades::Entidade* temp = *it;
             it = apagar(it);
             delete temp;
             ++it;

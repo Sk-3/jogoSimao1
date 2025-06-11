@@ -5,7 +5,7 @@
 namespace Entidades{
 	namespace Personagens{
 		Personagem::Personagem()
-			:Entity(), Subject()
+			:Entidade(), Subject()
 		{
 			Clocktiro.restart();
 			tiroCooldown = 0.2;
@@ -18,7 +18,7 @@ namespace Entidades{
 		}
 
 		Personagem::Personagem(sf::Vector2f size, sf::Vector2f pos)
-			:Entity(size, pos), Subject()
+			:Entidade(size, pos), Subject()
 		{
 			/***
 			*@brief Construtor da classe Character, que inicializa o personagem com tamanho e posicaoo especificos.

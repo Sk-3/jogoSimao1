@@ -1,6 +1,6 @@
-#include "Entity.h"
+#include "Entidade.h"
 namespace Entidades{
-	const sf::Vector2f Entity::getCenter()
+	const sf::Vector2f Entidade::getCenter()
 	{
 		sf::Vector2f center;
 
@@ -10,7 +10,7 @@ namespace Entidades{
 
 		return center;
 	}
-	const sf::Vector2f Entity::getPosition()
+	const sf::Vector2f Entidade::getPosition()
 	{
 		/***
 		* @brief retorna a posicao do corpo do objeto
@@ -19,7 +19,7 @@ namespace Entidades{
 		return shape.getPosition();
 	}
 
-	void Entity::move()
+	void Entidade::move()
 	{
 		/***
 		* @brief move o corpo do objeto na direcao do vetor speed
@@ -27,7 +27,7 @@ namespace Entidades{
 		shape.move(speed);
 	}
 
-	void Entity::changeSpeed(sf::Vector2f addSpeed)
+	void Entidade::changeSpeed(sf::Vector2f addSpeed)
 	{
 		/***
 		* @brief altera a velocidade do corpo do objeto
@@ -36,7 +36,7 @@ namespace Entidades{
 		speed += addSpeed;
 	}
 
-	const sf::FloatRect Entity::getBounds()
+	const sf::FloatRect Entidade::getBounds()
 	{
 		/***
 		* @brief retorna o retangulo delimitador do corpo do objeto
@@ -45,12 +45,12 @@ namespace Entidades{
 		return shape.getGlobalBounds();
 	}
 
-	Entity::Entity():
+	Entidade::Entidade():
 		position(sf::Vector2f(0.f,0.f))
 	{
 	}
 
-	Entity::Entity(sf::Vector2f size, sf::Vector2f pos) :
+	Entidade::Entidade(sf::Vector2f size, sf::Vector2f pos) :
 	position(pos)
 	{
 
@@ -66,7 +66,7 @@ namespace Entidades{
 		setFigura(&shape);
 	}
 
-	Entity::~Entity()
+	Entidade::~Entidade()
 	{
 	}
 

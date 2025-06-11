@@ -17,7 +17,7 @@
 *
 */
 namespace Entidades{
-	class Entity : public Ente
+	class Entidade : public Ente
 	{
 	protected:
 		sf::Vector2f position;
@@ -26,9 +26,9 @@ namespace Entidades{
 		std::ostream* buffer;
 	public:
 
-		Entity();
-		Entity(sf::Vector2f size, sf::Vector2f pos);
-		~Entity();
+		Entidade();
+		Entidade(sf::Vector2f size, sf::Vector2f pos);
+		~Entidade();
 		//GETTERS
 		const sf::Vector2f getCenter();
 		const sf::Vector2f getPosition();

@@ -30,7 +30,7 @@ namespace Gerenciadores{
 	
 	}
 
-	const bool GerenciadorColisao::verificarColisao(Entidades::Entity* pe1, Entidades::Entity* pe2)
+	const bool GerenciadorColisao::verificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2)
 	{
 		sf::FloatRect ent1Bounds = pe1->getBounds();
 		sf::FloatRect ent2Bounds = pe2->getBounds();

@@ -1,6 +1,6 @@
 #pragma once
 #include "Subject.h"
-#include "Entity.h"
+#include "Entidade.h"
 #include "TipoPersonagem.h"
 #include "Armas.h"
 
@@ -21,7 +21,7 @@ namespace Entidades{
 	}
 
 	namespace Personagens {
-		class Personagem : public Entity, public Subject
+		class Personagem : public Entidade, public Subject
 		{
 		protected:
 			//clock que controla o tempo de tiro do personagem

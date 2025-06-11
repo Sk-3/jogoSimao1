@@ -4,7 +4,7 @@
 namespace Entidades{
 
 	Projetil::Projetil(sf::Vector2f size, sf::Vector2f pos, Directions direction, TipoPersonagem tipo)
-		:Entity(size, pos), dano(3), tipo(tipo), ativo(1)
+		:Entidade(size, pos), dano(3), tipo(tipo), ativo(1)
 	{
 		/**
 		*@brief Inicializa o projetil com o tamanho, posicao e direcao
@@ -24,7 +24,7 @@ namespace Entidades{
 	}
 
 	Projetil::Projetil()
-		:Entity()
+		:Entidade()
 	{
 		dano = 0;
 		ativo = 1;

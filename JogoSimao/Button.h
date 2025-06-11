@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "Entity.h"
+#include "Entidade.h"
 #include <iostream>
 #include <cstdlib>
 #include "Actions.h"
@@ -15,7 +15,7 @@
 *	seu atributo actualAction vai ser lido pelo menuState, quando ele for clicado ele vai mudar de "NADA" para a ação de buttonAction
 */
 namespace Entidades{
-	class Button : public Entity
+	class Button : public Entidade
 	{
 	private:
 

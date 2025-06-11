@@ -141,7 +141,7 @@
     <ClCompile Include="chao.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Ente.cpp" />
-    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Espinhos.cpp" />
     <ClCompile Include="EstadoCachorroAtacar.cpp" />
     <ClCompile Include="EstadoCachorroSeguir.cpp" />
@@ -187,7 +187,7 @@
     <ClInclude Include="CharacterActions.h" />
     <ClInclude Include="Directions.h" />
     <ClInclude Include="Ente.h" />
-    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Entidade.h" />
     <ClInclude Include="Espinhos.h" />
     <ClInclude Include="EstadoCachorro.h" />
     <ClInclude Include="EstadoCachorroAtacar.h" />

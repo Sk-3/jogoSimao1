@@ -1,15 +1,15 @@
 #pragma once
 
 #include "Lista.h"
-#include "Entity.h"
+#include "Entidade.h"
 
 namespace Listas
 {
     class ListaEntidades
     {
     private:
-        Lista<Entidades::Entity*> lista;
-        Lista<Entidades::Entity*>::Iterator it;
+        Lista<Entidades::Entidade*> lista;
+        Lista<Entidades::Entidade*>::Iterator it;
 
     public:
         ListaEntidades();
@@ -17,17 +17,17 @@ namespace Listas
 
         void limpar();
 
-        void inserirNoFim(Entidades::Entity* ent);
-        void inserirNoInicio(Entidades::Entity* ent);
+        void inserirNoFim(Entidades::Entidade* ent);
+        void inserirNoInicio(Entidades::Entidade* ent);
 
         void removerDoInicio();
         void removerDoFim();
 
         const int getTam() const;
 
-        Lista<Entidades::Entity*>::Iterator apagar(Lista<Entidades::Entity*>::Iterator iter);
-        Lista<Entidades::Entity*>::Iterator inicio();
-        Lista<Entidades::Entity*>::Iterator fim();
+        Lista<Entidades::Entidade*>::Iterator apagar(Lista<Entidades::Entidade*>::Iterator iter);
+        Lista<Entidades::Entidade*>::Iterator inicio();
+        Lista<Entidades::Entidade*>::Iterator fim();
 
         void executar();
         void salvar();

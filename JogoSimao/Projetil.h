@@ -1,11 +1,11 @@
 #pragma once
-#include "Entity.h"
+#include "Entidade.h"
 #include "TipoPersonagem.h"
 namespace Entidades{
 	namespace Personagens {
 		class Personagem;
 	}
-	class Projetil :public Entity
+	class Projetil :public Entidade
 	{
 	private:
 		TipoPersonagem tipo;
