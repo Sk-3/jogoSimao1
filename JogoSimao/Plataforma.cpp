@@ -25,12 +25,12 @@ namespace Entidades{
 			/**
 			*
 			*/
-		}
+		}	
 
 		void Plataforma::executar()
-		{
-
+		{			
 			
+
 		}
 
 	}

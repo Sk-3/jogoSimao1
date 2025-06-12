@@ -24,7 +24,7 @@ namespace Entidades{
 		/***
 		* @brief move o corpo do objeto na direcao do vetor speed
 		*/
-		shape.move(speed);
+		shape.move(speed);		
 	}
 
 	void Entidade::changeSpeed(sf::Vector2f addSpeed)

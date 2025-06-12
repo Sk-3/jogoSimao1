@@ -104,8 +104,8 @@ namespace Fases{
 
 			Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670));
 			listaEntidades.inserirNoFim(plataforma);
-			obstaculos.push_back(plataforma);
-		}
+			obstaculos.push_back(plataforma);			
+		}				
 	}
 
 
