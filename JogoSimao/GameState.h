@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Gravidade.h"
 #include "Plataforma.h"
+#include "PlataformaTeste.h"
 #include "Projetil.h"
 #include "GerenciadorColisao.h"
 #include "Hud.h"

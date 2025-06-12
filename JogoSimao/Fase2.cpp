@@ -58,10 +58,24 @@ namespace Fases{
 		* @details Cria as estruturas e adiciona na lista de obstaculos
 		* @return void
 		*/
-		for (int i = 0; i <= 30; i++) {
-			Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670));
-			obstaculos.push_back(plat);
-			listaEntidades.inserirNoFim(plat);
+		for (int i = 0; i <= 2; i++) {
+			Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670));
+			obstaculos.push_back(plat1);				
+			listaEntidades.inserirNoFim(plat1);
+			Entidades::Obstaculos::Plataforma* plat2 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f((100 * i)+1100, 670));
+			obstaculos.push_back(plat2);
+			listaEntidades.inserirNoFim(plat2);
+
 		}
+
+		Entidades::Obstaculos::PlataformaTeste* platT1 = new Entidades::Obstaculos::PlataformaTeste(sf::Vector2f(100.f, 100.f), sf::Vector2f(500, 500), -4);
+		obstaculos.push_back(platT1);
+		listaEntidades.inserirNoFim(platT1);
+
+		Entidades::Obstaculos::PlataformaTeste* platT2 = new Entidades::Obstaculos::PlataformaTeste(sf::Vector2f(100.f, 100.f), sf::Vector2f(700, 500), 4);
+		obstaculos.push_back(platT2);
+		listaEntidades.inserirNoFim(platT2);
+
+
 	}
 }

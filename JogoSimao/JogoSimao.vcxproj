@@ -168,6 +168,7 @@
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Plataforma.cpp" />
+    <ClCompile Include="PlataformaTeste.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Principal.cpp" />
     <ClCompile Include="Projetil.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Plataforma.h" />
+    <ClInclude Include="PlataformaTeste.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Principal.h" />
     <ClInclude Include="Projetil.h" />
