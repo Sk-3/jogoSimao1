@@ -46,10 +46,10 @@ namespace Entidades{
 
 			//RELACIONADO A COLISÃO
 				//Funções que não permitem o jogador entrar dentro do obstaculo passado como parametro
-				virtual void hitTop(Obstaculos::Obstaculo* obstaculo);
-				virtual void hitGround(Obstaculos::Obstaculo* obstaculo);
-				virtual void hitLeft (Obstaculos::Obstaculo* obstaculo);
-				virtual void hitRight(Obstaculos::Obstaculo* obstaculo);
+				virtual void hitTop(Entidade* entidade);
+				virtual void hitGround(Entidade* entidade);
+				virtual void hitLeft (Entidade* entidade);
+				virtual void hitRight(Entidade* entidade);
 	
 			//GETTERS
 				const TipoPersonagem getTipo() const;

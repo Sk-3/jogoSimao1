@@ -81,36 +81,36 @@ namespace Entidades{
 		//SETTERS
 
 
-		void Personagem::hitTop(Obstaculos::Obstaculo* obstaculo)
+		void Personagem::hitTop(Entidade* entidade)
 		{
 			speed.y = 0;
-			shape.setPosition(getBounds().left, obstaculo->getBounds().top + obstaculo->getBounds().height);
+			shape.setPosition(getBounds().left, entidade->getBounds().top + entidade->getBounds().height);
 		}
 
-		void Personagem::hitGround(Obstaculos::Obstaculo* obstaculo)
+		void Personagem::hitGround(Entidade* entidade)
 		{
 			speed.y = 0;
-			shape.setPosition(shape.getPosition().x, (obstaculo->getBounds().top - getBounds().height));
+			shape.setPosition(shape.getPosition().x, (entidade->getBounds().top - getBounds().height));
 			jumps = 2;
 		}
 
-		void Personagem::hitLeft(Obstaculos::Obstaculo* obstaculo)
+		void Personagem::hitLeft(Entidade* entidade)
 		{
 			speed.x = 0;
-			shape.setPosition(obstaculo->getBounds().left + obstaculo->getBounds().width, getBounds().top);
+			shape.setPosition(entidade->getBounds().left + entidade->getBounds().width, getBounds().top);
 			if (jumps == 0) {
 				jumps = 1;
-			}
+			}			
 		}
 
-		void Personagem::hitRight(Obstaculos::Obstaculo* obstaculo)
+		void Personagem::hitRight(Entidade* entidade)
 		{
 
 			speed.x = 0;
-			shape.setPosition(obstaculo->getBounds().left - getBounds().width, getBounds().top);
+			shape.setPosition(entidade->getBounds().left - getBounds().width, getBounds().top);
 			if (jumps == 0) {
 				jumps = 1;
-			}
+			}			
 		}
 
 		void Personagem::tiraVida(int dano)

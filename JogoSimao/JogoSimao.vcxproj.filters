@@ -135,10 +135,7 @@
     <ClCompile Include="Arma.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="chao.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="PlataformaTeste.cpp">
+    <ClCompile Include="Estrutura.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
@@ -272,10 +269,10 @@
     <ClInclude Include="Armas.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="chao.h">
+    <ClInclude Include="Estrutura.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="PlataformaTeste.h">
+    <ClInclude Include="TipoEstrutura.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>

@@ -32,6 +32,7 @@ namespace Gerenciadores{
 			sf::Texture chao;
 			sf::Texture player;
 			sf::Texture goblin;
+			sf::Texture parede;
 
 		float winWidth;
 		float winHeight;
@@ -57,6 +58,8 @@ namespace Gerenciadores{
 			sf::Texture* getChaoTexture();
 			sf::Texture* getGoblinTexture();
 			sf::Texture* getPlayerTexture();
+			sf::Texture* getParedeTexture();
+
 		//SETTERS
 			void setFrameLimit(int fps);
 			void setView(sf::View);

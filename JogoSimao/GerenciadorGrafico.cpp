@@ -77,6 +77,10 @@ namespace Gerenciadores {
 		if (!goblin.loadFromFile("..//textures//goblin.PNG")) {
 			std::cout << "Falha ao carregar textura goblin.PNG";
 		}
+
+		if (!parede.loadFromFile("..//textures//tileset_32x32.PNG")) {
+			std::cout << "Falha ao carregar textura tileset_32x32.PNG";
+		}
 	}
 	void GerenciadorGrafico::desenharBackground()
 	{
@@ -124,6 +128,10 @@ namespace Gerenciadores {
 
 	sf::Texture* GerenciadorGrafico::getPlayerTexture() {
 		return &player;
+	}
+	sf::Texture* GerenciadorGrafico::getParedeTexture()
+	{
+		return &parede;
 	}
 	void GerenciadorGrafico::clear() {
 		window->clear();

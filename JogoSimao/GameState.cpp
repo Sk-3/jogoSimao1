@@ -3,7 +3,7 @@ namespace Fases{
 
 	GameState::GameState():
 		State(), gravity(&characters, &projeteis),
-		colision(&characters, &obstaculos, &projeteis),
+		colision(&characters, &obstaculos, &projeteis, &estruturas),
 		player(new Entidades::Personagens::Player(sf::Vector2f(80, 120), sf::Vector2f(100, 100), &projeteis)), view(pGerGraphic->getStdView())
 	{
 		hud.setPlayer(player);
@@ -25,6 +25,10 @@ namespace Fases{
 		for (auto& projetil : projeteis) {
 			delete projetil;
 		}
+		for (auto& estrutura : estruturas) {
+			delete estrutura;
+		}
+
 	}
 
 	void GameState::handleEvent()

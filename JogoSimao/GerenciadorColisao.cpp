@@ -6,11 +6,11 @@ namespace Gerenciadores{
 		colision();
 	
 	}
-	GerenciadorColisao::GerenciadorColisao(): characters(nullptr), obstaculos(nullptr), projeteis(nullptr)
+	GerenciadorColisao::GerenciadorColisao(): characters(nullptr), obstaculos(nullptr), projeteis(nullptr), estruturas(nullptr)
 	{
 	
 	}
-	GerenciadorColisao::GerenciadorColisao(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos, std::vector<Entidades::Projetil*>* projeteis)
+	GerenciadorColisao::GerenciadorColisao(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos, std::vector<Entidades::Projetil*>* projeteis, std::vector<Entidades::Estrutura*>* estruturas)
 		
 	{
 		/**
@@ -23,6 +23,7 @@ namespace Gerenciadores{
 		this->projeteis = projeteis;
 		this->obstaculos = obstaculos;
 		this->characters = characters;
+		this->estruturas = estruturas;
 	}
 
 	GerenciadorColisao::~GerenciadorColisao()
@@ -69,9 +70,19 @@ namespace Gerenciadores{
 				}
 			}
 		}
+
+		for (auto& charact : *characters) {
+			for (const auto& estrut : *estruturas) {
+				if (verificarColisao(estrut, charact)) {
+					
+					empurrarPersonagem(charact, estrut);
+					
+				}
+			}
+		}
 	}
 
-	void GerenciadorColisao::empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Obstaculos::Obstaculo* obstaculo)
+	void GerenciadorColisao::empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Entidade* entidade)
 	{
 
 		/**
@@ -83,52 +94,54 @@ namespace Gerenciadores{
 		*
 		*/
 		sf::FloatRect characterBounds = personagem->getBounds();
-		sf::FloatRect obstaculoBounds = obstaculo->getBounds();
+		sf::FloatRect entBounds = entidade->getBounds();
 		
 		//Centro do personagem
 		float charCenterX = characterBounds.left + characterBounds.width / 2.f;
 		float charCenterY = characterBounds.top + characterBounds.height / 2.f;
 
 		//Centro do obstaculo
-		float obstCenterX = obstaculoBounds.left + obstaculoBounds.width / 2.0f;
-		float obstCenterY = obstaculoBounds.top + obstaculoBounds.height / 2.0f;
+		float entCenterX = entBounds.left + entBounds.width / 2.0f;
+		float entCenterY = entBounds.top + entBounds.height / 2.0f;
 
 		//Sobreposição em cada eixo
 
-		float overlapX = std::min(characterBounds.left + characterBounds.width, obstaculoBounds.left + obstaculoBounds.width) - std::max(characterBounds.left, obstaculoBounds.left);
+		float overlapX = std::min(characterBounds.left + characterBounds.width, entBounds.left + entBounds.width) - std::max(characterBounds.left, entBounds.left);
 		//interseção no eixo X
 
 
-		float overlapY = std::min(characterBounds.top + characterBounds.height, obstaculoBounds.top + obstaculoBounds.height) - std::max(characterBounds.top, obstaculoBounds.top);
+		float overlapY = std::min(characterBounds.top + characterBounds.height, entBounds.top + entBounds.height) - std::max(characterBounds.top, entBounds.top);
 		//interseção no eixo y
 
 		// Determinar a direção da colisão pela menor sobreposição
 		if (overlapX < overlapY) {
-			if (charCenterX < obstCenterX) {
+			if (charCenterX < entCenterX) {
 				// Personagem está mais à esquerda que o centro do obstáculo,
 				// então o lado DIREITO do personagem colidiu com o lado ESQUERDO do obstáculo.
-				personagem->hitRight(obstaculo);
+				personagem->hitRight(entidade);
 			}
 			else {
 				// Personagem está mais à direita que o centro do obstáculo,
 				// então o lado ESQUERDO do personagem colidiu com o lado DIREITO do obstáculo.
-				personagem->hitLeft(obstaculo);
+				personagem->hitLeft(entidade);
 			}
 		}
 		else {
 
-			if (charCenterY < obstCenterY) {
+			if (charCenterY < entCenterY) {
 				// Personagem está mais acima que o centro do obstáculo,
 				// então a parte de BAIXO do personagem colidiu com a parte de CIMA do obstáculo.
-				personagem->hitGround(obstaculo);
+				personagem->hitGround(entidade);
 			}
 			else {
 				// Personagem está mais abaixo que o centro do obstáculo,
 				// então a parte de CIMA do personagem colidiu com a parte de BAIXO do obstáculo.
-				personagem->hitTop(obstaculo);
+				personagem->hitTop(entidade);
 			}
 		}
 	}
+
+	
 
 	void GerenciadorColisao::colision()
 	{

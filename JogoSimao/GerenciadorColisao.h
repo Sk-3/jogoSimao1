@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Estrutura.h"
 #include "Obstaculo.h"
 #include "Projetil.h"
 #include "vector"
@@ -21,18 +22,19 @@ namespace Gerenciadores{
 		std::vector<Entidades::Personagens::Personagem*>* characters;
 		std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos;
 		std::vector<Entidades::Projetil*>* projeteis;
+		std::vector<Entidades::Estrutura*>* estruturas;
 	public:
 
 		void executar();
 		GerenciadorColisao();
-		GerenciadorColisao(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>*, std::vector<Entidades::Projetil*>* projeteis);
+		GerenciadorColisao(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>*, std::vector<Entidades::Projetil*>* projeteis, std::vector<Entidades::Estrutura*>* estruturas);
 		~GerenciadorColisao();
 	
 	
 		const bool verificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2);
 		void tratarColisaoProjeteis();
 		void tratarColisaoPersonagens();
-		void empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Obstaculos::Obstaculo* Obstaculo);
+		void empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Entidade* entidade);
 		void colision();
 	
 	};

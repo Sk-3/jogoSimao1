@@ -52,6 +52,11 @@ namespace Fases{
 		for (auto const& obst : obstaculos) {
 			obst->desenhar();
 		}
+
+		for (auto const& estrut : estruturas) {
+			estrut->desenhar();
+		}
+		
 		hud.draw();
 		removerProjeteis();
 		if (!player->vivo())
@@ -102,9 +107,9 @@ namespace Fases{
 			listaEntidades.inserirNoFim(esp);
 			obstaculos.push_back(esp);
 
-			Entidades::Obstaculos::Plataforma* plataforma = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670));
-			listaEntidades.inserirNoFim(plataforma);
-			obstaculos.push_back(plataforma);			
+			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f(100 * i, 670),TipoEstrutura::CHAO);
+			listaEntidades.inserirNoFim(estrutura);
+			estruturas.push_back(estrutura);			
 		}				
 	}
 

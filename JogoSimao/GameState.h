@@ -2,13 +2,14 @@
 #include "State.h"
 #include "Player.h"
 #include "Gravidade.h"
+#include "Estrutura.h"
 #include "Plataforma.h"
-#include "PlataformaTeste.h"
 #include "Projetil.h"
 #include "GerenciadorColisao.h"
 #include "Hud.h"
 #include <sstream>
 #include "ListaEntidades.h"
+
 
 /**
 *	Felipe Simbalista: 25/05/2025
@@ -40,6 +41,7 @@ namespace Fases{
 		Entidades::Personagens::Player* player2;
 		Entidades::Personagens::Player* player;
 		//VETORES
+		std::vector<Entidades::Estrutura*> estruturas;
 		std::vector<Entidades::Projetil*> projeteis;
 		std::vector<Entidades::Obstaculos::Obstaculo*> obstaculos;
 		std::vector<Entidades::Personagens::Personagem*> characters;
