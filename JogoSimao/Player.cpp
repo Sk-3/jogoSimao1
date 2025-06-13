@@ -26,6 +26,7 @@ namespace Entidades{
 			jumps = 2;
 			shape.setTexture(*pGerGraphic->getPlayerTexture());
 			shape.setTextureRect(sf::IntRect(0, 0, 16, 16));
+			shape.setScale(5, 5);
 			setFigura(&shape);
 
 		}
@@ -117,13 +118,11 @@ namespace Entidades{
 		{
 			//move o player a atualiza a posição da camera
 			if (direction == Directions::LEFT) {
-				shape.setScale(-5, 5);
-				//	shape.setOrigin(getBounds().width, 0);
+				shape.setTexture(*pGerGraphic->getPlayerInvertido());
 				
 			}
 			else {
-				shape.setOrigin(0,0);
-				shape.setScale(5, 5);
+				shape.setTexture(*pGerGraphic->getPlayerTexture());
 			}
 			move();
 		}

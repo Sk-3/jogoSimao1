@@ -73,6 +73,15 @@ namespace Gerenciadores {
 		if (!player.loadFromFile("..//textures//AIM.PNG")) {
 			std::cout << "Falha ao carregar textura Aim.PNG";
 		}
+		sf::Image playerInvertido;
+		if (!playerInvertido.loadFromFile("..//textures//AIM.PNG")) {
+			std::cout << "Falha ao carregar textura Aim.PNG";
+		}
+		else {
+			playerInvertido.flipHorizontally();
+			playerLeft.loadFromImage(playerInvertido);
+		}
+		
 
 		if (!goblin.loadFromFile("..//textures//goblin.PNG")) {
 			std::cout << "Falha ao carregar textura goblin.PNG";
@@ -132,6 +141,10 @@ namespace Gerenciadores {
 	sf::Texture* GerenciadorGrafico::getParedeTexture()
 	{
 		return &parede;
+	}
+	sf::Texture* GerenciadorGrafico::getPlayerInvertido()
+	{
+		return &playerLeft;
 	}
 	void GerenciadorGrafico::clear() {
 		window->clear();

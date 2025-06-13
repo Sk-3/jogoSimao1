@@ -31,6 +31,7 @@ namespace Gerenciadores{
 			sf::Texture projetil;
 			sf::Texture chao;
 			sf::Texture player;
+			sf::Texture playerLeft;
 			sf::Texture goblin;
 			sf::Texture parede;
 
@@ -59,7 +60,7 @@ namespace Gerenciadores{
 			sf::Texture* getGoblinTexture();
 			sf::Texture* getPlayerTexture();
 			sf::Texture* getParedeTexture();
-
+			sf::Texture* getPlayerInvertido();
 		//SETTERS
 			void setFrameLimit(int fps);
 			void setView(sf::View);
