@@ -17,8 +17,8 @@ namespace Entidades{
 			direction = Directions::RIGHT;
 		}
 
-		Personagem::Personagem(sf::Vector2f size, sf::Vector2f pos)
-			:Entidade(size, pos), Subject()
+		Personagem::Personagem(sf::Vector2f pos)
+			:Entidade(pos), Subject()
 		{
 			/***
 			*@brief Construtor da classe Character, que inicializa o personagem com tamanho e posicaoo especificos.

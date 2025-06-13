@@ -12,7 +12,7 @@ namespace Entidades{
 		int dano;
 		bool ativo;
 	public:
-		Projetil(sf::Vector2f size, sf::Vector2f pos, Directions direction, TipoPersonagem tipo);
+		Projetil(sf::Vector2f pos, Directions direction, TipoPersonagem tipo);
 		Projetil();
 		~Projetil();
 		const TipoPersonagem getTipo() const;

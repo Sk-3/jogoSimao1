@@ -4,7 +4,7 @@ namespace Fases{
 	GameState::GameState():
 		State(), gravity(&characters, &projeteis),
 		colision(&characters, &obstaculos, &projeteis, &estruturas),
-		player(new Entidades::Personagens::Player(sf::Vector2f(80, 120), sf::Vector2f(100, 100), &projeteis)), view(pGerGraphic->getStdView())
+		player(new Entidades::Personagens::Player( sf::Vector2f(100, 100), &projeteis)), view(pGerGraphic->getStdView())
 	{
 		hud.setPlayer(player);
 		player2 = nullptr;
@@ -98,7 +98,7 @@ namespace Fases{
 			case sf::Event::KeyPressed:
 				if (ev.key.code == sf::Keyboard::P) {
 					if (!player2) {
-						player2 = new Entidades::Personagens::Player(sf::Vector2f(80, 120), sf::Vector2f(100, 100), &projeteis);
+						player2 = new Entidades::Personagens::Player(sf::Vector2f(100, 100), &projeteis);
 						characters.push_back(player2);
 					}
 				}

@@ -27,7 +27,7 @@ namespace Entidades{
 
 	
 	public:
-		Button(sf::Vector2f size, sf::Vector2f pos,std::string txt = "", Actions action = Actions::NADA);
+		Button(sf::Vector2f pos,std::string txt = "", Actions action = Actions::NADA);
 		~Button();
 
 

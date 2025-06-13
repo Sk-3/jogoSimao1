@@ -3,8 +3,8 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Cachorro::Cachorro(sf::Vector2f size, sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, Personagem* dono)
-			:Inimigo(size, pos, player, projeteis), pDono(dono), velocidadeCacando(6), velocidadeSeguindo(3)
+		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, Personagem* dono)
+			:Inimigo( pos, player, projeteis), pDono(dono), velocidadeCacando(6), velocidadeSeguindo(3)
 		{
 			/**
 			*@brief Construtor da classe Cachorro

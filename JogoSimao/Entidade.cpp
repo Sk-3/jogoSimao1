@@ -50,7 +50,7 @@ namespace Entidades{
 	{
 	}
 
-	Entidade::Entidade(sf::Vector2f size, sf::Vector2f pos) :
+	Entidade::Entidade(sf::Vector2f pos) :
 	position(pos)
 	{
 

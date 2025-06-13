@@ -41,7 +41,7 @@ namespace Entidades{
 			//construtor padrão
 			Personagem();
 			//define posição e tamanho inicial do personagem
-			Personagem(sf::Vector2f size, sf::Vector2f pos);
+			Personagem(sf::Vector2f pos);
 			~Personagem();
 
 			//RELACIONADO A COLISÃO

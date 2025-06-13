@@ -60,35 +60,35 @@ namespace Fases{
 		*/
 		for (int i = 0; i <= 9; i++) {
 
-			Entidades::Estrutura* chao1 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f((100 * i)-400, 670),TipoEstrutura::CHAO);
+			Entidades::Estrutura* chao1 = new Entidades::Estrutura( sf::Vector2f((100 * i)-400, 670),TipoEstrutura::CHAO);
 			estruturas.push_back(chao1);
 			listaEntidades.inserirNoFim(chao1);
 			
-			Entidades::Estrutura* chao2 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f((100 * i)+1100, 670), TipoEstrutura::CHAO);
+			Entidades::Estrutura* chao2 = new Entidades::Estrutura(sf::Vector2f((100 * i)+1100, 670), TipoEstrutura::CHAO);
 			estruturas.push_back(chao2);
 			listaEntidades.inserirNoFim(chao2);
 		}
 
 		for (int i = 0; i <= 7; i++) {
 
-			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f(-100, (36 * -i) + 670), TipoEstrutura::PAREDE);
+			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(-100, (36 * -i) + 670), TipoEstrutura::PAREDE);
 			estruturas.push_back(parede1);
 			listaEntidades.inserirNoFim(parede1);
 
-			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f(1400, (36 * -i) + 670), TipoEstrutura::PAREDE);
+			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(1400, (36 * -i) + 670), TipoEstrutura::PAREDE);
 			estruturas.push_back(parede2);
 			listaEntidades.inserirNoFim(parede2);
 
-			Entidades::Estrutura* parede3 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f(400, (36 * -i) + 670), TipoEstrutura::PAREDE);
+			Entidades::Estrutura* parede3 = new Entidades::Estrutura(sf::Vector2f(400, (36 * -i) + 670), TipoEstrutura::PAREDE);
 			estruturas.push_back(parede3);
 			listaEntidades.inserirNoFim(parede3);
 		}		
 
-		Entidades::Obstaculos::Plataforma* platT1 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(700, 500), -4, 800, 300);
+		Entidades::Obstaculos::Plataforma* platT1 = new Entidades::Obstaculos::Plataforma( sf::Vector2f(700, 500), -4, 800, 300);
 		obstaculos.push_back(platT1);
 		listaEntidades.inserirNoFim(platT1);
 
-		Entidades::Obstaculos::Plataforma* platT2 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(900, 500), 4, 800, 300);
+		Entidades::Obstaculos::Plataforma* platT2 = new Entidades::Obstaculos::Plataforma( sf::Vector2f(900, 500), 4, 800, 300);
 		obstaculos.push_back(platT2);
 		listaEntidades.inserirNoFim(platT2);
 

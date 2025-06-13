@@ -1,7 +1,7 @@
 #include "Button.h"
 namespace Entidades{
-	Button::Button(sf::Vector2f size, sf::Vector2f pos, std::string txt, Actions action)
-		:Entidade(size, pos), buttonAction(action), actualAction(Actions::NADA)
+	Button::Button(sf::Vector2f pos, std::string txt, Actions action)
+		:Entidade(pos), buttonAction(action), actualAction(Actions::NADA)
 	{
 		/**
 		*@brief Cria um botao com o tamanho, posicao, texto e acao especificados
@@ -10,6 +10,7 @@ namespace Entidades{
 		*@param txt Texto do botao
 		*@param action Ação que o botao executa quando clicado
 		*/
+		shape.setScale(8, 4);
 		buttonText.setPosition(pos);
 		buttonText.setFont(*(pGerGraphic->getFont()));
 		buttonText.setString(txt);

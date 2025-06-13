@@ -51,7 +51,7 @@ void Arma::atirar() {
 	*/
 	if (Clocktiro.getElapsedTime().asSeconds() > tiroCooldown) {
 		sf::Vector2f position = pDono->getCenter();
-		pProjeteis->emplace_back(new Entidades::Projetil(sf::Vector2f(10.0, 10.0), position, pDono->getDirection(), pDono->getTipo()));
+		pProjeteis->emplace_back(new Entidades::Projetil(position, pDono->getDirection(), pDono->getTipo()));
 		Clocktiro.restart();
 	}
 }

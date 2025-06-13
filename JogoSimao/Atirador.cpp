@@ -4,8 +4,8 @@
 namespace Entidades{
 	namespace Personagens
 	{
-		Personagens::Atirador::Atirador(sf::Vector2f size, sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, std::vector<Personagem*>* personagens) :
-			Inimigo(size, pos, player, projeteis), personagens(personagens)
+		Personagens::Atirador::Atirador(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, std::vector<Personagem*>* personagens) :
+			Inimigo(pos, player, projeteis), personagens(personagens)
 		{
 			arma = new Arma(pProjeteis, this, Armas::RIFLE);
 
@@ -24,11 +24,11 @@ namespace Entidades{
 		{
 			sf::Vector2f posCachorro = getPosition();
 			posCachorro.x -= 50;
-			Cachorro* tempCachorro = new Cachorro(sf::Vector2f(100, 50), posCachorro, pPlayer, pProjeteis, this);
+			Cachorro* tempCachorro = new Cachorro( posCachorro, pPlayer, pProjeteis, this);
 			cachorros.emplace_back(tempCachorro);
 			personagens->emplace_back(tempCachorro);
 			posCachorro.x += 100;
-			tempCachorro = new Cachorro(sf::Vector2f(100, 50), posCachorro, pPlayer, pProjeteis, this);
+			tempCachorro = new Cachorro(posCachorro, pPlayer, pProjeteis, this);
 			cachorros.emplace_back(tempCachorro);
 			personagens->emplace_back(tempCachorro);
 		}

@@ -1,8 +1,8 @@
 #include "Plataforma.h"
 namespace Entidades{
 	namespace Obstaculos {
-		Plataforma::Plataforma(sf::Vector2f size, sf::Vector2f pos, float vel, float h_Max, float h_Min)
-			:Obstaculo(size, pos)
+		Plataforma::Plataforma(sf::Vector2f pos, float vel, float h_Max, float h_Min)
+			:Obstaculo(pos)
 		{
 			colidivel = 1;
 			shape.setTexture(*pGerGraphic->getChaoTexture());

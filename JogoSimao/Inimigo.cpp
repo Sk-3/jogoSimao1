@@ -2,8 +2,8 @@
 #include "Arma.h"
 namespace Entidades{
 	namespace Personagens {
-		Inimigo::Inimigo(sf::Vector2f size, sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis)
-			:Personagem(size, pos), pPlayer(player), pProjeteis(projeteis)
+		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis)
+			:Personagem(pos), pPlayer(player), pProjeteis(projeteis)
 		{
 			nivel_maldade = 0;
 		}

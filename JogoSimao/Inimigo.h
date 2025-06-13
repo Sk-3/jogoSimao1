@@ -15,7 +15,7 @@ namespace Entidades{
 			Personagem* pPlayer;
 			float range;
 		public:
-			Inimigo(sf::Vector2f size, sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis);
+			Inimigo(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis);
 			~Inimigo();
 			
 			//GETTERS
