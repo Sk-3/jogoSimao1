@@ -1,0 +1,3 @@
+Lista de Atividades - 8.4
+Conceito de Física utilizado: Histerese
+A histerese é um fenômeno em que o estado de um sistema depende não apenas do seu valor atual, mas também do seu histórico anterior, resultando em uma resposta que apresenta um atraso ou uma diferença entre os valores de entrada e saída durante o ciclo de variação. Nos circuitos eletrônicos, a histerese é amplamente utilizada em dispositivos como relés, sensores e circuitos de comutação para evitar oscilações indesejadas e ruídos, garantindo uma mudança de estado mais estável e confiável. No jogo, este conceito foi usado para estabelecer o movimento da plataforma, por meio de variáveis booleanas, que definem o sentido da velocidade conforme a plataforma atinge o topo ou o fundo no movimento.
