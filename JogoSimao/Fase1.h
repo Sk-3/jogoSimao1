@@ -1,5 +1,5 @@
 #pragma once
-#include "GameState.h"
+#include "Fase.h"
 #include "Cachorro.h"
 #include "Atirador.h"
 #include "Boss.h"
@@ -14,7 +14,7 @@
 *	O controle dessas entidades se da pelos métodos de GameState
 */
 namespace Fases{
-	class Fase1 : public GameState
+	class Fase1 : public Fase
 	{
 	private:
 	public:

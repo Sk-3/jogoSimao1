@@ -1,17 +1,17 @@
 #pragma once
 #include "Ente.h"
 #include "sstream"
-#include "Player.h"
+#include "Jogador.h"
 class Hud : public Ente
 {
 private:
 	sf::Clock hudClock;
-	Entidades::Personagens::Player* player;
+	Entidades::Personagens::Jogador* player;
 	sf::Text hud;
 public:
 	Hud();
 	~Hud();
-	void setPlayer(Entidades::Personagens::Player* player);
+	void setPlayer(Entidades::Personagens::Jogador* player);
 	void draw();
 	void executar();
 

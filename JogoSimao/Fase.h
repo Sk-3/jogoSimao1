@@ -1,6 +1,6 @@
 #pragma once
 #include "State.h"
-#include "Player.h"
+#include "Jogador.h"
 #include "Gravidade.h"
 #include "Estrutura.h"
 #include "Plataforma.h"
@@ -22,7 +22,7 @@
 *	
 */
 namespace Fases{
-	class GameState : public State
+	class Fase : public State
 	{
 	protected:
 		//CONTROLADOR DE JANELA
@@ -38,16 +38,16 @@ namespace Fases{
 
 
 		//PLAYERS
-		Entidades::Personagens::Player* player2;
-		Entidades::Personagens::Player* player;
+		Entidades::Personagens::Jogador* player2;
+		Entidades::Personagens::Jogador* player;
 		//VETORES
 		std::vector<Entidades::Estrutura*> estruturas;
 		std::vector<Entidades::Projetil*> projeteis;
 		std::vector<Entidades::Obstaculos::Obstaculo*> obstaculos;
 		std::vector<Entidades::Personagens::Personagem*> characters;
 	public:
-		~GameState();
-		GameState();
+		~Fase();
+		Fase();
 		virtual void handleEvent();
 		virtual void executar() = 0;
 		virtual void executarJanela();

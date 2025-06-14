@@ -1,10 +1,10 @@
-#include "GameState.h"
+#include "Fase.h"
 namespace Fases{
 
-	GameState::GameState():
+	Fase::Fase():
 		State(), gravity(&characters, &projeteis),
 		colision(&characters, &obstaculos, &projeteis, &estruturas),
-		player(new Entidades::Personagens::Player( sf::Vector2f(100, 100), &projeteis)), view(pGerGraphic->getStdView())
+		player(new Entidades::Personagens::Jogador( sf::Vector2f(100, 100), &projeteis)), view(pGerGraphic->getStdView())
 	{
 		hud.setPlayer(player);
 		player2 = nullptr;
@@ -15,7 +15,7 @@ namespace Fases{
 
 	
 
-	GameState::~GameState() {
+	Fase::~Fase() {
 		for (auto& obstacul : obstaculos) {
 			delete obstacul;
 		}
@@ -31,7 +31,7 @@ namespace Fases{
 
 	}
 
-	void GameState::handleEvent()
+	void Fase::handleEvent()
 	{
 		/**
 		* @brief Gerencia os eventos de teclado
@@ -98,7 +98,7 @@ namespace Fases{
 			case sf::Event::KeyPressed:
 				if (ev.key.code == sf::Keyboard::P) {
 					if (!player2) {
-						player2 = new Entidades::Personagens::Player(sf::Vector2f(100, 100), &projeteis);
+						player2 = new Entidades::Personagens::Jogador(sf::Vector2f(100, 100), &projeteis);
 						characters.push_back(player2);
 					}
 				}
@@ -115,7 +115,7 @@ namespace Fases{
 		}
 	}
 
-	void GameState::executarJanela()
+	void Fase::executarJanela()
 	{
 		/**
 		* @brief Executa a janela
@@ -128,7 +128,7 @@ namespace Fases{
 		view.setCenter(player->getPosition());
 	}
 
-	void GameState::removerProjeteis()
+	void Fase::removerProjeteis()
 	{
 		std::vector<Entidades::Projetil*> projeteisAtivos;
 		for (Entidades::Projetil* projet : projeteis) {
@@ -142,7 +142,7 @@ namespace Fases{
 		projeteis = projeteisAtivos;
 	}
 
-	void GameState::removerPersonagens()
+	void Fase::removerPersonagens()
 	{
 		std::vector<Entidades::Personagens::Personagem*> personagensVivos;
 		for (Entidades::Personagens::Personagem* persona : characters) {

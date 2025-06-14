@@ -1,7 +1,7 @@
 #include "Fase2.h"
 namespace Fases{
 	Fase2::Fase2():
-	GameState()
+	Fase()
 	{
 		/***
 		* @brief Construtor da fase 2

@@ -18,7 +18,7 @@ Hud::~Hud()
 {
 }
 
-void Hud::setPlayer(Entidades::Personagens::Player* player)
+void Hud::setPlayer(Entidades::Personagens::Jogador* player)
 {
 	/**
 	*@brief Associa o player que sera utilizado no hud

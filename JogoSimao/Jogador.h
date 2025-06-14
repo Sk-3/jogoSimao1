@@ -11,7 +11,7 @@
 namespace Entidades{
 	class Projetil;
 	namespace Personagens{
-		class Player : public Personagem
+		class Jogador : public Personagem
 		{
 		private:
 
@@ -19,9 +19,9 @@ namespace Entidades{
 			float maxSpeed;
 			sf::Vector2f center;
 		public:
-			Player();
-			Player(sf::Vector2f pos,std::vector<Projetil*>* projeteis);
-			~Player();
+			Jogador();
+			Jogador(sf::Vector2f pos,std::vector<Projetil*>* projeteis);
+			~Jogador();
 			sf::Vector2f getPosition();
 			//Adicionam velocidade ao vetor de velocidade do jogador
 			void moveUp();

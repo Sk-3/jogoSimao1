@@ -1,9 +1,9 @@
-#include "Player.h"
+#include "Jogador.h"
 #include "Projetil.h"
 #include "Arma.h"
 namespace Entidades{
 	namespace Personagens{
-		Player::Player()
+		Jogador::Jogador()
 			:Personagem()
 		{
 			tipo = TipoPersonagem::PLAYER;
@@ -17,7 +17,7 @@ namespace Entidades{
 			
 		}
 
-		Player::Player( sf::Vector2f pos, std::vector<Projetil*>* projeteis)
+		Jogador::Jogador( sf::Vector2f pos, std::vector<Projetil*>* projeteis)
 			:Personagem( pos)
 		{
 			arma = new Arma(projeteis, this, Armas::METRALHADORA);
@@ -31,17 +31,17 @@ namespace Entidades{
 
 		}
 
-		Player::~Player()
+		Jogador::~Jogador()
 		{
 			
 		}
 
-		sf::Vector2f Player::getPosition()
+		sf::Vector2f Jogador::getPosition()
 		{
 			return shape.getPosition();
 		}
 
-		void Player::moveUp()
+		void Jogador::moveUp()
 		{
 			if (jumps) {
 				speed.y = -8;
@@ -51,13 +51,13 @@ namespace Entidades{
 	
 		}
 
-		void Player::moveDown()
+		void Jogador::moveDown()
 		{
 			direction = Directions::DOWN;
 			speed.y += 0.3;
 		}
 
-		void Player::moveLeft()
+		void Jogador::moveLeft()
 		{
 			direction = Directions::LEFT;
 			if(speed.x >= -maxSpeed) {
@@ -65,7 +65,7 @@ namespace Entidades{
 			}
 		}
 
-		void Player::moveRight()
+		void Jogador::moveRight()
 		{
 			direction = Directions::RIGHT;
 			if (speed.x <= maxSpeed) {
@@ -73,7 +73,7 @@ namespace Entidades{
 			}
 		}
 
-		void Player::dash()
+		void Jogador::dash()
 		{
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -88,7 +88,7 @@ namespace Entidades{
 			}
 		}
 
-		void Player::stopAxisX()
+		void Jogador::stopAxisX()
 		{
 			if (speed.x > maxSpeed) {
 				speed.x -= 0.4;
@@ -114,7 +114,7 @@ namespace Entidades{
 			}
 		}
 
-		void Player::executar()
+		void Jogador::executar()
 		{
 			//move o player a atualiza a posição da camera
 			if (direction == Directions::LEFT) {
@@ -127,7 +127,7 @@ namespace Entidades{
 			move();
 		}
 
-		void Player::atirar()
+		void Jogador::atirar()
 		{
 			arma->atirar();
 		}

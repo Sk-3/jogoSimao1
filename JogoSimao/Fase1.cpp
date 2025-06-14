@@ -2,7 +2,7 @@
 
 namespace Fases{
 	Fase1::Fase1() :
-		GameState()
+		Fase()
 	{
 		//Criação das plataformas da fase
 		

@@ -1,5 +1,5 @@
 #pragma once
-#include "Player.h"
+#include "Jogador.h"
 #include "Estrutura.h"
 #include "Obstaculo.h"
 #include "Projetil.h"
