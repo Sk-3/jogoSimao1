@@ -25,6 +25,7 @@ namespace Fases{
 		*/
 
 		window->clear();
+		pGerGraphic->desenharBackground();
 		pGerGraphic->setView(view);
 		handleEvent();
 
@@ -58,9 +59,9 @@ namespace Fases{
 		* @details Cria as estruturas e adiciona na lista de obstaculos
 		* @return void
 		*/
-		for (int i = 0; i <= 9; i++) {
+		for (int i = 0; i <= 12; i++) {
 
-			Entidades::Estrutura* chao1 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f((100 * i)-400, 670),TipoEstrutura::CHAO);
+			Entidades::Estrutura* chao1 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f((100 * i)-700, 670),TipoEstrutura::CHAO);
 			estruturas.push_back(chao1);
 			listaEntidades.inserirNoFim(chao1);
 			
@@ -69,19 +70,16 @@ namespace Fases{
 			listaEntidades.inserirNoFim(chao2);
 		}
 
-		for (int i = 0; i <= 7; i++) {
+		for (int i = 1; i <=3; i++) {
 
-			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f(-100, (36 * -i) + 670), TipoEstrutura::PAREDE);
+			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f(-400+(-100*i), (-330 + 670)), TipoEstrutura::PAREDE);
 			estruturas.push_back(parede1);
 			listaEntidades.inserirNoFim(parede1);
 
-			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f(1400, (36 * -i) + 670), TipoEstrutura::PAREDE);
+			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f(2000+(100*i), (-330 + 670)), TipoEstrutura::PAREDE);
 			estruturas.push_back(parede2);
 			listaEntidades.inserirNoFim(parede2);
-
-			Entidades::Estrutura* parede3 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f(400, (36 * -i) + 670), TipoEstrutura::PAREDE);
-			estruturas.push_back(parede3);
-			listaEntidades.inserirNoFim(parede3);
+			
 		}		
 
 		Entidades::Obstaculos::Plataforma* platT1 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(700, 500), -4, 800, 300);

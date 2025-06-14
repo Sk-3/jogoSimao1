@@ -87,8 +87,8 @@ namespace Gerenciadores {
 			std::cout << "Falha ao carregar textura goblin.PNG";
 		}
 
-		if (!parede.loadFromFile("..//textures//tileset_32x32.PNG")) {
-			std::cout << "Falha ao carregar textura tileset_32x32.PNG";
+		if (!parede.loadFromFile("..//textures//arvore.PNG")) {
+			std::cout << "Falha ao carregar textura arvore.PNG";
 		}
 	}
 	void GerenciadorGrafico::desenharBackground()

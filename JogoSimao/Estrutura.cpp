@@ -29,7 +29,7 @@ namespace Entidades {
 		else
 		{
 			shape.setTexture(*pGerGraphic->getParedeTexture());
-			shape.setTextureRect(sf::IntRect(0, 96, 96, 32));			
+			shape.setTextureRect(sf::IntRect(0, 400, 100, 300));			
 			shape.setScale(1.1, 1.1);
 		}
 	}
