@@ -1,6 +1,7 @@
 #pragma once
 #include "Entidade.h"
 #include "Jogador.h"
+#include "Inimigo.h"
 
 /**
 *	Felipe Simbalista: 25/05/2025

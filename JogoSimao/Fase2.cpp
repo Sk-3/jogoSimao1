@@ -85,16 +85,42 @@ namespace Fases{
 		* @return void
 		*/
 
-		window->clear();
-		pGerGraphic->desenharBackground();
-		pGerGraphic->setView(view);
+		executarJanela();
 		handleEvent();
-		view.setCenter(player->getPosition());
-		listaEntidades.executar();
-		colision.executar();
+		for (auto const& obst : obstaculos) {
+			obst->executar();
+		}
+		for (auto const& charact : characters) {
+			charact->executar();
+		}
+		for (auto const& projetil : projeteis) {
+			projetil->executar();
+		}
 		gravity.executar();
-		listaEntidades.desenhar();
+		colision.executar();
+
 		hud.executar();
+
+		for (auto const& charact : characters) {
+			charact->desenhar();
+		}
+		for (auto const& projetil : projeteis) {
+			projetil->desenhar();
+		}
+		for (auto const& obst : obstaculos) {
+			obst->desenhar();
+		}
+
+		for (auto const& estrut : estruturas) {
+			estrut->desenhar();
+		}
+
 		hud.draw();
+		removerProjeteis();
+		if (!player->vivo())
+		{
+			setAction(Actions::GAME_OVER);
+		}
+		removerPersonagens();
 	}
 }

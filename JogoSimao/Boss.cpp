@@ -13,7 +13,7 @@ namespace Entidades{
 			* @param player Ponteiro para o jogador, usado para perseguir o jogador.
 			* @param projeteis Vetor de projeteis, usado para adicionar novos projeteis.
 			*/
-
+			tipo = TipoPersonagem::INIMIGO;
 			arma = new Arma(pProjeteis, this, Armas::ARMABOSS);
 			Clocktiro.restart();
 			range = 1000;

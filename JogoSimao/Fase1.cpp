@@ -25,9 +25,9 @@ namespace Fases{
 
 	void Fase1::criaObstMedios()
 	{
-		for (int i = 0; i <= 3; i++) {
+		for (int i = 0; i <= 5; i++) {
 
-			Entidades::Obstaculos::Espinhos* espinho = new Entidades::Obstaculos::Espinhos(sf::Vector2f((200 * i)+400, 590));
+			Entidades::Obstaculos::Espinhos* espinho = new Entidades::Obstaculos::Espinhos(sf::Vector2f((300 * i)+400, 590));
 			listaEntidades.inserirNoFim(espinho);
 			obstaculos.push_back(espinho);
 		}
