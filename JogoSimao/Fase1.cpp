@@ -4,15 +4,76 @@ namespace Fases{
 	Fase1::Fase1() :
 		Fase()
 	{
-		//Criação das plataformas da fase
-		
 		criarEstruturas();
-		criarInimigos();
-		
+		criaObstMedios();
+		criarInimigos();		
 	}
 
 	Fase1::~Fase1()
 	{
+	}
+
+	void Fase1::criarInimMedios()
+	{
+
+		for (int i = 0; i < maxInimMedios; i++) {
+			Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(2600+(i * 1000), 300), player, &projeteis, &characters);
+			characters.emplace_back(atirador);
+			listaEntidades.inserirNoFim(atirador);
+		}
+	}
+
+	void Fase1::criaObstMedios()
+	{
+		for (int i = 0; i <= 3; i++) {
+
+			Entidades::Obstaculos::Espinhos* espinho = new Entidades::Obstaculos::Espinhos(sf::Vector2f((200 * i)+400, 590));
+			listaEntidades.inserirNoFim(espinho);
+			obstaculos.push_back(espinho);
+		}
+	}	
+
+	void Fase1::criarInimigos()
+	{
+		/***
+		* @brief Inicizaliza os inimigos da fase no construtor
+		* @details Cria os inimigos e adiciona na lista de personagens e ded entidades
+		* @return void
+		*/
+		criarCachorro();
+		criarInimMedios();		
+	}	
+
+	void Fase1::criarCachorro()
+	{
+
+	}
+
+	void Fase1::criarEstruturas()
+	{
+		/***
+		* @brief Inicizaliza as estruturas da fase no construtor
+		* @details Cria as estruturas e adiciona na lista de estruturas
+		* @return void
+		*/
+		for (int i = 0; i <= 55; i++) {			
+
+			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i)-700, 670),TipoEstrutura::CHAO);
+			listaEntidades.inserirNoFim(estrutura);
+			estruturas.push_back(estrutura);			
+		}
+
+		for (int i = 1; i <= 3; i++) {
+
+			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(-400 + (-100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
+			estruturas.push_back(parede1);
+			listaEntidades.inserirNoFim(parede1);
+
+			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(4500 + (100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
+			estruturas.push_back(parede2);
+			listaEntidades.inserirNoFim(parede2);
+
+		}
 	}
 
 	void Fase1::executar()
@@ -25,7 +86,6 @@ namespace Fases{
 		*	no final remove os personagens e projeteis da tela
 		*	caso o player morra, aciona tela de game over
 		*/
-		
 
 		executarJanela();
 		handleEvent();
@@ -40,7 +100,7 @@ namespace Fases{
 		}
 		gravity.executar();
 		colision.executar();
-		
+
 		hud.executar();
 
 		for (auto const& charact : characters) {
@@ -56,7 +116,7 @@ namespace Fases{
 		for (auto const& estrut : estruturas) {
 			estrut->desenhar();
 		}
-		
+
 		hud.draw();
 		removerProjeteis();
 		if (!player->vivo())
@@ -64,54 +124,6 @@ namespace Fases{
 			setAction(Actions::GAME_OVER);
 		}
 		removerPersonagens();
-
-		
 	}
-
-	void Fase1::criarInimigos()
-	{
-		/***
-		* @brief Inicizaliza os inimigos da fase no construtor
-		* @details Cria os inimigos e adiciona na lista de personagens e ded entidades
-		* @return void
-		*/
-
-		criarAtirador();
-
-		Entidades::Personagens::Boss* boss = new Entidades::Personagens::Boss( sf::Vector2f(2500, 300), player, &projeteis);
-		characters.emplace_back(boss);
-		listaEntidades.inserirNoFim(boss);
-	}
-
-	void Fase1::criarAtirador()
-	{
-		Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(1500, 300), player, &projeteis, &characters);
-		characters.emplace_back(atirador);
-		listaEntidades.inserirNoFim(atirador);
-	}
-
-	void Fase1::criarCachorro()
-	{
-	}
-
-	void Fase1::criarEstruturas()
-	{
-		/***
-		* @brief Inicizaliza as estruturas da fase no construtor
-		* @details Cria as estruturas e adiciona na lista de obstaculos
-		* @return void
-		*/
-
-		for (int i = 0; i <= 100; i++) {
-			Entidades::Obstaculos::Espinhos* esp = new Entidades::Obstaculos::Espinhos(sf::Vector2f(100 * i, 500));
-			listaEntidades.inserirNoFim(esp);
-			obstaculos.push_back(esp);
-
-			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f(100 * i, 670),TipoEstrutura::CHAO);
-			listaEntidades.inserirNoFim(estrutura);
-			estruturas.push_back(estrutura);			
-		}				
-	}
-
 
 }

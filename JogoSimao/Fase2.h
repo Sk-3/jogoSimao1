@@ -2,6 +2,9 @@
 #include "Fase.h"
 #include "Inimigo.h"
 #include "Cachorro.h"
+#include "Atirador.h"
+#include "Boss.h"
+#include "Espinhos.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 * 
@@ -15,12 +18,15 @@ namespace Fases{
 	class Fase2 : public Fase
 	{
 	private:
-		
+		const int maxChefoes = 2;
 	public:
 		Fase2();
 		~Fase2();
-		void executar();
-		virtual void criarInimigos();
+		void criarChefoes();
+		void criarObstMedios();
+		void criarProjeteis();
+		void criarInimigos();
 		void criarEstruturas();
+		void executar();		
 	};
 }

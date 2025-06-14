@@ -15,6 +15,10 @@ namespace Entidades{
 			range = 1000;
 			health = 30;
 			tipo = TipoPersonagem::INIMIGO;
+
+			shape.setTexture(*pGerGraphic->getGoblinTexture());
+			shape.setTextureRect(sf::IntRect(24, 0, 21, 16));
+			shape.setScale(4, 4);
 		}
 		Atirador::~Atirador()
 		{

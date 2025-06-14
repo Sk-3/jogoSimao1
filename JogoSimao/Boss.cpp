@@ -20,6 +20,9 @@ namespace Entidades{
 			pProjeteis = projeteis;
 			pPlayer = player;
 			health = 30;
+			shape.setTexture(*pGerGraphic->getBoss());
+			shape.setTextureRect(sf::IntRect(0, 0, 81, 89));
+			shape.setScale(1.5, 1.5);
 		}
 
 		Boss::~Boss()

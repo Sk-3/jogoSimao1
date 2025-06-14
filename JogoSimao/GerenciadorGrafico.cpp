@@ -90,6 +90,19 @@ namespace Gerenciadores {
 		if (!parede.loadFromFile("..//textures//arvore.PNG")) {
 			std::cout << "Falha ao carregar textura arvore.PNG";
 		}
+
+		if (!boss.loadFromFile("..//textures//boss.PNG")) {
+			std::cout << "Falha ao carregar textura arvore.PNG";
+		}
+
+		if (!cachorro.loadFromFile("..//textures//cachorro.PNG")) {
+			std::cout << "Falha ao carregar textura arvore.PNG";
+		}
+
+		if (!espinho.loadFromFile("..//textures//espinhos.PNG")) {
+			std::cout << "Falha ao carregar textura espinhos.PNG";
+		}
+
 	}
 	void GerenciadorGrafico::desenharBackground()
 	{
@@ -146,6 +159,20 @@ namespace Gerenciadores {
 	{
 		return &playerLeft;
 	}
+	sf::Texture* GerenciadorGrafico::getBoss()
+	{
+		return &boss;
+	}
+	sf::Texture* GerenciadorGrafico::getCachorro()
+	{
+		return &cachorro;
+	}
+	sf::Texture* GerenciadorGrafico::getEspinho()
+	{
+		return &espinho;
+	}
+
+
 	void GerenciadorGrafico::clear() {
 		window->clear();
 	}

@@ -7,6 +7,9 @@ namespace Entidades {
 			danoRelogio.restart();
 			danoCooldown = 0.5;
 			colidivel = 0;
+			shape.setTexture(*pGerGraphic->getEspinho());
+			shape.setTextureRect(sf::IntRect(127, 46, 100, 80));
+			shape.setScale(1, 1);
 		}
 		Espinhos::Espinhos()
 			:Obstaculo()

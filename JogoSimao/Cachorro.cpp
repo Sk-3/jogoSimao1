@@ -14,8 +14,9 @@ namespace Entidades{
 			range = 200;
 			mandarSeguir();
 			arma = new Arma(pProjeteis, this, Armas::ARMACACHORRO);
-			shape.setTexture(*pGerGraphic->getGoblinTexture());
-			shape.setTextureRect(sf::IntRect(0, 0, 16, 16));
+			shape.setTexture(*pGerGraphic->getCachorro());
+			shape.setTextureRect(sf::IntRect(0, 0, 65, 64));
+			shape.setScale(1.2, 1.2);
 		}
 
 

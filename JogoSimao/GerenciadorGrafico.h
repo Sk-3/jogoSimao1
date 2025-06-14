@@ -34,6 +34,9 @@ namespace Gerenciadores{
 			sf::Texture playerLeft;
 			sf::Texture goblin;
 			sf::Texture parede;
+			sf::Texture boss;
+			sf::Texture cachorro;
+			sf::Texture espinho;
 
 		float winWidth;
 		float winHeight;
@@ -61,6 +64,11 @@ namespace Gerenciadores{
 			sf::Texture* getPlayerTexture();
 			sf::Texture* getParedeTexture();
 			sf::Texture* getPlayerInvertido();
+			sf::Texture* getBoss();
+			sf::Texture* getCachorro();
+			sf::Texture* getEspinho();
+
+
 		//SETTERS
 			void setFrameLimit(int fps);
 			void setView(sf::View);
