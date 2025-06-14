@@ -14,7 +14,7 @@ namespace Entidades{
 			Personagem* pDono;
 			EstadoCachorro* estadoAtual;
 		public:
-			Cachorro(sf::Vector2f size, sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, Personagem* dono);
+			Cachorro(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, Personagem* dono);
 			~Cachorro();
 			
 

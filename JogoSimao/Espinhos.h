@@ -9,7 +9,7 @@ namespace Entidades {
 			sf::Clock danoRelogio;
 			float danoCooldown;
 		public:
-			Espinhos(sf::Vector2f size, sf::Vector2f pos);
+			Espinhos(sf::Vector2f pos);
 			Espinhos();
 			~Espinhos();
 			const float getDanoCooldown() const;

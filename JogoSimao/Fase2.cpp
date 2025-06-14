@@ -20,7 +20,7 @@ namespace Fases{
 	{
 		/***
 		* @brief Executa a fase 2
-		* @details Executa a fase 2, atualizando a tela, os personagens, os obstaculos e as colisões
+		* @details Executa a fase 2, atualizando a tela, os personagens, os obstaculos e as colisï¿½es
 		* @return void
 		*/
 
@@ -65,7 +65,7 @@ namespace Fases{
 			estruturas.push_back(chao1);
 			listaEntidades.inserirNoFim(chao1);
 			
-			Entidades::Estrutura* chao2 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f((100 * i)+1100, 670), TipoEstrutura::CHAO);
+			Entidades::Estrutura* chao2 = new Entidades::Estrutura(sf::Vector2f((100 * i)+1100, 670), TipoEstrutura::CHAO);
 			estruturas.push_back(chao2);
 			listaEntidades.inserirNoFim(chao2);
 		}
@@ -82,11 +82,11 @@ namespace Fases{
 			
 		}		
 
-		Entidades::Obstaculos::Plataforma* platT1 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(700, 500), -4, 800, 300);
+		Entidades::Obstaculos::Plataforma* platT1 = new Entidades::Obstaculos::Plataforma( sf::Vector2f(700, 500), -4, 800, 300);
 		obstaculos.push_back(platT1);
 		listaEntidades.inserirNoFim(platT1);
 
-		Entidades::Obstaculos::Plataforma* platT2 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(100.f, 100.f), sf::Vector2f(900, 500), 4, 800, 300);
+		Entidades::Obstaculos::Plataforma* platT2 = new Entidades::Obstaculos::Plataforma( sf::Vector2f(900, 500), 4, 800, 300);
 		obstaculos.push_back(platT2);
 		listaEntidades.inserirNoFim(platT2);
 

@@ -1,8 +1,8 @@
 #include "Espinhos.h"
 namespace Entidades {
 	namespace Obstaculos {
-		Espinhos::Espinhos(sf::Vector2f size, sf::Vector2f pos)
-		:Obstaculo(size, pos){
+		Espinhos::Espinhos(sf::Vector2f pos)
+		:Obstaculo(pos){
 			danoso = 1;
 			danoRelogio.restart();
 			danoCooldown = 0.5;

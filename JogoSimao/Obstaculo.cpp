@@ -1,18 +1,16 @@
 #include "Obstaculo.h"
 namespace Entidades{
 	namespace Obstaculos{
-		Obstaculo::Obstaculo(sf::Vector2f size, sf::Vector2f pos)
-		:Entidade(size, pos)
+		Obstaculo::Obstaculo(sf::Vector2f pos)
+		:Entidade(pos)
 		{
 			colidivel = 1;
-			isColiding = 0; 
 			danoso = 0;
 		}
 
 		Obstaculo::Obstaculo()
 		{
 			colidivel = 1;
-			isColiding = 0;
 			danoso = 0;
 		}
 
@@ -25,13 +23,5 @@ namespace Entidades{
 			return colidivel;
 		}
 
-		void Obstaculo::setIsColiding(bool col)
-		{
-			isColiding = col;
-		}
-
-		void Obstaculo::obstacular(Personagens::Personagem* pPlayer)
-		{
-		}
 	}
 }

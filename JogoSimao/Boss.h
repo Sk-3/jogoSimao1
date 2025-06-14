@@ -19,7 +19,7 @@ namespace Entidades{
 		{
 		private:
 		public:
-			Boss(sf::Vector2f size, sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis);
+			Boss(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis);
 			~Boss();
 			void executar();
 			void atirar();

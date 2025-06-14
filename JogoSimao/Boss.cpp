@@ -3,8 +3,8 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Boss::Boss(sf::Vector2f size, sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis)
-			:Inimigo(size, pos, player, projeteis)
+		Boss::Boss(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis)
+			:Inimigo( pos, player, projeteis)
 		{
 			/**
 			*@brief Construtor da classe Boss, inicializa o boss com o tamanho, posição, player e projeteis.

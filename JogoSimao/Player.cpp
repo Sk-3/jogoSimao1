@@ -17,8 +17,8 @@ namespace Entidades{
 			
 		}
 
-		Player::Player(sf::Vector2f size, sf::Vector2f pos, std::vector<Projetil*>* projeteis)
-			:Personagem(size, pos)
+		Player::Player( sf::Vector2f pos, std::vector<Projetil*>* projeteis)
+			:Personagem( pos)
 		{
 			arma = new Arma(projeteis, this, Armas::METRALHADORA);
 			tipo = TipoPersonagem::PLAYER;

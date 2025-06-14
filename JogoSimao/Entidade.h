@@ -27,7 +27,7 @@ namespace Entidades{
 	public:
 
 		Entidade();
-		Entidade(sf::Vector2f size, sf::Vector2f pos);
+		Entidade(sf::Vector2f pos);
 		~Entidade();
 		//GETTERS
 		const sf::Vector2f getCenter();

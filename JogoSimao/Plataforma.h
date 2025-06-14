@@ -19,7 +19,7 @@ namespace Entidades {
 			float max, min;
 
 		public:
-			Plataforma(sf::Vector2f size, sf::Vector2f pos, float vel, float h_Max, float h_Min);
+			Plataforma(sf::Vector2f pos, float vel, float h_Max, float h_Min);
 			Plataforma();
 			~Plataforma();
 			virtual void obstacular(Personagens::Personagem* pPlayer);

@@ -15,14 +15,12 @@ namespace Entidades{
 		{
 		protected:
 			bool colidivel;
-			bool isColiding;
 			bool danoso;
 		public:
-			Obstaculo(sf::Vector2f size, sf::Vector2f pos);
+			Obstaculo(sf::Vector2f pos);
 			Obstaculo();
 			~Obstaculo();
 			const bool ehColidivel();
-			void setIsColiding(bool col);
 			virtual void obstacular(Personagens::Personagem* pPlayer) = 0;
 			virtual void executar() = 0; 
 		};

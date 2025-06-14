@@ -18,7 +18,7 @@ namespace Entidades {
 		TipoEstrutura tipo;
 
 	public:
-		Estrutura(sf::Vector2f size, sf::Vector2f pos, TipoEstrutura tipoE);
+		Estrutura(sf::Vector2f pos, TipoEstrutura tipoE);
 		Estrutura();
 		~Estrutura();
 		void formatarEstrutura(TipoEstrutura tipoE);
