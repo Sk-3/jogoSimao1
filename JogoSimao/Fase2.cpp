@@ -61,7 +61,7 @@ namespace Fases{
 		*/
 		for (int i = 0; i <= 12; i++) {
 
-			Entidades::Estrutura* chao1 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f((100 * i)-700, 670),TipoEstrutura::CHAO);
+			Entidades::Estrutura* chao1 = new Entidades::Estrutura(sf::Vector2f((100 * i)-700, 670),TipoEstrutura::CHAO);
 			estruturas.push_back(chao1);
 			listaEntidades.inserirNoFim(chao1);
 			
@@ -72,11 +72,11 @@ namespace Fases{
 
 		for (int i = 1; i <=3; i++) {
 
-			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f(-400+(-100*i), (-330 + 670)), TipoEstrutura::PAREDE);
+			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(-400+(-100*i), (-330 + 670)), TipoEstrutura::PAREDE);
 			estruturas.push_back(parede1);
 			listaEntidades.inserirNoFim(parede1);
 
-			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(100.f, 100.f), sf::Vector2f(2000+(100*i), (-330 + 670)), TipoEstrutura::PAREDE);
+			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(2000+(100*i), (-330 + 670)), TipoEstrutura::PAREDE);
 			estruturas.push_back(parede2);
 			listaEntidades.inserirNoFim(parede2);
 			
