@@ -40,72 +40,80 @@ namespace Gerenciadores {
 	}
 	void GerenciadorGrafico::carregarTexturas()
 	{
-		if (!font->loadFromFile("..//JogoSimao//TypeLightSans-KV84p.otf")) {
-			std::cerr << "Erro ao carregar a fonte";
-		}
-		if (!background1.loadFromFile(("..//background//background_layer_1.PNG"))) {
-			std::cout << "Falha ao carregar textura Background_layer_1";
-		}
-		backgroundSprite1.setTexture(background1);
-		backgroundSprite1.setScale(4, 4);
+		try {
+			
+		
+		
+			if (!font->loadFromFile("..//JogoSimao//TypeLightSans-KV84p.otf")) {
+				throw std::runtime_error("Erro ao carregar a fonte");
+			
+			}
+			if (!background1.loadFromFile(("..//background//background_layer_1.PNG"))) {
+				throw std::runtime_error("Falha ao carregar textura Background_layer_1");
+			}
+			backgroundSprite1.setTexture(background1);
+			backgroundSprite1.setScale(4, 4);
 
-		if (!background2.loadFromFile(("..//background//background_layer_2.PNG"))) {
-			std::cout << "Falha ao carregar textura Background_layer_2";
-		}
-		backgroundSprite2.setTexture(background2);
-		backgroundSprite2.setScale(4, 4);
+			if (!background2.loadFromFile(("..//background//background_layer_2.PNG"))) {
+				throw std::runtime_error("Falha ao carregar textura Background_layer_2");
+			}
+			backgroundSprite2.setTexture(background2);
+			backgroundSprite2.setScale(4, 4);
 
-		if (!background3.loadFromFile(("..//background//background_layer_3.PNG"))) {
-			std::cout << "Falha ao carregar textura Background_layer_3";
-		}
-		backgroundSprite3.setTexture(background3);
-		backgroundSprite3.setScale(4, 4);
+			if (!background3.loadFromFile(("..//background//background_layer_3.PNG"))) {
+				throw std::runtime_error("Falha ao carregar textura Background_layer_3");
+			}
+			backgroundSprite3.setTexture(background3);
+			backgroundSprite3.setScale(4, 4);
 
 
-		if (!projetil.loadFromFile("..//textures//orb.PNG")) {
-			std::cout << "Falha ao carregar textura orb";
-		}
+			if (!projetil.loadFromFile("..//textures//orb.PNG")) {
+				throw std::runtime_error("Falha ao carregar textura orb");
+			}
 
-		if (!chao.loadFromFile("..//textures//tileset_32x32.PNG")) {
-			std::cout << "Falha ao carregar textura tileset_32x32.PNG";
-		}
+			if (!chao.loadFromFile("..//textures//tileset_32x32.PNG")) {
+				throw std::runtime_error("Falha ao carregar textura tileset_32x32.PNG");
+			}
 
-		if (!player.loadFromFile("..//textures//AIM.PNG")) {
-			std::cout << "Falha ao carregar textura Aim.PNG";
-		}
-		sf::Image playerInvertido;
-		if (!playerInvertido.loadFromFile("..//textures//AIM.PNG")) {
-			std::cout << "Falha ao carregar textura Aim.PNG";
-		}
-		else {
-			playerInvertido.flipHorizontally();
-			playerLeft.loadFromImage(playerInvertido);
-		}		
+			if (!player.loadFromFile("..//textures//AIM.PNG")) {
+				throw std::runtime_error("Falha ao carregar textura Aim.PNG");
+			}
+			sf::Image playerInvertido;
+			if (!playerInvertido.loadFromFile("..//textures//AIM.PNG")) {
+				throw std::runtime_error("Falha ao carregar textura Aim.PNG");
+			}
+			else {
+				playerInvertido.flipHorizontally();
+				playerLeft.loadFromImage(playerInvertido);
+			}		
 
-		if (!atirador.loadFromFile("..//textures//atirador.PNG")) {
-			std::cout << "Falha ao carregar textura atirador.PNG";
-		}
+			if (!atirador.loadFromFile("..//textures//atirador.PNG")) {
+				throw std::runtime_error("Falha ao carregar textura atirador.PNG");
+			}
 
-		if (!parede.loadFromFile("..//textures//arvore.PNG")) {
-			std::cout << "Falha ao carregar textura arvore.PNG";
-		}
+			if (!parede.loadFromFile("..//textures//arvore.PNG")) {
+				throw std::runtime_error("Falha ao carregar textura arvore.PNG");
+			}
 
-		if (!boss.loadFromFile("..//textures//boss.PNG")) {
-			std::cout << "Falha ao carregar textura arvore.PNG";
-		}
+			if (!boss.loadFromFile("..//textures//boss.PNG")) {
+				throw std::runtime_error("Falha ao carregar textura arvore.PNG");
+			}
 
-		if (!cachorro.loadFromFile("..//textures//cachorro.PNG")) {
-			std::cout << "Falha ao carregar textura arvore.PNG";
-		}
+			if (!cachorro.loadFromFile("..//textures//cachorro.PNG")) {
+				throw std::runtime_error("Falha ao carregar textura arvore.PNG");
+			}
 
-		if (!espinho.loadFromFile("..//textures//espinhos.PNG")) {
-			std::cout << "Falha ao carregar textura espinhos.PNG";
-		}
+			if (!espinho.loadFromFile("..//textures//espinhos.PNG")) {
+				throw std::runtime_error("Falha ao carregar textura espinhos.PNG");
+			}
 
-		if (!fireball.loadFromFile("..//textures//fireball.PNG")) {
-			std::cout << "Falha ao carregar textura fireball.PNG";
+			if (!fireball.loadFromFile("..//textures//fireball.PNG")) {
+				throw std::runtime_error("Falha ao carregar textura fireball.PNG");
+			}
 		}
-
+		catch (const std::runtime_error& e) {
+			std::cout << e.what();
+		}
 	}
 	void GerenciadorGrafico::desenharBackground()
 	{

@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
+#include <set>
 #include "Personagem.h"
 #include "Projetil.h"
-
+#include "ListaEntidades.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 * 
@@ -12,11 +13,12 @@
 */
 class Gravidade
 {
+	ListaEntidades* listaEntidades;
 	sf::Vector2f gravityForce;
-	std::vector<Entidades::Projetil*>* projeteis;
+	std::set<Entidades::Projetil*>* projeteis;
 	std::vector<Entidades::Personagens::Personagem*>* characters;
 public:
-	Gravidade(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Projetil*>* projeteis);
+	Gravidade(ListaEntidades* lista);
 	void executar();
 	void aplyGravity();
 };

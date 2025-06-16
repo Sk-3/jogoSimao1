@@ -3,14 +3,14 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, Personagem* dono)
-			:Inimigo( pos, player, projeteis), pDono(dono), velocidadeCacando(4), velocidadeSeguindo(3)
+		Cachorro::Cachorro(sf::Vector2f pos, Listas::ListaEntidades* lista, Personagem* player, Personagem* dono)
+			:Inimigo(pos, lista, player), pDono(dono), velocidadeCacando(4), velocidadeSeguindo(3)
 		{
 			/**
 			*@brief Construtor da classe Cachorro
 			*@detail Construtor que inicializa o tamanho, a posicao do cachorro e a cor
 			*/
-			health = 1;
+			health = 10;
 			range = 500;
 			if (dono) {
 				mandarSeguir();
@@ -19,8 +19,7 @@ namespace Entidades{
 				mandarAtacar();
 			}
 			
-			arma = new Arma(pProjeteis, this, Armas::ARMACACHORRO);
-			shape.setTexture(*pGerGraphic->getCachorro());
+			arma = new Arma(lista, this, Armas::ARMACACHORRO);			shape.setTexture(*pGerGraphic->getCachorro());
 			shape.setTextureRect(sf::IntRect(0, 0, 65, 64));
 			shape.setScale(1.2, 1.2);
 		}
@@ -86,6 +85,9 @@ namespace Entidades{
 			*@return void
 			*/
 
+			if (!vivo()) {
+				desativar();
+			}
 
 			estadoAtual->atualizar(this);
 

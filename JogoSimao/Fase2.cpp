@@ -1,10 +1,12 @@
 #include "Fase2.h"
 namespace Fases{
 	Fase2::Fase2():
-	Fase()
+		Fase()
 	{
 		id = 2;
 		criarCenario();
+
+
 		criarPlataformas();		
 		criarInimigos();
 		criarObstaculo();
@@ -12,14 +14,13 @@ namespace Fases{
 
 	Fase2::~Fase2()
 	{
+		 
 	}
 
 	void Fase2::criarChefoes()
 	{
 		for (int i = 0; i < maxChefoes; i++) {
-			Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(6000 + (i * 1000), 300), player, &projeteis, &characters);
-			characters.emplace_back(atirador);
-			listaEntidades.inserirNoFim(atirador);
+			listaEntidades.inserirNoFim(new Entidades::Personagens::Atirador(sf::Vector2f(6000 + (i * 1000), 300), &listaEntidades, player));
 		}
 	}
 	
@@ -28,9 +29,8 @@ namespace Fases{
 	{
 		for (int i = 0; i < 3; i++) {
 
-			Entidades::Obstaculos::Fosso* fosso = new Entidades::Obstaculos::Fosso(sf::Vector2f(4000+(200*i), 670), 1);
-			obstaculos.push_back(fosso);
-			listaEntidades.inserirNoFim(fosso);
+			  
+			listaEntidades.inserirNoFim(new Entidades::Obstaculos::Fosso(sf::Vector2f(4000 + (200 * i), 670), 1));
 		}
 	}
 
@@ -58,40 +58,16 @@ namespace Fases{
 
 		executarJanela();
 		handleEvent();
-		for (auto const& obst : obstaculos) {
-			obst->executar();
-		}
-		for (auto const& charact : characters) {
-			charact->executar();
-		}
-		for (auto const& projetil : projeteis) {
-			projetil->executar();
-		}
+		listaEntidades.executar();
 		gravity.executar();
 		colision.executar();
-
 		hud.executar();
-
-		for (auto const& charact : characters) {
-			charact->desenhar();
-		}
-		for (auto const& projetil : projeteis) {
-			projetil->desenhar();
-		}
-		for (auto const& obst : obstaculos) {
-			obst->desenhar();
-		}
-
-		for (auto const& estrut : estruturas) {
-			estrut->desenhar();
-		}
-
+		listaEntidades.desenhar();
 		hud.draw();
-		removerProjeteis();
 		if (!player->vivo())
 		{
 			setAction(Actions::GAME_OVER);
 		}
-		removerPersonagens();
+		
 	}
 }

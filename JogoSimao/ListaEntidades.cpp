@@ -1,4 +1,5 @@
 #include "ListaEntidades.h"
+#include <iostream>
 
 namespace Listas
 {
@@ -20,16 +21,62 @@ namespace Listas
 
     void ListaEntidades::inserirNoFim(Entidades::Entidade* ent)
     {
-        if (ent)
-            lista.inserirNoFim(ent);
+            if (ent) {
+                lista.inserirNoFim(ent);
+                switch (ent->getTipoEntidade()) {
+                case TipoEntidade::ESTRUTURA: {
+                    estruturas.emplace_back(static_cast<Entidades::Estrutura*>(ent));
+                    break;
+                }
+                case TipoEntidade::OBSTACULO: {
+                    obstaculos.push_back(static_cast<Entidades::Obstaculos::Obstaculo*>(ent));
+                    break;
+                }
+                case TipoEntidade::PERSONAGEM: {
+                    personagens.emplace_back(static_cast<Entidades::Personagens::Personagem*>(ent));
+                    break;
+                }
+                case TipoEntidade::PROJETIL: {
+                    projeteis.emplace(static_cast<Entidades::Projetil*>(ent));
+                    break;
+                }
+                default:
+                    break;
+
+                }
+            }
     }
+
 
     void ListaEntidades::inserirNoInicio(Entidades::Entidade* ent)
     {
-        if (ent)
-            lista.inserirNoInicio(ent);
-    }
+            if (ent) {
+                lista.inserirNoInicio(ent);
 
+                switch (ent->getTipoEntidade()) {
+                case TipoEntidade::ESTRUTURA: {
+
+                    estruturas.emplace_back(static_cast<Entidades::Estrutura*>(ent));
+                    break;
+                }
+                case TipoEntidade::OBSTACULO: {
+                    obstaculos.push_back(static_cast<Entidades::Obstaculos::Obstaculo*>(ent));
+                    break;
+                }
+                case TipoEntidade::PERSONAGEM: {
+                    personagens.emplace_back(static_cast<Entidades::Personagens::Personagem*>(ent));
+                    break;
+                }
+                case TipoEntidade::PROJETIL: {
+                    projeteis.emplace(static_cast<Entidades::Projetil*>(ent));
+                    break;
+                }
+                default:
+                    break;
+
+                }
+            }
+    }
     void ListaEntidades::removerDoInicio()
     {
         lista.removerDoInicio();
@@ -60,10 +107,33 @@ namespace Listas
         return lista.fim();
     }
 
+    std::set<Entidades::Projetil*>* ListaEntidades::getProjeteis()
+    {
+        return &projeteis;
+    }
+
+    std::list<Entidades::Obstaculos::Obstaculo*>* ListaEntidades::getObstaculos()
+    {
+        return &obstaculos;
+    }
+
+    std::vector<Entidades::Estrutura*>* ListaEntidades::getEstruturas()
+    {
+        return &estruturas;
+    }
+
+    std::vector<Entidades::Personagens::Personagem*>* ListaEntidades::getPersonagens()
+    {
+        return &personagens;
+    }
+
     void ListaEntidades::executar()
     {
-        for (it = inicio(); it != fim(); ++it)
-            (*it)->executar();
+        for (it = inicio(); it != fim(); ++it){
+            if ((*it)->Ativado()) {
+                (*it)->executar();
+            }
+        }
     }
 
     
@@ -76,8 +146,11 @@ namespace Listas
 
     void ListaEntidades::desenhar()
     {
-        for (it = inicio(); it != fim(); ++it)
-            (*it)->desenhar();
+        for (it = inicio(); it != fim(); ++it){
+            if ((*it)->Ativado()) {
+                (*it)->desenhar();
+            }
+        }
     }
 
     void ListaEntidades::desalocar()

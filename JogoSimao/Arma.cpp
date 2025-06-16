@@ -1,13 +1,8 @@
 #include "Arma.h"
 #include "Personagem.h"
 
-Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* dono, float tiroCooldow)
-	:pProjeteis(projeteis), pDono(dono), tiroCooldown(tiroCooldow)
-{
-	
-}
-Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* dono, Armas arma)
-	:pProjeteis(projeteis), pDono(dono)
+Arma::Arma(Listas::ListaEntidades* listaEnt, Entidades::Personagens::Personagem* dono, Armas arma) :
+	pDono(dono), lista(listaEnt)
 {
 	switch (arma) {
 		case Armas::METRALHADORA:{
@@ -51,7 +46,7 @@ void Arma::atirar() {
 	*/
 	if (Clocktiro.getElapsedTime().asSeconds() > tiroCooldown) {
 		sf::Vector2f position = pDono->getCenter();
-		pProjeteis->emplace_back(new Entidades::Projetil(position, pDono->getDirection(), pDono->getTipo()));
+		lista->inserirNoFim(new Entidades::Projetil(position, pDono->getDirection(), pDono->getTipo()));
 		Clocktiro.restart();
 	}
 }

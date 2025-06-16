@@ -3,8 +3,8 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Esqueleto::Esqueleto(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, int forca)
-			:Inimigo( pos, player, projeteis)
+		Esqueleto::Esqueleto(sf::Vector2f pos, ListaEntidades* listaEnt , Personagem* player , int forca)
+			:Inimigo( pos,listaEnt ,player)
 		{
 			/**
 			*@brief Construtor da classe Boss, inicializa o boss com o tamanho, posição, player e projeteis.
@@ -14,12 +14,11 @@ namespace Entidades{
 			* @param projeteis Vetor de projeteis, usado para adicionar novos projeteis.
 			*/
 			tipo = TipoPersonagem::INIMIGO;
-			arma = new Arma(pProjeteis, this, Armas::ARMAESQUELETO);
+			arma = new Arma(listaEnt, this, Armas::ARMAESQUELETO);
 			Clocktiro.restart();
 			range = 800;
-			pProjeteis = projeteis;
 			pPlayer = player;
-			this->forca = forca;
+			this->forca = 2;
 			health = 5 * forca;
 			shape.setTexture(*pGerGraphic->getBoss());
 			shape.setTextureRect(sf::IntRect(0, 0, 81, 89));
@@ -33,6 +32,9 @@ namespace Entidades{
 		
 
 		void Esqueleto::executar() {
+			if (!vivo()) {
+				desativar();
+			}
 			if (jogadorNoAlcance()) {
 				perseguirJogador();
 				atirar();

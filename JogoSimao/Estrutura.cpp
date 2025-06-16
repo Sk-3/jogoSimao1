@@ -17,7 +17,9 @@ namespace Entidades {
 	{
 
 	}
-
+	const TipoEntidade Estrutura::getTipoEntidade() const{
+			return TipoEntidade::ESTRUTURA;
+	}
 	void Estrutura::formatarEstrutura(TipoEstrutura tipoE)
 	{
 		if (tipoE == TipoEstrutura::CHAO)

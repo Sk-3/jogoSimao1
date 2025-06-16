@@ -17,7 +17,7 @@ namespace Entidades{
 			direction = Directions::RIGHT;
 		}
 
-		Personagem::Personagem(sf::Vector2f pos)
+		Personagem::Personagem(sf::Vector2f pos, Listas::ListaEntidades* lista)
 			:Entidade(pos), Subject()
 		{
 			/***
@@ -49,6 +49,11 @@ namespace Entidades{
 		
 		
 		//GETTERS
+
+		const TipoEntidade Personagem::getTipoEntidade() const
+		{
+			return TipoEntidade::PERSONAGEM;
+		}
 
 		const TipoPersonagem Personagem::getTipo() const
 		{
