@@ -3,16 +3,16 @@
 
 namespace Entidades {
 	namespace Obstaculos {
-		class Espinhos : public Obstaculo
+		class Espinho : public Obstaculo
 		{
 		private:
 			sf::Clock danoRelogio;
 			float danoCooldown;
 			float altura;
 		public:
-			Espinhos(sf::Vector2f pos, float altura = 1);
-			Espinhos();
-			~Espinhos();
+			Espinho(sf::Vector2f pos, float altura = 1);
+			Espinho();
+			~Espinho();
 			const float getDanoCooldown() const;
 			const float getDanoRelogio() const;
 			void obstacular(Personagens::Personagem* pPersonagem);

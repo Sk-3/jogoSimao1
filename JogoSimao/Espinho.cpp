@@ -1,7 +1,7 @@
-#include "Espinhos.h"
+#include "Espinho.h"
 namespace Entidades {
 	namespace Obstaculos {
-		Espinhos::Espinhos(sf::Vector2f pos, float altura)
+		Espinho::Espinho(sf::Vector2f pos, float altura)
 		:Obstaculo(pos){
 			this->altura = altura;
 			danoso = 1;
@@ -12,7 +12,7 @@ namespace Entidades {
 			shape.setTextureRect(sf::IntRect(127, 46, 100, 80));
 			shape.setScale(1, 1*altura);
 		}
-		Espinhos::Espinhos()
+		Espinho::Espinho()
 			:Obstaculo()
 		{
 			this->altura = altura;
@@ -20,23 +20,23 @@ namespace Entidades {
 			danoCooldown = 0.5;
 			colidivel = 0;
 		}
-		Espinhos::~Espinhos()
+		Espinho::~Espinho()
 		{
 		}
 
-		const float Espinhos::getDanoCooldown() const
+		const float Espinho::getDanoCooldown() const
 		{
 			return danoCooldown;
 		}
-		const float Espinhos::getDanoRelogio() const {
+		const float Espinho::getDanoRelogio() const {
 			return danoRelogio.getElapsedTime().asSeconds();
 		}
 
-		void Espinhos::executar() {
+		void Espinho::executar() {
 
 		}
 
-		void Espinhos::obstacular(Personagens::Personagem* pPersonagem) {
+		void Espinho::obstacular(Personagens::Personagem* pPersonagem) {
 			
 			if (pPersonagem->getTipo() == TipoPersonagem::PLAYER) {
 				if (getDanoRelogio() > getDanoCooldown()) {

@@ -37,7 +37,7 @@ namespace Fases{
 		
 		for (int i = 0; i <= 4; i++) {
 
-			Entidades::Obstaculos::Espinhos* espinho = new Entidades::Obstaculos::Espinhos(sf::Vector2f((200 * i)+4000, 590 - (16 * i)), 1+(0.2*i));
+			Entidades::Obstaculos::Espinho* espinho = new Entidades::Obstaculos::Espinho(sf::Vector2f((200 * i)+4000, 590 - (16 * i)), 1+(0.2*i));
 			listaEntidades.inserirNoFim(espinho);
 			obstaculos.push_back(espinho);
 		}

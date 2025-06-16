@@ -126,7 +126,7 @@
     <ClCompile Include="EstadoCachorroSeguir.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Espinhos.cpp">
+    <ClCompile Include="Espinho.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="MenuRanking.cpp">
@@ -263,7 +263,7 @@
     <ClInclude Include="EstadoCachorroSeguir.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Espinhos.h">
+    <ClInclude Include="Espinho.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="MenuRanking.h">
