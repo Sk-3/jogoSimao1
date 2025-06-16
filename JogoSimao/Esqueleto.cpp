@@ -3,7 +3,7 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Esqueleto::Esqueleto(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis)
+		Esqueleto::Esqueleto(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, int forca)
 			:Inimigo( pos, player, projeteis)
 		{
 			/**
@@ -19,7 +19,8 @@ namespace Entidades{
 			range = 800;
 			pProjeteis = projeteis;
 			pPlayer = player;
-			health = 5;
+			this->forca = forca;
+			health = 5 * forca;
 			shape.setTexture(*pGerGraphic->getBoss());
 			shape.setTextureRect(sf::IntRect(0, 0, 81, 89));
 			shape.setScale(1.5, 1.5);

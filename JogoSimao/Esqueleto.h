@@ -5,12 +5,12 @@
 
 /**
 *	
-*@file Boss.h
-*@brief Declaração da classe Boss.
+*@file Esqueleto.h
+*@brief Declaração da classe Esqueleto.
 *@details
 *Esta classe representa um inimigo mais poderoso no jogo, que herda de Inimigo.
-*@data 30/05/2025
-*@autor Felipe Simbalista
+*@data 15/06/2025
+*@autor Ramon Vargas
 */
 namespace Entidades{
 	namespace Personagens{
@@ -18,8 +18,9 @@ namespace Entidades{
 		class Esqueleto : public Inimigo
 		{
 		private:
+			int forca;
 		public:
-			Esqueleto(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis);
+			Esqueleto(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, int forca);
 			~Esqueleto();
 			void executar();
 			void atirar();

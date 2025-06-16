@@ -19,7 +19,7 @@ namespace Fases{
 	{
 
 		for (int i = 0; i < maxInimMedios; i++) {
-			Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(6000+(i * 1000), 300), player, &projeteis);
+			Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(6000+(i * 1000), 300), player, &projeteis, i);
 			characters.emplace_back(esqueleto);
 			listaEntidades.inserirNoFim(esqueleto);
 		}
