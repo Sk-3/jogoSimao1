@@ -3,13 +3,13 @@
 
 namespace Entidades {
 	namespace Personagens {
-		class EstadoCachorroAtacar : public EstadoCachorro
+		class EstadoCachorroCacar : public EstadoCachorro
 		{
 		private:
 			int id;
 		public:
-			EstadoCachorroAtacar();
-			~EstadoCachorroAtacar();
+			EstadoCachorroCacar();
+			~EstadoCachorroCacar();
 			virtual void atualizar(Cachorro* cachorro);
 			virtual void entrar(Cachorro* cachorro);
 			virtual void sair(Cachorro* cachorro);
@@ -17,3 +17,4 @@ namespace Entidades {
 
 	}
 }
+

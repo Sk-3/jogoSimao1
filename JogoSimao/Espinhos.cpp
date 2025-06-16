@@ -1,19 +1,24 @@
 #include "Espinhos.h"
 namespace Entidades {
 	namespace Obstaculos {
-		Espinhos::Espinhos(sf::Vector2f pos)
+		Espinhos::Espinhos(sf::Vector2f pos, float altura)
 		:Obstaculo(pos){
+			this->altura = altura;
 			danoso = 1;
 			danoRelogio.restart();
 			danoCooldown = 0.5;
 			colidivel = 0;
 			shape.setTexture(*pGerGraphic->getEspinho());
 			shape.setTextureRect(sf::IntRect(127, 46, 100, 80));
-			shape.setScale(1, 1);
+			shape.setScale(1, 1*altura);
 		}
 		Espinhos::Espinhos()
 			:Obstaculo()
 		{
+			this->altura = altura;
+			danoso = 1;			
+			danoCooldown = 0.5;
+			colidivel = 0;
 		}
 		Espinhos::~Espinhos()
 		{
@@ -32,9 +37,12 @@ namespace Entidades {
 		}
 
 		void Espinhos::obstacular(Personagens::Personagem* pPersonagem) {
-			if(getDanoRelogio() > getDanoCooldown()) {
-				danoRelogio.restart();
-				pPersonagem->tiraVida(1);
+			
+			if (pPersonagem->getTipo() == TipoPersonagem::PLAYER) {
+				if (getDanoRelogio() > getDanoCooldown()) {
+					danoRelogio.restart();
+					pPersonagem->tiraVida(1);
+				}
 			}
 		}
 	}

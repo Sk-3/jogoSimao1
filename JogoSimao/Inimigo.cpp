@@ -6,6 +6,7 @@ namespace Entidades{
 			:Personagem(pos), pPlayer(player), pProjeteis(projeteis)
 		{
 			nivel_maldade = 0;
+			range = 1000;
 		}
 
 		Inimigo::~Inimigo() {

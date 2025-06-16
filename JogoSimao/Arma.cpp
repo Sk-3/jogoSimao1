@@ -20,9 +20,9 @@ Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens:
 			VelocidadeProjetil = 5;
 			break;
 		}
-		case Armas::ARMABOSS: {
-			tiroCooldown = 0.4;
-			VelocidadeProjetil = 15;
+		case Armas::ARMAESQUELETO: {
+			tiroCooldown = 0.8;
+			VelocidadeProjetil = 10;			
 			break;
 		}
 		case Armas::RIFLE:{

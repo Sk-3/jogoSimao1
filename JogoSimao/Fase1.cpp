@@ -2,11 +2,13 @@
 
 namespace Fases{
 	Fase1::Fase1() :
-		Fase()
+		Fase() 
 	{
-		criarEstruturas();
-		criaObstMedios();
-		criarInimigos();		
+		id = 1;
+		criarCenario();
+		criarPlataformas();			
+		criarInimigos();
+		criarObstaculo();
 	}
 
 	Fase1::~Fase1()
@@ -17,17 +19,25 @@ namespace Fases{
 	{
 
 		for (int i = 0; i < maxInimMedios; i++) {
-			Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(2600+(i * 1000), 300), player, &projeteis, &characters);
-			characters.emplace_back(atirador);
-			listaEntidades.inserirNoFim(atirador);
+			Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(6000+(i * 1000), 300), player, &projeteis);
+			characters.emplace_back(esqueleto);
+			listaEntidades.inserirNoFim(esqueleto);
 		}
 	}
 
 	void Fase1::criaObstMedios()
-	{
-		for (int i = 0; i <= 5; i++) {
+	{		
+		
+		for (int i = 0; i < 10; i++) {
 
-			Entidades::Obstaculos::Espinhos* espinho = new Entidades::Obstaculos::Espinhos(sf::Vector2f((300 * i)+400, 590));
+			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 3800, 670), TipoEstrutura::CHAO);
+			listaEntidades.inserirNoFim(estrutura);
+			estruturas.push_back(estrutura);
+		}
+		
+		for (int i = 0; i <= 4; i++) {
+
+			Entidades::Obstaculos::Espinhos* espinho = new Entidades::Obstaculos::Espinhos(sf::Vector2f((200 * i)+4000, 590 - (16 * i)), 1+(0.2*i));
 			listaEntidades.inserirNoFim(espinho);
 			obstaculos.push_back(espinho);
 		}
@@ -40,42 +50,14 @@ namespace Fases{
 		* @details Cria os inimigos e adiciona na lista de personagens e ded entidades
 		* @return void
 		*/
-		criarCachorro();
+		criarInimFaceis();
 		criarInimMedios();		
-	}	
-
-	void Fase1::criarCachorro()
-	{
-
 	}
-
-	void Fase1::criarEstruturas()
+	void Fase1::criarObstaculo()
 	{
-		/***
-		* @brief Inicizaliza as estruturas da fase no construtor
-		* @details Cria as estruturas e adiciona na lista de estruturas
-		* @return void
-		*/
-		for (int i = 0; i <= 55; i++) {			
-
-			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i)-700, 670),TipoEstrutura::CHAO);
-			listaEntidades.inserirNoFim(estrutura);
-			estruturas.push_back(estrutura);			
-		}
-
-		for (int i = 1; i <= 3; i++) {
-
-			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(-400 + (-100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
-			estruturas.push_back(parede1);
-			listaEntidades.inserirNoFim(parede1);
-
-			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(4500 + (100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
-			estruturas.push_back(parede2);
-			listaEntidades.inserirNoFim(parede2);
-
-		}
+		criaObstMedios();
 	}
-
+	
 	void Fase1::executar()
 	{
 		/**

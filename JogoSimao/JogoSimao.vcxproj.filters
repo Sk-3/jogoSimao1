@@ -105,7 +105,7 @@
     <ClCompile Include="GameOver.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Boss.cpp">
+    <ClCompile Include="Esqueleto.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="ObserverCharacter.cpp">
@@ -120,7 +120,7 @@
     <ClCompile Include="Atirador.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="EstadoCachorroAtacar.cpp">
+    <ClCompile Include="EstadoCachorroCacar.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="EstadoCachorroSeguir.cpp">
@@ -136,6 +136,12 @@
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="Estrutura.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Fosso.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="EstadoCachorroAtacar.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
@@ -230,7 +236,7 @@
     <ClInclude Include="TipoPersonagem.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Boss.h">
+    <ClInclude Include="Esqueleto.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="CharacterObserver.h">
@@ -251,7 +257,7 @@
     <ClInclude Include="EstadoCachorro.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="EstadoCachorroAtacar.h">
+    <ClInclude Include="EstadoCachorroCacar.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="EstadoCachorroSeguir.h">
@@ -273,6 +279,12 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="TipoEstrutura.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Fosso.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="EstadoCachorroAtacar.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>

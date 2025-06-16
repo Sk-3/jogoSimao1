@@ -1,9 +1,9 @@
-#include "Boss.h"
+#include "Esqueleto.h"
 
 
 namespace Entidades{
 	namespace Personagens{
-		Boss::Boss(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis)
+		Esqueleto::Esqueleto(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis)
 			:Inimigo( pos, player, projeteis)
 		{
 			/**
@@ -14,24 +14,24 @@ namespace Entidades{
 			* @param projeteis Vetor de projeteis, usado para adicionar novos projeteis.
 			*/
 			tipo = TipoPersonagem::INIMIGO;
-			arma = new Arma(pProjeteis, this, Armas::ARMABOSS);
+			arma = new Arma(pProjeteis, this, Armas::ARMAESQUELETO);
 			Clocktiro.restart();
-			range = 1000;
+			range = 800;
 			pProjeteis = projeteis;
 			pPlayer = player;
-			health = 30;
+			health = 5;
 			shape.setTexture(*pGerGraphic->getBoss());
 			shape.setTextureRect(sf::IntRect(0, 0, 81, 89));
 			shape.setScale(1.5, 1.5);
 		}
 
-		Boss::~Boss()
+		Esqueleto::~Esqueleto()
 		{
 		}
 
 		
 
-		void Boss::executar() {
+		void Esqueleto::executar() {
 			if (jogadorNoAlcance()) {
 				perseguirJogador();
 				atirar();
@@ -41,7 +41,7 @@ namespace Entidades{
 			}
 			move();
 		}
-		void Boss::atirar()
+		void Esqueleto::atirar()
 		{
 			/**
 			*@brief Executa o metodo atirar da arma 

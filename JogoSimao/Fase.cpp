@@ -6,6 +6,7 @@ namespace Fases{
 		colision(&characters, &obstaculos, &projeteis, &estruturas),
 		player(new Entidades::Personagens::Jogador( sf::Vector2f(100, 100), &projeteis)), view(pGerGraphic->getStdView())
 	{
+		id = 0;
 		hud.setPlayer(player);
 		player2 = nullptr;
 		pGerGraphic->setView(view);
@@ -154,6 +155,73 @@ namespace Fases{
 			}
 		}
 		characters = personagensVivos;
+	}
+
+	void Fase::criarInimFaceis()
+	{
+		Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(3500, 300), player, &projeteis, NULL);
+		characters.emplace_back(cachorro);
+		listaEntidades.inserirNoFim(cachorro);
+
+	}
+
+	void Fase::criarPlataformas()
+	{
+		Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900, 600), -3 -id, 800, 300);
+		obstaculos.push_back(plat1);
+		listaEntidades.inserirNoFim(plat1);
+
+		Entidades::Obstaculos::Plataforma* plat2 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1100, 500), 3 + id, 800, 300);
+		obstaculos.push_back(plat2);
+		listaEntidades.inserirNoFim(plat2);
+
+		Entidades::Obstaculos::Plataforma* plat3 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1300, 400), -3 - id, 800, 300);
+		obstaculos.push_back(plat3);
+		listaEntidades.inserirNoFim(plat3);
+
+		Entidades::Obstaculos::Plataforma* plat4 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1500, 400), 3 + id, 800, 300);
+		obstaculos.push_back(plat4);
+		listaEntidades.inserirNoFim(plat4);
+	}
+
+	void Fase::criarCenario()
+	{
+		for (int i = 0; i < 15; i++) {
+
+			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) - 700, 670), TipoEstrutura::CHAO);
+			listaEntidades.inserirNoFim(estrutura);
+			estruturas.push_back(estrutura);
+		}
+
+		Entidades::Estrutura* parada = new Entidades::Estrutura(sf::Vector2f(1700, 638), TipoEstrutura::CHAO);
+		listaEntidades.inserirNoFim(parada);
+		estruturas.push_back(parada);
+
+		for (int i = 0; i < 20; i++) {
+
+			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) +1800, 670), TipoEstrutura::CHAO);
+			listaEntidades.inserirNoFim(estrutura);
+			estruturas.push_back(estrutura);
+		}
+
+		for (int i = 0; i < 30; i++) {
+
+			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 4800, 670), TipoEstrutura::CHAO);
+			listaEntidades.inserirNoFim(estrutura);
+			estruturas.push_back(estrutura);
+		}
+
+		for (int i = 0; i < 3; i++) {
+
+			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(-400 + (-100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
+			estruturas.push_back(parede1);
+			listaEntidades.inserirNoFim(parede1);
+
+			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(7500 + (100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
+			estruturas.push_back(parede2);
+			listaEntidades.inserirNoFim(parede2);
+
+		}
 	}
 
 }

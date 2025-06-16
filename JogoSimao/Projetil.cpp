@@ -21,6 +21,13 @@ namespace Entidades{
 		else {
 			speed = sf::Vector2f(35.f, 0.f);
 		}
+
+		if (tipo == TipoPersonagem::INIMIGO)
+		{
+			shape.setTexture(*pGerGraphic->getFireball());
+			shape.setTextureRect(sf::IntRect(0,0,64,64));
+			shape.setScale(0.4, 0.4);
+		}
 	}
 
 	Projetil::Projetil()

@@ -4,6 +4,8 @@ namespace Entidades {
 	namespace Personagens {
 		class EstadoCachorroSeguir : public EstadoCachorro
 		{
+		private:
+			int id;
 		public:
 			EstadoCachorroSeguir();
 			~EstadoCachorroSeguir();

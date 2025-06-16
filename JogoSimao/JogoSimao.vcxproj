@@ -135,15 +135,17 @@
   <ItemGroup>
     <ClCompile Include="Arma.cpp" />
     <ClCompile Include="Atirador.cpp" />
-    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="Esqueleto.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cachorro.cpp" />
+    <ClCompile Include="EstadoCachorroAtacar.cpp" />
     <ClCompile Include="Estrutura.cpp" />
+    <ClCompile Include="Fosso.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Espinhos.cpp" />
-    <ClCompile Include="EstadoCachorroAtacar.cpp" />
+    <ClCompile Include="EstadoCachorroCacar.cpp" />
     <ClCompile Include="EstadoCachorroSeguir.cpp" />
     <ClCompile Include="Fase1.cpp" />
     <ClCompile Include="Fase2.cpp" />
@@ -179,8 +181,10 @@
     <ClInclude Include="Arma.h" />
     <ClInclude Include="Armas.h" />
     <ClInclude Include="Atirador.h" />
-    <ClInclude Include="Boss.h" />
+    <ClInclude Include="Esqueleto.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="EstadoCachorroAtacar.h" />
+    <ClInclude Include="Fosso.h" />
     <ClInclude Include="TipoEstrutura.h" />
     <ClInclude Include="Cachorro.h" />
     <ClInclude Include="Estrutura.h" />
@@ -191,7 +195,7 @@
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Espinhos.h" />
     <ClInclude Include="EstadoCachorro.h" />
-    <ClInclude Include="EstadoCachorroAtacar.h" />
+    <ClInclude Include="EstadoCachorroCacar.h" />
     <ClInclude Include="EstadoCachorroSeguir.h" />
     <ClInclude Include="Fase1.h" />
     <ClInclude Include="Fase2.h" />

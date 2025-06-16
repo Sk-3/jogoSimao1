@@ -1,11 +1,12 @@
 #include "EstadoCachorroSeguir.h"
 #include "Cachorro.h"
-#include "EstadoCachorroAtacar.h"
+#include "EstadoCachorroCacar.h"
 namespace Entidades {
 	namespace Personagens {
 		
-		EstadoCachorroSeguir::EstadoCachorroSeguir() {
-
+		EstadoCachorroSeguir::EstadoCachorroSeguir()
+		{
+			id = 2;
 		}
 		EstadoCachorroSeguir::~EstadoCachorroSeguir()
 		{

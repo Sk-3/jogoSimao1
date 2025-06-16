@@ -4,6 +4,7 @@
 #include "Gravidade.h"
 #include "Estrutura.h"
 #include "Plataforma.h"
+#include "Cachorro.h"
 #include "Projetil.h"
 #include "GerenciadorColisao.h"
 #include "Hud.h"
@@ -25,7 +26,8 @@ namespace Fases{
 	class Fase : public State
 	{
 	protected:
-		//CONTROLADOR DE JANELA
+		int id;
+		//CONTROLADOR DE JANELA		
 		sf::View view;
 		Hud hud;
 		//GERENCIADORES
@@ -53,7 +55,9 @@ namespace Fases{
 		virtual void executarJanela();
 		void removerProjeteis();
 		void removerPersonagens();
-		virtual void criarInimigos() = 0;
-		virtual void criarEstruturas() = 0;
+		void criarInimFaceis();
+		void criarPlataformas();
+		virtual void criarInimigos() = 0;		
+		void criarCenario();
 	};
 }

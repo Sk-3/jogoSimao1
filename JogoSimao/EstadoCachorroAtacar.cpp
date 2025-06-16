@@ -1,11 +1,11 @@
-#include "EstadoCachorroAtacar.h"
 #include "Cachorro.h"
-#include "EstadoCachorroSeguir.h"
+#include "EstadoCachorroAtacar.h"
 
 namespace Entidades {
 	namespace Personagens {
 		EstadoCachorroAtacar::EstadoCachorroAtacar()
 		{
+			id = 1;
 		}
 
 		EstadoCachorroAtacar::~EstadoCachorroAtacar()
@@ -15,29 +15,26 @@ namespace Entidades {
 		void EstadoCachorroAtacar::atualizar(Cachorro* cachorro)
 		{
 			/**
-			*@brief Funcao responsavel por fazer o cachorro perseguir o jogador caso ele esteja vivo
+			*@brief Funcao responsavel por fazer o cachorro atacar o jogador caso ele esteja vivo
 			*@param ponteiro pro objeto cachorro
 			*/
 			if (cachorro->getPlayer() && cachorro->getPlayer()->getHealth() >= 0) {
-				cachorro->setMoveSpeed(cachorro->getVelocidadeCacando());
-				cachorro->perseguirJogador();
+				cachorro->setMoveSpeed(cachorro->getVelocidadeCacando());				
 				if (cachorro->jogadorNoAlcance()) {
+					cachorro->perseguirJogador();
 					cachorro->atirar();
 				}
-			}
-			else {
-				cachorro->setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroSeguir()));
-			}
+			}			
 		}
 
 		void EstadoCachorroAtacar::entrar(Cachorro* cachorro)
 		{
-			
+
 		}
 
 		void EstadoCachorroAtacar::sair(Cachorro* cachorro)
 		{
-			
+
 		}
 
 	}

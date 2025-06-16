@@ -3,6 +3,7 @@
 #include "Arma.h"
 #include "EstadoCachorro.h"
 #include "EstadoCachorroAtacar.h"
+#include "EstadoCachorroCacar.h"
 #include "EstadoCachorroSeguir.h"
 namespace Entidades{
 	namespace Personagens {
@@ -21,6 +22,7 @@ namespace Entidades{
 			//SETTERS
 			void setEstado(EstadoCachorro* novoEstado);
 			void mandarAtacar();
+			void mandarCacar();
 			void mandarSeguir();
 			//GETTERS
 			const float getVelocidadeSeguindo() const;

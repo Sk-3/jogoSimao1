@@ -2,7 +2,7 @@
 #include "Fase.h"
 #include "Cachorro.h"
 #include "Atirador.h"
-#include "Boss.h"
+#include "Esqueleto.h"
 #include "Espinhos.h"
 /**
 *	Felipe Simbalista: 25/05/2025
@@ -25,8 +25,7 @@ namespace Fases{
 		void criarInimMedios();
 		void criaObstMedios();		
 		void criarInimigos();		
-		void criarCachorro();
-		void criarEstruturas();
+		void criarObstaculo();		
 		void executar();
 	};
 }

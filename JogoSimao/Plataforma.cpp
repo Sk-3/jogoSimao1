@@ -13,22 +13,33 @@ namespace Entidades{
 			min = h_Min;
 			topo = false;
 			fundo = false;
+			obstaculou = false;
 		}
 
 		Plataforma::Plataforma()
 		{
-
+			colidivel = 1;
+			speed.y = 1;
+			max = 800;
+			min = 300;
+			topo = false;
+			fundo = false;
+			obstaculou = false;
 		}
 
 		Plataforma::~Plataforma()
 		{
 		}
 
-		void Plataforma::obstacular(Personagens::Personagem* pPlayer)
+		void Plataforma::obstacular(Personagens::Personagem* pPersonagem)
 		{
-			/**
-			*
-			*/
+			if (!obstaculou) {
+				if (pPersonagem->getTipo() == TipoPersonagem::PLAYER)
+				{
+					speed.y *= 1.7;
+				}
+				obstaculou = true;
+			}
 		}
 		void Plataforma::mover()
 		{
@@ -55,7 +66,6 @@ namespace Entidades{
 
 			move();
 		}
-
 
 		void Plataforma::executar()
 		{			

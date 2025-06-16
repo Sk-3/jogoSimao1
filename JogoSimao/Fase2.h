@@ -3,8 +3,8 @@
 #include "Inimigo.h"
 #include "Cachorro.h"
 #include "Atirador.h"
-#include "Boss.h"
-#include "Espinhos.h"
+#include "Esqueleto.h"
+#include "Fosso.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 * 
@@ -22,11 +22,11 @@ namespace Fases{
 	public:
 		Fase2();
 		~Fase2();
-		void criarChefoes();
-		void criarObstMedios();
+		void criarChefoes();		
+		void criarObstDificil();
 		void criarProjeteis();
 		void criarInimigos();
-		void criarEstruturas();
+		void criarObstaculo();
 		void executar();		
 	};
 }

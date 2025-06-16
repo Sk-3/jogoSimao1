@@ -32,11 +32,12 @@ namespace Gerenciadores{
 			sf::Texture chao;
 			sf::Texture player;
 			sf::Texture playerLeft;
-			sf::Texture goblin;
+			sf::Texture atirador;
 			sf::Texture parede;
 			sf::Texture boss;
 			sf::Texture cachorro;
 			sf::Texture espinho;
+			sf::Texture fireball;
 
 		float winWidth;
 		float winHeight;
@@ -60,13 +61,14 @@ namespace Gerenciadores{
 			sf::RenderWindow* getWindow();
 			sf::Texture* getProjetilTexture();
 			sf::Texture* getChaoTexture();
-			sf::Texture* getGoblinTexture();
+			sf::Texture* getAtiradorTexture();
 			sf::Texture* getPlayerTexture();
 			sf::Texture* getParedeTexture();
 			sf::Texture* getPlayerInvertido();
 			sf::Texture* getBoss();
 			sf::Texture* getCachorro();
 			sf::Texture* getEspinho();
+			sf::Texture* getFireball();
 
 
 		//SETTERS

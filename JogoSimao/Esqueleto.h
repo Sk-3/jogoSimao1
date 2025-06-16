@@ -15,12 +15,12 @@
 namespace Entidades{
 	namespace Personagens{
 
-		class Boss : public Inimigo
+		class Esqueleto : public Inimigo
 		{
 		private:
 		public:
-			Boss(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis);
-			~Boss();
+			Esqueleto(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis);
+			~Esqueleto();
 			void executar();
 			void atirar();
 		};

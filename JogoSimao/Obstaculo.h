@@ -22,7 +22,7 @@ namespace Entidades{
 			Obstaculo();
 			~Obstaculo();
 			const bool ehColidivel();
-			virtual void obstacular(Personagens::Personagem* pPlayer) = 0;
+			virtual void obstacular(Personagens::Personagem* pPersonagem) = 0;
 			virtual void executar() = 0; 
 		};
 	}

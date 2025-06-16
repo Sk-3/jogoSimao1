@@ -13,12 +13,12 @@ namespace Entidades{
 
 			Clocktiro.restart();
 			range = 1000;
-			health = 30;
+			health = 20;
 			tipo = TipoPersonagem::INIMIGO;
 
-			shape.setTexture(*pGerGraphic->getGoblinTexture());
-			shape.setTextureRect(sf::IntRect(24, 0, 21, 16));
-			shape.setScale(4, 4);
+			shape.setTexture(*pGerGraphic->getAtiradorTexture());
+			shape.setTextureRect(sf::IntRect(0, 0, 46, 71));
+			shape.setScale(2, 2);
 		}
 		Atirador::~Atirador()
 		{
@@ -57,7 +57,7 @@ namespace Entidades{
 			eliminarCachorros();
 			if (jogadorNoAlcance()) {
 				for (const auto& cach : cachorros) {
-					cach->mandarAtacar();
+					cach->mandarCacar();
 				}
 
 				if (pPlayer->getCenter().x > getCenter().x) {

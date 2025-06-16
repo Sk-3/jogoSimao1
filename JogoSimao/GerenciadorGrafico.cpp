@@ -80,11 +80,10 @@ namespace Gerenciadores {
 		else {
 			playerInvertido.flipHorizontally();
 			playerLeft.loadFromImage(playerInvertido);
-		}
-		
+		}		
 
-		if (!goblin.loadFromFile("..//textures//goblin.PNG")) {
-			std::cout << "Falha ao carregar textura goblin.PNG";
+		if (!atirador.loadFromFile("..//textures//atirador.PNG")) {
+			std::cout << "Falha ao carregar textura atirador.PNG";
 		}
 
 		if (!parede.loadFromFile("..//textures//arvore.PNG")) {
@@ -101,6 +100,10 @@ namespace Gerenciadores {
 
 		if (!espinho.loadFromFile("..//textures//espinhos.PNG")) {
 			std::cout << "Falha ao carregar textura espinhos.PNG";
+		}
+
+		if (!fireball.loadFromFile("..//textures//fireball.PNG")) {
+			std::cout << "Falha ao carregar textura fireball.PNG";
 		}
 
 	}
@@ -143,9 +146,9 @@ namespace Gerenciadores {
 		return &chao;
 	}
 
-	sf::Texture* GerenciadorGrafico::getGoblinTexture()
+	sf::Texture* GerenciadorGrafico::getAtiradorTexture()
 	{
-		return &goblin;
+		return &atirador;
 	}
 
 	sf::Texture* GerenciadorGrafico::getPlayerTexture() {
@@ -171,6 +174,11 @@ namespace Gerenciadores {
 	{
 		return &espinho;
 	}
+	sf::Texture* GerenciadorGrafico::getFireball()
+	{
+		return &fireball;
+	}
+
 
 
 	void GerenciadorGrafico::clear() {
