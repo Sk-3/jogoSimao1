@@ -3,8 +3,8 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Boss::Boss(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis)
-			:Inimigo( pos, player, projeteis)
+		Boss::Boss(sf::Vector2f pos,Listas::ListaEntidades* lista ,Personagem* player)
+			:Inimigo( pos,lista ,player)
 		{
 			/**
 			*@brief Construtor da classe Boss, inicializa o boss com o tamanho, posição, player e projeteis.
@@ -14,10 +14,8 @@ namespace Entidades{
 			* @param projeteis Vetor de projeteis, usado para adicionar novos projeteis.
 			*/
 
-			arma = new Arma(pProjeteis, this, Armas::ARMABOSS);
-			Clocktiro.restart();
+			arma = new Arma(lista , this, Armas::ARMABOSS);;
 			range = 1000;
-			pProjeteis = projeteis;
 			pPlayer = player;
 			health = 30;
 		}

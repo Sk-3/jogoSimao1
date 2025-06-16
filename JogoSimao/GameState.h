@@ -25,6 +25,8 @@ namespace Fases{
 	class GameState : public State
 	{
 	protected:
+		//LISTA ENTIDADES
+		Listas::ListaEntidades listaEntidades;
 		//CONTROLADOR DE JANELA
 		sf::View view;
 		Hud hud;
@@ -33,8 +35,7 @@ namespace Fases{
 		Gravidade gravity;
 		
 
-		//LISTA ENTIDADES
-		Listas::ListaEntidades listaEntidades;
+	
 
 
 		//PLAYERS
@@ -42,17 +43,17 @@ namespace Fases{
 		Entidades::Personagens::Player* player;
 		//VETORES
 		std::vector<Entidades::Estrutura*> estruturas;
-		std::vector<Entidades::Projetil*> projeteis;
+		std::set<Entidades::Projetil*>* projeteis;
 		std::vector<Entidades::Obstaculos::Obstaculo*> obstaculos;
-		std::vector<Entidades::Personagens::Personagem*> characters;
+		std::vector<Entidades::Personagens::Personagem*>* characters;
 	public:
 		~GameState();
 		GameState();
 		virtual void handleEvent();
 		virtual void executar() = 0;
 		virtual void executarJanela();
-		void removerProjeteis();
-		void removerPersonagens();
+		//void removerProjeteis();
+		//void removerPersonagens();
 		virtual void criarInimigos() = 0;
 		virtual void criarEstruturas() = 0;
 	};

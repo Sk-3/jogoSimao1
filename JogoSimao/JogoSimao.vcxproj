@@ -181,6 +181,7 @@
     <ClInclude Include="Atirador.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="TipoEntidade.h" />
     <ClInclude Include="TipoEstrutura.h" />
     <ClInclude Include="Cachorro.h" />
     <ClInclude Include="Estrutura.h" />

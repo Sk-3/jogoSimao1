@@ -18,6 +18,7 @@ namespace Entidades {
 		TipoEstrutura tipo;
 
 	public:
+		TipoEntidade getTipoEntidade();
 		Estrutura(sf::Vector2f pos, TipoEstrutura tipoE);
 		Estrutura();
 		~Estrutura();

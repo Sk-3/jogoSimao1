@@ -1,5 +1,4 @@
 #include "Estrutura.h"
-
 namespace Entidades {
 	Entidades::Estrutura::Estrutura(sf::Vector2f pos, TipoEstrutura tipoE)
 	:Entidade(pos)
@@ -16,6 +15,10 @@ namespace Entidades {
 	Estrutura::~Estrutura()
 	{
 
+	}
+
+	TipoEntidade Estrutura::getTipoEntidade() {
+		return TipoEntidade::ESTRUTURA;
 	}
 
 	void Estrutura::formatarEstrutura(TipoEstrutura tipoE)

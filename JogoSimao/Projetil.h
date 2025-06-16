@@ -13,6 +13,7 @@ namespace Entidades{
 		bool ativo;
 	public:
 		Projetil(sf::Vector2f pos, Directions direction, TipoPersonagem tipo);
+		TipoEntidade getTipoEntidade();
 		Projetil();
 		~Projetil();
 		const TipoPersonagem getTipo() const;

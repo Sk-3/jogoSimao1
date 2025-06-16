@@ -48,6 +48,11 @@ namespace Entidades{
 		}
 	}
 
+
+	TipoEntidade Projetil::getTipoEntidade() {
+		return TipoEntidade::PROJETIL;
+	}
+
 	void Projetil::desativar()
 	{
 		/**

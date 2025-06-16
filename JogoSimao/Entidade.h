@@ -1,6 +1,7 @@
 #pragma once
 #include "Ente.h"
 #include "Directions.h"
+#include "tipoEntidade.h"
 #include <ostream>
 /**
 *	Felipe Simbalista: 25/05/2025
@@ -24,12 +25,15 @@ namespace Entidades{
 		sf::Sprite shape;
 		sf::Vector2f speed;
 		std::ostream* buffer;
+		TipoEntidade tipoEntidade;
+
 	public:
 
 		Entidade();
 		Entidade(sf::Vector2f pos);
 		~Entidade();
 		//GETTERS
+		virtual TipoEntidade getTipoEntidade() = 0;
 		const sf::Vector2f getCenter();
 		const sf::Vector2f getPosition();
 		const virtual sf::FloatRect getBounds();

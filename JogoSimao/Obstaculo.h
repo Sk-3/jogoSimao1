@@ -20,6 +20,7 @@ namespace Entidades{
 			Obstaculo(sf::Vector2f pos);
 			Obstaculo();
 			~Obstaculo();
+			TipoEntidade getTipoEntidade();
 			const bool ehColidivel();
 			virtual void obstacular(Personagens::Personagem* pPlayer) = 0;
 			virtual void executar() = 0; 

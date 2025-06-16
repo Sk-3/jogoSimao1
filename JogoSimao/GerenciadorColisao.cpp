@@ -4,13 +4,14 @@ namespace Gerenciadores{
 	void GerenciadorColisao::executar()
 	{
 		colision();
+		
 	
 	}
 	GerenciadorColisao::GerenciadorColisao(): characters(nullptr), obstaculos(nullptr), projeteis(nullptr), estruturas(nullptr)
 	{
 	
 	}
-	GerenciadorColisao::GerenciadorColisao(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos, std::vector<Entidades::Projetil*>* projeteis, std::vector<Entidades::Estrutura*>* estruturas)
+	GerenciadorColisao::GerenciadorColisao(ListaEntidades* lista)
 		
 	{
 		/**
@@ -20,10 +21,10 @@ namespace Gerenciadores{
 		* @param projeteis Ponteiro para vetor de ponteiros para projéteis.
 		* 
 		*/
-		this->projeteis = projeteis;
-		this->obstaculos = obstaculos;
-		this->characters = characters;
-		this->estruturas = estruturas;
+		this->projeteis = lista->getProjeteis();
+		this->obstaculos = lista->getObstaculos();
+		this->characters = lista->getPersonagens();
+		this->estruturas = lista->getEstruturas();
 	}
 
 	GerenciadorColisao::~GerenciadorColisao()
@@ -33,6 +34,8 @@ namespace Gerenciadores{
 
 	const bool GerenciadorColisao::verificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2)
 	{
+
+		
 		sf::FloatRect ent1Bounds = pe1->getBounds();
 		sf::FloatRect ent2Bounds = pe2->getBounds();
 		return ent1Bounds.intersects(ent2Bounds);
@@ -40,6 +43,7 @@ namespace Gerenciadores{
 
 	void GerenciadorColisao::tratarColisaoProjeteis()
 	{
+		
 		for (auto& projet : *projeteis) {
 			sf::FloatRect projBounds = projet->getBounds();
 			for (const auto& obst : *obstaculos) {
@@ -48,6 +52,7 @@ namespace Gerenciadores{
 				}
 			}
 			for (auto& charact : *characters) {
+			
 				if (projBounds.intersects(charact->getBounds())) {
 					if (charact->getTipo() != projet->getTipo()) {
 						projet->desativar();
@@ -61,6 +66,7 @@ namespace Gerenciadores{
 	void GerenciadorColisao::tratarColisaoPersonagens()
 	{
 		for (auto& charact : *characters) {
+			
 			for (const auto& obstac : *obstaculos) {
 				if (verificarColisao(obstac, charact)) {
 					if (obstac->ehColidivel()) {
@@ -156,6 +162,11 @@ namespace Gerenciadores{
 		tratarColisaoPersonagens();
 
 		
+	}
+
+	void GerenciadorColisao::setPersonagens(std::vector<Entidades::Personagens::Personagem*>* vetorPersonagens)
+	{
+		characters = vetorPersonagens;
 	}
 
 }

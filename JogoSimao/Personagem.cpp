@@ -2,6 +2,7 @@
 #include "Obstaculo.h"
 #include "Projetil.h"
 #include "Arma.h"
+#include "ListaEntidades.h"
 namespace Entidades{
 	namespace Personagens{
 		Personagem::Personagem()
@@ -17,7 +18,7 @@ namespace Entidades{
 			direction = Directions::RIGHT;
 		}
 
-		Personagem::Personagem(sf::Vector2f pos)
+		Personagem::Personagem(sf::Vector2f pos, Listas::ListaEntidades* lista)
 			:Entidade(pos), Subject()
 		{
 			/***
@@ -49,6 +50,11 @@ namespace Entidades{
 		
 		
 		//GETTERS
+
+		TipoEntidade Personagem::getTipoEntidade()
+		{
+			return TipoEntidade::PERSONAGEM;
+		}
 
 		const TipoPersonagem Personagem::getTipo() const
 		{

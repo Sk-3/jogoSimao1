@@ -1,21 +1,16 @@
 #include "Arma.h"
 #include "Personagem.h"
 
-Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* dono, float tiroCooldow)
-	:pProjeteis(projeteis), pDono(dono), tiroCooldown(tiroCooldow)
-{
-	
-}
-Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* dono, Armas arma)
-	:pProjeteis(projeteis), pDono(dono)
+Arma::Arma(Listas::ListaEntidades* listaEnt, Entidades::Personagens::Personagem* dono, Armas arma):
+	pDono(dono), lista(listaEnt)
 {
 	switch (arma) {
-		case Armas::METRALHADORA:{
+		case Armas::METRALHADORA: {
 			tiroCooldown = 0.2;
 			VelocidadeProjetil = 10;
 			break;
 		}
-		case Armas::ARMACACHORRO:{
+		case Armas::ARMACACHORRO: {
 			tiroCooldown = 1;
 			VelocidadeProjetil = 5;
 			break;
@@ -25,16 +20,16 @@ Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens:
 			VelocidadeProjetil = 15;
 			break;
 		}
-		case Armas::RIFLE:{
+		case Armas::RIFLE: {
 			tiroCooldown = 2;
 			VelocidadeProjetil = 50;
 			break;
 		}
-		default:{
+		default: {
 			break;
 		}
 	}
-	
+
 }
 Arma::~Arma()
 {
@@ -51,7 +46,7 @@ void Arma::atirar() {
 	*/
 	if (Clocktiro.getElapsedTime().asSeconds() > tiroCooldown) {
 		sf::Vector2f position = pDono->getCenter();
-		pProjeteis->emplace_back(new Entidades::Projetil(position, pDono->getDirection(), pDono->getTipo()));
+		lista->inserirNoFim(new Entidades::Projetil(position, pDono->getDirection(), pDono->getTipo()));
 		Clocktiro.restart();
 	}
 }

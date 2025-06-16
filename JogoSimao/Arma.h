@@ -1,7 +1,8 @@
 #pragma once
 #include "Armas.h"
 #include "Projetil.h"
-#include <vector>
+#include <set>
+#include "ListaEntidades.h"
 
 namespace Entidades {
 	namespace Personagens {
@@ -13,14 +14,13 @@ namespace Entidades {
 class Arma
 {
 private:
+	Listas::ListaEntidades* lista;
 	Entidades::Personagens::Personagem* pDono;
-	float VelocidadeProjetil;
+	 float VelocidadeProjetil;
 	sf::Clock Clocktiro;
 	float tiroCooldown;
-	std::vector<Entidades::Projetil*>* pProjeteis;
 public:
-	Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* pDono, float tiroCooldown);
-	Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* pDono, Armas arma);
+	Arma(Listas::ListaEntidades* lista, Entidades::Personagens::Personagem* pDono, Armas arma);
 	~Arma();
 	void atirar();
 

@@ -2,32 +2,27 @@
 namespace Fases{
 
 	GameState::GameState():
-		State(), gravity(&characters, &projeteis),
-		colision(&characters, &obstaculos, &projeteis, &estruturas),
-		player(new Entidades::Personagens::Player( sf::Vector2f(100, 100), &projeteis)), view(pGerGraphic->getStdView())
+		State(),
+		characters(listaEntidades.getPersonagens()),
+		gravity(&listaEntidades),
+		colision(&listaEntidades),
+		player(new Entidades::Personagens::Player(sf::Vector2f(100, 100), &listaEntidades)),
+		view(pGerGraphic->getStdView())
 	{
+		characters = listaEntidades.getPersonagens();
+		projeteis = listaEntidades.getProjeteis();
+
 		hud.setPlayer(player);
 		player2 = nullptr;
 		pGerGraphic->setView(view);
-		characters.push_back(player);
+		characters->push_back(player);
 		listaEntidades.inserirNoFim(player);
 	}
 
 	
 
 	GameState::~GameState() {
-		for (auto& obstacul : obstaculos) {
-			delete obstacul;
-		}
-		for (auto& charact : characters) {
-			delete charact;
-		}
-		for (auto& projetil : projeteis) {
-			delete projetil;
-		}
-		for (auto& estrutura : estruturas) {
-			delete estrutura;
-		}
+		listaEntidades.desalocar();
 
 	}
 
@@ -98,8 +93,8 @@ namespace Fases{
 			case sf::Event::KeyPressed:
 				if (ev.key.code == sf::Keyboard::P) {
 					if (!player2) {
-						player2 = new Entidades::Personagens::Player(sf::Vector2f(100, 100), &projeteis);
-						characters.push_back(player2);
+						player2 = new Entidades::Personagens::Player(sf::Vector2f(100, 100), &listaEntidades);
+						characters->push_back(player2);
 					}
 				}
 				if (ev.key.code == sf::Keyboard::Escape) {
@@ -128,7 +123,7 @@ namespace Fases{
 		view.setCenter(player->getPosition());
 	}
 
-	void GameState::removerProjeteis()
+	/*void GameState::removerProjeteis()
 	{
 		std::vector<Entidades::Projetil*> projeteisAtivos;
 		for (Entidades::Projetil* projet : projeteis) {
@@ -141,19 +136,5 @@ namespace Fases{
 		}
 		projeteis = projeteisAtivos;
 	}
-
-	void GameState::removerPersonagens()
-	{
-		std::vector<Entidades::Personagens::Personagem*> personagensVivos;
-		for (Entidades::Personagens::Personagem* persona : characters) {
-			if (persona->vivo()) {
-				personagensVivos.push_back(persona);
-			}
-			else { 
-				delete persona;
-			}
-		}
-		characters = personagensVivos;
-	}
-
+	*/
 }

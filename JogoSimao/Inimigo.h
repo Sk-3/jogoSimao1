@@ -1,6 +1,7 @@
 #pragma once
 #include "Personagem.h"
 #include "Projetil.h"
+
 /**
 *	Felipe Simbalista: 25/05/2025
 *	Classe abstrata inimigo
@@ -11,11 +12,11 @@ namespace Entidades{
 		{
 		protected:
 			int nivel_maldade;
-			std::vector<Projetil*>* pProjeteis;
+			std::set<Projetil*>* pProjeteis;
 			Personagem* pPlayer;
 			float range;
 		public:
-			Inimigo(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis);
+			Inimigo(sf::Vector2f pos, Listas::ListaEntidades* lista ,Personagem* player);
 			~Inimigo();
 			
 			//GETTERS

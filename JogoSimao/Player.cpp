@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Projetil.h"
 #include "Arma.h"
+#include "ListaEntidades.h"
 namespace Entidades{
 	namespace Personagens{
 		Player::Player()
@@ -8,19 +9,17 @@ namespace Entidades{
 		{
 			tipo = TipoPersonagem::PLAYER;
 			jumps = 2;
-
 			position = sf::Vector2f(300.f, 0.f);
 			shape.setPosition(position);
 			maxSpeed = 6;
-
 			shape.setTexture(*pGerGraphic->getPlayerTexture());
 			
 		}
 
-		Player::Player( sf::Vector2f pos, std::vector<Projetil*>* projeteis)
-			:Personagem( pos)
+		Player::Player( sf::Vector2f pos, Listas::ListaEntidades* listaEnt)
+			:Personagem(pos, listaEnt)
 		{
-			arma = new Arma(projeteis, this, Armas::METRALHADORA);
+			arma = new Arma(listaEnt, this, Armas::METRALHADORA);
 			tipo = TipoPersonagem::PLAYER;
 			maxSpeed = 6;
 			jumps = 2;

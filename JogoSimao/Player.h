@@ -1,5 +1,7 @@
 #pragma once
 #include "Personagem.h"
+
+#include <set>
 /**
 *	Classe concreta Player
 * 
@@ -20,7 +22,7 @@ namespace Entidades{
 			sf::Vector2f center;
 		public:
 			Player();
-			Player(sf::Vector2f pos,std::vector<Projetil*>* projeteis);
+			Player(sf::Vector2f pos, Listas::ListaEntidades* listaEnt);
 			~Player();
 			sf::Vector2f getPosition();
 			//Adicionam velocidade ao vetor de velocidade do jogador

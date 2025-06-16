@@ -3,7 +3,7 @@
 #include "Entidade.h"
 #include "TipoPersonagem.h"
 #include "Armas.h"
-
+#include <set>
 /**
 *	Felipe Simbalista: 25/05/2025
 * Classe abstrata de personagens
@@ -13,6 +13,10 @@
 *		movimentar o personagem com base na sua velocidade
 */
 
+namespace Listas {
+		class ListaEntidades;
+	}
+
 class Arma;
 namespace Entidades{
 
@@ -21,10 +25,13 @@ namespace Entidades{
 	}
 
 	namespace Personagens {
+		
 		class Personagem : public Entidade, public Subject
 		{
+
 		protected:
 			//clock que controla o tempo de tiro do personagem
+			Listas::ListaEntidades* lista;
 			sf::Clock Clocktiro;
 			float tiroCooldown;
 			Arma* arma;
@@ -41,7 +48,7 @@ namespace Entidades{
 			//construtor padrão
 			Personagem();
 			//define posição e tamanho inicial do personagem
-			Personagem(sf::Vector2f pos);
+			Personagem(sf::Vector2f pos, Listas::ListaEntidades* list);
 			~Personagem();
 
 			//RELACIONADO A COLISÃO
@@ -52,6 +59,7 @@ namespace Entidades{
 				virtual void hitRight(Entidade* entidade);
 	
 			//GETTERS
+				TipoEntidade getTipoEntidade();
 				const TipoPersonagem getTipo() const;
 				const Directions getDirection() const;
 				const int getHealth() const;

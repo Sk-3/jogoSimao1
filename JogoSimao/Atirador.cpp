@@ -4,13 +4,10 @@
 namespace Entidades{
 	namespace Personagens
 	{
-		Personagens::Atirador::Atirador(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, std::vector<Personagem*>* personagens) :
-			Inimigo(pos, player, projeteis), personagens(personagens)
+		Personagens::Atirador::Atirador(sf::Vector2f pos,Listas::ListaEntidades* lista ,Personagem* player) :
+			Inimigo(pos, lista,player), personagens(personagens)
 		{
-			arma = new Arma(pProjeteis, this, Armas::RIFLE);
-
-			inicializarCachorros();
-
+			arma = new Arma(lista, this, Armas::RIFLE);
 			Clocktiro.restart();
 			range = 1000;
 			health = 30;
@@ -19,20 +16,6 @@ namespace Entidades{
 		Atirador::~Atirador()
 		{
 		}
-
-		void Atirador::inicializarCachorros()
-		{
-			sf::Vector2f posCachorro = getPosition();
-			posCachorro.x -= 50;
-			Cachorro* tempCachorro = new Cachorro( posCachorro, pPlayer, pProjeteis, this);
-			cachorros.emplace_back(tempCachorro);
-			personagens->emplace_back(tempCachorro);
-			posCachorro.x += 100;
-			tempCachorro = new Cachorro(posCachorro, pPlayer, pProjeteis, this);
-			cachorros.emplace_back(tempCachorro);
-			personagens->emplace_back(tempCachorro);
-		}
-
 		void Atirador::eliminarCachorros()
 		{
 			std::vector<Cachorro*> novoArray;

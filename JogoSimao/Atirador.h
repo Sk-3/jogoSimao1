@@ -18,9 +18,8 @@ namespace Entidades{
 			std::vector<Personagem*>* personagens;
 			std::vector<Cachorro*> cachorros;
 		public:  
-			Atirador(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, std::vector<Personagem*>* personagens);
-			~Atirador();  
-			void inicializarCachorros();
+			Atirador(sf::Vector2f pos,Listas::ListaEntidades* lista,Personagem* player);
+			~Atirador();
 			void eliminarCachorros();
 			void executar();  
 		};  
