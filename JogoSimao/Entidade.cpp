@@ -1,5 +1,30 @@
 #include "Entidade.h"
 namespace Entidades{
+
+	Entidade::Entidade() :
+		position(sf::Vector2f(0.f, 0.f))
+	{
+	}
+
+	Entidade::Entidade(sf::Vector2f pos) :
+		position(pos)
+	{
+
+		/***
+		* @brief construtor da classe Entity, inicializa o corpo do objeto com a posicao e tamanho especificados
+		* @param pos - posicao do corpo do objeto
+		*/
+
+		ativo = 1;
+		shape.scale(3, 3);
+		shape.setPosition(pos);
+		shape.setTexture(*pGerGraphic->getProjetilTexture());
+		setFigura(&shape);
+	}
+
+	Entidade::~Entidade()
+	{
+	}
 	const sf::Vector2f Entidade::getCenter()
 	{
 		sf::Vector2f center;
@@ -45,29 +70,12 @@ namespace Entidades{
 		return shape.getGlobalBounds();
 	}
 
-	Entidade::Entidade():
-		position(sf::Vector2f(0.f,0.f))
+	bool Entidade::Ativado()
 	{
+		return ativo;
 	}
 
-	Entidade::Entidade(sf::Vector2f pos) :
-	position(pos)
-	{
-
-		/***
-		* @brief construtor da classe Entity, inicializa o corpo do objeto com a posicao e tamanho especificados
-		* @param pos - posicao do corpo do objeto
-		*/
-
-		
-		shape.scale(3,3);
-		shape.setPosition(pos);
-		shape.setTexture(*pGerGraphic->getProjetilTexture());
-		setFigura(&shape);
+	void Entidade::desativar() {
+		ativo = 0;
 	}
-
-	Entidade::~Entidade()
-	{
-	}
-
 }

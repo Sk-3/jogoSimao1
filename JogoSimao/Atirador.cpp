@@ -1,5 +1,5 @@
 #include "Atirador.h"
-
+#include <iostream>
 
 namespace Entidades{
 	namespace Personagens
@@ -33,7 +33,10 @@ namespace Entidades{
 			*@brief Executa o atirador
 			*@return void
 			*/
-			eliminarCachorros();
+			//eliminarCachorros();
+			if (!vivo()) {
+				desativar();
+			}
 			if (jogadorNoAlcance()) {
 				for (const auto& cach : cachorros) {
 					cach->mandarAtacar();

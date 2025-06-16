@@ -1,10 +1,10 @@
 #include "Projetil.h"
 #include "Personagem.h"
-
+#include <iostream>
 namespace Entidades{
 
 	Projetil::Projetil( sf::Vector2f pos, Directions direction, TipoPersonagem tipo)
-		:Entidade(pos), dano(3), tipo(tipo), ativo(1)
+		:Entidade(pos), dano(3), tipo(tipo)
 	{
 		/**
 		*@brief Inicializa o projetil com o tamanho, posicao e direcao
@@ -27,7 +27,6 @@ namespace Entidades{
 		:Entidade()
 	{
 		dano = 0;
-		ativo = 1;
 	}
 
 	Projetil::~Projetil()
@@ -53,14 +52,6 @@ namespace Entidades{
 		return TipoEntidade::PROJETIL;
 	}
 
-	void Projetil::desativar()
-	{
-		/**
-		*@brief Desativa o projetil, tornando-o inativo
-		*@return void
-		*/
-		ativo = 0; 
-	}
 	void Projetil::setTipo(TipoPersonagem tipo)
 	{
 		/**
@@ -79,14 +70,6 @@ namespace Entidades{
 		*/
 		return tipo;
 	}
-	bool Projetil::Ativado()
-	{
-		/**
-		*@brief Verifica se o projetil esta ativo
-		*@return bool Retorna true se o projetil esta ativo, false caso contrario
-		*/
-		return ativo;
-	}
 
 	void Projetil::danifica(Personagens::Personagem* personagem)
 	{
@@ -96,6 +79,7 @@ namespace Entidades{
 		*@details Utilizando a referencia do personagem, chama o metodo tiraVida para aplicar o dano do projetil.
 		*@return void
 		*/
+
 		personagem->tiraVida(dano);
 	}
 

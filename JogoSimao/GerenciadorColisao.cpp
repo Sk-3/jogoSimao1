@@ -45,20 +45,28 @@ namespace Gerenciadores{
 	{
 		
 		for (auto& projet : *projeteis) {
-			sf::FloatRect projBounds = projet->getBounds();
-			for (const auto& obst : *obstaculos) {
-				if (projBounds.intersects(obst->getBounds())) {
-					projet->desativar();
-				}
-			}
-			for (auto& charact : *characters) {
-			
-				if (projBounds.intersects(charact->getBounds())) {
-					if (charact->getTipo() != projet->getTipo()) {
+
+			if(projet->Ativado()){
+
+				sf::FloatRect projBounds = projet->getBounds();
+				for (const auto& obst : *obstaculos) {
+					if (projBounds.intersects(obst->getBounds())) {
 						projet->desativar();
-						projet->danifica(charact);
 					}
 				}
+				for (auto& charact : *characters) {
+					if(charact->Ativado()){
+						if (projBounds.intersects(charact->getBounds())) {
+							if (charact->getTipo() != projet->getTipo()) {
+								projet->danifica(charact);
+								projet->desativar();
+						
+							}
+						}
+					}
+				}
+
+
 			}
 		}
 	}

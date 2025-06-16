@@ -10,7 +10,6 @@ namespace Entidades{
 	private:
 		TipoPersonagem tipo;
 		int dano;
-		bool ativo;
 	public:
 		Projetil(sf::Vector2f pos, Directions direction, TipoPersonagem tipo);
 		TipoEntidade getTipoEntidade();
@@ -19,8 +18,6 @@ namespace Entidades{
 		const TipoPersonagem getTipo() const;
 		void setTipo(TipoPersonagem tipo);
 		void executar();
-		void desativar();
-		bool Ativado();
 		void danifica(Personagens::Personagem* personagem);
 	};
 

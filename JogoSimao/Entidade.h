@@ -26,7 +26,7 @@ namespace Entidades{
 		sf::Vector2f speed;
 		std::ostream* buffer;
 		TipoEntidade tipoEntidade;
-
+		bool ativo;
 	public:
 
 		Entidade();
@@ -37,10 +37,11 @@ namespace Entidades{
 		const sf::Vector2f getCenter();
 		const sf::Vector2f getPosition();
 		const virtual sf::FloatRect getBounds();
+		virtual bool Ativado();
 		//SETTERS
 		void move();
 		void changeSpeed(sf::Vector2f addSpeed);
-		
+		void desativar();
 		//void salvarDataBuffer();
 		//virtual void salvar() = 0;
 		virtual void executar() = 0;
