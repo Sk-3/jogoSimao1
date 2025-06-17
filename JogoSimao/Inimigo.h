@@ -12,14 +12,14 @@ namespace Entidades{
 		protected:
 			int nivel_maldade;
 			std::set<Projetil*>* pProjeteis;
-			Personagem* pPlayer;
+			Personagem* pJogador;
 			float range;
 		public:
-			Inimigo(sf::Vector2f pos, Listas::ListaEntidades* lista, Personagem* player);
+			Inimigo(sf::Vector2f pos, Listas::ListaEntidades* lista, Personagem* pJogador);
 			~Inimigo();
 			
 			//GETTERS
-			const Personagem* getPlayer() const;
+			const Personagem* getJogador() const;
 			//SETTERS
 	
 

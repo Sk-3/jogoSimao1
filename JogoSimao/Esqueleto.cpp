@@ -3,8 +3,8 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Esqueleto::Esqueleto(sf::Vector2f pos, ListaEntidades* listaEnt , Personagem* player , int forca)
-			:Inimigo( pos,listaEnt ,player)
+		Esqueleto::Esqueleto(sf::Vector2f pos, ListaEntidades* listaEnt , Personagem* jogador , int forca)
+			:Inimigo( pos,listaEnt ,jogador)
 		{
 			/**
 			*@brief Construtor da classe Boss, inicializa o boss com o tamanho, posição, player e projeteis.
@@ -17,7 +17,7 @@ namespace Entidades{
 			arma = new Arma(listaEnt, this, Armas::ARMAESQUELETO);
 			Clocktiro.restart();
 			range = 800;
-			pPlayer = player;
+			pJogador = jogador;
 			this->forca = forca;
 			health = 5 + (forca*5);
 			shape.setTexture(*pGerGraphic->getEsqueleto());

@@ -26,14 +26,14 @@ namespace Fases{
 	class Fase : public State
 	{
 	protected:
-		//LISTA ENTIDADES
-		Listas::ListaEntidades listaEntidades;
 		int id;
+		//LISTA ENTIDADES
+		Listas::ListaEntidades listaEntidades;		
 		//CONTROLADOR DE JANELA		
 		sf::View view;
 		Hud hud;
 		//GERENCIADORES
-		Gerenciadores::GerenciadorColisao colision;
+		Gerenciadores::GerenciadorColisao GC;
 		Gravidade gravity;
 		//PLAYERS
 		Entidades::Personagens::Jogador* player2;
@@ -51,7 +51,8 @@ namespace Fases{
 		virtual void executarJanela();
 		void criarInimFaceis();
 		void criarPlataformas();
-		virtual void criarInimigos() = 0;		
+		virtual void criarInimigos() = 0;
+		virtual void criarObstaculo() = 0;
 		void criarCenario();
 	};
 }
