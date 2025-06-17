@@ -36,23 +36,13 @@ namespace Entidades{
 		speed += addSpeed;
 	}
 
-	void Entidade::desativar()
-	{
-		ativo = 0;
-	}
-
 	const sf::FloatRect Entidade::getBounds()
 	{
-		/**
+		/***
 		* @brief retorna o retangulo delimitador do corpo do objeto
 		* @return sf::FloatRect - retangulo delimitador do corpo do objeto
 		*/
 		return shape.getGlobalBounds();
-	}
-
-	const bool Entidade::Ativado()
-	{
-		return ativo;
 	}
 
 	Entidade::Entidade():
@@ -69,7 +59,7 @@ namespace Entidades{
 		* @param pos - posicao do corpo do objeto
 		*/
 
-		ativo = 1;
+		
 		shape.scale(3,3);
 		shape.setPosition(pos);
 		shape.setTexture(*pGerGraphic->getProjetilTexture());

@@ -21,7 +21,6 @@ namespace Entidades {
 		Estrutura(sf::Vector2f pos, TipoEstrutura tipoE);
 		Estrutura();
 		~Estrutura();
-		const TipoEntidade getTipoEntidade() const;
 		void formatarEstrutura(TipoEstrutura tipoE);
 		void executar();
 	};

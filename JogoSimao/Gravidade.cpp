@@ -2,7 +2,7 @@
 
 
 
-Gravidade::Gravidade(ListaEntidades* listaEnt)
+Gravidade::Gravidade(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Projetil*>* projeteis)
 {
 	/**
 	*@brief Construtor da classe Gravidade, que inicializa a força da gravidade e os vetores de personagens e projeteis.
@@ -10,11 +10,10 @@ Gravidade::Gravidade(ListaEntidades* listaEnt)
 	*@param projeteis Vetor de ponteiros para objetos do tipo Projetil, representando os projeteis do jogo.
 	*@return void
 	*/
-	listaEntidades = listaEnt;
 	gravityForce.x = 0;
 	gravityForce.y = 0.2;
-	projeteis = listaEntidades->getProjeteis();
-	characters = listaEntidades->getPersonagens();
+	this->characters = characters;
+	this->projeteis = projeteis;
 }
 void Gravidade::executar()
 {

@@ -2,27 +2,33 @@
 namespace Fases{
 
 	Fase::Fase():
-		State(),
-		gravity(&listaEntidades),
-		colision(&listaEntidades),
-		player(new Entidades::Personagens::Jogador(sf::Vector2f(100, 100), &listaEntidades)),
-		view(pGerGraphic->getStdView())
+		State(), gravity(&characters, &projeteis),
+		colision(&characters, &obstaculos, &projeteis, &estruturas),
+		player(new Entidades::Personagens::Jogador( sf::Vector2f(100, 100), &projeteis)), view(pGerGraphic->getStdView())
 	{
-		characters = listaEntidades.getPersonagens();
-		projeteis = listaEntidades.getProjeteis();
-		estruturas = listaEntidades.getEstruturas();
-		obstaculos = listaEntidades.getObstaculos();
 		id = 0;
 		hud.setPlayer(player);
 		player2 = nullptr;
 		pGerGraphic->setView(view);
+		characters.push_back(player);
 		listaEntidades.inserirNoFim(player);
 	}
 
 	
 
 	Fase::~Fase() {
-		listaEntidades.desalocar();
+		for (auto& obstacul : obstaculos) {
+			delete obstacul;
+		}
+		for (auto& charact : characters) {
+			delete charact;
+		}
+		for (auto& projetil : projeteis) {
+			delete projetil;
+		}
+		for (auto& estrutura : estruturas) {
+			delete estrutura;
+		}
 
 	}
 
@@ -93,7 +99,8 @@ namespace Fases{
 			case sf::Event::KeyPressed:
 				if (ev.key.code == sf::Keyboard::P) {
 					if (!player2) {
-						listaEntidades.inserirNoFim(new Entidades::Personagens::Jogador(sf::Vector2f(100, 100), &listaEntidades));
+						player2 = new Entidades::Personagens::Jogador(sf::Vector2f(100, 100), &projeteis);
+						characters.push_back(player2);
 					}
 				}
 				if (ev.key.code == sf::Keyboard::Escape) {
@@ -122,55 +129,97 @@ namespace Fases{
 		view.setCenter(player->getPosition());
 	}
 
-	
+	void Fase::removerProjeteis()
+	{
+		std::vector<Entidades::Projetil*> projeteisAtivos;
+		for (Entidades::Projetil* projet : projeteis) {
+			if (projet->Ativado()) {
+				projeteisAtivos.push_back(projet);
+			}
+			else {
+				delete projet;
+			}
+		}
+		projeteis = projeteisAtivos;
+	}
+
+	void Fase::removerPersonagens()
+	{
+		std::vector<Entidades::Personagens::Personagem*> personagensVivos;
+		for (Entidades::Personagens::Personagem* persona : characters) {
+			if (persona->vivo()) {
+				personagensVivos.push_back(persona);
+			}
+			else { 
+				delete persona;
+			}
+		}
+		characters = personagensVivos;
+	}
+
 	void Fase::criarInimFaceis()
 	{
-		listaEntidades.inserirNoFim(new Entidades::Personagens::Cachorro(sf::Vector2f(3500, 300), &listaEntidades, player, NULL));
+		Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(3500, 300), player, &projeteis, NULL);
+		characters.emplace_back(cachorro);
+		listaEntidades.inserirNoFim(cachorro);
+
 	}
 
 	void Fase::criarPlataformas()
 	{
-		listaEntidades.inserirNoFim(new Entidades::Obstaculos::Plataforma(sf::Vector2f(900, 600), -3 - id, 800, 300));
- 
-		listaEntidades.inserirNoFim(new Entidades::Obstaculos::Plataforma(sf::Vector2f(1100, 500), 3 + id, 800, 300));
- 
-		listaEntidades.inserirNoFim(new Entidades::Obstaculos::Plataforma(sf::Vector2f(1300, 400), -3 - id, 800, 300));
- 
-		listaEntidades.inserirNoFim(new Entidades::Obstaculos::Plataforma(sf::Vector2f(1500, 400), 3 + id, 800, 300));
+		Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900, 600), -3 -id, 800, 300);
+		obstaculos.push_back(plat1);
+		listaEntidades.inserirNoFim(plat1);
+
+		Entidades::Obstaculos::Plataforma* plat2 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1100, 500), 3 + id, 800, 300);
+		obstaculos.push_back(plat2);
+		listaEntidades.inserirNoFim(plat2);
+
+		Entidades::Obstaculos::Plataforma* plat3 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1300, 400), -3 - id, 800, 300);
+		obstaculos.push_back(plat3);
+		listaEntidades.inserirNoFim(plat3);
+
+		Entidades::Obstaculos::Plataforma* plat4 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1500, 400), 3 + id, 800, 300);
+		obstaculos.push_back(plat4);
+		listaEntidades.inserirNoFim(plat4);
 	}
 
 	void Fase::criarCenario()
 	{
 		for (int i = 0; i < 15; i++) {
 
-			  
-			listaEntidades.inserirNoFim(new Entidades::Estrutura(sf::Vector2f((100 * i) - 700, 670), TipoEstrutura::CHAO));
- 
+			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) - 700, 670), TipoEstrutura::CHAO);
+			listaEntidades.inserirNoFim(estrutura);
+			estruturas.push_back(estrutura);
 		}
 
-		  
-		listaEntidades.inserirNoFim(new Entidades::Estrutura(sf::Vector2f(1700, 638), TipoEstrutura::CHAO));
-		 
+		Entidades::Estrutura* parada = new Entidades::Estrutura(sf::Vector2f(1700, 638), TipoEstrutura::CHAO);
+		listaEntidades.inserirNoFim(parada);
+		estruturas.push_back(parada);
 
 		for (int i = 0; i < 20; i++) {
 
-			  
-			listaEntidades.inserirNoFim(new Entidades::Estrutura(sf::Vector2f((100 * i) + 1800, 670), TipoEstrutura::CHAO));
-			 
+			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) +1800, 670), TipoEstrutura::CHAO);
+			listaEntidades.inserirNoFim(estrutura);
+			estruturas.push_back(estrutura);
 		}
 
 		for (int i = 0; i < 30; i++) {
 
-			  
-			listaEntidades.inserirNoFim(new Entidades::Estrutura(sf::Vector2f((100 * i) + 4800, 670), TipoEstrutura::CHAO));
-			 
+			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 4800, 670), TipoEstrutura::CHAO);
+			listaEntidades.inserirNoFim(estrutura);
+			estruturas.push_back(estrutura);
 		}
 
 		for (int i = 0; i < 3; i++) {
-			  
-			listaEntidades.inserirNoFim(new Entidades::Estrutura(sf::Vector2f(-400 + (-100 * i), (-330 + 670)), TipoEstrutura::PAREDE));
-			  
-			listaEntidades.inserirNoFim(new Entidades::Estrutura(sf::Vector2f(7500 + (100 * i), (-330 + 670)), TipoEstrutura::PAREDE));
+
+			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(-400 + (-100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
+			estruturas.push_back(parede1);
+			listaEntidades.inserirNoFim(parede1);
+
+			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(7500 + (100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
+			estruturas.push_back(parede2);
+			listaEntidades.inserirNoFim(parede2);
 
 		}
 	}

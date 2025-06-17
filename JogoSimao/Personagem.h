@@ -3,7 +3,6 @@
 #include "Entidade.h"
 #include "TipoPersonagem.h"
 #include "Armas.h"
-#include <set>
 
 /**
 *	Felipe Simbalista: 25/05/2025
@@ -13,10 +12,6 @@
 *		controlar seus status(health, speed, power, jumps)
 *		movimentar o personagem com base na sua velocidade
 */
-namespace Listas {
-	class ListaEntidades;
-}
-
 
 class Arma;
 namespace Entidades{
@@ -29,8 +24,6 @@ namespace Entidades{
 		class Personagem : public Entidade, public Subject
 		{
 		protected:
-			Listas::ListaEntidades* lista;
-
 			//clock que controla o tempo de tiro do personagem
 			sf::Clock Clocktiro;
 			float tiroCooldown;
@@ -48,7 +41,7 @@ namespace Entidades{
 			//construtor padrão
 			Personagem();
 			//define posição e tamanho inicial do personagem
-			Personagem(sf::Vector2f pos, Listas::ListaEntidades* list);
+			Personagem(sf::Vector2f pos);
 			~Personagem();
 
 			//RELACIONADO A COLISÃO
@@ -59,7 +52,6 @@ namespace Entidades{
 				virtual void hitRight(Entidade* entidade);
 	
 			//GETTERS
-				const TipoEntidade getTipoEntidade() const;
 				const TipoPersonagem getTipo() const;
 				const Directions getDirection() const;
 				const int getHealth() const;

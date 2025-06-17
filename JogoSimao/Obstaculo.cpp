@@ -17,9 +17,7 @@ namespace Entidades{
 		Obstaculo::~Obstaculo()
 		{
 		}
-		const TipoEntidade Obstaculo::getTipoEntidade() const{
-			return TipoEntidade::OBSTACULO;
-		}
+
 		const bool Obstaculo::ehColidivel()
 		{
 			return colidivel;

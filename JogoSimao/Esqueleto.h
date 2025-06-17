@@ -20,7 +20,7 @@ namespace Entidades{
 		private:
 			int forca;
 		public:
-			Esqueleto(sf::Vector2f pos,ListaEntidades* lista, Personagem* player, int forca);
+			Esqueleto(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, int forca);
 			~Esqueleto();
 			void executar();
 			void atirar();

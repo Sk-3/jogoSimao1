@@ -1,12 +1,10 @@
 #include "Inimigo.h"
 #include "Arma.h"
-#include "ListaEntidades.h"
 namespace Entidades{
 	namespace Personagens {
-		Inimigo::Inimigo(sf::Vector2f pos, Listas::ListaEntidades* listaEnt, Personagem* player)
-			:Personagem(pos, listaEnt), pPlayer(player)
+		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis)
+			:Personagem(pos), pPlayer(player), pProjeteis(projeteis)
 		{
-			pProjeteis = listaEnt->getProjeteis();
 			nivel_maldade = 0;
 			range = 1000;
 		}

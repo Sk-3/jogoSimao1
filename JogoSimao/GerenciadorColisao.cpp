@@ -10,19 +10,21 @@ namespace Gerenciadores{
 	{
 	
 	}
-	GerenciadorColisao::GerenciadorColisao(ListaEntidades* lista)
-
+	GerenciadorColisao::GerenciadorColisao(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos, std::vector<Entidades::Projetil*>* projeteis, std::vector<Entidades::Estrutura*>* estruturas)
+		
 	{
 		/**
 		* @brief Construtor da classe GerenciadorColisao.
-		*
+		* @param characters Ponteiro para vetor de ponteiros para personagens.
+		* @param obstaculos Ponteiro para vetor de ponteiros para obstáculos.
+		* @param projeteis Ponteiro para vetor de ponteiros para projéteis.
+		* 
 		*/
-		this->projeteis = lista->getProjeteis();
-		this->obstaculos = lista->getObstaculos();
-		this->characters = lista->getPersonagens();
-		this->estruturas = lista->getEstruturas();
+		this->projeteis = projeteis;
+		this->obstaculos = obstaculos;
+		this->characters = characters;
+		this->estruturas = estruturas;
 	}
-
 
 	GerenciadorColisao::~GerenciadorColisao()
 	{
@@ -38,27 +40,18 @@ namespace Gerenciadores{
 
 	void GerenciadorColisao::tratarColisaoProjeteis()
 	{
-
-		
 		for (auto& projet : *projeteis) {
-			if (projet->Ativado()) {
-
-			
-
-				sf::FloatRect projBounds = projet->getBounds();
-				for (const auto& obst : *obstaculos) {
-					if (projBounds.intersects(obst->getBounds())) {
-						projet->desativar();
-					}
+			sf::FloatRect projBounds = projet->getBounds();
+			for (const auto& obst : *obstaculos) {
+				if (projBounds.intersects(obst->getBounds())) {
+					projet->desativar();
 				}
-				for (auto& charact : *characters) {
-					if (charact->Ativado()) {
-						if (projBounds.intersects(charact->getBounds())) {
-							if (charact->getTipo() != projet->getTipo()) {
-								projet->desativar();
-								projet->danifica(charact);
-							}
-						}
+			}
+			for (auto& charact : *characters) {
+				if (projBounds.intersects(charact->getBounds())) {
+					if (charact->getTipo() != projet->getTipo()) {
+						projet->desativar();
+						projet->danifica(charact);
 					}
 				}
 			}
@@ -69,13 +62,11 @@ namespace Gerenciadores{
 	{
 		for (auto& charact : *characters) {
 			for (const auto& obstac : *obstaculos) {
-				if (obstac->Ativado()) {
-					if (verificarColisao(obstac, charact)) {
-						if (obstac->ehColidivel()) {
-							empurrarPersonagem(charact, obstac);
-						}
-						obstac->obstacular(charact);
+				if (verificarColisao(obstac, charact)) {
+					if (obstac->ehColidivel()) {
+						empurrarPersonagem(charact, obstac);
 					}
+					obstac->obstacular(charact);
 				}
 			}
 		}
@@ -90,8 +81,6 @@ namespace Gerenciadores{
 			}
 		}
 	}
-
-
 
 	void GerenciadorColisao::empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Entidade* entidade)
 	{

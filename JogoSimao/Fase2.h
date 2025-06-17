@@ -1,5 +1,6 @@
 #pragma once
 #include "Fase.h"
+#include "Inimigo.h"
 #include "Cachorro.h"
 #include "Atirador.h"
 #include "Esqueleto.h"

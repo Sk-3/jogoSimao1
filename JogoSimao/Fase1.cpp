@@ -19,8 +19,9 @@ namespace Fases{
 	{
 
 		for (int i = 0; i < maxInimMedios; i++) {
-			  
-			listaEntidades.inserirNoFim(new Entidades::Personagens::Esqueleto(sf::Vector2f(6000 + (i * 1000), 300), &listaEntidades, player, i));
+			Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(6000+(i * 1000), 300), player, &projeteis, i);
+			characters.emplace_back(esqueleto);
+			listaEntidades.inserirNoFim(esqueleto);
 		}
 	}
 
@@ -28,12 +29,17 @@ namespace Fases{
 	{		
 		
 		for (int i = 0; i < 10; i++) {
- 
-			listaEntidades.inserirNoFim(new Entidades::Estrutura(sf::Vector2f((100 * i) + 3800, 670), TipoEstrutura::CHAO));
+
+			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 3800, 670), TipoEstrutura::CHAO);
+			listaEntidades.inserirNoFim(estrutura);
+			estruturas.push_back(estrutura);
 		}
 		
 		for (int i = 0; i <= 4; i++) {
-			listaEntidades.inserirNoFim(new Entidades::Obstaculos::Espinho(sf::Vector2f((200 * i) + 4000, 590 - (16 * i)), 1 + (0.2 * i)));
+
+			Entidades::Obstaculos::Espinho* espinho = new Entidades::Obstaculos::Espinho(sf::Vector2f((200 * i)+4000, 590 - (16 * i)), 1+(0.2*i));
+			listaEntidades.inserirNoFim(espinho);
+			obstaculos.push_back(espinho);
 		}
 	}	
 
@@ -65,17 +71,41 @@ namespace Fases{
 
 		executarJanela();
 		handleEvent();
-		listaEntidades.executar();
+		for (auto const& obst : obstaculos) {
+			obst->executar();
+		}
+		for (auto const& charact : characters) {
+			charact->executar();
+		}
+		for (auto const& projetil : projeteis) {
+			projetil->executar();
+		}
 		gravity.executar();
 		colision.executar();
+
 		hud.executar();
-		listaEntidades.desenhar();
+
+		for (auto const& charact : characters) {
+			charact->desenhar();
+		}
+		for (auto const& projetil : projeteis) {
+			projetil->desenhar();
+		}
+		for (auto const& obst : obstaculos) {
+			obst->desenhar();
+		}
+
+		for (auto const& estrut : estruturas) {
+			estrut->desenhar();
+		}
 
 		hud.draw();
+		removerProjeteis();
 		if (!player->vivo())
 		{
 			setAction(Actions::GAME_OVER);
 		}
+		removerPersonagens();
 	}
 
 }

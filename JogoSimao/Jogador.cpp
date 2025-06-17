@@ -17,10 +17,10 @@ namespace Entidades{
 			
 		}
 
-		Jogador::Jogador(sf::Vector2f pos, Listas::ListaEntidades* listaEnt)
-			:Personagem(pos, listaEnt)
+		Jogador::Jogador( sf::Vector2f pos, std::vector<Projetil*>* projeteis)
+			:Personagem( pos)
 		{
-			arma = new Arma(listaEnt, this, Armas::METRALHADORA);
+			arma = new Arma(projeteis, this, Armas::METRALHADORA);
 			tipo = TipoPersonagem::PLAYER;
 			maxSpeed = 6;
 			jumps = 2;

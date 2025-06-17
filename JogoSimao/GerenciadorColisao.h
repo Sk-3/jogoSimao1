@@ -3,7 +3,7 @@
 #include "Estrutura.h"
 #include "Obstaculo.h"
 #include "Projetil.h"
-#include "ListaEntidades.h"
+#include "vector"
 
 /**
 *	Felipe Simbalista: 25/05/2025
@@ -20,14 +20,14 @@ namespace Gerenciadores{
 	{
 	private:
 		std::vector<Entidades::Personagens::Personagem*>* characters;
-		std::list<Entidades::Obstaculos::Obstaculo*>* obstaculos;
-		std::set<Entidades::Projetil*>* projeteis;
+		std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos;
+		std::vector<Entidades::Projetil*>* projeteis;
 		std::vector<Entidades::Estrutura*>* estruturas;
 	public:
 
 		void executar();
 		GerenciadorColisao();
-		GerenciadorColisao(ListaEntidades*);
+		GerenciadorColisao(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>*, std::vector<Entidades::Projetil*>* projeteis, std::vector<Entidades::Estrutura*>* estruturas);
 		~GerenciadorColisao();
 	
 	
