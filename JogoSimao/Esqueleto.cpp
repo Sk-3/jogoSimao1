@@ -18,9 +18,9 @@ namespace Entidades{
 			Clocktiro.restart();
 			range = 800;
 			pPlayer = player;
-			this->forca = 2;
-			health = 5 * forca;
-			shape.setTexture(*pGerGraphic->getBoss());
+			this->forca = forca;
+			health = 5 + (forca*5);
+			shape.setTexture(*pGerGraphic->getEsqueleto());
 			shape.setTextureRect(sf::IntRect(0, 0, 81, 89));
 			shape.setScale(1.5, 1.5);
 		}

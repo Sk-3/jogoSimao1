@@ -34,7 +34,7 @@ namespace Gerenciadores{
 			sf::Texture playerLeft;
 			sf::Texture atirador;
 			sf::Texture parede;
-			sf::Texture boss;
+			sf::Texture esqueleto;
 			sf::Texture cachorro;
 			sf::Texture espinho;
 			sf::Texture fireball;
@@ -65,7 +65,7 @@ namespace Gerenciadores{
 			sf::Texture* getPlayerTexture();
 			sf::Texture* getParedeTexture();
 			sf::Texture* getPlayerInvertido();
-			sf::Texture* getBoss();
+			sf::Texture* getEsqueleto();
 			sf::Texture* getCachorro();
 			sf::Texture* getEspinho();
 			sf::Texture* getFireball();

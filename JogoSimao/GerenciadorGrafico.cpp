@@ -95,12 +95,12 @@ namespace Gerenciadores {
 				throw std::runtime_error("Falha ao carregar textura arvore.PNG");
 			}
 
-			if (!boss.loadFromFile("..//textures//boss.PNG")) {
-				throw std::runtime_error("Falha ao carregar textura arvore.PNG");
+			if (!esqueleto.loadFromFile("..//textures//esqueleto.PNG")) {
+				throw std::runtime_error("Falha ao carregar textura esqueleto.PNG");
 			}
 
 			if (!cachorro.loadFromFile("..//textures//cachorro.PNG")) {
-				throw std::runtime_error("Falha ao carregar textura arvore.PNG");
+				throw std::runtime_error("Falha ao carregar textura cachorro.PNG");
 			}
 
 			if (!espinho.loadFromFile("..//textures//espinhos.PNG")) {
@@ -170,9 +170,9 @@ namespace Gerenciadores {
 	{
 		return &playerLeft;
 	}
-	sf::Texture* GerenciadorGrafico::getBoss()
+	sf::Texture* GerenciadorGrafico::getEsqueleto()
 	{
-		return &boss;
+		return &esqueleto;
 	}
 	sf::Texture* GerenciadorGrafico::getCachorro()
 	{
