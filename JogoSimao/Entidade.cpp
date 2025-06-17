@@ -4,6 +4,11 @@ namespace Entidades{
 	Entidade::Entidade() :
 		position(sf::Vector2f(0.f, 0.f))
 	{
+		ativo = 1; 
+		shape.scale(3, 3);
+		shape.setPosition(position);
+		shape.setTexture(*pGerGraphic->getProjetilTexture());
+		setFigura(&shape);
 	}
 
 	Entidade::Entidade(sf::Vector2f pos) :
@@ -15,7 +20,7 @@ namespace Entidades{
 		* @param pos - posicao do corpo do objeto
 		*/
 
-
+		ativo = 1;
 		shape.scale(3, 3);
 		shape.setPosition(pos);
 		shape.setTexture(*pGerGraphic->getProjetilTexture());

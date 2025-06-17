@@ -12,6 +12,7 @@
 #include "ListaEntidades.h"
 
 
+
 /**
 *	Felipe Simbalista: 25/05/2025
 * 
@@ -32,9 +33,6 @@ namespace Fases{
 		Hud hud;
 		//GERENCIADORES
 		Gerenciadores::GerenciadorColisao gerenciadorColisao;
-		Gravidade gravity;
-		
-
 		//LISTA ENTIDADES
 		Listas::ListaEntidades listaEntidades;
 
@@ -58,5 +56,6 @@ namespace Fases{
 		void criarPlataformas();
 		virtual void criarInimigos() = 0;		
 		void criarCenario();
+		void aplicarGravidade();
 	};
 }

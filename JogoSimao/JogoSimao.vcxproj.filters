@@ -72,9 +72,6 @@
     <ClCompile Include="Jogador.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Gravidade.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
     <ClCompile Include="GerenciadorColisao.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
@@ -192,9 +189,6 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Actions.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Gravidade.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="GerenciadorColisao.h">

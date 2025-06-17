@@ -18,8 +18,6 @@ namespace Entidades{
 		const TipoPersonagem getTipo() const;
 		void setTipo(TipoPersonagem tipo);
 		void executar();
-		void desativar();
-		bool Ativado();
 		void danifica(Personagens::Personagem* personagem);
 	};
 

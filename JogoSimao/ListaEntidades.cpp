@@ -63,7 +63,13 @@ namespace Listas
     void ListaEntidades::executar()
     {
         for (it = inicio(); it != fim(); ++it)
-            (*it)->executar();
+        {
+            if ((*it)->ativado()) {
+                (*it)->executar();
+            }
+            
+        }
+            
     }
 
     
@@ -76,8 +82,12 @@ namespace Listas
 
     void ListaEntidades::desenhar()
     {
-        for (it = inicio(); it != fim(); ++it)
-            (*it)->desenhar();
+        for (it = inicio(); it != fim(); ++it) {
+            if ((*it)->ativado()) {
+                (*it)->desenhar();
+            }
+        }
+            
     }
 
     void ListaEntidades::desalocar()

@@ -54,15 +54,6 @@ namespace Entidades{
 			move();
 		}
 	}
-
-	void Projetil::desativar()
-	{
-		/**
-		*@brief Desativa o projetil, tornando-o inativo
-		*@return void
-		*/
-		ativo = 0; 
-	}
 	void Projetil::setTipo(TipoPersonagem tipo)
 	{
 		/**
@@ -81,15 +72,6 @@ namespace Entidades{
 		*/
 		return tipo;
 	}
-	bool Projetil::Ativado()
-	{
-		/**
-		*@brief Verifica se o projetil esta ativo
-		*@return bool Retorna true se o projetil esta ativo, false caso contrario
-		*/
-		return ativo;
-	}
-
 	void Projetil::danifica(Personagens::Personagem* personagem)
 	{
 		/**

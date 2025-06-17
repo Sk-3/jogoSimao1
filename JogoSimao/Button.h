@@ -15,7 +15,7 @@
 *	seu atributo actualAction vai ser lido pelo menuState, quando ele for clicado ele vai mudar de "NADA" para a ação de buttonAction
 */
 namespace Entidades{
-	class Button : public Entidade
+	class Button : public Ente
 	{
 	private:
 

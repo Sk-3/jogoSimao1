@@ -72,7 +72,7 @@ namespace Fases{
 		executarJanela();
 		handleEvent();
 		listaEntidades.executar();
-		gravity.executar();
+		aplicarGravidade();
 		gerenciadorColisao.executar();
 
 		hud.executar();

@@ -2,7 +2,7 @@
 namespace Fases{
 
 	Fase::Fase():
-		State(), gravity(&characters, &projeteis),
+		State(),
 		gerenciadorColisao(&characters, &obstaculos, &projeteis, &estruturas),
 		player(new Entidades::Personagens::Jogador( sf::Vector2f(100, 100), &projeteis)), view(pGerGraphic->getStdView())
 	{
@@ -17,19 +17,7 @@ namespace Fases{
 	
 
 	Fase::~Fase() {
-		for (auto& obstacul : obstaculos) {
-			delete obstacul;
-		}
-		for (auto& charact : characters) {
-			delete charact;
-		}
-		for (auto& projetil : projeteis) {
-			delete projetil;
-		}
-		for (auto& estrutura : estruturas) {
-			delete estrutura;
-		}
-
+		listaEntidades.desalocar();
 	}
 
 	void Fase::handleEvent()
@@ -203,6 +191,13 @@ namespace Fases{
 			estruturas.push_back(parede2);
 			listaEntidades.inserirNoFim(parede2);
 			gerenciadorColisao.incluirEstrutura(parede2);
+		}
+	}
+
+	void Fase::aplicarGravidade()
+	{
+		for (Lista<Entidades::Entidade*>::Iterator it = listaEntidades.inicio(); it != listaEntidades.fim(); ++it) {
+			(*it)->changeSpeed(sf::Vector2f(0, 0.2));
 		}
 	}
 

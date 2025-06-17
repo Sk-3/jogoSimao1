@@ -154,7 +154,6 @@
     <ClCompile Include="GerenciadorColisao.cpp" />
     <ClCompile Include="GerenciadorEstado.cpp" />
     <ClCompile Include="GerenciadorGrafico.cpp" />
-    <ClCompile Include="Gravidade.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="Inimigo.cpp" />
     <ClCompile Include="ListaEntidades.cpp" />
@@ -204,7 +203,6 @@
     <ClInclude Include="GerenciadorColisao.h" />
     <ClInclude Include="GerenciadorEstado.h" />
     <ClInclude Include="GerenciadorGrafico.h" />
-    <ClInclude Include="Gravidade.h" />
     <ClInclude Include="Hud.h" />
     <ClInclude Include="Inimigo.h" />
     <ClInclude Include="Lista.h" />

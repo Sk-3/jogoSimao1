@@ -41,17 +41,25 @@ namespace Gerenciadores{
 	void GerenciadorColisao::tratarColisaoProjeteis()
 	{
 		for (auto& projet : *projeteis) {
-			sf::FloatRect projBounds = projet->getBounds();
-			for (const auto& obst : *obstaculos) {
-				if (projBounds.intersects(obst->getBounds())) {
-					projet->desativar();
-				}
-			}
-			for (auto& charact : *characters) {
-				if (projBounds.intersects(charact->getBounds())) {
-					if (charact->getTipo() != projet->getTipo()) {
+			if (projet->ativado()) {
+				sf::FloatRect projBounds = projet->getBounds();
+				for (const auto& obst : *obstaculos) {
+					if (verificarColisao(obst, projet)) {
 						projet->desativar();
-						projet->danifica(charact);
+					}
+				}
+				for (const auto& estrut : *estruturas) {
+					if (verificarColisao(estrut, projet)) {
+						projet->desativar();
+					}
+				}
+
+				for (auto& charact : *characters) {
+					if (verificarColisao(projet, charact)) {
+						if (charact->getTipo() != projet->getTipo()) {
+							projet->desativar();
+							projet->danifica(charact);
+						}
 					}
 				}
 			}
