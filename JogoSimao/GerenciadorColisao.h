@@ -34,7 +34,6 @@ namespace Gerenciadores{
 		const bool verificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2);
 		void tratarColisaoProjeteis();
 		void tratarColisaoPersonagens();
-		void tratarColisaoObstaculos();
 		void empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Entidade* entidade);
 		void colision();
 	

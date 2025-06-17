@@ -33,7 +33,7 @@ namespace Entidades {
 		}
 
 		void Espinho::executar() {
-			move();
+
 		}
 
 		void Espinho::obstacular(Personagens::Personagem* pPersonagem) {

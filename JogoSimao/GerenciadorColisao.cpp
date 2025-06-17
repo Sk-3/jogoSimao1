@@ -46,14 +46,8 @@ namespace Gerenciadores{
 			
 
 				sf::FloatRect projBounds = projet->getBounds();
-				for (const auto& estrut : *estruturas) {
-					if (verificarColisao(estrut, projet)) {
-						projet->desativar();
-					}
-				}
-
 				for (const auto& obst : *obstaculos) {
-					if (verificarColisao(obst, projet)) {
+					if (projBounds.intersects(obst->getBounds())) {
 						projet->desativar();
 					}
 				}
@@ -92,17 +86,6 @@ namespace Gerenciadores{
 					
 					empurrarPersonagem(charact, estrut);
 					
-				}
-			}
-		}
-	}
-
-	void GerenciadorColisao::tratarColisaoObstaculos()
-	{
-		for (const auto& obstac : *obstaculos) {
-			for (const auto& estrut : *estruturas) {
-				if (verificarColisao(estrut, obstac)) {
-					obstac->frear();
 				}
 			}
 		}
@@ -182,7 +165,6 @@ namespace Gerenciadores{
 		*/
 		tratarColisaoProjeteis();
 		tratarColisaoPersonagens();
-		tratarColisaoObstaculos();
 
 		
 	}

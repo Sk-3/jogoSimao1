@@ -23,7 +23,6 @@ namespace Entidades{
 			~Obstaculo();
 			const TipoEntidade getTipoEntidade() const;
 			const bool ehColidivel();
-			void frear();
 			virtual void obstacular(Personagens::Personagem* pPersonagem) = 0;
 			virtual void executar() = 0; 
 		};

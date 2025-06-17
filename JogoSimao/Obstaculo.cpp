@@ -25,10 +25,5 @@ namespace Entidades{
 			return colidivel;
 		}
 
-		void Obstaculo::frear()
-		{
-			speed.y = 0;
-		}
-
 	}
 }

@@ -17,7 +17,6 @@ class Gravidade
 	sf::Vector2f gravityForce;
 	std::set<Entidades::Projetil*>* projeteis;
 	std::vector<Entidades::Personagens::Personagem*>* characters;
-	std::list<Entidades::Obstaculos::Obstaculo*>* obstaculos;
 public:
 	Gravidade(ListaEntidades* lista);
 	void executar();

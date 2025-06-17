@@ -31,20 +31,15 @@ namespace Entidades {
 
 		void Fosso::desabar()
 		{
-			if (!obstaculou) {
-				antiGravidade();
+			if (obstaculou) {
+				speed.y = 5;
+				move();
 			}			
-		}
-
-		void Fosso::antiGravidade()
-		{
-			changeSpeed(sf::Vector2f(0, -0.2));
 		}
 
 
 		void Fosso::executar()
 		{
-			move();
 			desabar();
 		}
 	}

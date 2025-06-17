@@ -27,7 +27,6 @@ namespace Fases{
 	void Fase1::criaObstMedios()
 	{		
 		
-		listaEntidades.inserirNoFim(new Entidades::Obstaculos::Espinho(sf::Vector2f(600, 300), 1));
 		for (int i = 0; i < 10; i++) {
  
 			listaEntidades.inserirNoFim(new Entidades::Estrutura(sf::Vector2f((100 * i) + 3800, 670), TipoEstrutura::CHAO));

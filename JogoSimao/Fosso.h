@@ -23,7 +23,6 @@ namespace Entidades {
 			~Fosso();
 			void obstacular(Personagens::Personagem* pPersonagem);
 			void desabar();
-			void antiGravidade();
 			void executar();
 		};
 	}

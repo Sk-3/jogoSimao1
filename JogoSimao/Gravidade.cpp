@@ -14,7 +14,6 @@ Gravidade::Gravidade(ListaEntidades* listaEnt)
 	gravityForce.x = 0;
 	gravityForce.y = 0.2;
 	projeteis = listaEntidades->getProjeteis();
-	obstaculos = listaEntidades->getObstaculos();
 	characters = listaEntidades->getPersonagens();
 }
 void Gravidade::executar()
@@ -32,13 +31,10 @@ void Gravidade::aplyGravity()
 	* @brief Aplica a força da gravidade a todos os personagens e projeteis.
 	* @return void
 	*/
-	for (const auto& projeteis : *projeteis) {
+	for (auto& projeteis : *projeteis) {
 		projeteis->changeSpeed(gravityForce);
 	}
 	for (const auto &character : *characters) {
 		character->changeSpeed(gravityForce);
-	}
-	for (const auto& obstac : *obstaculos) {
-		obstac->changeSpeed(gravityForce);
 	}
 }
