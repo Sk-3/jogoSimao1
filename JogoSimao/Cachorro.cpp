@@ -3,8 +3,8 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Cachorro::Cachorro(sf::Vector2f pos, Listas::ListaEntidades* lista, Personagem* jogador, Personagem* dono)
-			:Inimigo(pos, lista, jogador), pDono(dono), velocidadeCacando(4), velocidadeSeguindo(3)
+		Cachorro::Cachorro(sf::Vector2f pos, Listas::ListaEntidades* lista, Personagem* player, Personagem* dono)
+			:Inimigo(pos, lista, player), pDono(dono), velocidadeCacando(4), velocidadeSeguindo(3)
 		{
 			/**
 			*@brief Construtor da classe Cachorro
@@ -19,11 +19,11 @@ namespace Entidades{
 				mandarAtacar();
 			}
 			
-			arma = new Arma(lista, this, Armas::ARMACACHORRO);
-			shape.setTexture(*pGerGraphic->getCachorro());
+			arma = new Arma(lista, this, Armas::ARMACACHORRO);			shape.setTexture(*pGerGraphic->getCachorro());
 			shape.setTextureRect(sf::IntRect(0, 0, 65, 64));
 			shape.setScale(1.2, 1.2);
 		}
+
 
 		Cachorro::~Cachorro()
 		{

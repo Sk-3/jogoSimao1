@@ -19,7 +19,7 @@ namespace Entidades {
 			*@brief Funcao responsavel por fazer o cachorro perseguir o jogador caso ele esteja vivo
 			*@param ponteiro pro objeto cachorro
 			*/
-			if (cachorro->getJogador() && cachorro->getJogador()->getHealth() >= 0) {
+			if (cachorro->getPlayer() && cachorro->getPlayer()->getHealth() >= 0) {
 				cachorro->setMoveSpeed(cachorro->getVelocidadeCacando());
 				cachorro->perseguirJogador();
 				if (cachorro->jogadorNoAlcance()) {

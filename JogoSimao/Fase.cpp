@@ -4,7 +4,7 @@ namespace Fases{
 	Fase::Fase():
 		State(),
 		gravity(&listaEntidades),
-		GC(&listaEntidades),
+		colision(&listaEntidades),
 		player(new Entidades::Personagens::Jogador(sf::Vector2f(100, 100), &listaEntidades)),
 		view(pGerGraphic->getStdView())
 	{

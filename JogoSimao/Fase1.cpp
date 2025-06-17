@@ -68,7 +68,7 @@ namespace Fases{
 		handleEvent();
 		listaEntidades.executar();
 		gravity.executar();
-		GC.executar();
+		colision.executar();
 		hud.executar();
 		listaEntidades.desenhar();
 

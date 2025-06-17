@@ -4,8 +4,8 @@
 namespace Entidades{
 	namespace Personagens
 	{
-		Personagens::Atirador::Atirador(sf::Vector2f pos, Listas::ListaEntidades* lista, Personagem* jogador) :
-			Inimigo(pos, lista, jogador), personagens(personagens)
+		Personagens::Atirador::Atirador(sf::Vector2f pos, Listas::ListaEntidades* lista, Personagem* player) :
+			Inimigo(pos, lista, player), personagens(personagens)
 		{
 			arma = new Arma(lista, this, Armas::RIFLE);
 			Clocktiro.restart();
@@ -19,7 +19,8 @@ namespace Entidades{
 		}
 		Atirador::~Atirador()
 		{
-		}		
+		}
+
 
 		void Atirador::eliminarCachorros()
 		{
@@ -47,7 +48,7 @@ namespace Entidades{
 					cach->mandarCacar();
 				}
 
-				if (pJogador->getCenter().x > getCenter().x) {
+				if (pPlayer->getCenter().x > getCenter().x) {
 					direction = Directions::RIGHT;
 				}
 				else {

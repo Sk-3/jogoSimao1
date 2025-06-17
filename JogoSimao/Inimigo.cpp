@@ -3,8 +3,8 @@
 #include "ListaEntidades.h"
 namespace Entidades{
 	namespace Personagens {
-		Inimigo::Inimigo(sf::Vector2f pos, Listas::ListaEntidades* listaEnt, Personagem* jogador)
-			:Personagem(pos, listaEnt), pJogador(jogador)
+		Inimigo::Inimigo(sf::Vector2f pos, Listas::ListaEntidades* listaEnt, Personagem* player)
+			:Personagem(pos, listaEnt), pPlayer(player)
 		{
 			pProjeteis = listaEnt->getProjeteis();
 			nivel_maldade = 0;
@@ -26,8 +26,8 @@ namespace Entidades{
 
 			//Vetor do boss até o jogador:
 			sf::Vector2f dist;
-			dist.x = pJogador->getCenter().x - getCenter().x;
-			dist.y = pJogador->getCenter().y - getCenter().y;
+			dist.x = pPlayer->getCenter().x - getCenter().x;
+			dist.y = pPlayer->getCenter().y - getCenter().y;
 			//modulo da distancia
 			double modDist = sqrt((dist.x * dist.x) + (dist.y * dist.y));
 			if (modDist < range) {
@@ -38,9 +38,9 @@ namespace Entidades{
 		}
 
 
-		const Personagem* Inimigo::getJogador() const
+		const Personagem* Inimigo::getPlayer() const
 		{
-			return pJogador;
+			return pPlayer;
 		}
 
 		void Inimigo::atirar() {
@@ -56,7 +56,7 @@ namespace Entidades{
 		/**
 		*@brief Move o inimigo na direção do jogador, se o jogador estiver no alcance.
 		*/
-			if (getPosition().x - pJogador->getPosition().x < 0) {
+			if (getPosition().x - pPlayer->getPosition().x < 0) {
 				speed.x = moveSpeed;
 				direction = Directions::RIGHT;
 			}
