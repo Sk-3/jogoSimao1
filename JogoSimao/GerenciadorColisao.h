@@ -3,8 +3,8 @@
 #include "Estrutura.h"
 #include "Obstaculo.h"
 #include "Projetil.h"
-#include "vector"
-
+#include <set>
+#include <list>
 /**
 *	Felipe Simbalista: 25/05/2025
 * 
@@ -34,6 +34,10 @@ namespace Gerenciadores{
 		const bool verificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2);
 		void tratarColisaoProjeteis();
 		void tratarColisaoPersonagens();
+		void incluirInimigo(Entidades::Personagens::Inimigo* inimigo);
+		void incluirObstaculo(Entidades::Obstaculos::Obstaculo* obstaculo);
+		void incluirProjetil(Entidades::Projetil* projetil );
+		void incluirEstrutura(Entidades::Estrutura* estrutura);
 		void empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Entidade* entidade);
 		void colision();
 	

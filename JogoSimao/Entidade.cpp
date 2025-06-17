@@ -1,7 +1,37 @@
 #include "Entidade.h"
 namespace Entidades{
+
+	Entidade::Entidade() :
+		position(sf::Vector2f(0.f, 0.f))
+	{
+	}
+
+	Entidade::Entidade(sf::Vector2f pos) :
+		position(pos)
+	{
+
+		/***
+		* @brief construtor da classe Entity, inicializa o corpo do objeto com a posicao e tamanho especificados
+		* @param pos - posicao do corpo do objeto
+		*/
+
+
+		shape.scale(3, 3);
+		shape.setPosition(pos);
+		shape.setTexture(*pGerGraphic->getProjetilTexture());
+		setFigura(&shape);
+	}
+
+	Entidade::~Entidade()
+	{
+	}
+
+
 	const sf::Vector2f Entidade::getCenter()
 	{
+
+		ativo = 1;
+
 		sf::Vector2f center;
 
 		center.x = shape.getGlobalBounds().left + shape.getGlobalBounds().width / 2.f;
@@ -18,24 +48,6 @@ namespace Entidades{
 		*/
 		return shape.getPosition();
 	}
-
-	void Entidade::move()
-	{
-		/***
-		* @brief move o corpo do objeto na direcao do vetor speed
-		*/
-		shape.move(speed);		
-	}
-
-	void Entidade::changeSpeed(sf::Vector2f addSpeed)
-	{
-		/***
-		* @brief altera a velocidade do corpo do objeto
-		* @param addSpeed - vetor que sera adicionado a velocidade atual do corpo do objeto
-		*/
-		speed += addSpeed;
-	}
-
 	const sf::FloatRect Entidade::getBounds()
 	{
 		/***
@@ -45,29 +57,30 @@ namespace Entidades{
 		return shape.getGlobalBounds();
 	}
 
-	Entidade::Entidade():
-		position(sf::Vector2f(0.f,0.f))
+	void Entidade::move()
 	{
-	}
-
-	Entidade::Entidade(sf::Vector2f pos) :
-	position(pos)
-	{
-
 		/***
-		* @brief construtor da classe Entity, inicializa o corpo do objeto com a posicao e tamanho especificados
-		* @param pos - posicao do corpo do objeto
+		* @brief move o corpo do objeto na direcao do vetor speed
 		*/
-
-		
-		shape.scale(3,3);
-		shape.setPosition(pos);
-		shape.setTexture(*pGerGraphic->getProjetilTexture());
-		setFigura(&shape);
+		shape.move(speed);		
 	}
-
-	Entidade::~Entidade()
+	void Entidade::changeSpeed(sf::Vector2f addSpeed)
 	{
+		/***
+		* @brief altera a velocidade do corpo do objeto
+		* @param addSpeed - vetor que sera adicionado a velocidade atual do corpo do objeto
+		*/
+		speed += addSpeed;
 	}
+	
+	void Entidade::desativar(){
+		ativo = 0;
+	}
+	const bool Entidade::ativado() const
+	{
+		return ativo;
+	}
+
+	
 
 }

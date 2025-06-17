@@ -82,6 +82,22 @@ namespace Gerenciadores{
 		}
 	}
 
+	void GerenciadorColisao::incluirInimigo(Entidades::Personagens::Inimigo* inimigo)
+	{
+	}
+
+	void GerenciadorColisao::incluirObstaculo(Entidades::Obstaculos::Obstaculo* obstaculo)
+	{
+	}
+
+	void GerenciadorColisao::incluirProjetil(Entidades::Projetil* projetil)
+	{
+	}
+
+	void GerenciadorColisao::incluirEstrutura(Entidades::Estrutura* estrutura)
+	{
+	}
+
 	void GerenciadorColisao::empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Entidade* entidade)
 	{
 

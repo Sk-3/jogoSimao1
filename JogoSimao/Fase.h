@@ -31,7 +31,7 @@ namespace Fases{
 		sf::View view;
 		Hud hud;
 		//GERENCIADORES
-		Gerenciadores::GerenciadorColisao colision;
+		Gerenciadores::GerenciadorColisao gerenciadorColisao;
 		Gravidade gravity;
 		
 
@@ -53,9 +53,8 @@ namespace Fases{
 		virtual void handleEvent();
 		virtual void executar() = 0;
 		virtual void executarJanela();
-		void removerProjeteis();
-		void removerPersonagens();
-		void criarInimFaceis();
+		
+		void criarCachorro();
 		void criarPlataformas();
 		virtual void criarInimigos() = 0;		
 		void criarCenario();

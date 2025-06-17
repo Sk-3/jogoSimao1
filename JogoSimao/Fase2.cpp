@@ -40,7 +40,7 @@ namespace Fases{
 
 	void Fase2::criarInimigos()
 	{			
-		criarInimFaceis();
+		criarCachorro();
 		criarChefoes();	
 	}
 	void Fase2::criarObstaculo()
@@ -58,40 +58,18 @@ namespace Fases{
 
 		executarJanela();
 		handleEvent();
-		for (auto const& obst : obstaculos) {
-			obst->executar();
-		}
-		for (auto const& charact : characters) {
-			charact->executar();
-		}
-		for (auto const& projetil : projeteis) {
-			projetil->executar();
-		}
+		listaEntidades.executar();
 		gravity.executar();
-		colision.executar();
+		gerenciadorColisao.executar();
 
 		hud.executar();
-
-		for (auto const& charact : characters) {
-			charact->desenhar();
-		}
-		for (auto const& projetil : projeteis) {
-			projetil->desenhar();
-		}
-		for (auto const& obst : obstaculos) {
-			obst->desenhar();
-		}
-
-		for (auto const& estrut : estruturas) {
-			estrut->desenhar();
-		}
+		listaEntidades.desenhar();
 
 		hud.draw();
-		removerProjeteis();
+		
 		if (!player->vivo())
 		{
 			setAction(Actions::GAME_OVER);
 		}
-		removerPersonagens();
 	}
 }
