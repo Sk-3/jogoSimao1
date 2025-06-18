@@ -3,7 +3,6 @@ namespace Fases{
 
 	Fase::Fase():
 		State(),
-		gerenciadorColisao(&characters, &obstaculos, &projeteis, &estruturas),
 		player(new Entidades::Personagens::Jogador(sf::Vector2f(100, 100))),
 		view(pGerGraphic->getStdView())
 	{
@@ -13,7 +12,6 @@ namespace Fases{
 		hud.setPlayer(player);
 		player2 = nullptr;
 		pGerGraphic->setView(view);
-		characters.push_back(player);
 		
 	}
 
@@ -123,7 +121,6 @@ namespace Fases{
 	void Fase::criarCachorro()
 	{
 		Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(3500, 300), player, &listaEntidades, &gerenciadorColisao, NULL);
-		characters.emplace_back(cachorro);
 		listaEntidades.inserirNoFim(cachorro);
 		gerenciadorColisao.incluirInimigo(cachorro);
 
@@ -158,20 +155,17 @@ namespace Fases{
 
 			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) - 700, 670), TipoEstrutura::CHAO);
 			listaEntidades.inserirNoFim(estrutura);
-			estruturas.push_back(estrutura);
 			gerenciadorColisao.incluirEstrutura(estrutura);
 		}
 
 		Entidades::Estrutura* parada = new Entidades::Estrutura(sf::Vector2f(1700, 638), TipoEstrutura::CHAO);
 		listaEntidades.inserirNoFim(parada);
-		estruturas.push_back(parada);
 		gerenciadorColisao.incluirEstrutura(parada);
 
 		for (int i = 0; i < 20; i++) {
 
 			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) +1800, 670), TipoEstrutura::CHAO);
 			listaEntidades.inserirNoFim(estrutura);
-			estruturas.push_back(estrutura);
 			gerenciadorColisao.incluirEstrutura(estrutura);
 		}
 
@@ -179,19 +173,17 @@ namespace Fases{
 
 			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 4800, 670), TipoEstrutura::CHAO);
 			listaEntidades.inserirNoFim(estrutura);
-			estruturas.push_back(estrutura);
 			gerenciadorColisao.incluirEstrutura(estrutura);
 		}
 
 		for (int i = 0; i < 3; i++) {
 
 			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(-400 + (-100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
-			estruturas.push_back(parede1);
+			
 			listaEntidades.inserirNoFim(parede1);
 			gerenciadorColisao.incluirEstrutura(parede1);
 
 			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(7500 + (100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
-			estruturas.push_back(parede2);
 			listaEntidades.inserirNoFim(parede2);
 			gerenciadorColisao.incluirEstrutura(parede2);
 		}

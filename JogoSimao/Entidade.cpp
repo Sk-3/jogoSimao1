@@ -34,9 +34,6 @@ namespace Entidades{
 
 	const sf::Vector2f Entidade::getCenter()
 	{
-
-		ativo = 1;
-
 		sf::Vector2f center;
 
 		center.x = shape.getGlobalBounds().left + shape.getGlobalBounds().width / 2.f;
@@ -78,10 +75,12 @@ namespace Entidades{
 		speed += addSpeed;
 	}
 	
+
+
 	void Entidade::desativar(){
 		ativo = 0;
 	}
-	const bool Entidade::ativado() const
+	bool Entidade::ativado() const
 	{
 		return ativo;
 	}

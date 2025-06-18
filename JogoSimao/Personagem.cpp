@@ -117,27 +117,6 @@ namespace Entidades{
 			}
 		}
 
-		void Personagem::hitTop(Entidade* entidade)
-		{
-			
-		}
-
-		void Personagem::hitGround(Entidade* entidade)
-		{
-			
-		}
-
-		void Personagem::hitLeft(Entidade* entidade)
-		{
-					
-		}
-
-		void Personagem::hitRight(Entidade* entidade)
-		{
-
-			
-		}
-
 		void Personagem::tiraVida(int dano)
 		{
 			health -= dano;

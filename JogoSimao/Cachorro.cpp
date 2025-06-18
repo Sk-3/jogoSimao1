@@ -85,6 +85,7 @@ namespace Entidades{
 			*@details Executa o estado atual do cachorro
 			*@return void
 			*/
+			
 
 			if (!vivo()) {
 				desativar();

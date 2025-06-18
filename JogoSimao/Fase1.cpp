@@ -19,8 +19,8 @@ namespace Fases{
 	{
 
 		for (int i = 0; i < maxInimMedios; i++) {
-			Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(6000+(i * 1000), 300), player,&listaEntidades, &gerenciadorColisao, i);
-			characters.emplace_back(esqueleto);
+			Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(200, 300), player,&listaEntidades, &gerenciadorColisao, i);
+			gerenciadorColisao.incluirInimigo(esqueleto);
 			listaEntidades.inserirNoFim(esqueleto);
 		}
 	}
@@ -32,14 +32,14 @@ namespace Fases{
 
 			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 3800, 670), TipoEstrutura::CHAO);
 			listaEntidades.inserirNoFim(estrutura);
-			estruturas.push_back(estrutura);
+			gerenciadorColisao.incluirEstrutura(estrutura);
 		}
 		
 		for (int i = 0; i <= 4; i++) {
 
 			Entidades::Obstaculos::Espinho* espinho = new Entidades::Obstaculos::Espinho(sf::Vector2f((200 * i)+4000, 590 - (16 * i)), 1+(0.2*i));
 			listaEntidades.inserirNoFim(espinho);
-			obstaculos.push_back(espinho);
+			gerenciadorColisao.incluirObstaculo(espinho);
 		}
 	}	
 
@@ -74,7 +74,6 @@ namespace Fases{
 		listaEntidades.executar();
 		aplicarGravidade();
 		gerenciadorColisao.executar();
-
 		hud.executar();
 		listaEntidades.desenhar();
 		hud.draw();

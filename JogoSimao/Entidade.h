@@ -34,7 +34,7 @@ namespace Entidades{
 		const sf::Vector2f getCenter();
 		const sf::Vector2f getPosition();
 		const virtual sf::FloatRect getBounds();
-		const bool ativado() const;
+		bool ativado() const;
 		//SETTERS
 		void desativar();
 		void move();

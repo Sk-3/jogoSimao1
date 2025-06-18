@@ -18,7 +18,7 @@ namespace Fases{
 	{
 		for (int i = 0; i < maxChefoes; i++) {
 			Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(6000 + (i * 1000), 300), player, &listaEntidades, &gerenciadorColisao);
-			characters.emplace_back(atirador);
+			gerenciadorColisao.incluirInimigo(atirador);
 			listaEntidades.inserirNoFim(atirador);
 		}
 	}
@@ -29,7 +29,7 @@ namespace Fases{
 		for (int i = 0; i < 3; i++) {
 
 			Entidades::Obstaculos::Fosso* fosso = new Entidades::Obstaculos::Fosso(sf::Vector2f(4000+(200*i), 670), 1);
-			obstaculos.push_back(fosso);
+			gerenciadorColisao.incluirObstaculo(fosso);
 			listaEntidades.inserirNoFim(fosso);
 		}
 	}

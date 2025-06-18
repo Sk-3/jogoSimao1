@@ -19,32 +19,38 @@ namespace Gerenciadores{
 	class GerenciadorColisao
 	{
 	private:
-		std::vector<Entidades::Personagens::Personagem*>* characters;
-		std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos;
-		std::vector<Entidades::Projetil*>* projeteis;
-		std::vector<Entidades::Estrutura*>* estruturas;
+		std::vector<Entidades::Personagens::Inimigo*> inimigos;
+		std::vector<Entidades::Obstaculos::Obstaculo*> obstaculos;
+		std::vector<Entidades::Projetil*> projeteis;
+		std::vector<Entidades::Estrutura*> estruturas;
 		Entidades::Personagens::Jogador* jogador1;
 		Entidades::Personagens::Jogador* jogador2;
 	public:
 
 		void executar();
 		GerenciadorColisao();
-		GerenciadorColisao(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>*, std::vector<Entidades::Projetil*>* projeteis, std::vector<Entidades::Estrutura*>* estruturas);
 		~GerenciadorColisao();
 	
 	
 		const bool verificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2);
+	
+
+		//TRATAMENTO DE COLISOES
+		void tratarColisoesJogsObstaculos();
+		void tratarColisoesJogsEstruturas();		
 		void tratarColisaoProjeteis();
-		void tratarColisaoPersonagens();
+		void tratarColisaoInimigos();
+		void empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Entidade* entidade);
+		void colision();
+
+		//INCLUIR ENTIDADES
 		void incluirInimigo(Entidades::Personagens::Inimigo* inimigo);
 		void incluirObstaculo(Entidades::Obstaculos::Obstaculo* obstaculo);
 		void incluirProjetil(Entidades::Projetil* projetil );
 		void incluirEstrutura(Entidades::Estrutura* estrutura);
 		void incluirJogador1(Entidades::Personagens::Jogador* jogador);
 		void incluirJogador2(Entidades::Personagens::Jogador* jogador);
-		void empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Entidade* entidade);
-		void colision();
-	
+		
 	};
 
 }

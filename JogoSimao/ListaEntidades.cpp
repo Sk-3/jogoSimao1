@@ -64,9 +64,15 @@ namespace Listas
     {
         for (it = inicio(); it != fim(); ++it)
         {
-            if ((*it)->ativado()) {
-                (*it)->executar();
+            if ((*it)->ativado()) 
+            {
+                if ((*it)->ativado()) {
+                    (*it)->executar();
+                }
+                
             }
+                
+            
             
         }
             
@@ -83,9 +89,9 @@ namespace Listas
     void ListaEntidades::desenhar()
     {
         for (it = inicio(); it != fim(); ++it) {
-            if ((*it)->ativado()) {
+            if ((*it)->ativado())
                 (*it)->desenhar();
-            }
+           
         }
             
     }

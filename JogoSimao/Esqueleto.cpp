@@ -19,7 +19,7 @@ namespace Entidades{
 			range = 800;
 			pPlayer = player;
 			this->forca = forca;
-			health = 5 * forca;
+			health = 5 + (5 * forca);
 			shape.setTexture(*pGerGraphic->getBoss());
 			shape.setTextureRect(sf::IntRect(0, 0, 81, 89));
 			shape.setScale(1.5, 1.5);
@@ -32,6 +32,8 @@ namespace Entidades{
 		
 
 		void Esqueleto::executar() {
+
+			
 			if (!vivo()) {
 				desativar();
 			}
@@ -42,6 +44,7 @@ namespace Entidades{
 			else {
 				speed.x = 0;
 			}
+
 			move();
 		}
 	}

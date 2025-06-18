@@ -1,4 +1,5 @@
 #include "GerenciadorColisao.h"
+#include <iostream>
 namespace Gerenciadores{
 
 	void GerenciadorColisao::executar()
@@ -6,24 +7,11 @@ namespace Gerenciadores{
 		colision();
 	
 	}
-	GerenciadorColisao::GerenciadorColisao(): characters(nullptr), obstaculos(nullptr), projeteis(nullptr), estruturas(nullptr)
+	GerenciadorColisao::GerenciadorColisao()
 	{
+		jogador1 = nullptr;
+		jogador2 = nullptr;
 	
-	}
-	GerenciadorColisao::GerenciadorColisao(std::vector<Entidades::Personagens::Personagem*>* characters, std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos, std::vector<Entidades::Projetil*>* projeteis, std::vector<Entidades::Estrutura*>* estruturas)
-		
-	{
-		/**
-		* @brief Construtor da classe GerenciadorColisao.
-		* @param characters Ponteiro para vetor de ponteiros para personagens.
-		* @param obstaculos Ponteiro para vetor de ponteiros para obstáculos.
-		* @param projeteis Ponteiro para vetor de ponteiros para projéteis.
-		* 
-		*/
-		this->projeteis = projeteis;
-		this->obstaculos = obstaculos;
-		this->characters = characters;
-		this->estruturas = estruturas;
 	}
 
 	GerenciadorColisao::~GerenciadorColisao()
@@ -33,32 +21,99 @@ namespace Gerenciadores{
 
 	const bool GerenciadorColisao::verificarColisao(Entidades::Entidade* pe1, Entidades::Entidade* pe2)
 	{
+		if (!pe1->ativado() || !pe2->ativado()) {
+			return 0;
+		}
 		sf::FloatRect ent1Bounds = pe1->getBounds();
 		sf::FloatRect ent2Bounds = pe2->getBounds();
 		return ent1Bounds.intersects(ent2Bounds);
 	}
 
+	void GerenciadorColisao::tratarColisoesJogsObstaculos()
+	{
+		if(jogador1){
+			for (auto& obstac : obstaculos) {
+				if (verificarColisao(obstac, jogador1)) {
+					if (obstac->ehColidivel()) {
+						empurrarPersonagem(jogador1, obstac);
+					}
+					obstac->obstacular(jogador1);
+				}
+			}
+			
+		}
+		if (jogador2) {
+			for (auto& obstac : obstaculos) {
+				if (verificarColisao(obstac, jogador2)) {
+					if (obstac->ehColidivel()) {
+						empurrarPersonagem(jogador2, obstac);
+					}
+					obstac->obstacular(jogador2);
+				}
+			}
+			
+		}
+
+
+	}
+
+	void GerenciadorColisao::tratarColisoesJogsEstruturas()
+	{
+		if (jogador1) {
+			for (auto& estrutur : estruturas) {
+				if (verificarColisao(estrutur, jogador1)) {
+					empurrarPersonagem(jogador1, estrutur);
+				}
+			}
+		}
+		if (jogador2) {
+			for (auto& estrutur : estruturas) {
+				if (verificarColisao(estrutur, jogador2)) {
+					empurrarPersonagem(jogador2, estrutur);
+				}
+			}
+		}
+	}
+
 	void GerenciadorColisao::tratarColisaoProjeteis()
 	{
-		for (auto& projet : *projeteis) {
+		for (auto& projet : projeteis) {
 			if (projet->ativado()) {
 				sf::FloatRect projBounds = projet->getBounds();
-				for (const auto& obst : *obstaculos) {
+				for (const auto& obst : obstaculos) {
 					if (verificarColisao(obst, projet)) {
 						projet->desativar();
 					}
 				}
-				for (const auto& estrut : *estruturas) {
+				for (const auto& estrut : estruturas) {
 					if (verificarColisao(estrut, projet)) {
 						projet->desativar();
 					}
 				}
 
-				for (auto& charact : *characters) {
+				for (auto& charact : inimigos) {
 					if (verificarColisao(projet, charact)) {
 						if (charact->getTipo() != projet->getTipo()) {
 							projet->desativar();
 							projet->danifica(charact);
+							if (charact->getTipo() == TipoPersonagem::INIMIGO) {
+								std::cout << "INIMIGO DANIFICAD";
+							}
+						}
+					}
+				}
+
+				if (verificarColisao(projet, jogador1)) {
+					if (projet->getTipo() == TipoPersonagem::INIMIGO) {
+						projet->danifica(jogador1);
+						projet->desativar();
+					}
+				}
+				if (jogador2) {
+					if (verificarColisao(projet, jogador2)) {
+						if (projet->getTipo() == TipoPersonagem::INIMIGO) {
+							projet->danifica(jogador2);
+							projet->desativar();
 						}
 					}
 				}
@@ -66,25 +121,33 @@ namespace Gerenciadores{
 		}
 	}
 
-	void GerenciadorColisao::tratarColisaoPersonagens()
+	void GerenciadorColisao::tratarColisaoInimigos()
 	{
-		for (auto& charact : *characters) {
-			for (const auto& obstac : *obstaculos) {
-				if (verificarColisao(obstac, charact)) {
-					if (obstac->ehColidivel()) {
-						empurrarPersonagem(charact, obstac);
+		for (auto& charact : inimigos) {
+			if(charact->ativado()){
+				for (const auto& obstac : obstaculos) {
+					if (verificarColisao(obstac, charact)) {
+						if (obstac->ehColidivel()) {
+							empurrarPersonagem(charact, obstac);
+						}
+						obstac->obstacular(charact);
 					}
-					obstac->obstacular(charact);
 				}
 			}
 		}
 
-		for (auto& charact : *characters) {
-			for (const auto& estrut : *estruturas) {
-				if (verificarColisao(estrut, charact)) {
+		
+	
+
+
+		for (auto& charact : inimigos) {
+			if(charact->ativado()){
+				for (const auto& estrut : estruturas) {
+					if (verificarColisao(estrut, charact)) {
 					
-					empurrarPersonagem(charact, estrut);
+						empurrarPersonagem(charact, estrut);
 					
+					}
 				}
 			}
 		}
@@ -92,25 +155,33 @@ namespace Gerenciadores{
 
 	void GerenciadorColisao::incluirInimigo(Entidades::Personagens::Inimigo* inimigo)
 	{
+		inimigos.emplace_back(inimigo);
 	}
 
 	void GerenciadorColisao::incluirObstaculo(Entidades::Obstaculos::Obstaculo* obstaculo)
 	{
+		std::cout << "obstaculo incluido";
+		obstaculos.emplace_back(obstaculo);
 	}
 
 	void GerenciadorColisao::incluirProjetil(Entidades::Projetil* projetil)
 	{
+		std::cout << "obstaculo incluido";
+		projeteis.emplace_back(projetil);
 	}
 
 	void GerenciadorColisao::incluirEstrutura(Entidades::Estrutura* estrutura)
 	{
+		estruturas.emplace_back(estrutura);
 	}
 
 	void GerenciadorColisao::incluirJogador1(Entidades::Personagens::Jogador* jogador)
 	{
+		jogador1 = jogador;
 	}
 	void GerenciadorColisao::incluirJogador2(Entidades::Personagens::Jogador* jogador)
 	{
+		jogador2 = jogador;
 	}
 	void GerenciadorColisao::empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Entidade* entidade)
 	{
@@ -183,8 +254,9 @@ namespace Gerenciadores{
 		* @return void
 		*/
 		tratarColisaoProjeteis();
-		tratarColisaoPersonagens();
-
+		tratarColisaoInimigos();
+		tratarColisoesJogsObstaculos();
+		tratarColisoesJogsEstruturas();
 		
 	}
 

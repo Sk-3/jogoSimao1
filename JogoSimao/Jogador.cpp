@@ -1,6 +1,7 @@
 #include "Jogador.h"
 #include "Projetil.h"
 #include "Arma.h"
+#include <iostream>
 namespace Entidades{
 	namespace Personagens{
 		Jogador::Jogador()
@@ -23,6 +24,7 @@ namespace Entidades{
 			arma = new Arma(this, Armas::METRALHADORA);
 			tipo = TipoPersonagem::PLAYER;
 			maxSpeed = 6;
+			health = 30;
 			jumps = 2;
 			shape.setTexture(*pGerGraphic->getPlayerTexture());
 			shape.setTextureRect(sf::IntRect(0, 0, 16, 16));

@@ -10,7 +10,6 @@ namespace Entidades{
 	private:
 		TipoPersonagem tipo;
 		int dano;
-		bool ativo;
 		Personagens::Personagem* dono;
 	public:
 		Projetil(sf::Vector2f pos, Personagens::Personagem* dono);

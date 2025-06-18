@@ -8,13 +8,10 @@ namespace Entidades{
 	{
 		/**
 		*@brief Inicializa o projetil com o tamanho, posicao e direcao
-		*@param size Tamanho do projetil
 		*@param pos Posicao do projetil
-		*@param direction Direcao do projetil (LEFT ou RIGHT)
 		*@param tipo Tipo do personagem que disparou o projetil
-		*@details Se o tipo for LEFT, o projetil se move para a esquerda, caso contrario, para a direita.
 		*/
-		
+		tipo = pDono->getTipo();
 		clock.restart();
 		if (dono->getDirection() == Directions::LEFT) {
 			speed = sf::Vector2f(-35.f, 0.f);
@@ -50,7 +47,7 @@ namespace Entidades{
 		if(clock.getElapsedTime().asSeconds() > 0.5){
 			desativar();
 		}
-		if(ativo){
+		if(ativado()){
 			move();
 		}
 	}
