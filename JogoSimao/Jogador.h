@@ -20,7 +20,7 @@ namespace Entidades{
 			sf::Vector2f center;
 		public:
 			Jogador();
-			Jogador(sf::Vector2f pos,std::vector<Projetil*>* projeteis);
+			Jogador(sf::Vector2f pos);
 			~Jogador();
 			sf::Vector2f getPosition();
 			//Adicionam velocidade ao vetor de velocidade do jogador
@@ -31,7 +31,6 @@ namespace Entidades{
 			void dash();
 			void stopAxisX();
 			void executar(); 
-			void atirar();
 		};
 	}
 

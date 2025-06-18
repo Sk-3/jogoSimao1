@@ -106,6 +106,12 @@ namespace Gerenciadores{
 	{
 	}
 
+	void GerenciadorColisao::incluirJogador1(Entidades::Personagens::Jogador* jogador)
+	{
+	}
+	void GerenciadorColisao::incluirJogador2(Entidades::Personagens::Jogador* jogador)
+	{
+	}
 	void GerenciadorColisao::empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Entidade* entidade)
 	{
 
@@ -142,12 +148,12 @@ namespace Gerenciadores{
 			if (charCenterX < entCenterX) {
 				// Personagem está mais à esquerda que o centro do obstáculo,
 				// então o lado DIREITO do personagem colidiu com o lado ESQUERDO do obstáculo.
-				personagem->hitRight(entidade);
+				personagem->colidiu(entidade, Directions::RIGHT);
 			}
 			else {
 				// Personagem está mais à direita que o centro do obstáculo,
 				// então o lado ESQUERDO do personagem colidiu com o lado DIREITO do obstáculo.
-				personagem->hitLeft(entidade);
+				personagem->colidiu(entidade, Directions::LEFT);
 			}
 		}
 		else {
@@ -155,12 +161,12 @@ namespace Gerenciadores{
 			if (charCenterY < entCenterY) {
 				// Personagem está mais acima que o centro do obstáculo,
 				// então a parte de BAIXO do personagem colidiu com a parte de CIMA do obstáculo.
-				personagem->hitGround(entidade);
+				personagem->colidiu(entidade, Directions::DOWN);
 			}
 			else {
 				// Personagem está mais abaixo que o centro do obstáculo,
 				// então a parte de CIMA do personagem colidiu com a parte de BAIXO do obstáculo.
-				personagem->hitTop(entidade);
+				personagem->colidiu(entidade, Directions::UP);
 			}
 		}
 	}

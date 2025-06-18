@@ -23,6 +23,8 @@ namespace Gerenciadores{
 		std::vector<Entidades::Obstaculos::Obstaculo*>* obstaculos;
 		std::vector<Entidades::Projetil*>* projeteis;
 		std::vector<Entidades::Estrutura*>* estruturas;
+		Entidades::Personagens::Jogador* jogador1;
+		Entidades::Personagens::Jogador* jogador2;
 	public:
 
 		void executar();
@@ -38,6 +40,8 @@ namespace Gerenciadores{
 		void incluirObstaculo(Entidades::Obstaculos::Obstaculo* obstaculo);
 		void incluirProjetil(Entidades::Projetil* projetil );
 		void incluirEstrutura(Entidades::Estrutura* estrutura);
+		void incluirJogador1(Entidades::Personagens::Jogador* jogador);
+		void incluirJogador2(Entidades::Personagens::Jogador* jogador);
 		void empurrarPersonagem(Entidades::Personagens::Personagem* personagem, Entidades::Entidade* entidade);
 		void colision();
 	

@@ -17,10 +17,10 @@ namespace Entidades{
 			
 		}
 
-		Jogador::Jogador( sf::Vector2f pos, std::vector<Projetil*>* projeteis)
+		Jogador::Jogador( sf::Vector2f pos)
 			:Personagem( pos)
 		{
-			arma = new Arma(projeteis, this, Armas::METRALHADORA);
+			arma = new Arma(this, Armas::METRALHADORA);
 			tipo = TipoPersonagem::PLAYER;
 			maxSpeed = 6;
 			jumps = 2;
@@ -125,11 +125,6 @@ namespace Entidades{
 				shape.setTexture(*pGerGraphic->getPlayerTexture());
 			}
 			move();
-		}
-
-		void Jogador::atirar()
-		{
-			arma->atirar();
 		}
 
 		

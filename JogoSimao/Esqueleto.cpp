@@ -3,8 +3,8 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Esqueleto::Esqueleto(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, int forca)
-			:Inimigo( pos, player, projeteis)
+		Esqueleto::Esqueleto(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, int forca)
+			:Inimigo( pos, player, listaEntidade, gerenciadorColisao)
 		{
 			/**
 			*@brief Construtor da classe Boss, inicializa o boss com o tamanho, posição, player e projeteis.
@@ -14,10 +14,9 @@ namespace Entidades{
 			* @param projeteis Vetor de projeteis, usado para adicionar novos projeteis.
 			*/
 			tipo = TipoPersonagem::INIMIGO;
-			arma = new Arma(pProjeteis, this, Armas::ARMAESQUELETO);
+			arma = new Arma(this, Armas::ARMAESQUELETO);
 			Clocktiro.restart();
 			range = 800;
-			pProjeteis = projeteis;
 			pPlayer = player;
 			this->forca = forca;
 			health = 5 * forca;
@@ -33,22 +32,17 @@ namespace Entidades{
 		
 
 		void Esqueleto::executar() {
+			if (!vivo()) {
+				desativar();
+			}
 			if (jogadorNoAlcance()) {
 				perseguirJogador();
-				atirar();
+				atirar(listaEntidade, gerColisao);
 			}
 			else {
 				speed.x = 0;
 			}
 			move();
-		}
-		void Esqueleto::atirar()
-		{
-			/**
-			*@brief Executa o metodo atirar da arma 
-			* 
-			*/
-			arma->atirar();
 		}
 	}
 }

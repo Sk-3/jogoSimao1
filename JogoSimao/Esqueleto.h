@@ -20,10 +20,9 @@ namespace Entidades{
 		private:
 			int forca;
 		public:
-			Esqueleto(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, int forca);
+			Esqueleto(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, int forca);
 			~Esqueleto();
 			void executar();
-			void atirar();
 		};
 
 }

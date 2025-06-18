@@ -17,7 +17,7 @@ namespace Fases{
 	void Fase2::criarChefoes()
 	{
 		for (int i = 0; i < maxChefoes; i++) {
-			Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(6000 + (i * 1000), 300), player, &projeteis, &characters);
+			Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(6000 + (i * 1000), 300), player, &listaEntidades, &gerenciadorColisao);
 			characters.emplace_back(atirador);
 			listaEntidades.inserirNoFim(atirador);
 		}

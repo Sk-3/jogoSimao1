@@ -1,8 +1,9 @@
 #pragma once
-#include "Subject.h"
 #include "Entidade.h"
 #include "TipoPersonagem.h"
+#include "ListaEntidades.h"
 #include "Armas.h"
+
 
 /**
 *	Felipe Simbalista: 25/05/2025
@@ -12,7 +13,9 @@
 *		controlar seus status(health, speed, power, jumps)
 *		movimentar o personagem com base na sua velocidade
 */
-
+namespace Gerenciadores {
+	class GerenciadorColisao;
+}
 class Arma;
 namespace Entidades{
 
@@ -21,7 +24,7 @@ namespace Entidades{
 	}
 
 	namespace Personagens {
-		class Personagem : public Entidade, public Subject
+		class Personagem : public Entidade
 		{
 		protected:
 			//clock que controla o tempo de tiro do personagem
@@ -44,13 +47,15 @@ namespace Entidades{
 			Personagem(sf::Vector2f pos);
 			~Personagem();
 
+			void atirar(Listas::ListaEntidades* listaEntidade,Gerenciadores::GerenciadorColisao* gerenciadorColisao);
 			//RELACIONADO A COLISÃO
 				//Funções que não permitem o jogador entrar dentro do obstaculo passado como parametro
-				virtual void hitTop(Entidade* entidade);
-				virtual void hitGround(Entidade* entidade);
-				virtual void hitLeft (Entidade* entidade);
-				virtual void hitRight(Entidade* entidade);
-	
+			void colidiu(Entidade* entidade, Directions direction);
+			void hitTop(Entidade* entidade);
+				void hitGround(Entidade* entidade);
+				void hitLeft (Entidade* entidade);
+				void hitRight(Entidade* entidade);
+				
 			//GETTERS
 				const TipoPersonagem getTipo() const;
 				const Directions getDirection() const;

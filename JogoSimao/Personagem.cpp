@@ -5,7 +5,7 @@
 namespace Entidades{
 	namespace Personagens{
 		Personagem::Personagem()
-			:Entidade(), Subject()
+			:Entidade()
 		{
 			Clocktiro.restart();
 			tiroCooldown = 0.2;
@@ -17,8 +17,8 @@ namespace Entidades{
 			direction = Directions::RIGHT;
 		}
 
-		Personagem::Personagem(sf::Vector2f pos)
-			:Entidade(pos), Subject()
+		Personagem::Personagem(sf::Vector2f pos )
+			:Entidade(pos)
 		{
 			/***
 			*@brief Construtor da classe Character, que inicializa o personagem com tamanho e posicaoo especificos.
@@ -81,36 +81,61 @@ namespace Entidades{
 		//SETTERS
 
 
+		void Personagem::colidiu(Entidade* entidade, Directions direction)
+		{
+			switch (direction) {
+			case Directions::DOWN: {
+				speed.y = 0;
+				shape.setPosition(shape.getPosition().x, (entidade->getBounds().top - getBounds().height));
+				jumps = 2;
+				break;
+			}
+			case Directions::UP: {
+				speed.y = 0;
+				shape.setPosition(getBounds().left, entidade->getBounds().top + entidade->getBounds().height);
+				break;
+			}
+			case Directions::LEFT: {
+				speed.x = 0;
+				shape.setPosition(entidade->getBounds().left + entidade->getBounds().width, getBounds().top);
+				if (jumps == 0) {
+					jumps = 1;
+				}
+				break;
+			}
+			case Directions::RIGHT: {
+				speed.x = 0;
+				shape.setPosition(entidade->getBounds().left - getBounds().width, getBounds().top);
+				if (jumps == 0) {
+					jumps = 1;
+				}
+				break;
+			}
+			default: {
+				break;
+			}
+			}
+		}
+
 		void Personagem::hitTop(Entidade* entidade)
 		{
-			speed.y = 0;
-			shape.setPosition(getBounds().left, entidade->getBounds().top + entidade->getBounds().height);
+			
 		}
 
 		void Personagem::hitGround(Entidade* entidade)
 		{
-			speed.y = 0;
-			shape.setPosition(shape.getPosition().x, (entidade->getBounds().top - getBounds().height));
-			jumps = 2;
+			
 		}
 
 		void Personagem::hitLeft(Entidade* entidade)
 		{
-			speed.x = 0;
-			shape.setPosition(entidade->getBounds().left + entidade->getBounds().width, getBounds().top);
-			if (jumps == 0) {
-				jumps = 1;
-			}			
+					
 		}
 
 		void Personagem::hitRight(Entidade* entidade)
 		{
 
-			speed.x = 0;
-			shape.setPosition(entidade->getBounds().left - getBounds().width, getBounds().top);
-			if (jumps == 0) {
-				jumps = 1;
-			}			
+			
 		}
 
 		void Personagem::tiraVida(int dano)
@@ -126,6 +151,9 @@ namespace Entidades{
 
 		{
 			this->moveSpeed = moveSpeed;
+		}
+		void Personagem::atirar(Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao) {
+			arma->atirar(listaEntidade, gerenciadorColisao);
 		}
 
 		void Personagem::executar() {

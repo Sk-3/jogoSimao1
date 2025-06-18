@@ -11,8 +11,9 @@ namespace Entidades{
 		TipoPersonagem tipo;
 		int dano;
 		bool ativo;
+		Personagens::Personagem* dono;
 	public:
-		Projetil(sf::Vector2f pos, Directions direction, TipoPersonagem tipo);
+		Projetil(sf::Vector2f pos, Personagens::Personagem* dono);
 		Projetil();
 		~Projetil();
 		const TipoPersonagem getTipo() const;

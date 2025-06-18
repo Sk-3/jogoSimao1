@@ -4,14 +4,17 @@ namespace Fases{
 	Fase::Fase():
 		State(),
 		gerenciadorColisao(&characters, &obstaculos, &projeteis, &estruturas),
-		player(new Entidades::Personagens::Jogador( sf::Vector2f(100, 100), &projeteis)), view(pGerGraphic->getStdView())
+		player(new Entidades::Personagens::Jogador(sf::Vector2f(100, 100))),
+		view(pGerGraphic->getStdView())
 	{
+		gerenciadorColisao.incluirJogador1(player);
+		listaEntidades.inserirNoFim(player);
 		id = 0;
 		hud.setPlayer(player);
 		player2 = nullptr;
 		pGerGraphic->setView(view);
 		characters.push_back(player);
-		listaEntidades.inserirNoFim(player);
+		
 	}
 
 	
@@ -75,7 +78,7 @@ namespace Fases{
 				player->dash();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-				player->atirar();
+				player->atirar(&listaEntidades,&gerenciadorColisao);
 			}
 		}
 		sf::Event ev;
@@ -87,14 +90,14 @@ namespace Fases{
 			case sf::Event::KeyPressed:
 				if (ev.key.code == sf::Keyboard::P) {
 					if (!player2) {
-						player2 = new Entidades::Personagens::Jogador(sf::Vector2f(100, 100), &projeteis);
-						characters.push_back(player2);
+						player2 = new Entidades::Personagens::Jogador(sf::Vector2f(100, 100));
+						listaEntidades.inserirNoFim(player2);
+						gerenciadorColisao.incluirJogador2(player2);
 					}
 				}
 				if (ev.key.code == sf::Keyboard::Escape) {
 					setAction(Actions::PAUSE);
 				}
-
 				break;
 			case sf::Event::MouseButtonPressed:
 				if (ev.mouseButton.button == sf::Mouse::Left) {
@@ -119,7 +122,7 @@ namespace Fases{
 
 	void Fase::criarCachorro()
 	{
-		Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(3500, 300), player, &projeteis, NULL);
+		Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(3500, 300), player, &listaEntidades, &gerenciadorColisao, NULL);
 		characters.emplace_back(cachorro);
 		listaEntidades.inserirNoFim(cachorro);
 		gerenciadorColisao.incluirInimigo(cachorro);

@@ -22,7 +22,7 @@ namespace Entidades {
 				cachorro->setMoveSpeed(cachorro->getVelocidadeCacando());				
 				if (cachorro->jogadorNoAlcance()) {
 					cachorro->perseguirJogador();
-					cachorro->atirar();
+					//cachorro->atirar();
 				}
 			}			
 		}

@@ -1,13 +1,8 @@
 #include "Arma.h"
 #include "Personagem.h"
 
-Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* dono, float tiroCooldow)
-	:pProjeteis(projeteis), pDono(dono), tiroCooldown(tiroCooldow)
-{
-	
-}
-Arma::Arma(std::vector<Entidades::Projetil*>* projeteis, Entidades::Personagens::Personagem* dono, Armas arma)
-	:pProjeteis(projeteis), pDono(dono)
+Arma::Arma(Entidades::Personagens::Personagem* dono, Armas arma)
+	: pDono(dono)
 {
 	switch (arma) {
 		case Armas::METRALHADORA:{
@@ -42,16 +37,17 @@ Arma::~Arma()
 
 
 
-void Arma::atirar() {
+void Arma::atirar(Listas::ListaEntidades* listaEntidades,Gerenciadores::GerenciadorColisao* gerColisao) {
 	/**
 	*@brief Dispara projeteis
 	*@details verifica se o tempo passado desde o ultimo reset de clockTiro é maior que o cooldown do tiro
 	*nesse caso, insere um novo projetil no vetor de projeteis e reseta o relógio
 	*@return void
 	*/
-	if (Clocktiro.getElapsedTime().asSeconds() > tiroCooldown) {
-		sf::Vector2f position = pDono->getCenter();
-		pProjeteis->emplace_back(new Entidades::Projetil(position, pDono->getDirection(), pDono->getTipo()));
+	if(Clocktiro.getElapsedTime().asSeconds() > tiroCooldown) {
+		Entidades::Projetil* projetil = new Entidades::Projetil(pDono->getCenter(), pDono);
+		listaEntidades->inserirNoFim(projetil);
+		gerColisao->incluirProjetil(projetil);
 		Clocktiro.restart();
 	}
 }

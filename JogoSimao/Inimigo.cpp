@@ -2,8 +2,8 @@
 #include "Arma.h"
 namespace Entidades{
 	namespace Personagens {
-		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis)
-			:Personagem(pos), pPlayer(player), pProjeteis(projeteis)
+		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEnt, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
+			:Personagem(pos), pPlayer(player), gerColisao(gerenciadorColisao), listaEntidade(listaEnt)
 		{
 			nivel_maldade = 0;
 			range = 1000;
@@ -39,10 +39,6 @@ namespace Entidades{
 		const Personagem* Inimigo::getPlayer() const
 		{
 			return pPlayer;
-		}
-
-		void Inimigo::atirar() {
-			arma->atirar();
 		}
 
 		void Inimigo::executar()

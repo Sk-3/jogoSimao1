@@ -3,8 +3,8 @@
 
 namespace Entidades{
 
-	Projetil::Projetil( sf::Vector2f pos, Directions direction, TipoPersonagem tipo)
-		:Entidade(pos), dano(3), tipo(tipo), ativo(1)
+	Projetil::Projetil( sf::Vector2f pos, Personagens::Personagem* pDono)
+		:Entidade(pos), dano(3), dono(pDono)
 	{
 		/**
 		*@brief Inicializa o projetil com o tamanho, posicao e direcao
@@ -14,15 +14,16 @@ namespace Entidades{
 		*@param tipo Tipo do personagem que disparou o projetil
 		*@details Se o tipo for LEFT, o projetil se move para a esquerda, caso contrario, para a direita.
 		*/
+		
 		clock.restart();
-		if (direction == Directions::LEFT) {
+		if (dono->getDirection() == Directions::LEFT) {
 			speed = sf::Vector2f(-35.f, 0.f);
 		}
 		else {
 			speed = sf::Vector2f(35.f, 0.f);
 		}
 
-		if (tipo == TipoPersonagem::INIMIGO)
+		if (dono->getTipo() == TipoPersonagem::INIMIGO)
 		{
 			shape.setTexture(*pGerGraphic->getFireball());
 			shape.setTextureRect(sf::IntRect(0,0,64,64));
@@ -34,7 +35,6 @@ namespace Entidades{
 		:Entidade()
 	{
 		dano = 0;
-		ativo = 1;
 	}
 
 	Projetil::~Projetil()
@@ -48,7 +48,7 @@ namespace Entidades{
 		*@return void
 		*/
 		if(clock.getElapsedTime().asSeconds() > 0.5){
-			ativo = 0;
+			desativar();
 		}
 		if(ativo){
 			move();

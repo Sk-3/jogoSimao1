@@ -14,14 +14,11 @@ namespace Entidades{
 	namespace Personagens {  
 		class Atirador : public Inimigo  
 		{  
-		private:  
-			std::vector<Personagem*>* personagens;
+		private:
 			std::vector<Cachorro*> cachorros;
 		public:  
-			Atirador(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis, std::vector<Personagem*>* personagens);
+			Atirador(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
 			~Atirador();  
-			void inicializarCachorros();
-			void eliminarCachorros();
 			void executar();  
 		};  
 	}  

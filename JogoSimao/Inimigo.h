@@ -1,21 +1,22 @@
 #pragma once
 #include "Personagem.h"
-#include "Projetil.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 *	Classe abstrata inimigo
 */
+
 namespace Entidades{
 	namespace Personagens{
 		class Inimigo : public Personagem
 		{
 		protected:
 			int nivel_maldade;
-			std::vector<Projetil*>* pProjeteis;
 			Personagem* pPlayer;
+			Listas::ListaEntidades* listaEntidade;
+			Gerenciadores::GerenciadorColisao* gerColisao;
 			float range;
 		public:
-			Inimigo(sf::Vector2f pos, Personagem* player, std::vector<Projetil*>* projeteis);
+			Inimigo(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
 			~Inimigo();
 			
 			//GETTERS
@@ -25,7 +26,6 @@ namespace Entidades{
 
 
 			virtual void executar() = 0;
-			void atirar();
 			virtual void perseguirJogador();
 			virtual bool jogadorNoAlcance();
 		};
