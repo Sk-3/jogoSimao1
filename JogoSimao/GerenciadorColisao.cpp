@@ -96,9 +96,7 @@ namespace Gerenciadores{
 						if (charact->getTipo() != projet->getTipo()) {
 							projet->desativar();
 							projet->danifica(charact);
-							if (charact->getTipo() == TipoPersonagem::INIMIGO) {
-								std::cout << "INIMIGO DANIFICAD";
-							}
+							
 						}
 					}
 				}
@@ -166,7 +164,6 @@ namespace Gerenciadores{
 
 	void GerenciadorColisao::incluirProjetil(Entidades::Projetil* projetil)
 	{
-		std::cout << "obstaculo incluido";
 		projeteis.emplace_back(projetil);
 	}
 
