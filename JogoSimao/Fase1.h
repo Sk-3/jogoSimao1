@@ -23,7 +23,7 @@ namespace Fases{
 		Fase1();
 		~Fase1();
 		void criarEsqueletos();
-		void criaObstMedios();		
+		void criarEspinhos();		
 		void criarInimigos();		
 		void criarObstaculo();		
 		void executar();

@@ -6,7 +6,7 @@ namespace Fases{
 	{
 		id = 1;
 		criarCenario();
-		criarPlataformas();			
+				
 		criarInimigos();
 		criarObstaculo();
 	}
@@ -35,7 +35,7 @@ namespace Fases{
 
 	}
 
-	void Fase1::criaObstMedios()
+	void Fase1::criarEspinhos()
 	{		
 		
 		for (int i = 0; i < 10; i++) {
@@ -65,7 +65,8 @@ namespace Fases{
 	}
 	void Fase1::criarObstaculo()
 	{
-		criaObstMedios();
+		criarEspinhos();
+		criarPlataformas();
 	}
 	
 	void Fase1::executar()
