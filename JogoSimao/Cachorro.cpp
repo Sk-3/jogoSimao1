@@ -100,7 +100,7 @@ namespace Entidades{
 			*@details Executa o estado atual do cachorro
 			*@return void
 			*/
-			
+			caiuDoMapa();
 
 			if (!vivo()) {
 				desativar();

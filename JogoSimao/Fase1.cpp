@@ -13,6 +13,16 @@ namespace Fases{
 
 	Fase1::~Fase1()
 	{
+		Entidades::Personagens::Inimigo::zerarInimigos();
+	}
+
+	void Fase1::verificarQuantidadeInimigos()
+	{
+		std::cout << "\nInimigos vivos:" << Entidades::Personagens::Inimigo::getQuantidadeInimigos();
+
+		if (!Entidades::Personagens::Inimigo::getQuantidadeInimigos()) {
+			setAction(Actions::GAME_OVER);
+		}
 	}
 
 	void Fase1::criarEsqueletos()
@@ -80,6 +90,8 @@ namespace Fases{
 		*	caso o player morra, aciona tela de game over
 		*/
 
+		
+
 		executarJanela();
 		handleEvent();
 		listaEntidades.executar();
@@ -93,6 +105,7 @@ namespace Fases{
 		{
 			setAction(Actions::GAME_OVER);
 		}
+		verificarQuantidadeInimigos();
 	}
 
 }

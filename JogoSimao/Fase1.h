@@ -22,6 +22,7 @@ namespace Fases{
 	public:
 		Fase1();
 		~Fase1();
+		void verificarQuantidadeInimigos();
 		void criarEsqueletos();
 		void criarEspinhos();		
 		void criarInimigos();		

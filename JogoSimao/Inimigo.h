@@ -22,9 +22,9 @@ namespace Entidades{
 			
 			//GETTERS
 			const Personagem* getPlayer() const;
-			static const int getQuantidadeInimigos();
+			static int getQuantidadeInimigos();
 			//SETTERS
-	
+			static void zerarInimigos();
 			void diminuirInimigos();
 			void aumentarPontos();
 			virtual void executar() = 0;
