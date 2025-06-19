@@ -128,6 +128,7 @@ namespace Entidades{
 
 		void Jogador::executar()
 		{
+			caiuDoMapa();
 			//move o player a atualiza a posição da camera
 			if (direction == Directions::LEFT) {
 				shape.setTexture(*pGerGraphic->getPlayerInvertido());

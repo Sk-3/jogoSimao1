@@ -118,35 +118,71 @@ namespace Fases{
 		view.setCenter(player->getPosition());
 	}
 
+	void Fase::criarCachorro(Entidades::Personagens::Atirador* dono) {
+		if(dono){
+			Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(dono->getPosition().x + rand() % 300, dono->getPosition().y + (rand() % 300)), player, &listaEntidades, &gerenciadorColisao, dono);
+			listaEntidades.inserirNoFim(cachorro);
+			gerenciadorColisao.incluirInimigo(cachorro);
+			dono->adicionarCachorro(cachorro);
+		}
+	}
 	void Fase::criarCachorro()
 	{
-		Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(3500, 300), player, &listaEntidades, &gerenciadorColisao, NULL);
-		listaEntidades.inserirNoFim(cachorro);
-		gerenciadorColisao.incluirInimigo(cachorro);
+		for (int i = 0; i < 3; i++) {
+			Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(2500 + (250*i), 300), player, &listaEntidades, &gerenciadorColisao);
+			listaEntidades.inserirNoFim(cachorro);
+			gerenciadorColisao.incluirInimigo(cachorro);
+		}
+		if (rand() % 2) {
+			Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(3500, 300), player, &listaEntidades, &gerenciadorColisao);
+			listaEntidades.inserirNoFim(cachorro);
+			gerenciadorColisao.incluirInimigo(cachorro);
+		}
+		
 
 	}
 
 	void Fase::criarPlataformas()
 	{
-		Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900, 600), -3 -id, 800, 300);
-		obstaculos.push_back(plat1);
-		listaEntidades.inserirNoFim(plat1);
-		gerenciadorColisao.incluirObstaculo(plat1);
+		if (rand() % 2) {
+			Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900, 600), -3 - id, 800, 300);
+			obstaculos.push_back(plat1);
+			listaEntidades.inserirNoFim(plat1);
+			gerenciadorColisao.incluirObstaculo(plat1);
 
-		Entidades::Obstaculos::Plataforma* plat2 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1100, 500), 3 + id, 800, 300);
-		obstaculos.push_back(plat2);
-		listaEntidades.inserirNoFim(plat2);
-		gerenciadorColisao.incluirObstaculo(plat2);
+			Entidades::Obstaculos::Plataforma* plat2 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1100, 500), 3 + id, 800, 300);
+			obstaculos.push_back(plat2);
+			listaEntidades.inserirNoFim(plat2);
+			gerenciadorColisao.incluirObstaculo(plat2);
 
-		Entidades::Obstaculos::Plataforma* plat3 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1300, 400), -3 - id, 800, 300);
-		obstaculos.push_back(plat3);
-		listaEntidades.inserirNoFim(plat3);
-		gerenciadorColisao.incluirObstaculo(plat3);
+			Entidades::Obstaculos::Plataforma* plat3 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1300, 400), -3 - id, 800, 300);
+			obstaculos.push_back(plat3);
+			listaEntidades.inserirNoFim(plat3);
+			gerenciadorColisao.incluirObstaculo(plat3);
 
-		Entidades::Obstaculos::Plataforma* plat4 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1500, 400), 3 + id, 800, 300);
-		obstaculos.push_back(plat4);
-		listaEntidades.inserirNoFim(plat4);
-		gerenciadorColisao.incluirObstaculo(plat4);
+			Entidades::Obstaculos::Plataforma* plat4 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1500, 400), 3 + id, 800, 300);
+			obstaculos.push_back(plat4);
+			listaEntidades.inserirNoFim(plat4);
+			gerenciadorColisao.incluirObstaculo(plat4);
+		}
+		else {
+			Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900, 600), -3 - id, 800, 300);
+			obstaculos.push_back(plat1);
+			listaEntidades.inserirNoFim(plat1);
+			gerenciadorColisao.incluirObstaculo(plat1);
+
+			Entidades::Obstaculos::Plataforma* plat2 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1200, 500), 3 + id, 800, 300);
+			obstaculos.push_back(plat2);
+			listaEntidades.inserirNoFim(plat2);
+			gerenciadorColisao.incluirObstaculo(plat2);
+
+			Entidades::Obstaculos::Plataforma* plat3 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1500, 400), -3 - id, 800, 300);
+			obstaculos.push_back(plat3);
+			listaEntidades.inserirNoFim(plat3);
+			gerenciadorColisao.incluirObstaculo(plat3);
+		}
+
+		
 	}
 
 	void Fase::criarCenario()

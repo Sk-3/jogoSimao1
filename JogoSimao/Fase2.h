@@ -18,11 +18,11 @@ namespace Fases{
 	class Fase2 : public Fase
 	{
 	private:
-		const int maxChefoes = 2;
+		const int maxAtiradores = 4;
 	public:
 		Fase2();
 		~Fase2();
-		void criarChefoes();		
+		void criarAtiradores();		
 		void criarObstDificil();
 		void criarProjeteis();
 		void criarInimigos();

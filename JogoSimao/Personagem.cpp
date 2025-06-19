@@ -117,6 +117,13 @@ namespace Entidades{
 			}
 		}
 
+		void Personagem::caiuDoMapa()
+		{
+			if (getPosition().y > 1500) {
+				health--;
+			}
+		}
+
 		void Personagem::tiraVida(int dano)
 		{
 			health -= dano;

@@ -12,7 +12,7 @@ namespace Entidades {
 		{
 		}
 
-		void EstadoCachorroSeguir::atualizar(Cachorro* cachorro)
+		void EstadoCachorroSeguir::atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao)
 		{
 			/**
 			*@brief Funcao responsavel por fazer o cachorro perseguir o jogador caso ele esteja vivo

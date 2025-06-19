@@ -15,14 +15,24 @@ namespace Fases{
 	{
 	}
 
-	void Fase1::criarInimMedios()
+	void Fase1::criarEsqueletos()
 	{
-
-		for (int i = 0; i < maxInimMedios; i++) {
-			Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(200, 300), player,&listaEntidades, &gerenciadorColisao, i);
+		srand(time(NULL));
+		for (int i = 0; i < 3; i++) {
+			
+			Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(5000 + (500*i), 300), player, &listaEntidades, &gerenciadorColisao, i);
 			gerenciadorColisao.incluirInimigo(esqueleto);
 			listaEntidades.inserirNoFim(esqueleto);
 		}
+		for (int i = 2; i < maxEsqueletos; i++) {
+			if (rand() % 2) {
+				
+				Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(4000 + (500 * 1.5*i), 300), player, &listaEntidades, &gerenciadorColisao, i);
+				gerenciadorColisao.incluirInimigo(esqueleto);
+				listaEntidades.inserirNoFim(esqueleto);
+			}
+		}
+
 	}
 
 	void Fase1::criaObstMedios()
@@ -51,7 +61,7 @@ namespace Fases{
 		* @return void
 		*/
 		criarCachorro();
-		criarInimMedios();		
+		criarEsqueletos();		
 	}
 	void Fase1::criarObstaculo()
 	{

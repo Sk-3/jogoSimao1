@@ -159,7 +159,6 @@ namespace Gerenciadores{
 
 	void GerenciadorColisao::incluirObstaculo(Entidades::Obstaculos::Obstaculo* obstaculo)
 	{
-		std::cout << "obstaculo incluido";
 		obstaculos.emplace_back(obstaculo);
 	}
 

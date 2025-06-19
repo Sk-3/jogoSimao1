@@ -60,6 +60,7 @@ namespace Entidades{
 				const bool vivo() const;
 
 			//SETTERS
+				void caiuDoMapa();
 				virtual void aumentarPontos() = 0;
 				void tiraVida(int dano);
 				void resetClockTiro();

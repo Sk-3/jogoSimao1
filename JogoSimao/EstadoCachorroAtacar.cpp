@@ -11,8 +11,7 @@ namespace Entidades {
 		EstadoCachorroAtacar::~EstadoCachorroAtacar()
 		{
 		}
-
-		void EstadoCachorroAtacar::atualizar(Cachorro* cachorro)
+		void EstadoCachorroAtacar::atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao)
 		{
 			/**
 			*@brief Funcao responsavel por fazer o cachorro atacar o jogador caso ele esteja vivo
@@ -22,7 +21,7 @@ namespace Entidades {
 				cachorro->setMoveSpeed(cachorro->getVelocidadeCacando());				
 				if (cachorro->jogadorNoAlcance()) {
 					cachorro->perseguirJogador();
-					//cachorro->atirar();
+					cachorro->atirar(lista, gerColisao);
 				}
 			}			
 		}

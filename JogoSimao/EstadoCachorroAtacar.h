@@ -10,9 +10,9 @@ namespace Entidades {
 		public:
 			EstadoCachorroAtacar();
 			~EstadoCachorroAtacar();
-			virtual void atualizar(Cachorro* cachorro);
-			virtual void entrar(Cachorro* cachorro);
-			virtual void sair(Cachorro* cachorro);
+			void atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao);
+			void entrar(Cachorro* cachorro);
+			void sair(Cachorro* cachorro);
 		};
 
 	}

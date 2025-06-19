@@ -17,12 +17,12 @@ namespace Fases{
 	class Fase1 : public Fase
 	{
 	private:
-		const int maxInimMedios = 2;
+		const int maxEsqueletos = 4;
 
 	public:
 		Fase1();
 		~Fase1();
-		void criarInimMedios();
+		void criarEsqueletos();
 		void criaObstMedios();		
 		void criarInimigos();		
 		void criarObstaculo();		

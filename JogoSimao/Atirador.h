@@ -16,9 +16,12 @@ namespace Entidades{
 		{  
 		private:
 			std::vector<Cachorro*> cachorros;
-		public:  
+		public: 
+
 			Atirador(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
 			~Atirador();  
+			void adicionarCachorro(Cachorro* cachorro);
+
 			void executar();  
 		};  
 	}  

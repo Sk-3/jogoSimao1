@@ -4,7 +4,7 @@
 namespace Entidades{
 	namespace Personagens{
 		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, Personagem* dono)
-			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(dono), velocidadeCacando(4), velocidadeSeguindo(3)
+			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(dono), velocidadeCacando(4), velocidadeSeguindo(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
 		{
 			/**
 			*@brief Construtor da classe Cachorro
@@ -18,7 +18,22 @@ namespace Entidades{
 			else {
 				mandarAtacar();
 			}
-			
+			arma = new Arma(this, Armas::ARMACACHORRO);
+			shape.setTexture(*pGerGraphic->getCachorro());
+			shape.setTextureRect(sf::IntRect(0, 0, 65, 64));
+			shape.setScale(1.2, 1.2);
+		}
+
+		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
+			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(nullptr), velocidadeCacando(4), velocidadeSeguindo(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
+		{
+			/**
+			*@brief Construtor da classe Cachorro
+			*@detail Construtor que inicializa o tamanho, a posicao do cachorro e a cor
+			*/
+			health = 1;
+			range = 500;
+			mandarAtacar();
 			arma = new Arma(this, Armas::ARMACACHORRO);
 			shape.setTexture(*pGerGraphic->getCachorro());
 			shape.setTextureRect(sf::IntRect(0, 0, 65, 64));
@@ -91,7 +106,7 @@ namespace Entidades{
 				desativar();
 			}
 
-			estadoAtual->atualizar(this);
+			estadoAtual->atualizar(this,listaEnt, gerColisao);
 
 
 			move();

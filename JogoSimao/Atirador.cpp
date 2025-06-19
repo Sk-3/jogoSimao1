@@ -14,39 +14,36 @@ namespace Entidades{
 			range = 1000;
 			health = 20;
 			tipo = TipoPersonagem::INIMIGO;
-			shape.setOrigin(getCenter());
 			shape.setTexture(*pGerGraphic->getAtiradorTexture());
 			shape.setTextureRect(sf::IntRect(0, 0, 46, 71));
-			shape.setScale(2, 2);
+			shape.setScale(1.5, 1.5);
 		}
 		Atirador::~Atirador()
 		{
+		}
+		void Atirador::adicionarCachorro(Cachorro* cachorro)
+		{
+			cachorros.emplace_back(cachorro);
 		}
 		void Atirador::executar() {
 			/**
 			*@brief Executa o atirador
 			*@return void
 			*/
+			
+			caiuDoMapa();
 			if (!vivo()) {
 				desativar();
 			}
+
 			if (jogadorNoAlcance()) {
 				for (const auto& cach : cachorros) {
 					if(cach->ativado()){
 						cach->mandarCacar();
 					}
 				}
-
-				if (pPlayer->getCenter().x > getCenter().x) {
-					shape.setScale(2, 2);
-					direction = Directions::RIGHT;
-				}
-				else {
-					shape.setScale(-2, 2);
-					direction = Directions::LEFT;
-				}
+				perseguirJogador();
 				atirar(listaEntidade, gerColisao);
-
 			}
 			else {
 				for (const auto& cach : cachorros) {
@@ -57,6 +54,7 @@ namespace Entidades{
 			}
 
 			move();
+			
 		}
 	}
 	

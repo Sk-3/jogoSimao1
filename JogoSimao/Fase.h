@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdlib>
 #include "State.h"
 #include "Jogador.h"
 #include "Gravidade.h"
@@ -10,6 +11,7 @@
 #include "Hud.h"
 #include <sstream>
 #include "ListaEntidades.h"
+#include "Atirador.h"
 
 
 
@@ -51,7 +53,7 @@ namespace Fases{
 		virtual void handleEvent();
 		virtual void executar() = 0;
 		virtual void executarJanela();
-		
+		void criarCachorro(Entidades::Personagens::Atirador* dono);
 		void criarCachorro();
 		void criarPlataformas();
 		virtual void criarInimigos() = 0;		

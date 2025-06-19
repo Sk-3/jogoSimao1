@@ -13,7 +13,7 @@ namespace Entidades {
 		{
 		}
 
-		void EstadoCachorroCacar::atualizar(Cachorro* cachorro)
+		void EstadoCachorroCacar::atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao)
 		{
 			/**
 			*@brief Funcao responsavel por fazer o cachorro perseguir o jogador caso ele esteja vivo
@@ -23,7 +23,7 @@ namespace Entidades {
 				cachorro->setMoveSpeed(cachorro->getVelocidadeCacando());
 				cachorro->perseguirJogador();
 				if (cachorro->jogadorNoAlcance()) {
-					//cachorro->atirar();
+					cachorro->atirar(lista, gerColisao);
 				}
 			}
 			else {

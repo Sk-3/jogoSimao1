@@ -14,13 +14,24 @@ namespace Fases{
 	{
 	}
 
-	void Fase2::criarChefoes()
+	void Fase2::criarAtiradores()
 	{
-		for (int i = 0; i < maxChefoes; i++) {
-			Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(4000 + (i * 1000), 300), player, &listaEntidades, &gerenciadorColisao);
+		for (int i = 0; i < 3; i++) {
+			Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(5000 + (i * 500), 300), player, &listaEntidades, &gerenciadorColisao);
 			gerenciadorColisao.incluirInimigo(atirador);
 			listaEntidades.inserirNoFim(atirador);
+			criarCachorro(atirador);
 		}
+
+		for (int i = 3; i < maxAtiradores; i++) {
+			if (rand() % 2) {
+				Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(5000 + (i * 500), 300), player, &listaEntidades, &gerenciadorColisao);
+				gerenciadorColisao.incluirInimigo(atirador);
+				listaEntidades.inserirNoFim(atirador);
+				criarCachorro(atirador);
+			}
+		}
+		
 	}
 	
 
@@ -41,7 +52,7 @@ namespace Fases{
 	void Fase2::criarInimigos()
 	{			
 		criarCachorro();
-		criarChefoes();	
+		criarAtiradores();	
 	}
 	void Fase2::criarObstaculo()
 	{
@@ -58,9 +69,8 @@ namespace Fases{
 
 		executarJanela();
 		handleEvent();
-		aplicarGravidade();
 		listaEntidades.executar();
-		
+		aplicarGravidade();
 		gerenciadorColisao.executar();
 
 		hud.executar();
