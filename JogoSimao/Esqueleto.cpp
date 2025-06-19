@@ -36,6 +36,7 @@ namespace Entidades{
 			
 			if (!vivo()) {
 				desativar();
+				diminuirInimigos();
 			}
 			if (jogadorNoAlcance()) {
 				perseguirJogador();

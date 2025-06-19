@@ -5,12 +5,18 @@ namespace Entidades{
 		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEnt, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
 			:Personagem(pos), pPlayer(player), gerColisao(gerenciadorColisao), listaEntidade(listaEnt)
 		{
+			quantidadeInimigos++;
 			nivel_maldade = 0;
 			range = 1000;
 		}
 
 		Inimigo::~Inimigo() {
 
+		}
+
+		void Inimigo::diminuirInimigos()
+		{
+			quantidadeInimigos--;
 		}
 
 		void Inimigo::aumentarPontos() {
@@ -41,6 +47,11 @@ namespace Entidades{
 		const Personagem* Inimigo::getPlayer() const
 		{
 			return pPlayer;
+		}
+
+		const int Inimigo::getQuantidadeInimigos()
+		{
+			return quantidadeInimigos;
 		}
 
 		void Inimigo::executar()

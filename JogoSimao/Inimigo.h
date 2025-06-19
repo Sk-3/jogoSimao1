@@ -10,6 +10,7 @@ namespace Entidades{
 		class Inimigo : public Personagem
 		{
 		protected:
+			static int quantidadeInimigos;
 			int nivel_maldade;
 			Personagem* pPlayer;
 			Listas::ListaEntidades* listaEntidade;
@@ -21,13 +22,17 @@ namespace Entidades{
 			
 			//GETTERS
 			const Personagem* getPlayer() const;
+			static const int getQuantidadeInimigos();
 			//SETTERS
 	
-
+			void diminuirInimigos();
 			void aumentarPontos();
 			virtual void executar() = 0;
 			virtual void perseguirJogador();
 			virtual bool jogadorNoAlcance();
 		};
+		
 	}
+
+
 }

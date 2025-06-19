@@ -104,6 +104,7 @@ namespace Entidades{
 
 			if (!vivo()) {
 				desativar();
+				diminuirInimigos();
 			}
 
 			estadoAtual->atualizar(this,listaEnt, gerColisao);
