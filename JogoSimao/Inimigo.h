@@ -24,7 +24,7 @@ namespace Entidades{
 			//SETTERS
 	
 
-
+			void aumentarPontos();
 			virtual void executar() = 0;
 			virtual void perseguirJogador();
 			virtual bool jogadorNoAlcance();

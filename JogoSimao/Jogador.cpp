@@ -116,6 +116,16 @@ namespace Entidades{
 			}
 		}
 
+		void Jogador::aumentarPontos()
+		{
+			pontos++;
+		}
+
+		int Jogador::getPontos()
+		{
+			return pontos;
+		}
+
 		void Jogador::executar()
 		{
 			//move o player a atualiza a posição da camera

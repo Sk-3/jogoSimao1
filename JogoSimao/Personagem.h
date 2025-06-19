@@ -51,11 +51,6 @@ namespace Entidades{
 			//RELACIONADO A COLISÃO
 				//Funções que não permitem o jogador entrar dentro do obstaculo passado como parametro
 			void colidiu(Entidade* entidade, Directions direction);
-			void hitTop(Entidade* entidade);
-				void hitGround(Entidade* entidade);
-				void hitLeft (Entidade* entidade);
-				void hitRight(Entidade* entidade);
-				
 			//GETTERS
 				const TipoPersonagem getTipo() const;
 				const Directions getDirection() const;
@@ -65,6 +60,7 @@ namespace Entidades{
 				const bool vivo() const;
 
 			//SETTERS
+				virtual void aumentarPontos() = 0;
 				void tiraVida(int dano);
 				void resetClockTiro();
 				void setMoveSpeed(float moveSpeed);

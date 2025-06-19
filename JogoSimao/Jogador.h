@@ -15,7 +15,7 @@ namespace Entidades{
 		{
 		private:
 
-			
+			int pontos;
 			float maxSpeed;
 			sf::Vector2f center;
 		public:
@@ -30,7 +30,11 @@ namespace Entidades{
 			void moveRight();
 			void dash();
 			void stopAxisX();
+			void aumentarPontos();
+			int getPontos();
+			
 			void executar(); 
+
 		};
 	}
 

@@ -49,7 +49,7 @@ void Hud::executar()
 	*@return void
 	*/
 	std::stringstream ss;
-	ss <<"Tempo: "<< hudClock.getElapsedTime().asSeconds() << "\nVida:"<< player->getHealth() << "\nPontos : 0";
+	ss <<"\nVida:"<< player->getHealth() << "\nPontos :" << player->getPontos();
 	hud.setString(ss.str());
 
 }

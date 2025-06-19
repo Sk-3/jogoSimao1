@@ -13,7 +13,9 @@ namespace Entidades{
 
 		}
 
+		void Inimigo::aumentarPontos() {
 
+		}
 
 		bool Inimigo::jogadorNoAlcance()
 		{

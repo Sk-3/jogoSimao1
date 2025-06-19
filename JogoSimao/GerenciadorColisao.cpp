@@ -96,6 +96,7 @@ namespace Gerenciadores{
 						if (charact->getTipo() != projet->getTipo()) {
 							projet->desativar();
 							projet->danifica(charact);
+							projet->aumentaPontosDono();
 							
 						}
 					}

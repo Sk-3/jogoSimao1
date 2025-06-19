@@ -80,4 +80,9 @@ namespace Entidades{
 		personagem->tiraVida(dano);
 	}
 
+	void Projetil::aumentaPontosDono()
+	{
+		dono->aumentarPontos();
+	}
+
 }

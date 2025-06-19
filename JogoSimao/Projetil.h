@@ -19,6 +19,7 @@ namespace Entidades{
 		void setTipo(TipoPersonagem tipo);
 		void executar();
 		void danifica(Personagens::Personagem* personagem);
+		void aumentaPontosDono();
 	};
 
 }
