@@ -101,9 +101,11 @@ namespace Listas
         it = inicio();
         while (it != fim())
         {
-            Entidades::Entidade* temp = *it;
-            it = apagar(it);
-            delete temp;
+            if((*it)->getId() != Id::Jogador){
+                Entidades::Entidade* temp = *it;
+                it = apagar(it);
+                delete temp;
+            }
             ++it;
         }
     }

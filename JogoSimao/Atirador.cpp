@@ -31,6 +31,7 @@ namespace Entidades{
 			caiuDoMapa();
 			if (!vivo()) {
 				desativar();
+				diminuirInimigos();
 			}
 
 			if (jogadorNoAlcance()) {

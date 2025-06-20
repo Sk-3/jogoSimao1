@@ -21,6 +21,8 @@ namespace Entidades{
 		Jogador::Jogador( sf::Vector2f pos)
 			:Personagem( pos)
 		{
+			id = Id::Jogador;
+			pontos = 0;
 			arma = new Arma(this, Armas::METRALHADORA);
 			tipo = TipoPersonagem::PLAYER;
 			maxSpeed = 6;
@@ -73,6 +75,11 @@ namespace Entidades{
 			if (speed.x <= maxSpeed) {
 				speed.x += 0.4;
 			}
+		}
+
+		void Jogador::posicionarNoInicio()
+		{
+			shape.setPosition(100, 100);
 		}
 
 		void Jogador::dash()

@@ -28,9 +28,10 @@ namespace Entidades{
 
 		void Esqueleto::executar() {
 
-			
+			caiuDoMapa();
 			if (!vivo()) {
 				desativar();
+				diminuirInimigos();
 			}
 			if (jogadorNoAlcance()) {
 				perseguirJogador();

@@ -74,8 +74,6 @@ namespace Entidades{
 		*/
 		speed += addSpeed;
 	}
-	
-
 
 	void Entidade::desativar(){
 		ativo = 0;

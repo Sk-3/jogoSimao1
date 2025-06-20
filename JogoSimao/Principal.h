@@ -17,6 +17,8 @@ class Principal
 private:
 	Gerenciadores::GerenciadorGrafico* gerGraphic;
 	Gerenciadores::GerenciadorEstado* gerEstado;
+	Entidades::Personagens::Jogador* jogador1;
+	Entidades::Personagens::Jogador* jogador2;
 
 public:
 	Principal();

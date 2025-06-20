@@ -1,7 +1,7 @@
 #include "Ente.h"
 Gerenciadores::GerenciadorGrafico* Ente::pGerGraphic(Gerenciadores::GerenciadorGrafico::getGerGraphic());
 Ente::Ente():
-	id(0)
+	id(Id::NULO)
 {
 	figura = nullptr;
 }
@@ -12,6 +12,11 @@ void Ente::desenhar()
 }
 Ente::~Ente()
 {
+}
+
+Id Ente::getId()
+{
+	return id;
 }
 
 sf::Drawable* Ente::getFigura()

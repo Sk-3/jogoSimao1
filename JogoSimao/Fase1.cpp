@@ -1,17 +1,20 @@
 #include "Fase1.h"
 
 namespace Fases{
-	Fase1::Fase1() :
-		Fase() 
+	Fase1::Fase1(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2) :
+		Fase(jg1,jg2) 
 	{
-		id = 1;
-		criarCenario();				
+		jg1->posicionarNoInicio();
+		jg2->posicionarNoInicio();
+		criarCenario();
+				
 		criarInimigos();
 		criarObstaculo();
 	}
 
 	Fase1::~Fase1()
 	{
+		Entidades::Personagens::Inimigo::zerarInimigos();
 	}
 
 	void Fase1::criarEsqueletos()
@@ -85,19 +88,24 @@ namespace Fases{
 		*	caso o player morra, aciona tela de game over
 		*/
 
+		
+
 		executarJanela();
 		handleEvent();
 		listaEntidades.executar();
 		aplicarGravidade();
 		gerenciadorColisao.executar();
-		hud.executar();
 		listaEntidades.desenhar();
+		hud.executar();
 		hud.draw();
-
 		if (!player->vivo())
 		{
 			setAction(Actions::GAME_OVER);
 		}
+		if (verificarQuantidadeInimigos() == 0) {
+			setAction(Actions::PASSOU_DE_FASE);
+		}
+		
 	}
 
 }

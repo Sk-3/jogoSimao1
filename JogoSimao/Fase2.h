@@ -20,7 +20,7 @@ namespace Fases{
 	private:
 		const int maxAtiradores = 4;
 	public:
-		Fase2();
+		Fase2(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2);
 		~Fase2();
 		void criarAtiradores();		
 		void criarFosso();
@@ -28,5 +28,6 @@ namespace Fases{
 		void criarInimigos();
 		void criarObstaculo();
 		void executar();		
+
 	};
 }

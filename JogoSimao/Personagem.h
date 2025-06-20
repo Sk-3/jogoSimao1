@@ -36,7 +36,6 @@ namespace Entidades{
 			float maxSpeed;
 			float moveSpeed;
 			int health; 
-			int power;
 			int jumps;
 			//direção do personagem, usada para saber se o personagem está virado para a direita ou esquerda
 			Directions direction;

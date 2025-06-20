@@ -11,7 +11,6 @@ namespace Entidades{
 			tiroCooldown = 0.2;
 			jumps = 2;
 			health = 10;
-			power = 0;
 			speed.x = 0;
 			speed.y = 0;
 			direction = Directions::RIGHT;
@@ -32,7 +31,6 @@ namespace Entidades{
 			moveSpeed = 3;
 			jumps = 2;
 			health = 10;
-			power = 0;
 			speed.x = 0;
 			speed.y = 0;
 			direction = Directions::RIGHT;

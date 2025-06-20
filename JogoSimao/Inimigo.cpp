@@ -1,16 +1,28 @@
 #include "Inimigo.h"
 #include "Arma.h"
+int Entidades::Personagens::Inimigo::quantidadeInimigos = 0;
 namespace Entidades{
 	namespace Personagens {
 		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEnt, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
 			:Personagem(pos), pPlayer(player), gerColisao(gerenciadorColisao), listaEntidade(listaEnt)
 		{
-			nivel_maldade = 1;
-			range = 1000;			
+			quantidadeInimigos++;
+			nivel_maldade = 0;
+			range = 1000;
 		}
 
 		Inimigo::~Inimigo() {
 
+		}
+
+		void Inimigo::zerarInimigos()
+		{
+			quantidadeInimigos = 0;
+		}
+
+		void Inimigo::diminuirInimigos()
+		{
+			quantidadeInimigos--;
 		}
 
 		void Inimigo::aumentarPontos() {
@@ -43,11 +55,13 @@ namespace Entidades{
 			return pPlayer;
 		}
 
-		void Inimigo::executar()
+		int Inimigo::getQuantidadeInimigos()
 		{
-			move();
+			return quantidadeInimigos;
 		}
 
+
+		
 		void Inimigo::perseguirJogador() {
 		/**
 		*@brief Move o inimigo na direção do jogador, se o jogador estiver no alcance.
