@@ -37,6 +37,7 @@ namespace Fases{
 		Gerenciadores::GerenciadorColisao gerenciadorColisao;
 		//LISTA ENTIDADES
 		Listas::ListaEntidades listaEntidades;
+		bool player2Ativo;
 
 
 		//PLAYERS
@@ -49,7 +50,7 @@ namespace Fases{
 		std::vector<Entidades::Personagens::Personagem*> characters;
 	public:
 		~Fase();
-		Fase();
+		Fase(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2);
 		virtual void handleEvent();
 		virtual void executar() = 0;
 		virtual void executarJanela();
@@ -59,5 +60,6 @@ namespace Fases{
 		virtual void criarInimigos() = 0;		
 		void criarCenario();
 		void aplicarGravidade();
+		int verificarQuantidadeInimigos();
 	};
 }

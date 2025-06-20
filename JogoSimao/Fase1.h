@@ -20,9 +20,9 @@ namespace Fases{
 		const int maxEsqueletos = 4;
 
 	public:
-		Fase1();
+		
+		Fase1(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2);
 		~Fase1();
-		void verificarQuantidadeInimigos();
 		void criarEsqueletos();
 		void criarEspinhos();		
 		void criarInimigos();		

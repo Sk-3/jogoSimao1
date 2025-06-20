@@ -29,12 +29,14 @@ namespace Gerenciadores{
 	class GerenciadorEstado : public Ente
 	{
 	private:
-		static GerenciadorEstado* pGerEstado;
+		Entidades::Personagens::Jogador* jogador1;
+		Entidades::Personagens::Jogador* jogador2;
 		sf::RenderWindow* window;
 		std::vector<State*> stack;
 	public:
-		static GerenciadorEstado* getGerEstado();
-		GerenciadorEstado();
+		void setJogador1(Entidades::Personagens::Jogador* jogador);
+		void setJogador2(Entidades::Personagens::Jogador* jogador);
+		GerenciadorEstado(Entidades::Personagens::Jogador* jogador_1,Entidades::Personagens::Jogador* jogador_2);
 		void handleEvent();
 		void update();
 		void draw();

@@ -1,16 +1,17 @@
 #include "Fase.h"
 namespace Fases{
 
-	Fase::Fase():
+	Fase::Fase(Entidades::Personagens::Jogador* jogador1, Entidades::Personagens::Jogador* jogador2) :
 		State(),
-		player(new Entidades::Personagens::Jogador(sf::Vector2f(100, 100))),
+		player(jogador1),
+		player2(jogador2),
+		player2Ativo(0),
 		view(pGerGraphic->getStdView())
 	{
 		gerenciadorColisao.incluirJogador1(player);
 		listaEntidades.inserirNoFim(player);
 		id = 0;
 		hud.setPlayer(player);
-		player2 = nullptr;
 		pGerGraphic->setView(view);
 		
 	}
@@ -29,7 +30,7 @@ namespace Fases{
 		* @return void
 		*/
 		//Ações do jogador secundario
-		if (player2) {
+		if (player2Ativo) {
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 				player2->moveLeft();
 			}
@@ -87,8 +88,8 @@ namespace Fases{
 				break;
 			case sf::Event::KeyPressed:
 				if (ev.key.code == sf::Keyboard::P) {
-					if (!player2) {
-						player2 = new Entidades::Personagens::Jogador(sf::Vector2f(100, 100));
+					if (!player2Ativo) {
+						player2Ativo = 1;
 						listaEntidades.inserirNoFim(player2);
 						gerenciadorColisao.incluirJogador2(player2);
 					}
@@ -232,4 +233,8 @@ namespace Fases{
 		}
 	}
 
+	int Fase::verificarQuantidadeInimigos()
+	{
+		return Entidades::Personagens::Inimigo::getQuantidadeInimigos();
+	}
 }

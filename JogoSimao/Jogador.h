@@ -1,5 +1,6 @@
 #pragma once
 #include "Personagem.h"
+#include "Id.h"
 /**
 *	Classe concreta Player
 * 
@@ -28,6 +29,7 @@ namespace Entidades{
 			void moveDown();
 			void moveLeft();
 			void moveRight();
+			void posicionarNoInicio();
 			void dash();
 			void stopAxisX();
 			void aumentarPontos();

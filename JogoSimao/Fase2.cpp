@@ -1,9 +1,11 @@
 #include "Fase2.h"
 namespace Fases{
-	Fase2::Fase2():
-	Fase()
+	Fase2::Fase2(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2):
+	Fase(jg1,jg2)
 	{
-		id = 2;
+		
+		jg1->posicionarNoInicio();
+		jg2->posicionarNoInicio();
 		criarCenario();
 		criarPlataformas();		
 		criarInimigos();
@@ -80,6 +82,9 @@ namespace Fases{
 		
 		if (!player->vivo())
 		{
+			setAction(Actions::GAME_OVER);
+		}
+		if (verificarQuantidadeInimigos() == 0) {
 			setAction(Actions::GAME_OVER);
 		}
 	}

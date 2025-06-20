@@ -1,6 +1,6 @@
 #pragma once
 #include "GerenciadorGrafico.h"	
-
+#include "Id.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 * Classe abstrata Ente
@@ -13,7 +13,7 @@ class Ente
 {
 protected:
 	sf::Clock clock;
-	int id;
+	Id id;
 	static Gerenciadores::GerenciadorGrafico* pGerGraphic;
 	sf::Drawable* figura;
 public:
@@ -23,6 +23,7 @@ public:
 	virtual ~Ente();
 	virtual void executar() = 0;
 	//GETTERS
+	Id getId();
 	sf::Drawable* getFigura();
 	//SETTERS
 	void setFigura(sf::Drawable* figura);

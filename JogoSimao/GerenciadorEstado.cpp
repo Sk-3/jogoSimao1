@@ -1,23 +1,23 @@
 #include "GerenciadorEstado.h"
 
 namespace Gerenciadores {
-
-	GerenciadorEstado* GerenciadorEstado::pGerEstado = NULL;
-
-	GerenciadorEstado* GerenciadorEstado::getGerEstado()
+	void GerenciadorEstado::setJogador1(Entidades::Personagens::Jogador* jogador)
 	{
-		if (!pGerEstado)
-			pGerEstado = new GerenciadorEstado();
-		return pGerEstado;
+		jogador1 = jogador;
 	}
-
-	GerenciadorEstado::GerenciadorEstado()
-		:Ente()
+	void GerenciadorEstado::setJogador2(Entidades::Personagens::Jogador* jogador)
+	{
+		jogador2 = jogador;
+	}
+	GerenciadorEstado::GerenciadorEstado(Entidades::Personagens::Jogador* jogador_1, Entidades::Personagens::Jogador* jogador_2)
 	{
 		/**
 		* @brief Inicializa o gerenciador de estados com o menu principal.
 		*/
+		jogador1 = jogador_1;
+		jogador2 = jogador_2;
 		push(new MenuPrincipal());
+		
 	}
 
 	void GerenciadorEstado::handleEvent()
@@ -49,11 +49,11 @@ namespace Gerenciadores {
 			break;
 		}
 		case Actions::FASE_1: {
-			push(new Fases::Fase1());
+			push(new Fases::Fase1(jogador1, jogador2));
 			break;
 		}
 		case Actions::FASE_2: {
-			push(new Fases::Fase2());
+			push(new Fases::Fase2(jogador1, jogador2));
 			break;
 		}
 		case Actions::VOLTAR_2_MENUS: {
@@ -72,6 +72,12 @@ namespace Gerenciadores {
 		case Actions::GAME_OVER:
 		{
 			push(new GameOver());
+			break;
+		}
+		case Actions::PASSOU_DE_FASE:
+		{
+			pop();
+			push(new Fases::Fase2(jogador1, jogador2));
 			break;
 		}
 

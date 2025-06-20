@@ -184,6 +184,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="EstadoCachorroAtacar.h" />
     <ClInclude Include="Fosso.h" />
+    <ClInclude Include="Id.h" />
     <ClInclude Include="TipoEstrutura.h" />
     <ClInclude Include="Cachorro.h" />
     <ClInclude Include="Estrutura.h" />

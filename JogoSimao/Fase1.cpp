@@ -1,10 +1,11 @@
 #include "Fase1.h"
 
 namespace Fases{
-	Fase1::Fase1() :
-		Fase() 
+	Fase1::Fase1(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2) :
+		Fase(jg1,jg2) 
 	{
-		id = 1;
+		jg1->posicionarNoInicio();
+		jg2->posicionarNoInicio();
 		criarCenario();
 				
 		criarInimigos();
@@ -14,15 +15,6 @@ namespace Fases{
 	Fase1::~Fase1()
 	{
 		Entidades::Personagens::Inimigo::zerarInimigos();
-	}
-
-	void Fase1::verificarQuantidadeInimigos()
-	{
-		std::cout << "\nInimigos vivos:" << Entidades::Personagens::Inimigo::getQuantidadeInimigos();
-
-		if (!Entidades::Personagens::Inimigo::getQuantidadeInimigos()) {
-			setAction(Actions::GAME_OVER);
-		}
 	}
 
 	void Fase1::criarEsqueletos()
@@ -97,15 +89,17 @@ namespace Fases{
 		listaEntidades.executar();
 		aplicarGravidade();
 		gerenciadorColisao.executar();
-		hud.executar();
 		listaEntidades.desenhar();
+		hud.executar();
 		hud.draw();
-
 		if (!player->vivo())
 		{
 			setAction(Actions::GAME_OVER);
 		}
-		verificarQuantidadeInimigos();
+		if (verificarQuantidadeInimigos() == 0) {
+			setAction(Actions::PASSOU_DE_FASE);
+		}
+		
 	}
 
 }
