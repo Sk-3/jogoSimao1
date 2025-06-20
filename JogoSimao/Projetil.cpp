@@ -11,6 +11,8 @@ namespace Entidades{
 		*@param pos Posicao do projetil
 		*@param tipo Tipo do personagem que disparou o projetil
 		*/
+		id = Id::Projetil;
+
 		tipo = pDono->getTipo();
 		clock.restart();
 		if (dono->getDirection() == Directions::LEFT) {

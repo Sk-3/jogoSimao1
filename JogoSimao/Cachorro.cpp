@@ -6,6 +6,7 @@ namespace Entidades{
 		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, Personagem* dono)
 			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(dono), velocidade(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
 		{
+			id = Id::Cachorro;
 			health = 1;
 			range = 500;
 			nivel_maldade = 1 + (rand() % 10);

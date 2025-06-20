@@ -3,6 +3,7 @@ namespace Entidades {
 	namespace Obstaculos {
 		Espinho::Espinho(sf::Vector2f pos, float altura)
 		:Obstaculo(pos){
+			id = Id::Espinho;
 			this->altura = altura;
 			danoso = 1;
 			danoRelogio.restart();

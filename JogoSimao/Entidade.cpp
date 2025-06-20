@@ -1,4 +1,5 @@
 #include "Entidade.h"
+#include <iostream>
 namespace Entidades{
 
 	Entidade::Entidade() :
@@ -73,6 +74,11 @@ namespace Entidades{
 		* @param addSpeed - vetor que sera adicionado a velocidade atual do corpo do objeto
 		*/
 		speed += addSpeed;
+	}
+
+	void Entidade::salvarEntidade()
+	{
+		std::cout << "\nPosicao X:" << shape.getPosition().x << "\nPosicao Y:" << shape.getPosition().y << "\nVelocidade X:" << speed.x << "\nvelocidade Y:" << speed.y;
 	}
 
 	void Entidade::desativar(){

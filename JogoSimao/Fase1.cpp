@@ -98,13 +98,7 @@ namespace Fases{
 		listaEntidades.desenhar();
 		hud.executar();
 		hud.draw();
-		if (!player->vivo())
-		{
-			setAction(Actions::GAME_OVER);
-		}
-		if (verificarQuantidadeInimigos() == 0) {
-			setAction(Actions::PASSOU_DE_FASE);
-		}
+		controladorEstado(id);
 		
 	}
 

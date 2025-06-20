@@ -3,7 +3,7 @@
 
 namespace Entidades {
 	namespace Obstaculos {
-		class Espinho : public Obstaculo
+		class Espinho : public Obstaculo 
 		{
 		private:
 			sf::Clock danoRelogio;

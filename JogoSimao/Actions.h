@@ -16,5 +16,6 @@ enum class Actions {
 	FASE_1,
 	FASE_2,
 	GAME_OVER,
+	SALVAR,
 	PASSOU_DE_FASE
 };

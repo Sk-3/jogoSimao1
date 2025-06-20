@@ -4,9 +4,11 @@
 namespace Entidades{
 	namespace Personagens
 	{
-		Personagens::Atirador::Atirador(sf::Vector2f pos,Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao) :
+		Personagens::Atirador::Atirador(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao) :
 			Inimigo(pos, player, listaEntidade, gerenciadorColisao)
 		{
+
+			id = Id::Atirador;
 			arma = new Arma(this, Armas::RIFLE);
 
 			Clocktiro.restart();

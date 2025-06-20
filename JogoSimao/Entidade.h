@@ -40,7 +40,7 @@ namespace Entidades{
 		void move();
 		void changeSpeed(sf::Vector2f addSpeed);
 		
-		//void salvarDataBuffer();
+		void salvarEntidade();
 		//virtual void salvar() = 0;
 		virtual void executar() = 0;
 		

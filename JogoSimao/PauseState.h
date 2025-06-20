@@ -1,5 +1,6 @@
 #pragma once
 #include "menuState.h"
+#include "Fase.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 * 
@@ -12,12 +13,15 @@
 class PauseState : public menuState
 {
 private:
+	Fases::Fase* fase;
 	sf::RectangleShape box;
 	Entidades::Button* resume;
+	Entidades::Button* salvar;
 	Entidades::Button* quit;
 
 public:
-	PauseState();
+	PauseState(Fases::Fase* pFase);
 	~PauseState();
+	void readButtons() override;
 };
 

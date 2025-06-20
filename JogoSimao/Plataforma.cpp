@@ -43,6 +43,7 @@ namespace Entidades{
 		}
 		void Plataforma::mover()
 		{
+			
 			if (getPosition().y > max)
 			{
 				fundo = true;

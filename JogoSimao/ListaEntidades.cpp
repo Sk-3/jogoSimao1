@@ -82,7 +82,9 @@ namespace Listas
 
     void ListaEntidades::salvar()
     {
-        //for (it = inicio(); it != fim(); ++it)
+        
+        for (it = inicio(); it != fim(); ++it)
+            std::cout << "Estou sendo chamado";
             //(*it)->salvar();
     }
 

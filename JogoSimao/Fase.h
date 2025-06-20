@@ -49,11 +49,16 @@ namespace Fases{
 		virtual void handleEvent();
 		virtual void executar() = 0;
 		virtual void executarJanela();
+		void salvar();
+
+
+		//CRIAR ENTIDADES
 		void criarCachorro(Entidades::Personagens::Atirador* dono);
 		void criarCachorro();
 		void criarPlataformas();
 		virtual void criarInimigos() = 0;
 		virtual void criarObstaculo() = 0;
+		void controladorEstado(int id);
 		void criarCenario();
 		void aplicarGravidade();
 		int verificarQuantidadeInimigos();

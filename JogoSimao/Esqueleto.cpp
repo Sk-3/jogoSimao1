@@ -6,6 +6,7 @@ namespace Entidades{
 		Esqueleto::Esqueleto(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, int forca)
 			:Inimigo( pos, player, listaEntidade, gerenciadorColisao)
 		{
+			id = Id::Esqueleto;
 			
 			tipo = TipoPersonagem::INIMIGO;
 			arma = new Arma(this, Armas::ARMAESQUELETO);

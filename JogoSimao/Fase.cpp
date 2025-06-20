@@ -164,6 +164,39 @@ namespace Fases{
 		}		
 	}
 
+	void Fase::controladorEstado(int idFase)
+	{
+		if(idFase == 1){
+			if (!player->vivo())
+			{
+				setAction(Actions::GAME_OVER);
+			}
+			if (verificarQuantidadeInimigos() == 0) {
+				setAction(Actions::PASSOU_DE_FASE);
+			}
+			if (getAction() == Actions::SALVAR) {
+				listaEntidades.salvar();
+				setAction(Actions::PAUSE);
+			}
+		}
+		if (idFase == 2) {
+			if (!player->vivo())
+			{
+				setAction(Actions::GAME_OVER);
+			}
+			if (verificarQuantidadeInimigos() == 0) {
+				setAction(Actions::GAME_OVER);
+			}
+			if (getAction() == Actions::SALVAR) {
+				listaEntidades.salvar();
+				setAction(Actions::PAUSE);
+			}
+		}
+	}
+
+	void Fase::salvar() {
+		listaEntidades.salvar();
+	}
 	void Fase::criarCenario()
 	{
 		for (int i = 0; i < 15; i++) {

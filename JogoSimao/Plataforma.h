@@ -16,7 +16,7 @@ namespace Entidades {
 		{
 		private:
 			bool topo, fundo, obstaculou;
-			float max, min;
+			float max, min; 
 
 		public:
 			Plataforma(sf::Vector2f pos, float vel, float h_Max, float h_Min);

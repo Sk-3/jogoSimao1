@@ -100,12 +100,6 @@ namespace Fases{
 
 		hud.draw();
 		
-		if (!player->vivo())
-		{
-			setAction(Actions::GAME_OVER);
-		}
-		if (verificarQuantidadeInimigos() == 0) {
-			setAction(Actions::GAME_OVER);
-		}
+		controladorEstado(id);
 	}
 }

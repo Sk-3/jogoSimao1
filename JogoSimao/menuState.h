@@ -21,7 +21,7 @@ public:
 	menuState();
 
 
-	void readButtons();
+	virtual void readButtons();
 	void execButtons();
 	virtual void handleEvent();
 	virtual void executar();

@@ -66,7 +66,7 @@ namespace Gerenciadores {
 			break;
 		}
 		case Actions::PAUSE: {
-			push(new PauseState());
+			push(new PauseState(static_cast<Fases::Fase*>(stack.back())));
 			break;
 		}
 		case Actions::GAME_OVER:
@@ -79,6 +79,13 @@ namespace Gerenciadores {
 			pop();
 			push(new Fases::Fase2(jogador1, jogador2));
 			break;
+		}
+		case Actions::SALVAR:
+		{
+			pop();
+			stack.back()->setAction(Actions::SALVAR);
+			break;
+			
 		}
 
 		default:
