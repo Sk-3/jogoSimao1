@@ -1,5 +1,6 @@
 #pragma once
 #include "Personagem.h"
+#include "Jogador.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 *	Classe abstrata inimigo
@@ -10,6 +11,8 @@ namespace Entidades{
 		class Inimigo : public Personagem
 		{
 		protected:
+			sf::Clock danoContatoRelogio;
+			float danoContatoCooldown = 1;
 			static int quantidadeInimigos;
 			int nivel_maldade;
 			Personagem* pPlayer;
@@ -27,7 +30,10 @@ namespace Entidades{
 			static void zerarInimigos();
 			void diminuirInimigos();
 			void aumentarPontos();
+			void salvarInimigo();
+			virtual void salvar() = 0;
 			virtual void executar() = 0;
+			virtual void danificar(Jogador* jogador) = 0;
 			virtual void perseguirJogador();
 			virtual bool jogadorNoAlcance();
 		};

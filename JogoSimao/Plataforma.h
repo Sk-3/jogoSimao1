@@ -25,6 +25,9 @@ namespace Entidades {
 			void obstacular(Personagens::Personagem* pPersonagem);
 			void mover();
 			void executar();
+			void salvar(); 
+			void salvarPlataforma();
+
 		};
 
 	}

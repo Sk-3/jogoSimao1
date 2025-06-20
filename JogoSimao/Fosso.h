@@ -25,6 +25,8 @@ namespace Entidades {
 			void antigravidade();
 			void desabar();
 			void executar();
+			void salvar();
+			void salvarFosso();
 		};
 	}
 }

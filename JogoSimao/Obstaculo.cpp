@@ -23,5 +23,11 @@ namespace Entidades{
 			return colidivel;
 		}
 
+		void Obstaculo::salvarObstaculo()
+		{
+			salvarEntidade();
+			std::cout << "Chamando salvar Obstaculo\n";
+		}
+
 	}
 }

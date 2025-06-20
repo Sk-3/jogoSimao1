@@ -15,6 +15,8 @@ namespace Entidades{
 		Projetil(sf::Vector2f pos, Personagens::Personagem* dono);
 		Projetil();
 		~Projetil();
+		void salvar();
+		void salvarProjetil();
 		const TipoPersonagem getTipo() const;
 		void setTipo(TipoPersonagem tipo);
 		void executar();

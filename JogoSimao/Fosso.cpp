@@ -50,5 +50,14 @@ namespace Entidades {
 			desabar();
 			move();
 		}
+
+		void Fosso::salvar() {
+			salvarFosso();
+		}
+		void Fosso::salvarFosso()
+		{
+			salvarObstaculo();
+			std::cout << "Chamando Salvar Fosso\n";
+		}
 	}
 }

@@ -6,6 +6,7 @@ namespace Entidades{
 		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEnt, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
 			:Personagem(pos), pPlayer(player), gerColisao(gerenciadorColisao), listaEntidade(listaEnt)
 		{
+			danoContatoCooldown = 1;
 			quantidadeInimigos++;
 			nivel_maldade = 0;
 			range = 1000;
@@ -27,6 +28,12 @@ namespace Entidades{
 
 		void Inimigo::aumentarPontos() {
 
+		}
+
+		void Inimigo::salvarInimigo()
+		{
+			salvarPersonagem();
+			std::cout << "Chamando Salvar inimigo\n";
 		}
 
 		bool Inimigo::jogadorNoAlcance()

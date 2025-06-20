@@ -62,6 +62,15 @@ namespace Entidades{
 		*/
 		this->tipo = tipo;
 	}
+	void Projetil::salvar() {
+		salvarProjetil();
+	}
+
+	void Projetil::salvarProjetil()
+	{
+		salvarEntidade();
+		std::cout << "Chamando Salvar Projetil \n";
+	}
 
 	const TipoPersonagem Projetil::getTipo() const
 	{

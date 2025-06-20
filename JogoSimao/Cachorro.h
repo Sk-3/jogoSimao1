@@ -27,6 +27,10 @@ namespace Entidades{
 			void mandarSeguir();		
 			
 			void seguirDono();
+
+			void danificar(Jogador* jogador);
+			void salvar();
+			void salvarCachorro();
 			void executar();
 
 		};

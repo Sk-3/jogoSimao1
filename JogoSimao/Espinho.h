@@ -17,6 +17,8 @@ namespace Entidades {
 			const float getDanoRelogio() const;
 			void obstacular(Personagens::Personagem* pPersonagem);
 			void executar();
+			void salvar();
+			void salvarEspinho();
 		};
 
 	}

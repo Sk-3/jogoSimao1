@@ -36,7 +36,8 @@ namespace Entidades{
 			int getPontos();
 			
 			void executar(); 
-
+			void salvar();
+			void salvarJogador();
 		};
 	}
 

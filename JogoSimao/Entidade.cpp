@@ -78,7 +78,7 @@ namespace Entidades{
 
 	void Entidade::salvarEntidade()
 	{
-		std::cout << "\nPosicao X:" << shape.getPosition().x << "\nPosicao Y:" << shape.getPosition().y << "\nVelocidade X:" << speed.x << "\nvelocidade Y:" << speed.y;
+		std::cout << "Chamando Salvar Entidade\n"; 
 	}
 
 	void Entidade::desativar(){

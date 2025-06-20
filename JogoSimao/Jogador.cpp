@@ -26,8 +26,8 @@ namespace Entidades{
 			arma = new Arma(this, Armas::METRALHADORA);
 			tipo = TipoPersonagem::PLAYER;
 			maxSpeed = 6;
-			health = 30;
-			jumps = 2;
+			health = 55;
+			jumps = 7;
 			shape.setTexture(*pGerGraphic->getPlayerTexture());
 			shape.setTextureRect(sf::IntRect(0, 0, 16, 16));
 			shape.setScale(5, 5);
@@ -145,6 +145,16 @@ namespace Entidades{
 				shape.setTexture(*pGerGraphic->getPlayerTexture());
 			}
 			move();
+		}
+
+		void Jogador::salvar()
+		{
+			salvarJogador();
+		}
+		void Jogador::salvarJogador()
+		{
+			salvarPersonagem();
+			std::cout << "Chamando salvar Jogador\n";
 		}
 
 		

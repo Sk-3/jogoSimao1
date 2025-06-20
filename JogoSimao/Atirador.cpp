@@ -28,6 +28,25 @@ namespace Entidades{
 		{
 			cachorros.emplace_back(cachorro);
 		}
+		void Atirador::danificar(Jogador* jogador)
+		{
+			if (danoContatoRelogio.getElapsedTime().asSeconds() > danoContatoCooldown) {
+				danoContatoRelogio.restart();
+				jogador->tiraVida(nivel_maldade);
+			}
+		}
+
+
+		
+		void Atirador::salvar() {
+			salvarAtirador();
+		}
+		void Atirador::salvarAtirador()
+		{
+			salvarInimigo();
+			std::cout << "Chamando salvar Atirador\n";
+		}
+	
 		void Atirador::executar() {
 			
 			caiuDoMapa();

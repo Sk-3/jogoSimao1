@@ -37,6 +37,16 @@ namespace Entidades {
 
 		}
 
+		void Espinho::salvar()
+		{
+			salvarEspinho();
+		}
+		void Espinho::salvarEspinho()
+		{
+			salvarObstaculo();
+			std::cout << "Chamando salvar Espinho\n";
+		}
+
 		void Espinho::obstacular(Personagens::Personagem* pPersonagem) {
 			
 			if (pPersonagem->getTipo() == TipoPersonagem::PLAYER) {

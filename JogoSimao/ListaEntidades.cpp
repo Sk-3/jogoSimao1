@@ -84,8 +84,7 @@ namespace Listas
     {
         
         for (it = inicio(); it != fim(); ++it)
-            std::cout << "Estou sendo chamado";
-            //(*it)->salvar();
+            (*it)->salvar();
     }
 
     void ListaEntidades::desenhar()

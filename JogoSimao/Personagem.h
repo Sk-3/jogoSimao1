@@ -67,7 +67,9 @@ namespace Entidades{
 				
 
 			//FUNÇÕES BASE
-			virtual void executar() = 0;
+				void salvarPersonagem();
+				virtual void salvar() = 0; 
+				virtual void executar() = 0;
 			
 		};
 	}

@@ -111,6 +111,25 @@ namespace Entidades{
 			}
 		}	
 			
+		void Cachorro::salvar()
+		{
+			salvarCachorro();
+		}
+
+		void Cachorro::danificar(Jogador* jogador)
+		{
+			if (danoContatoRelogio.getElapsedTime().asSeconds() > danoContatoCooldown) {
+				danoContatoRelogio.restart();
+				jogador->tiraVida(nivel_maldade);
+			}
+		}
+
+
+		void Cachorro::salvarCachorro()
+		{
+			salvarInimigo();
+			std::cout<< "Chamando salvar cachorro\n";
+		}
 
 		void Cachorro::executar() {
 			/**

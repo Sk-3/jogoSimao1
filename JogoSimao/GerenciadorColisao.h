@@ -36,6 +36,7 @@ namespace Gerenciadores{
 	
 
 		//TRATAMENTO DE COLISOES
+		void tratarColisoesJogsInimigos();
 		void tratarColisoesJogsObstaculos();
 		void tratarColisoesJogsEstruturas();		
 		void tratarColisaoProjeteis();

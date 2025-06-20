@@ -27,6 +27,14 @@ namespace Entidades{
 
 		
 
+		void Esqueleto::danificar(Jogador* jogador)
+		{
+			if (danoContatoRelogio.getElapsedTime().asSeconds() > danoContatoCooldown) {
+				danoContatoRelogio.restart();
+				jogador->tiraVida(nivel_maldade);
+			}
+		}
+
 		void Esqueleto::executar() {
 
 			caiuDoMapa();
@@ -43,6 +51,16 @@ namespace Entidades{
 			}
 
 			move();
+		}
+		void Esqueleto::salvar()
+		{
+			salvarEsqueleto();
+		}
+
+		void Esqueleto::salvarEsqueleto()
+		{
+			salvarInimigo();
+			std::cout << "Chamando Salvar esqueleto\n"; 
 		}
 	}
 }

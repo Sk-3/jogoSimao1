@@ -22,6 +22,10 @@ namespace Entidades{
 			~Atirador();  
 			void adicionarCachorro(Cachorro* cachorro);
 
+
+			void danificar(Jogador* jogador);
+			void salvar();
+			void salvarAtirador();
 			void executar();  
 		};  
 	}  

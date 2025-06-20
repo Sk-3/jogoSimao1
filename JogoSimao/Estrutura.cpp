@@ -38,4 +38,13 @@ namespace Entidades {
 	{
 	
 	}
+	void Estrutura::salvar() {
+		salvarEstrutura();
+
+	}
+	void Estrutura::salvarEstrutura()
+	{
+		salvarEntidade();
+		std::cout << "Chamando salvar Estrutura\n";
+	}
 }

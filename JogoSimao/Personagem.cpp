@@ -140,6 +140,12 @@ namespace Entidades{
 			arma->atirar(listaEntidade, gerenciadorColisao);
 		}
 
+		void Personagem::salvarPersonagem()
+		{
+			salvarEntidade();
+			std::cout << "Chamando salvar Personagem\n";
+		}
+
 		void Personagem::executar() {
 			move();
 		}

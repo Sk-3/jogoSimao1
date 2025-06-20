@@ -72,6 +72,15 @@ namespace Entidades{
 		{			
 			mover();
 		}
+		void Plataforma::salvar()
+		{
+			salvarPlataforma();
+		}
+		void Plataforma::salvarPlataforma()
+		{
+			salvarObstaculo();
+			std::cout << "Chamando salvar Plataforma\n";
+		}
 
 	}
 }
