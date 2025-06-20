@@ -9,6 +9,10 @@ namespace Entidades{
 		{
 			Clocktiro.restart();
 			tiroCooldown = 0.2;
+			arma = nullptr;
+			tipo = TipoPersonagem::INIMIGO;
+			maxSpeed = 6;
+			moveSpeed = 3;
 			jumps = 2;
 			health = 10;
 			speed.x = 0;
@@ -19,12 +23,7 @@ namespace Entidades{
 		Personagem::Personagem(sf::Vector2f pos )
 			:Entidade(pos)
 		{
-			/***
-			*@brief Construtor da classe Character, que inicializa o personagem com tamanho e posicaoo especificos.
-			*@param size Tamanho do personagem.
-			*@param pos Posicao inicial do personagem.
-			*
-			*/
+			tiroCooldown = 0.2;
 			arma = nullptr;
 			tipo = TipoPersonagem::INIMIGO; 
 			maxSpeed = 6;

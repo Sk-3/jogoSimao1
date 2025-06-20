@@ -14,7 +14,7 @@ namespace Entidades{
 
 		public:
 			virtual ~EstadoCachorro(){}
-			virtual void atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao) = 0;
+			virtual void atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao, Jogador* jogador) = 0;
 			const int getId() const;
 		};
 	}

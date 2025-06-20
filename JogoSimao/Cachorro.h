@@ -16,8 +16,8 @@ namespace Entidades{
 			Personagem* pDono;
 			EstadoCachorro* estadoAtual;
 		public:
-			Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, Personagem* dono);
-			Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
+			Cachorro(sf::Vector2f pos, Jogador* jogador, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, Personagem* dono);
+			Cachorro(sf::Vector2f pos, Jogador* jogador, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
 			~Cachorro();
 			//SETTERS
 			void setEstado(EstadoCachorro* novoEstado);
@@ -27,6 +27,7 @@ namespace Entidades{
 			void mandarSeguir();		
 			
 			void seguirDono();
+			void danificar(Jogador* pJogador);
 			void executar();
 
 		};
