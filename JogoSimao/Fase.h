@@ -56,7 +56,8 @@ namespace Fases{
 		void criarCachorro(Entidades::Personagens::Atirador* dono);
 		void criarCachorro();
 		void criarPlataformas();
-		virtual void criarInimigos() = 0;		
+		virtual void criarInimigos() = 0;
+		virtual void criarObstaculo() = 0;
 		void criarCenario();
 		void aplicarGravidade();
 	};

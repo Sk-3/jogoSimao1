@@ -5,8 +5,7 @@ namespace Fases{
 		Fase() 
 	{
 		id = 1;
-		criarCenario();
-				
+		criarCenario();				
 		criarInimigos();
 		criarObstaculo();
 	}
@@ -17,19 +16,18 @@ namespace Fases{
 
 	void Fase1::criarEsqueletos()
 	{
-		srand(time(NULL));
 		for (int i = 0; i < 3; i++) {
 			
 			Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(5000 + (500*i), 300), player, &listaEntidades, &gerenciadorColisao, i);
 			gerenciadorColisao.incluirInimigo(esqueleto);
-			listaEntidades.inserirNoFim(esqueleto);
+			listaEntidades.inserirNoFim(esqueleto);			
 		}
 		for (int i = 2; i < maxEsqueletos; i++) {
 			if (rand() % 2) {
 				
 				Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(4000 + (500 * 1.5*i), 300), player, &listaEntidades, &gerenciadorColisao, i);
 				gerenciadorColisao.incluirInimigo(esqueleto);
-				listaEntidades.inserirNoFim(esqueleto);
+				listaEntidades.inserirNoFim(esqueleto);				
 			}
 		}
 
@@ -37,7 +35,6 @@ namespace Fases{
 
 	void Fase1::criarEspinhos()
 	{		
-		
 		for (int i = 0; i < 10; i++) {
 
 			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 3800, 670), TipoEstrutura::CHAO);
@@ -45,11 +42,19 @@ namespace Fases{
 			gerenciadorColisao.incluirEstrutura(estrutura);
 		}
 		
-		for (int i = 0; i <= 4; i++) {
+		for (int i = 0; i <3; i++) {
 
 			Entidades::Obstaculos::Espinho* espinho = new Entidades::Obstaculos::Espinho(sf::Vector2f((200 * i)+4000, 590 - (16 * i)), 1+(0.2*i));
 			listaEntidades.inserirNoFim(espinho);
 			gerenciadorColisao.incluirObstaculo(espinho);
+		}
+
+		for (int i = 0; i < 3; i++) {
+			if (rand() % 2) {
+				Entidades::Obstaculos::Espinho* espinho = new Entidades::Obstaculos::Espinho(sf::Vector2f((200 * i) + 4600, 590 - (16 * i)), 1 + (0.2 * i));
+				listaEntidades.inserirNoFim(espinho);
+				gerenciadorColisao.incluirObstaculo(espinho);
+			}
 		}
 	}	
 

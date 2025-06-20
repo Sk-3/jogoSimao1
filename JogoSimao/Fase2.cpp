@@ -4,8 +4,7 @@ namespace Fases{
 	Fase()
 	{
 		id = 2;
-		criarCenario();
-		criarPlataformas();		
+		criarCenario();				
 		criarInimigos();
 		criarObstaculo();
 	}
@@ -35,13 +34,33 @@ namespace Fases{
 	}
 	
 
-	void Fase2::criarObstDificil()
+	void Fase2::criarFosso()
 	{
-		for (int i = 0; i < 3; i++) {
-
-			Entidades::Obstaculos::Fosso* fosso = new Entidades::Obstaculos::Fosso(sf::Vector2f(4000+(200*i), 670), 1);
-			gerenciadorColisao.incluirObstaculo(fosso);
-			listaEntidades.inserirNoFim(fosso);
+		
+		for (int i = 0; i < 2; i++) {
+			Entidades::Estrutura* limite = new Entidades::Estrutura(sf::Vector2f(3700 + (i * 1100), 638), TipoEstrutura::CHAO);
+			listaEntidades.inserirNoFim(limite);
+			gerenciadorColisao.incluirEstrutura(limite);
+		}
+		
+		Entidades::Estrutura* parada = new Entidades::Estrutura(sf::Vector2f(3700, 638), TipoEstrutura::CHAO);
+		listaEntidades.inserirNoFim(parada);
+		gerenciadorColisao.incluirEstrutura(parada);
+		
+		if (rand() % 2) {
+			for (int i = 0; i < 4; i++) {
+				Entidades::Obstaculos::Fosso* fosso = new Entidades::Obstaculos::Fosso(sf::Vector2f(3900 + (200 * i), 670), 1);
+				gerenciadorColisao.incluirObstaculo(fosso);
+				listaEntidades.inserirNoFim(fosso);
+			}
+		}
+		else
+		{
+			for (int i = 0; i < 3; i++) {
+				Entidades::Obstaculos::Fosso* fosso = new Entidades::Obstaculos::Fosso(sf::Vector2f(3900 + (300 * i), 670), 1);
+				gerenciadorColisao.incluirObstaculo(fosso);
+				listaEntidades.inserirNoFim(fosso);
+			}
 		}
 	}
 
@@ -56,7 +75,8 @@ namespace Fases{
 	}
 	void Fase2::criarObstaculo()
 	{
-		criarObstDificil();
+		criarPlataformas();
+		criarFosso();
 	}
 
 	void Fase2::executar()

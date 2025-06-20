@@ -144,45 +144,25 @@ namespace Fases{
 
 	void Fase::criarPlataformas()
 	{
+		int sentido = -1;
 		if (rand() % 2) {
-			Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900, 600), -3 - id, 800, 300);
-			obstaculos.push_back(plat1);
-			listaEntidades.inserirNoFim(plat1);
-			gerenciadorColisao.incluirObstaculo(plat1);
-
-			Entidades::Obstaculos::Plataforma* plat2 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1100, 500), 3 + id, 800, 300);
-			obstaculos.push_back(plat2);
-			listaEntidades.inserirNoFim(plat2);
-			gerenciadorColisao.incluirObstaculo(plat2);
-
-			Entidades::Obstaculos::Plataforma* plat3 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1300, 400), -3 - id, 800, 300);
-			obstaculos.push_back(plat3);
-			listaEntidades.inserirNoFim(plat3);
-			gerenciadorColisao.incluirObstaculo(plat3);
-
-			Entidades::Obstaculos::Plataforma* plat4 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1500, 400), 3 + id, 800, 300);
-			obstaculos.push_back(plat4);
-			listaEntidades.inserirNoFim(plat4);
-			gerenciadorColisao.incluirObstaculo(plat4);
+			for (int i = 0; i < 4; i++) {
+				Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900+(200*i), 600), (3 + id) * sentido, 800, 300);
+				obstaculos.push_back(plat);
+				listaEntidades.inserirNoFim(plat);
+				gerenciadorColisao.incluirObstaculo(plat);
+				sentido *= -1;
+			}			
 		}
 		else {
-			Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900, 600), -3 - id, 800, 300);
-			obstaculos.push_back(plat1);
-			listaEntidades.inserirNoFim(plat1);
-			gerenciadorColisao.incluirObstaculo(plat1);
-
-			Entidades::Obstaculos::Plataforma* plat2 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1200, 500), 3 + id, 800, 300);
-			obstaculos.push_back(plat2);
-			listaEntidades.inserirNoFim(plat2);
-			gerenciadorColisao.incluirObstaculo(plat2);
-
-			Entidades::Obstaculos::Plataforma* plat3 = new Entidades::Obstaculos::Plataforma(sf::Vector2f(1500, 400), -3 - id, 800, 300);
-			obstaculos.push_back(plat3);
-			listaEntidades.inserirNoFim(plat3);
-			gerenciadorColisao.incluirObstaculo(plat3);
-		}
-
-		
+			for (int i = 0; i < 3; i++) {
+				Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900 + (300 * i), 600), (3 + id) * sentido, 800, 300);
+				obstaculos.push_back(plat);
+				listaEntidades.inserirNoFim(plat);
+				gerenciadorColisao.incluirObstaculo(plat);
+				sentido *= -1;
+			}
+		}		
 	}
 
 	void Fase::criarCenario()
@@ -194,7 +174,7 @@ namespace Fases{
 			gerenciadorColisao.incluirEstrutura(estrutura);
 		}
 
-		Entidades::Estrutura* parada = new Entidades::Estrutura(sf::Vector2f(1700, 638), TipoEstrutura::CHAO);
+		Entidades::Estrutura* parada = new Entidades::Estrutura(sf::Vector2f(1800, 638), TipoEstrutura::CHAO);
 		listaEntidades.inserirNoFim(parada);
 		gerenciadorColisao.incluirEstrutura(parada);
 

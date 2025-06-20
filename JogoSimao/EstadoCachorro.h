@@ -9,11 +9,13 @@ namespace Entidades{
 
 		class EstadoCachorro
 		{
+		protected:
+			int id;
+
 		public:
 			virtual ~EstadoCachorro(){}
 			virtual void atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao) = 0;
-			virtual void entrar(Cachorro* cachorro) = 0;
-			virtual void sair(Cachorro* cachorro) = 0;
+			const int getId() const;
 		};
 	}
 }

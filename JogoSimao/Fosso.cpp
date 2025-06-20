@@ -29,18 +29,26 @@ namespace Entidades {
 			}
 		}
 
-		void Fosso::desabar()
+		void Fosso::antigravidade()
 		{
-			if (obstaculou) {
-				speed.y = 5;
-				move();
-			}			
+			speed.y = 0;
 		}
 
-
+		void Fosso::desabar()
+		{
+			if (!obstaculou) {
+				antigravidade();								
+			}
+			else
+			{
+				speed.y = 5;
+			}
+		}		
+		
 		void Fosso::executar()
 		{
 			desabar();
+			move();
 		}
 	}
 }

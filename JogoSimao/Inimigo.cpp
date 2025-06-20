@@ -5,8 +5,8 @@ namespace Entidades{
 		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEnt, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
 			:Personagem(pos), pPlayer(player), gerColisao(gerenciadorColisao), listaEntidade(listaEnt)
 		{
-			nivel_maldade = 0;
-			range = 1000;
+			nivel_maldade = 1;
+			range = 1000;			
 		}
 
 		Inimigo::~Inimigo() {

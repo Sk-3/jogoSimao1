@@ -6,13 +6,11 @@ namespace Entidades {
 		class EstadoCachorroAtacar : public EstadoCachorro
 		{
 		private:
-			int id;
+			float velAtaque;
 		public:
 			EstadoCachorroAtacar();
 			~EstadoCachorroAtacar();
-			void atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao);
-			void entrar(Cachorro* cachorro);
-			void sair(Cachorro* cachorro);
+			void atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao);			
 		};
 
 	}

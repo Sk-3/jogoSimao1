@@ -20,9 +20,7 @@ namespace Entidades{
 			~Inimigo();
 			
 			//GETTERS
-			const Personagem* getPlayer() const;
-			//SETTERS
-	
+			const Personagem* getPlayer() const;			
 
 			void aumentarPontos();
 			virtual void executar() = 0;

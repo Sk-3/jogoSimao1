@@ -4,14 +4,12 @@
 namespace Entidades{
 	namespace Personagens{
 		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, Personagem* dono)
-			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(dono), velocidadeCacando(4), velocidadeSeguindo(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
+			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(dono), velocidade(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
 		{
-			/**
-			*@brief Construtor da classe Cachorro
-			*@detail Construtor que inicializa o tamanho, a posicao do cachorro e a cor
-			*/
 			health = 1;
 			range = 500;
+			nivel_maldade = 1 + (rand() % 10);
+			moveSpeed = velocidade;
 			if (dono) {
 				mandarSeguir();
 			}
@@ -21,11 +19,11 @@ namespace Entidades{
 			arma = new Arma(this, Armas::ARMACACHORRO);
 			shape.setTexture(*pGerGraphic->getCachorro());
 			shape.setTextureRect(sf::IntRect(0, 0, 65, 64));
-			shape.setScale(1.2, 1.2);
+			shape.setScale(1 + (float)nivel_maldade / 10, 1 + (float)nivel_maldade / 10);
 		}
 
 		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
-			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(nullptr), velocidadeCacando(4), velocidadeSeguindo(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
+			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(nullptr), velocidade(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
 		{
 			/**
 			*@brief Construtor da classe Cachorro
@@ -33,17 +31,19 @@ namespace Entidades{
 			*/
 			health = 1;
 			range = 500;
+			nivel_maldade = 1 + (rand() % 10);
+			moveSpeed = velocidade;
 			mandarAtacar();
 			arma = new Arma(this, Armas::ARMACACHORRO);
 			shape.setTexture(*pGerGraphic->getCachorro());
 			shape.setTextureRect(sf::IntRect(0, 0, 65, 64));
-			shape.setScale(1.2, 1.2);
+			shape.setScale(1 + (float)nivel_maldade / 10, 1 + (float)nivel_maldade / 10);
 		}
 
 
 		Cachorro::~Cachorro()
 		{
-		}
+		}		
 
 		void Cachorro::seguirDono()
 		{
@@ -61,38 +61,55 @@ namespace Entidades{
 		void Cachorro::setEstado(EstadoCachorro* novoEstado)
 		{
 			if (estadoAtual) {
-				estadoAtual->sair(this);
-				delete estadoAtual;
-			}
-			estadoAtual = novoEstado;
-			if (estadoAtual) {
-				estadoAtual->entrar(this);
-			}
+				 delete estadoAtual;
+			}			
+			estadoAtual = novoEstado;			
+		}
+
+		void Cachorro::setRange(float range)
+		{
+			this->range = range;
 		}
 
 		void Cachorro::mandarAtacar()
 		{
-			setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroAtacar()));
-		}
-
-		void Cachorro::mandarCacar()
-		{
-			setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroCacar()));
+			if (estadoAtual) {
+				if (estadoAtual->getId() != 1) {
+					setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroAtacar()));
+				}
+			}
+			else
+			{
+				setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroAtacar()));
+			}
 		}
 
 		void Cachorro::mandarSeguir()
 		{
-			setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroSeguir()));
+			if (estadoAtual) {
+				if (estadoAtual->getId() != 2) {
+					setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroSeguir()));
+				}
+			}
+			else
+			{
+				setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroSeguir()));
+			}
 		}
 
-		const float Cachorro::getVelocidadeSeguindo() const
+		void Cachorro::mandarCacar()
 		{
-			return velocidadeSeguindo;
-		}
-		const float Cachorro::getVelocidadeCacando() const
-		{
-			return velocidadeCacando;
-		}
+			if (estadoAtual) {
+				if (estadoAtual->getId() != 3) {
+					setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroCacar()));
+				}
+			}
+			else
+			{
+				setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroCacar()));
+			}
+		}	
+			
 
 		void Cachorro::executar() {
 			/**

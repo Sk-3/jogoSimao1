@@ -9,14 +9,15 @@ namespace Entidades{
 		{
 			arma = new Arma(this, Armas::RIFLE);
 
-
 			Clocktiro.restart();
-			range = 1000;
 			health = 20;
+			range = 1000;
+			nivel_maldade = 5 + (rand() % 10);
+			setMoveSpeed(2);
 			tipo = TipoPersonagem::INIMIGO;
 			shape.setTexture(*pGerGraphic->getAtiradorTexture());
 			shape.setTextureRect(sf::IntRect(0, 0, 46, 71));
-			shape.setScale(1.5, 1.5);
+			shape.setScale(1 + (float)nivel_maldade/10, 1 + (float)nivel_maldade/10);
 		}
 		Atirador::~Atirador()
 		{
@@ -26,10 +27,6 @@ namespace Entidades{
 			cachorros.emplace_back(cachorro);
 		}
 		void Atirador::executar() {
-			/**
-			*@brief Executa o atirador
-			*@return void
-			*/
 			
 			caiuDoMapa();
 			if (!vivo()) {

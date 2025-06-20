@@ -138,6 +138,7 @@
     <ClCompile Include="Esqueleto.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Cachorro.cpp" />
+    <ClCompile Include="EstadoCachorro.cpp" />
     <ClCompile Include="EstadoCachorroAtacar.cpp" />
     <ClCompile Include="Estrutura.cpp" />
     <ClCompile Include="Fosso.cpp" />

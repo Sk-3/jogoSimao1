@@ -6,6 +6,7 @@ namespace Entidades {
 		EstadoCachorroAtacar::EstadoCachorroAtacar()
 		{
 			id = 1;
+			velAtaque = 3 + (rand() % 4); // velocidade de ataque entre 3 e 6			
 		}
 
 		EstadoCachorroAtacar::~EstadoCachorroAtacar()
@@ -13,27 +14,13 @@ namespace Entidades {
 		}
 		void EstadoCachorroAtacar::atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao)
 		{
-			/**
-			*@brief Funcao responsavel por fazer o cachorro atacar o jogador caso ele esteja vivo
-			*@param ponteiro pro objeto cachorro
-			*/
-			if (cachorro->getPlayer() && cachorro->getPlayer()->getHealth() >= 0) {
-				cachorro->setMoveSpeed(cachorro->getVelocidadeCacando());				
+			cachorro->setMoveSpeed(velAtaque);
+			if (cachorro->getPlayer() && cachorro->getPlayer()->getHealth() >= 0) {								
 				if (cachorro->jogadorNoAlcance()) {
 					cachorro->perseguirJogador();
 					cachorro->atirar(lista, gerColisao);
 				}
 			}			
-		}
-
-		void EstadoCachorroAtacar::entrar(Cachorro* cachorro)
-		{
-
-		}
-
-		void EstadoCachorroAtacar::sair(Cachorro* cachorro)
-		{
-
 		}
 
 	}

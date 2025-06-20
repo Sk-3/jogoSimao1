@@ -7,6 +7,11 @@ namespace Entidades {
 		EstadoCachorroSeguir::EstadoCachorroSeguir()
 		{
 			id = 2;
+			seguir = false;
+			if ((rand() % 10) < 7) // 70% de chance de seguir o dono
+			{
+				seguir = true;
+			}			
 		}
 		EstadoCachorroSeguir::~EstadoCachorroSeguir()
 		{
@@ -14,22 +19,11 @@ namespace Entidades {
 
 		void EstadoCachorroSeguir::atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao)
 		{
-			/**
-			*@brief Funcao responsavel por fazer o cachorro perseguir o jogador caso ele esteja vivo
-			*@param ponteiro pro objeto cachorro
-			*/
-			cachorro->setMoveSpeed(cachorro->getVelocidadeSeguindo());
-			cachorro->seguirDono();
+			if (seguir)
+			{
+				cachorro->seguirDono();
+			}			
 		}
-
-		void EstadoCachorroSeguir::entrar(Cachorro* cachorro)
-		{
-		}
-
-		void EstadoCachorroSeguir::sair(Cachorro* cachorro)
-		{
-		}
-
 		
 	}
 }

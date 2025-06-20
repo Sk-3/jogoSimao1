@@ -36,7 +36,7 @@ namespace Entidades{
 			if (!obstaculou) {
 				if (pPersonagem->getTipo() == TipoPersonagem::PLAYER)
 				{
-					speed.y *= 1.7;
+					speed.y *= 1.5;
 				}
 				obstaculou = true;
 			}

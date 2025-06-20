@@ -12,8 +12,7 @@ namespace Entidades{
 		private:
 			Gerenciadores::GerenciadorColisao* gc;
 			Listas::ListaEntidades* listaEnt;
-			float velocidadeSeguindo;
-			float velocidadeCacando;
+			float velocidade;			
 			Personagem* pDono;
 			EstadoCachorro* estadoAtual;
 		public:
@@ -22,12 +21,10 @@ namespace Entidades{
 			~Cachorro();
 			//SETTERS
 			void setEstado(EstadoCachorro* novoEstado);
+			void setRange(float range);
 			void mandarAtacar();
 			void mandarCacar();
-			void mandarSeguir();
-			//GETTERS
-			const float getVelocidadeSeguindo() const;
-			const float getVelocidadeCacando() const;
+			void mandarSeguir();		
 			
 			void seguirDono();
 			void executar();
