@@ -3,11 +3,10 @@ namespace Fases{
 	Fase2::Fase2(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2):
 	Fase(jg1,jg2)
 	{
-		
+		id = 2;
 		jg1->posicionarNoInicio();
 		jg2->posicionarNoInicio();
-		criarCenario();
-		criarPlataformas();		
+		criarCenario();		
 		criarInimigos();
 		criarObstaculo();
 	}

@@ -149,7 +149,6 @@ namespace Fases{
 		if (rand() % 2) {
 			for (int i = 0; i < 4; i++) {
 				Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900+(200*i), 600), (3 + id) * sentido, 800, 300);
-				obstaculos.push_back(plat);
 				listaEntidades.inserirNoFim(plat);
 				gerenciadorColisao.incluirObstaculo(plat);
 				sentido *= -1;
@@ -158,7 +157,6 @@ namespace Fases{
 		else {
 			for (int i = 0; i < 3; i++) {
 				Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900 + (300 * i), 600), (3 + id) * sentido, 800, 300);
-				obstaculos.push_back(plat);
 				listaEntidades.inserirNoFim(plat);
 				gerenciadorColisao.incluirObstaculo(plat);
 				sentido *= -1;

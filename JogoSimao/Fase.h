@@ -42,12 +42,7 @@ namespace Fases{
 
 		//PLAYERS
 		Entidades::Personagens::Jogador* player2;
-		Entidades::Personagens::Jogador* player;
-		//VETORES
-		std::vector<Entidades::Estrutura*> estruturas;
-		std::vector<Entidades::Projetil*> projeteis;
-		std::vector<Entidades::Obstaculos::Obstaculo*> obstaculos;
-		std::vector<Entidades::Personagens::Personagem*> characters;
+		Entidades::Personagens::Jogador* player;	
 	public:
 		~Fase();
 		Fase(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2);
