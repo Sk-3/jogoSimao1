@@ -1,10 +1,13 @@
 #include "Entidade.h"
 #include <iostream>
+
+int Entidades::Entidade::contadorEntidades = 0;
 namespace Entidades{
 
 	Entidade::Entidade() :
-		position(sf::Vector2f(0.f, 0.f))
+		position(sf::Vector2f(0.f, 0.f)), buffer()
 	{
+		idUnico = contadorEntidades++;
 		ativo = 1; 
 		shape.scale(3, 3);
 		shape.setPosition(position);
@@ -13,7 +16,7 @@ namespace Entidades{
 	}
 
 	Entidade::Entidade(sf::Vector2f pos) :
-		position(pos)
+		position(pos), buffer()
 	{
 
 		/***
@@ -21,6 +24,7 @@ namespace Entidades{
 		* @param pos - posicao do corpo do objeto
 		*/
 
+		idUnico = contadorEntidades++;
 		ativo = 1;
 		shape.scale(3, 3);
 		shape.setPosition(pos);
@@ -51,6 +55,10 @@ namespace Entidades{
 		*/
 		return shape.getPosition();
 	}
+	const int Entidade::getIdUnico() const
+	{
+		return idUnico;
+	}
 	const sf::FloatRect Entidade::getBounds()
 	{
 		/***
@@ -78,7 +86,58 @@ namespace Entidades{
 
 	void Entidade::salvarEntidade()
 	{
-		std::cout << "Chamando Salvar Entidade\n"; 
+		std::stringstream novoBuffer;
+		buffer.str("");
+		buffer.clear();
+		switch (getId()) {
+			case Id::Jogador: {
+				buffer << "JOGADOR" << " ";
+				break;
+			}
+			case Id::Atirador:{
+				buffer << "ATIRADOR" << " ";
+				break;
+			}
+			case Id::Cachorro: {
+				buffer << "CACHORRO" << " ";
+				break;
+			}
+			case Id::Espinho: {
+				buffer << "ESPINHO" << " ";
+				break;
+			}
+			case Id::Esqueleto: {
+				buffer << "ESQUELETO" << " ";
+				break;
+			}
+			case Id::Fosso: {
+				buffer << "FOSSO" << " ";
+				break;
+			}
+			case Id::Projetil: {
+				buffer << "PROJETIL" << " ";
+				break;
+			}
+			case Id::Plataforma: {
+				buffer << "PLATAFORMA" << " ";
+				break;
+			}
+			case Id::Estrutura:{
+				buffer << "ESTRUTURA" << " ";
+				break;
+			}
+			default: {
+				break;
+			}
+		}
+
+		buffer << idUnico << " ";
+		buffer << ativo << " ";
+		buffer << getPosition().x << " ";
+		buffer << getPosition().y << " ";
+
+		buffer << speed.x << " ";
+		buffer << speed.y << " ";
 	}
 
 	void Entidade::desativar(){

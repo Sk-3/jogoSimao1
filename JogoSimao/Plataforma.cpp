@@ -4,6 +4,8 @@ namespace Entidades{
 		Plataforma::Plataforma(sf::Vector2f pos, float vel, float h_Max, float h_Min)
 			:Obstaculo(pos)
 		{
+			id = Id::Plataforma;
+			velocidade = vel;
 			colidivel = 1;
 			shape.setTexture(*pGerGraphic->getChaoTexture());
 			shape.setTextureRect(sf::IntRect(192, 96, 96, 32));			
@@ -79,7 +81,9 @@ namespace Entidades{
 		void Plataforma::salvarPlataforma()
 		{
 			salvarObstaculo();
-			std::cout << "Chamando salvar Plataforma\n";
+			buffer << velocidade << " " << max << " " << min << " " << obstaculou;
+
+			std::cout << buffer.str() <<"\n";
 		}
 
 	}

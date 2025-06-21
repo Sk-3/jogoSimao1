@@ -1,10 +1,11 @@
 #include "Estrutura.h"
 
 namespace Entidades {
-	Entidades::Estrutura::Estrutura(sf::Vector2f pos, TipoEstrutura tipoE)
+	Entidades::Estrutura::Estrutura(sf::Vector2f pos, TipoEstrutura tipoEstrutura)
 	:Entidade(pos)
 	{
-		tipo = tipoE;
+		id = Id::Estrutura;
+		tipo = tipoEstrutura;
 		formatarEstrutura(tipo);			
 	}
 
@@ -45,6 +46,16 @@ namespace Entidades {
 	void Estrutura::salvarEstrutura()
 	{
 		salvarEntidade();
-		std::cout << "Chamando salvar Estrutura\n";
+		switch (tipo) {
+		case TipoEstrutura::CHAO:{
+			buffer << "CHAO";
+			break;
+		}
+		case TipoEstrutura::PAREDE: {
+			buffer << "PAREDE";
+			break;
+		}
+		}
+		std::cout << buffer.str() <<"\n";
 	}
 }

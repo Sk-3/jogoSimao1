@@ -1,7 +1,6 @@
 #include "EstadoCachorro.h"
 
-
-const int Entidades::Personagens::EstadoCachorro::getId() const
+const int Entidades::Personagens::EstadoCachorro::getIdCachorro() const
 {
     return id;
 }

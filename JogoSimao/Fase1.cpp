@@ -14,7 +14,6 @@ namespace Fases{
 
 	Fase1::~Fase1()
 	{
-		Entidades::Personagens::Inimigo::zerarInimigos();
 	}
 
 	void Fase1::criarEsqueletos()

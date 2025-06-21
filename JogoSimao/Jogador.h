@@ -15,7 +15,8 @@ namespace Entidades{
 		class Jogador : public Personagem
 		{
 		private:
-
+			sf::Clock dashRelogio;
+			float dashCooldown = 3;
 			int pontos;
 			float maxSpeed;
 			sf::Vector2f center;
@@ -25,10 +26,7 @@ namespace Entidades{
 			~Jogador();
 			sf::Vector2f getPosition();
 			//Adicionam velocidade ao vetor de velocidade do jogador
-			void moveUp();
-			void moveDown();
-			void moveLeft();
-			void moveRight();
+			void movimentar(Directions direcao);
 			void posicionarNoInicio();
 			void dash();
 			void stopAxisX();

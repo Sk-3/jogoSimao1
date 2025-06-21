@@ -22,6 +22,7 @@ namespace Fases{
 			gerenciadorColisao.incluirInimigo(atirador);
 			listaEntidades.inserirNoFim(atirador);
 			criarCachorro(atirador);
+			criarCachorro(atirador);
 		}
 
 		for (int i = 3; i < maxAtiradores; i++) {
@@ -29,6 +30,7 @@ namespace Fases{
 				Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(5000 + (i * 500), 300), player, &listaEntidades, &gerenciadorColisao);
 				gerenciadorColisao.incluirInimigo(atirador);
 				listaEntidades.inserirNoFim(atirador);
+				criarCachorro(atirador);
 				criarCachorro(atirador);
 			}
 		}

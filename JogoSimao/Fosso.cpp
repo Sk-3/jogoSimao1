@@ -5,6 +5,7 @@ namespace Entidades {
 		Entidades::Obstaculos::Fosso::Fosso(sf::Vector2f pos, float largura)
 			:Obstaculo(pos)
 		{
+			id = Id::Fosso;
 			obstaculou = false;
 			this->largura = largura;
 			shape.setTexture(*pGerGraphic->getChaoTexture());
@@ -57,7 +58,8 @@ namespace Entidades {
 		void Fosso::salvarFosso()
 		{
 			salvarObstaculo();
-			std::cout << "Chamando Salvar Fosso\n";
+			buffer << largura << " " << obstaculou;
+			std::cout << buffer.str() <<"\n";
 		}
 	}
 }

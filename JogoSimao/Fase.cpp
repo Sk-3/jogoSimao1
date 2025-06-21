@@ -8,6 +8,7 @@ namespace Fases{
 		player2Ativo(0),
 		view(pGerGraphic->getStdView())
 	{
+		Entidades::Personagens::Inimigo::zerarInimigos();
 		gerenciadorColisao.incluirJogador1(player);
 		listaEntidades.inserirNoFim(player);
 		id = 0;
@@ -32,10 +33,10 @@ namespace Fases{
 		//Ações do jogador secundario
 		if (player2Ativo) {
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-				player2->moveLeft();
+				player2->movimentar(Directions::LEFT);
 			}
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-				player2->moveRight();
+				player2->movimentar(Directions::RIGHT);
 			}
 			else {
 				player2->stopAxisX();
@@ -43,35 +44,38 @@ namespace Fases{
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 
-				player2->moveUp();
+				player2->movimentar(Directions::UP);
 
 			}
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-				player2->moveDown();
+				player2->movimentar(Directions::DOWN);
 			}
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
 				player2->dash();
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::L)) {
+				player2->atirar(&listaEntidades, &gerenciadorColisao);
 			}
 		}
 
 		//Ações do jogador principal
 		if(player){
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-				player->moveLeft();
+				player->movimentar(Directions::LEFT);
 			}
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-				player->moveRight();
+				player->movimentar(Directions::RIGHT);
 			}
 			else {
 				player->stopAxisX();
 			}
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-				player->moveUp();
+				player->movimentar(Directions::UP);
 			}
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-				player->moveDown();
+				player->movimentar(Directions::DOWN);
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
 				player->dash();
@@ -174,10 +178,6 @@ namespace Fases{
 			if (verificarQuantidadeInimigos() == 0) {
 				setAction(Actions::PASSOU_DE_FASE);
 			}
-			if (getAction() == Actions::SALVAR) {
-				listaEntidades.salvar();
-				setAction(Actions::PAUSE);
-			}
 		}
 		if (idFase == 2) {
 			if (!player->vivo())
@@ -186,10 +186,6 @@ namespace Fases{
 			}
 			if (verificarQuantidadeInimigos() == 0) {
 				setAction(Actions::GAME_OVER);
-			}
-			if (getAction() == Actions::SALVAR) {
-				listaEntidades.salvar();
-				setAction(Actions::PAUSE);
 			}
 		}
 	}

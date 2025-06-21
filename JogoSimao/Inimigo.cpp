@@ -33,7 +33,7 @@ namespace Entidades{
 		void Inimigo::salvarInimigo()
 		{
 			salvarPersonagem();
-			std::cout << "Chamando Salvar inimigo\n";
+			buffer << nivel_maldade << " ";
 		}
 
 		bool Inimigo::jogadorNoAlcance()

@@ -30,6 +30,7 @@ namespace Entidades{
 			*@brief Construtor da classe Cachorro
 			*@detail Construtor que inicializa o tamanho, a posicao do cachorro e a cor
 			*/
+			id = Id::Cachorro;
 			health = 1;
 			range = 500;
 			nivel_maldade = 1 + (rand() % 10);
@@ -75,7 +76,7 @@ namespace Entidades{
 		void Cachorro::mandarAtacar()
 		{
 			if (estadoAtual) {
-				if (estadoAtual->getId() != 1) {
+				if (estadoAtual->getIdCachorro() != 1) {
 					setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroAtacar()));
 				}
 			}
@@ -88,7 +89,7 @@ namespace Entidades{
 		void Cachorro::mandarSeguir()
 		{
 			if (estadoAtual) {
-				if (estadoAtual->getId() != 2) {
+				if (estadoAtual->getIdCachorro() != 2) {
 					setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroSeguir()));
 				}
 			}
@@ -101,7 +102,7 @@ namespace Entidades{
 		void Cachorro::mandarCacar()
 		{
 			if (estadoAtual) {
-				if (estadoAtual->getId() != 3) {
+				if (estadoAtual->getIdCachorro() != 3) {
 					setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroCacar()));
 				}
 			}
@@ -128,7 +129,7 @@ namespace Entidades{
 		void Cachorro::salvarCachorro()
 		{
 			salvarInimigo();
-			std::cout<< "Chamando salvar cachorro\n";
+			std::cout<< buffer.str()<< "\n";
 		}
 
 		void Cachorro::executar() {

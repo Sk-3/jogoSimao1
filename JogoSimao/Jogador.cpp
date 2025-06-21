@@ -7,6 +7,7 @@ namespace Entidades{
 		Jogador::Jogador()
 			:Personagem()
 		{
+			ativo = 1;
 			tipo = TipoPersonagem::PLAYER;
 			jumps = 2;
 
@@ -45,35 +46,41 @@ namespace Entidades{
 			return shape.getPosition();
 		}
 
-		void Jogador::moveUp()
+		void Jogador::movimentar(Directions direcao)
 		{
-			if (jumps) {
-				speed.y = -8;
-				jumps--;
-			}
-	
-	
-		}
+			switch (direcao){
+				case Directions::UP:{
+					if (jumps && (RelogioPuloCooldown.getElapsedTime().asSeconds() >= puloCooldown)) {
+						RelogioPuloCooldown.restart();
+						speed.y = -8;
+						jumps--;
+					}
+						break;
+					}
+				case Directions::DOWN: {
+					direction = Directions::DOWN;
+					speed.y += 0.3;
+					break;
+				}
+				case Directions::LEFT: {
+					direction = Directions::LEFT;
+					if (speed.x >= -maxSpeed) {
+						speed.x -= 0.4;
+					}
+					break;
+				}
+				case Directions::RIGHT: {
+					direction = Directions::RIGHT;
+					if (speed.x <= maxSpeed) {
+						speed.x += 0.4;
+					}
+					break;
+				}
+				default:
+				{
+					break;
+				}
 
-		void Jogador::moveDown()
-		{
-			direction = Directions::DOWN;
-			speed.y += 0.3;
-		}
-
-		void Jogador::moveLeft()
-		{
-			direction = Directions::LEFT;
-			if(speed.x >= -maxSpeed) {
-				speed.x -= 0.4;
-			}
-		}
-
-		void Jogador::moveRight()
-		{
-			direction = Directions::RIGHT;
-			if (speed.x <= maxSpeed) {
-				speed.x += 0.4;
 			}
 		}
 
@@ -84,17 +91,19 @@ namespace Entidades{
 
 		void Jogador::dash()
 		{
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-				speed.x = -20;
+			if (dashRelogio.getElapsedTime().asSeconds() > dashCooldown) {
+				dashRelogio.restart();
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+					speed.x = -20;
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+					speed.x = 20;
+				}
+				else {
+					speed.x = 20;
+				}
 			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-				speed.x = 20;
-			}
-			else {
-				speed.x = 0;
-				speed.y = 0;
-			}
+			
 		}
 
 		void Jogador::stopAxisX()
@@ -154,7 +163,8 @@ namespace Entidades{
 		void Jogador::salvarJogador()
 		{
 			salvarPersonagem();
-			std::cout << "Chamando salvar Jogador\n";
+			buffer << pontos;
+			std::cout << buffer.str() << "\n";
 		}
 
 		

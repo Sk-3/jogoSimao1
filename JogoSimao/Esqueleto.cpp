@@ -7,10 +7,8 @@ namespace Entidades{
 			:Inimigo( pos, player, listaEntidade, gerenciadorColisao)
 		{
 			id = Id::Esqueleto;
-			
 			tipo = TipoPersonagem::INIMIGO;
 			arma = new Arma(this, Armas::ARMAESQUELETO);
-			Clocktiro.restart();
 			this->forca = forca;
 			health = 5 + (5 * forca);
 			range = 800;
@@ -60,7 +58,8 @@ namespace Entidades{
 		void Esqueleto::salvarEsqueleto()
 		{
 			salvarInimigo();
-			std::cout << "Chamando Salvar esqueleto\n"; 
+			buffer << forca << " ";
+			std::cout << buffer.str() << "\n";
 		}
 	}
 }

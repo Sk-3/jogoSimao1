@@ -26,7 +26,6 @@ namespace Entidades{
 		void Obstaculo::salvarObstaculo()
 		{
 			salvarEntidade();
-			std::cout << "Chamando salvar Obstaculo\n";
 		}
 
 	}

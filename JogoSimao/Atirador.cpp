@@ -10,10 +10,8 @@ namespace Entidades{
 
 			id = Id::Atirador;
 			arma = new Arma(this, Armas::RIFLE);
-
-			Clocktiro.restart();
 			health = 20;
-			range = 1000;
+			range = 2000;
 			nivel_maldade = 5 + (rand() % 10);
 			setMoveSpeed(2);
 			tipo = TipoPersonagem::INIMIGO;
@@ -44,7 +42,19 @@ namespace Entidades{
 		void Atirador::salvarAtirador()
 		{
 			salvarInimigo();
-			std::cout << "Chamando salvar Atirador\n";
+
+			buffer << "{";
+			for (std::vector<Entidades::Personagens::Cachorro*>::const_iterator i = cachorros.begin(); i != cachorros.end(); i++) {
+				if (i + 1 != cachorros.end()) {
+					buffer << (*i)->getIdUnico() << ", ";
+				}
+				else {
+					buffer << (*i)->getIdUnico();
+				}
+				
+			}
+			buffer << "}" << " ";
+			std::cout << buffer.str() <<"\nChamando salvar Atirador\n";
 		}
 	
 		void Atirador::executar() {

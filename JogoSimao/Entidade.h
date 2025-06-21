@@ -2,6 +2,7 @@
 #include "Ente.h"
 #include "Directions.h"
 #include <ostream>
+#include <sstream>
 /**
 *	Felipe Simbalista: 25/05/2025
 * 
@@ -20,11 +21,14 @@ namespace Entidades{
 	class Entidade : public Ente
 	{
 	protected:
+		int idUnico;
+		static int contadorEntidades;
 		sf::Vector2f position;
 		sf::Sprite shape;
 		sf::Vector2f speed;
 		bool ativo;
-		std::ostream* buffer;
+		std::stringstream buffer; 
+	
 	public:
 
 		Entidade();
@@ -33,6 +37,7 @@ namespace Entidades{
 		//GETTERS
 		const sf::Vector2f getCenter();
 		const sf::Vector2f getPosition();
+		const int getIdUnico() const;
 		const virtual sf::FloatRect getBounds();
 		bool ativado() const;
 		//SETTERS

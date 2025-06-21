@@ -27,16 +27,15 @@ namespace Entidades{
 		class Personagem : public Entidade
 		{
 		protected:
-			//clock que controla o tempo de tiro do personagem
-			sf::Clock Clocktiro;
-			float tiroCooldown;
 			Arma* arma;
 			//tipo do personagem, usado para identificar o personagem e suas habilidades
 			TipoPersonagem tipo;
 			float maxSpeed;
 			float moveSpeed;
+			sf::Clock RelogioPuloCooldown;
+			float puloCooldown = 0.2;
 			int health; 
-			int jumps;
+			int jumps = 2;
 			//direção do personagem, usada para saber se o personagem está virado para a direita ou esquerda
 			Directions direction;
 		public:
@@ -54,15 +53,12 @@ namespace Entidades{
 				const TipoPersonagem getTipo() const;
 				const Directions getDirection() const;
 				const int getHealth() const;
-				const float getClockTiro() const;
-				const float getTiroCoooldown() const;
 				const bool vivo() const;
 
 			//SETTERS
 				void caiuDoMapa();
 				virtual void aumentarPontos() = 0;
 				void tiraVida(int dano);
-				void resetClockTiro();
 				void setMoveSpeed(float moveSpeed);
 				
 

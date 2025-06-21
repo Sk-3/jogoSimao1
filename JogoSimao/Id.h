@@ -8,5 +8,7 @@ enum class Id
 	Espinho,
 	Projetil,
 	Fosso,
+	Plataforma,
+	Estrutura, 
 	Jogador
 };
