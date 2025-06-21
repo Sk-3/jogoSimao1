@@ -11,13 +11,22 @@ namespace Entidades{
 		TipoPersonagem tipo;
 		int dano;
 		Personagens::Personagem* dono;
+		int idDono;
 	public:
 		Projetil(sf::Vector2f pos, Personagens::Personagem* dono);
+		Projetil(sf::Vector2f pos);
 		Projetil();
 		~Projetil();
-		void salvar();
+
+		std::string salvar();
+		
+		
 		void salvarProjetil();
 		const TipoPersonagem getTipo() const;
+		
+		void setIdDono(int id); 
+		int getIdDono(); 
+		void setDono(Personagens::Personagem* pdono);
 		void setTipo(TipoPersonagem tipo);
 		void executar();
 		void danifica(Personagens::Personagem* personagem);

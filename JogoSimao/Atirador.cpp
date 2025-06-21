@@ -7,7 +7,8 @@ namespace Entidades{
 		Personagens::Atirador::Atirador(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao) :
 			Inimigo(pos, player, listaEntidade, gerenciadorColisao)
 		{
-
+			cachorro = nullptr;
+			idCachorro = -1;
 			id = Id::Atirador;
 			arma = new Arma(this, Armas::RIFLE);
 			health = 20;
@@ -22,10 +23,21 @@ namespace Entidades{
 		Atirador::~Atirador()
 		{
 		}
-		void Atirador::adicionarCachorro(Cachorro* cachorro)
+		void Atirador::adicionarCachorro(Cachorro* pCachorro)
 		{
-			cachorros.emplace_back(cachorro);
+			cachorro = pCachorro;
+			idCachorro = cachorro->getIdUnico();
 		}
+		void Atirador::setIdCachorro(int id)
+		{
+			idCachorro = id;
+		}
+
+		int Atirador::getIdCachorro() const
+ 		{
+			return idCachorro;
+		}
+
 		void Atirador::danificar(Jogador* jogador)
 		{
 			if (danoContatoRelogio.getElapsedTime().asSeconds() > danoContatoCooldown) {
@@ -36,25 +48,16 @@ namespace Entidades{
 
 
 		
-		void Atirador::salvar() {
+		std::string Atirador::salvar() {
 			salvarAtirador();
+			return buffer.str();
 		}
 		void Atirador::salvarAtirador()
 		{
 			salvarInimigo();
 
-			buffer << "{";
-			for (std::vector<Entidades::Personagens::Cachorro*>::const_iterator i = cachorros.begin(); i != cachorros.end(); i++) {
-				if (i + 1 != cachorros.end()) {
-					buffer << (*i)->getIdUnico() << ", ";
-				}
-				else {
-					buffer << (*i)->getIdUnico();
-				}
-				
-			}
-			buffer << "}" << " ";
-			std::cout << buffer.str() <<"\nChamando salvar Atirador\n";
+			buffer << idCachorro;
+			std::cout << buffer.str() <<"\n";
 		}
 	
 		void Atirador::executar() {
@@ -66,20 +69,23 @@ namespace Entidades{
 			}
 
 			if (jogadorNoAlcance()) {
-				for (const auto& cach : cachorros) {
-					if(cach->ativado()){
-						cach->mandarCacar();
+				if(cachorro){
+					if(cachorro->ativado()){
+						cachorro->mandarCacar();
 					}
 				}
+				
 				perseguirJogador();
 				atirar(listaEntidade, gerColisao);
 			}
 			else {
-				for (const auto& cach : cachorros) {
-					if(cach->ativado()){
-						cach->mandarSeguir();
+			
+				if(cachorro){
+					if(cachorro->ativado()){
+						cachorro->mandarSeguir();
 					}
 				}
+				
 			}
 
 			move();

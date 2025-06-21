@@ -21,11 +21,13 @@ namespace Entidades {
 			Fosso(sf::Vector2f pos, float largura);
 			Fosso();
 			~Fosso();
+
+			void setObstaculou(bool obst);
 			void obstacular(Personagens::Personagem* pPersonagem);
 			void antigravidade();
 			void desabar();
 			void executar();
-			void salvar();
+			std::string salvar();
 			void salvarFosso();
 		};
 	}

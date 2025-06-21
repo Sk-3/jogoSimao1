@@ -46,6 +46,11 @@ namespace Entidades{
 			return shape.getPosition();
 		}
 
+		void Jogador::setPontuacao(int pontuacao)
+		{
+			pontos = pontuacao;
+		}
+
 		void Jogador::movimentar(Directions direcao)
 		{
 			switch (direcao){
@@ -156,9 +161,10 @@ namespace Entidades{
 			move();
 		}
 
-		void Jogador::salvar()
+		std::string Jogador::salvar()
 		{
 			salvarJogador();
+			return buffer.str();
 		}
 		void Jogador::salvarJogador()
 		{

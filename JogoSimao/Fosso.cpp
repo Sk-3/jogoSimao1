@@ -23,6 +23,11 @@ namespace Entidades {
 		{
 		}
 
+		void Fosso::setObstaculou(bool obst)
+		{
+			obstaculou = obst;
+		}
+
 		void Fosso::obstacular(Personagens::Personagem* pPersonagem)
 		{
 			if (pPersonagem->getTipo() == TipoPersonagem::PLAYER) {
@@ -52,8 +57,9 @@ namespace Entidades {
 			move();
 		}
 
-		void Fosso::salvar() {
+		std::string Fosso::salvar() {
 			salvarFosso();
+			return buffer.str();
 		}
 		void Fosso::salvarFosso()
 		{

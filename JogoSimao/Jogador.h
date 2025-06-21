@@ -26,6 +26,7 @@ namespace Entidades{
 			~Jogador();
 			sf::Vector2f getPosition();
 			//Adicionam velocidade ao vetor de velocidade do jogador
+			void setPontuacao(int pontos);
 			void movimentar(Directions direcao);
 			void posicionarNoInicio();
 			void dash();
@@ -34,7 +35,7 @@ namespace Entidades{
 			int getPontos();
 			
 			void executar(); 
-			void salvar();
+			std::string salvar();
 			void salvarJogador();
 		};
 	}

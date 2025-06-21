@@ -1,7 +1,7 @@
 #include "Fase.h"
 namespace Fases{
 
-	Fase::Fase(Entidades::Personagens::Jogador* jogador1, Entidades::Personagens::Jogador* jogador2) :
+	Fase::Fase(Entidades::Personagens::Jogador* jogador1, Entidades::Personagens::Jogador* jogador2, bool carregaArquivo) :
 		State(),
 		player(jogador1),
 		player2(jogador2),
@@ -11,9 +11,11 @@ namespace Fases{
 		Entidades::Personagens::Inimigo::zerarInimigos();
 		gerenciadorColisao.incluirJogador1(player);
 		listaEntidades.inserirNoFim(player);
-		id = 0;
 		hud.setPlayer(player);
 		pGerGraphic->setView(view);
+
+		criarCenario();
+		
 		
 	}
 
@@ -123,6 +125,167 @@ namespace Fases{
 		view.setCenter(player->getPosition());
 	}
 
+	void Fase::carregarSalvamento()
+	{
+		Entidades::Personagens::Inimigo::zerarInimigos();
+		gerenciadorColisao.incluirJogador1(player);
+		listaEntidades.inserirNoFim(player);
+		hud.setPlayer(player);
+		pGerGraphic->setView(view);
+
+
+		std::ifstream arquivo("save.txt");
+		std::string linha;
+		
+		if (arquivo.is_open()) {
+			std::map<int, Entidades::Personagens::Cachorro*> cachorrosMap;
+			std::map<int, Entidades::Personagens::Atirador*> atiradoresMap;
+			std::map<int, Entidades::Personagens::Personagem*> personagensMap;
+			std::vector<Entidades::Projetil*> projeteis;
+			while (std::getline(arquivo, linha)) {
+				
+				std::istringstream linhaOutput(linha);
+				//VARIAVEIS DA ENTIDADE
+				std::string tipoEntidade;
+				int idEntidade, ativo;
+				float posicaoX, posicaoY, velocidadeX, velocidadeY;
+				//VARIAVEIS PERSONAGEM
+				int vida, pulos;
+				//VARIAVEIS INIMIGOS
+				int nivelMaldade;
+				//VARIAVEL JOGADOR
+				int pontuacao;
+				//VARIAVEL ESQUELETO
+				int forca;
+				//IDENTIFICADOR DONO/FILHO
+				int identificadorDonoFilho;
+				//VARIAVEIS PLATAFORMA
+				int hmax, hmin;
+				float velocidade;
+				bool obstaculou;
+				//VARIAVEL FOSSO
+				float largura; 
+				//VARIAVEL ESPINHO
+				float altura;
+
+				linhaOutput >> tipoEntidade;
+
+				if (tipoEntidade == "JOGADOR") {
+					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> vida >> pulos >> pontuacao;
+					std::cout << tipoEntidade << idEntidade << ativo << posicaoX << posicaoY << velocidadeX << velocidadeY << vida << pulos << pontuacao;
+					player->setId(idEntidade);
+					player->setAtivo(ativo);
+					player->setPosicao(posicaoX, posicaoY);
+					player->setVelocidade(velocidadeX, velocidadeY);
+					player->setVida(vida);
+					player->setPulos(pulos);
+					player->setPontuacao(pontuacao);
+					personagensMap.emplace(idEntidade, player);
+				}
+				else if (tipoEntidade == "CACHORRO") {
+					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> vida >> pulos >> nivelMaldade >> identificadorDonoFilho;
+					Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(posicaoX, posicaoY), player, &listaEntidades, &gerenciadorColisao);
+					listaEntidades.inserirNoFim(cachorro);
+					gerenciadorColisao.incluirInimigo(cachorro);
+					cachorro->setId(idEntidade);
+					cachorro->setAtivo(ativo);
+					cachorro->setVida(vida);
+					cachorro->setPulos(pulos);
+					cachorro->setNivelMaldade(nivelMaldade);
+					cachorro->setIdDono(identificadorDonoFilho);
+					personagensMap.emplace(idEntidade, cachorro);
+					cachorrosMap.emplace(idEntidade, cachorro);
+				}
+				else if (tipoEntidade == "ATIRADOR") {
+					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> vida >> pulos >> nivelMaldade >> identificadorDonoFilho;
+					Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(posicaoX, posicaoY), player, &listaEntidades, &gerenciadorColisao);
+					listaEntidades.inserirNoFim(atirador);
+					gerenciadorColisao.incluirInimigo(atirador);
+					atirador->setId(idEntidade);
+					atirador->setAtivo(ativo);
+					atirador->setVida(vida);
+					atirador->setPulos(pulos);
+					atirador->setNivelMaldade(nivelMaldade);
+					atirador->setIdCachorro(identificadorDonoFilho);
+					atiradoresMap.emplace(idEntidade, atirador);
+					personagensMap.emplace(idEntidade, atirador);
+
+				}
+				else if (tipoEntidade == "ESQUELETO") {
+					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> vida >> pulos >> nivelMaldade >> forca;
+					Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(posicaoX, posicaoY), player, &listaEntidades, &gerenciadorColisao, forca);
+					listaEntidades.inserirNoFim(esqueleto);
+					gerenciadorColisao.incluirInimigo(esqueleto);
+					esqueleto->setId(idEntidade);
+					esqueleto->setAtivo(ativo);
+					esqueleto->setVida(vida);
+					esqueleto->setPulos(pulos);
+					esqueleto->setNivelMaldade(nivelMaldade);
+					personagensMap.emplace(idEntidade, esqueleto);
+				}
+				else if (tipoEntidade == "PLATAFORMA") {
+					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> velocidade >> hmax >> hmin >> obstaculou;
+					Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f(posicaoX, posicaoY), velocidade , hmax, hmin);
+					listaEntidades.inserirNoFim(plat);
+					gerenciadorColisao.incluirObstaculo(plat);
+					plat->setVelocidade(velocidadeX, velocidadeY);
+				}
+				else if (tipoEntidade == "FOSSO") {
+					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> largura>>obstaculou;
+					Entidades::Obstaculos::Fosso* fosso = new Entidades::Obstaculos::Fosso(sf::Vector2f(posicaoX, posicaoY), largura);
+					listaEntidades.inserirNoFim(fosso);
+					gerenciadorColisao.incluirObstaculo(fosso);
+					fosso->setVelocidade(velocidadeX, velocidadeY);
+					fosso->setObstaculou(obstaculou);
+				}
+				else if (tipoEntidade == "ESPINHO") {
+					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> altura;
+					Entidades::Obstaculos::Espinho* espinho = new Entidades::Obstaculos::Espinho(sf::Vector2f(posicaoX, posicaoY), altura);
+					listaEntidades.inserirNoFim(espinho);
+					gerenciadorColisao.incluirObstaculo(espinho);
+				}
+				else if (tipoEntidade == "PROJETIL") {
+					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> identificadorDonoFilho;
+					Entidades::Projetil* projetil = new Entidades::Projetil(sf::Vector2f(posicaoX, posicaoY));
+					projetil->setIdDono(identificadorDonoFilho);
+					listaEntidades.inserirNoFim(projetil);
+					gerenciadorColisao.incluirProjetil(projetil);
+					projeteis.push_back(projetil);
+				}
+			}
+
+			for (auto& projet : projeteis) {
+				for (auto& personagem : personagensMap) {
+					if (projet->getIdDono() == personagem.first) {
+						projet->setDono(personagem.second);
+					}
+				}
+			}
+
+			for (auto& cachorro : cachorrosMap) {
+				cachorro.second->getIdDono();
+				for (auto& atirador : atiradoresMap) {
+					if (atirador.first == cachorro.second->getIdDono()) {
+						cachorro.second->setDono(atirador.second);
+					}
+					if (cachorro.first == atirador.second->getIdCachorro()) {
+						atirador.second->adicionarCachorro(cachorro.second);
+					}
+				}
+			}
+		}
+	}
+
+	void Fase::carregamentoPadrao()
+	{
+		
+
+		criarInimigos();
+		criarObstaculo();
+	}
+
+
+
 	void Fase::criarCachorro(Entidades::Personagens::Atirador* dono) {
 		if(dono){
 			Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(dono->getPosition().x + rand() % 300, dono->getPosition().y + (rand() % 300)), player, &listaEntidades, &gerenciadorColisao, dono);
@@ -191,6 +354,11 @@ namespace Fases{
 	}
 
 	void Fase::salvar() {
+		std::ofstream arquivo("save.txt");
+		if (arquivo.is_open()) {
+			arquivo << id << std::endl;
+			arquivo.close();
+		}
 		listaEntidades.salvar();
 	}
 	void Fase::criarCenario()
@@ -211,6 +379,16 @@ namespace Fases{
 			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) +1800, 670), TipoEstrutura::CHAO);
 			listaEntidades.inserirNoFim(estrutura);
 			gerenciadorColisao.incluirEstrutura(estrutura);
+		}
+
+
+		if (id = 1) {
+			for (int i = 0; i < 10; i++) {
+
+				Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 3800, 670), TipoEstrutura::CHAO);
+				listaEntidades.inserirNoFim(estrutura);
+				gerenciadorColisao.incluirEstrutura(estrutura);
+			}
 		}
 
 		for (int i = 0; i < 30; i++) {

@@ -23,7 +23,7 @@ namespace Entidades {
 		~Estrutura();
 		void formatarEstrutura(TipoEstrutura tipoE);
 		void executar();
-		void salvar();
+		std::string salvar();
 		void salvarEstrutura();
 	};
 }

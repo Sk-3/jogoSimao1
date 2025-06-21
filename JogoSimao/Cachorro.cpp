@@ -7,6 +7,7 @@ namespace Entidades{
 			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(dono), velocidade(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
 		{
 			id = Id::Cachorro;
+			idDono = dono->getIdUnico();
 			health = 1;
 			range = 500;
 			nivel_maldade = 1 + (rand() % 10);
@@ -30,6 +31,8 @@ namespace Entidades{
 			*@brief Construtor da classe Cachorro
 			*@detail Construtor que inicializa o tamanho, a posicao do cachorro e a cor
 			*/
+
+			idDono = -1;
 			id = Id::Cachorro;
 			health = 1;
 			range = 500;
@@ -58,6 +61,21 @@ namespace Entidades{
 				direction = Directions::LEFT;
 			}
 
+		}
+
+		int Cachorro::getIdDono() const
+		{
+			return idDono;
+		}
+
+		void Cachorro::setDono(Personagem* dono)
+		{
+			pDono = dono;
+		}
+
+		void Cachorro::setIdDono(int id)
+		{
+			idDono = id;
 		}
 
 		void Cachorro::setEstado(EstadoCachorro* novoEstado)
@@ -112,9 +130,10 @@ namespace Entidades{
 			}
 		}	
 			
-		void Cachorro::salvar()
+		std::string Cachorro::salvar()
 		{
 			salvarCachorro();
+			return buffer.str();
 		}
 
 		void Cachorro::danificar(Jogador* jogador)
@@ -129,6 +148,7 @@ namespace Entidades{
 		void Cachorro::salvarCachorro()
 		{
 			salvarInimigo();
+			buffer << idDono;
 			std::cout<< buffer.str()<< "\n";
 		}
 

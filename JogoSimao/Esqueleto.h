@@ -26,7 +26,7 @@ namespace Entidades{
 			void danificar(Jogador* jogador);
 			void executar();
 
-			void salvar();
+			std::string salvar();
 			void salvarEsqueleto();
 		};
 

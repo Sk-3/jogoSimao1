@@ -39,9 +39,9 @@ namespace Entidades {
 	{
 	
 	}
-	void Estrutura::salvar() {
+	std::string Estrutura::salvar() {
 		salvarEstrutura();
-
+		return buffer.str();
 	}
 	void Estrutura::salvarEstrutura()
 	{

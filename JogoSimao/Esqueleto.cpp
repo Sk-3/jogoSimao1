@@ -50,9 +50,10 @@ namespace Entidades{
 
 			move();
 		}
-		void Esqueleto::salvar()
+		std::string Esqueleto::salvar()
 		{
 			salvarEsqueleto();
+			return buffer.str();
 		}
 
 		void Esqueleto::salvarEsqueleto()

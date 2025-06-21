@@ -27,11 +27,13 @@ namespace Entidades{
 			const Personagem* getPlayer() const;
 			static int getQuantidadeInimigos();
 			//SETTERS
+			void setNivelMaldade(int maldade);
 			static void zerarInimigos();
 			void diminuirInimigos();
 			void aumentarPontos();
 			void salvarInimigo();
-			virtual void salvar() = 0;
+			
+			virtual std::string salvar() = 0;
 			virtual void executar() = 0;
 			virtual void danificar(Jogador* jogador) = 0;
 			virtual void perseguirJogador();

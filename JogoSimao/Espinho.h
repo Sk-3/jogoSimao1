@@ -13,11 +13,12 @@ namespace Entidades {
 			Espinho(sf::Vector2f pos, float altura = 1);
 			Espinho();
 			~Espinho();
+			void setAltura(float alt);
 			const float getDanoCooldown() const;
 			const float getDanoRelogio() const;
 			void obstacular(Personagens::Personagem* pPersonagem);
 			void executar();
-			void salvar();
+			std::string salvar();
 			void salvarEspinho();
 		};
 

@@ -33,12 +33,20 @@ namespace Entidades{
 		{
 		}
 
+		float Plataforma::getMax()
+		{
+			return max;
+		}
+		float Plataforma::getMin() {
+			return min;
+		}
 		void Plataforma::obstacular(Personagens::Personagem* pPersonagem)
 		{
 			if (!obstaculou) {
 				if (pPersonagem->getTipo() == TipoPersonagem::PLAYER)
 				{
 					speed.y *= 1.5;
+					pPersonagem->changeSpeed(sf::Vector2f(-3, 0));
 				}
 				obstaculou = true;
 			}
@@ -74,9 +82,10 @@ namespace Entidades{
 		{			
 			mover();
 		}
-		void Plataforma::salvar()
+		std::string Plataforma::salvar()
 		{
 			salvarPlataforma();
+			return buffer.str();
 		}
 		void Plataforma::salvarPlataforma()
 		{

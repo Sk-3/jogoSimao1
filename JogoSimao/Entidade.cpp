@@ -148,6 +148,27 @@ namespace Entidades{
 		return ativo;
 	}
 
+	void Entidade::setId(int id)
+	{
+		idUnico = id;
+	}
+
+	void Entidade::setAtivo(bool at)
+	{
+		ativo = at;
+	}
+
+	void Entidade::setPosicao(float x, float y)
+	{
+		shape.setPosition(x, y);
+	}
+
+	void Entidade::setVelocidade(float x, float y)
+	{
+		speed.x = x;
+		speed.y = y;
+	}
+
 	
 
 }

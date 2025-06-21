@@ -1,15 +1,19 @@
 #pragma once
+
 #include <cstdlib>
 #include "State.h"
 #include "Jogador.h"
-#include "Gravidade.h"
 #include "Estrutura.h"
 #include "Plataforma.h"
 #include "Cachorro.h"
+#include "Fosso.h"
+#include "Espinho.h"
+#include "Esqueleto.h"
 #include "Projetil.h"
 #include "GerenciadorColisao.h"
 #include "Hud.h"
 #include <sstream>
+#include <fstream>
 #include "ListaEntidades.h"
 #include "Atirador.h"
 
@@ -45,14 +49,19 @@ namespace Fases{
 		Entidades::Personagens::Jogador* player;	
 	public:
 		~Fase();
-		Fase(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2);
+		Fase(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2, bool carregaArquivo);
 		virtual void handleEvent();
 		virtual void executar() = 0;
 		virtual void executarJanela();
 		void salvar();
 
 
+		
+		
 		//CRIAR ENTIDADES
+		void carregarSalvamento();
+		virtual void carregamentoPadrao();
+
 		void criarCachorro(Entidades::Personagens::Atirador* dono);
 		void criarCachorro();
 		void criarPlataformas();

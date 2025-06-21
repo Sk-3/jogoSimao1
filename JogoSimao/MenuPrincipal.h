@@ -11,6 +11,7 @@
 class MenuPrincipal : public menuState
 {
 private:
+	Entidades::Button* continuar;
 	Entidades::Button* start;
 	Entidades::Button* quit;
 	Entidades::Button* ranking;

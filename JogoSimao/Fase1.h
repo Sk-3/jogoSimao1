@@ -1,9 +1,5 @@
 #pragma once
 #include "Fase.h"
-#include "Cachorro.h"
-#include "Atirador.h"
-#include "Esqueleto.h"
-#include "Espinho.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 *
@@ -21,8 +17,9 @@ namespace Fases{
 
 	public:
 		
-		Fase1(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2);
+		Fase1(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2, bool carregaArquivo);
 		~Fase1();
+
 		void criarEsqueletos();
 		void criarEspinhos();		
 		void criarInimigos();		

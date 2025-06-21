@@ -15,7 +15,8 @@ namespace Entidades{
 		class Atirador : public Inimigo  
 		{  
 		private:
-			std::vector<Cachorro*> cachorros;
+			Cachorro* cachorro;
+			int idCachorro;
 		public: 
 
 			Atirador(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
@@ -23,8 +24,10 @@ namespace Entidades{
 			void adicionarCachorro(Cachorro* cachorro);
 
 
+			void setIdCachorro(int id);
+			int getIdCachorro() const;
 			void danificar(Jogador* jogador);
-			void salvar();
+			std::string salvar();
 			void salvarAtirador();
 			void executar();  
 		};  

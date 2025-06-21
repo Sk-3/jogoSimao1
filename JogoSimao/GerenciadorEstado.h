@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <fstream>
 #include "Actions.h"
 #include "Ente.h"
 #include <vector>

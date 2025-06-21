@@ -24,7 +24,7 @@ namespace Entidades{
 			const bool ehColidivel();
 			virtual void obstacular(Personagens::Personagem* pPersonagem) = 0;
 			virtual void executar() = 0; 
-			virtual void salvar() = 0;
+			virtual std::string salvar() = 0;
 			void salvarObstaculo();
 		};
 	}

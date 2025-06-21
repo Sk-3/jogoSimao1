@@ -41,12 +41,17 @@ namespace Entidades{
 		const virtual sf::FloatRect getBounds();
 		bool ativado() const;
 		//SETTERS
+		void setId(int id);
+		void setAtivo(bool); 
+		void setPosicao(float x, float y);
+		void setVelocidade(float x, float y);
+
 		void desativar();
 		void move();
 		void changeSpeed(sf::Vector2f addSpeed);
 		
 		void salvarEntidade();
-		virtual void salvar() = 0;
+		virtual std::string salvar() = 0;
 		virtual void executar() = 0;
 		
 	};

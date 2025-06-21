@@ -58,6 +58,18 @@ namespace Entidades{
 		{
 			return (health > 0);
 		}
+		const int Personagem::getDanoArma() const
+		{
+			return danoArma;
+		}
+		void Personagem::setVida(int vida)
+		{
+			health = vida;
+		}
+		void Personagem::setPulos(int pulos)
+		{
+			jumps = pulos;
+		}
 		const Directions Personagem::getDirection() const
 		{
 			return direction;

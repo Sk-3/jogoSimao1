@@ -22,10 +22,12 @@ namespace Entidades {
 			Plataforma(sf::Vector2f pos, float vel, float h_Max, float h_Min);
 			Plataforma();
 			~Plataforma();
+			float getMax();
+			float getMin();
 			void obstacular(Personagens::Personagem* pPersonagem);
 			void mover();
 			void executar();
-			void salvar(); 
+			std::string salvar();
 			void salvarPlataforma();
 
 		};

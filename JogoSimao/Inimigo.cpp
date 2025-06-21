@@ -16,6 +16,11 @@ namespace Entidades{
 
 		}
 
+		void Inimigo::setNivelMaldade(int maldade)
+		{
+			nivel_maldade = maldade;
+		}
+
 		void Inimigo::zerarInimigos()
 		{
 			quantidadeInimigos = 0;
