@@ -58,7 +58,7 @@ namespace Fases{
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
 				player2->dash();
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::L)) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 				player2->atirar(&listaEntidades, &gerenciadorColisao);
 			}
 		}

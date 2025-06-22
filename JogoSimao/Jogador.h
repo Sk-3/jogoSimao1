@@ -37,6 +37,7 @@ namespace Entidades{
 			void executar(); 
 			std::string salvar();
 			void salvarJogador();
+			void resetarJogador();
 		};
 	}
 

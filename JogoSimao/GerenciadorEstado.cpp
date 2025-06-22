@@ -57,8 +57,8 @@ namespace Gerenciadores {
 			break;
 		}
 		case Actions::VOLTAR_2_MENUS: {
-			jogador1->setVida(0);
-			jogador2->setVida(0);
+			jogador1->resetarJogador();
+			jogador2->resetarJogador();
 			pop();
 			pop();
 			break;
@@ -74,6 +74,8 @@ namespace Gerenciadores {
 		case Actions::GAME_OVER:
 		{
 			push(new GameOver(static_cast<Fases::Fase*>(stack.back())));
+			jogador1->resetarJogador();
+			jogador2->resetarJogador();
 			break;
 		}
 		case Actions::PASSOU_DE_FASE:

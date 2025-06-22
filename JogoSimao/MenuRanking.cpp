@@ -34,41 +34,41 @@ void MenuRanking::executar() {
 	desenhar();
 }
 
+
 void MenuRanking::carregarRanking()
 {
-	std::string linha;
-	std::ifstream arquivo("ranking.txt");
-	std::map<int, std::string> mapLeitura;
-	if (arquivo.is_open()) {
-		std::string nome;
-		int pontos;
-		while (std::getline(arquivo, linha)) {
-			std::istringstream arquivoOutput(linha);
-			arquivoOutput >> nome >> pontos;
-			mapLeitura[pontos] = nome;
-		}
-		arquivo.close();
-	}
+    std::string linha;
+    std::ifstream arquivo("ranking.txt");
+    std::multimap<int, std::string> mapLeitura;
 
+    if (arquivo.is_open()) {
+        std::string nome;
+        int pontos;
+        while (std::getline(arquivo, linha)) {
+            std::istringstream arquivoOutput(linha);
+            if (arquivoOutput >> nome >> pontos) {
+                mapLeitura.insert({ pontos, nome });
+            }
+        }
+        arquivo.close();
+    }
 
-	std::vector<int> todosValores;
-	for (const auto& par : mapLeitura) {
-		todosValores.push_back(par.first);
-	}
-	std::sort(todosValores.begin(), todosValores.end());
+    std::vector<std::pair<int, std::string>> rankingsOrdenados;
 
-	std::stringstream texto("");
+    for (auto it = mapLeitura.rbegin(); it != mapLeitura.rend(); ++it) {
+        rankingsOrdenados.push_back({ it->first, it->second });
+    }
+    std::stringstream texto("");
+    int count = 0;
 
-	int count = 0;
-	for (auto it_vec = todosValores.rbegin(); it_vec != todosValores.rend() && count < 5; ++it_vec) {
-		int pontuacaoAtual = *it_vec;
-		auto it_map = mapLeitura.find(pontuacaoAtual);
-		if (it_map != mapLeitura.end()) {
-			texto << "Pontos: " << it_map->first << " Nome: " << it_map->second << "\n";
-		}
-		count++;
-	}
-
-	textoRanking.setString(texto.str());
-
+    for (const auto& rank : rankingsOrdenados) {
+        if (count < 5) {
+            texto << "Pontos: " << rank.first << " Nome: " << rank.second << "\n";
+            count++;
+        }
+        else {
+            break;
+        }
+    }
+    textoRanking.setString(texto.str());
 }

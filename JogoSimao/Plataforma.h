@@ -15,7 +15,7 @@ namespace Entidades {
 		class Plataforma : public Obstaculo
 		{
 		private:
-			bool topo, fundo, obstaculou;
+			bool obstaculou;
 			float max, min, velocidade; 
 
 		public:

@@ -13,8 +13,6 @@ namespace Entidades{
 			speed.y = vel;
 			max = h_Max;
 			min = h_Min;
-			topo = false;
-			fundo = false;
 			obstaculou = false;
 		}
 
@@ -24,8 +22,6 @@ namespace Entidades{
 			speed.y = 1;
 			max = 800;
 			min = 300;
-			topo = false;
-			fundo = false;
 			obstaculou = false;
 		}
 
@@ -54,7 +50,7 @@ namespace Entidades{
 		void Plataforma::mover()
 		{
 			if (speed.y > 25 || speed.y < -25) {
-				speed.y *= 0.1;
+				speed.y *= 0.5;
 			}
 
 			if (getPosition().y >= max && speed.y > 0) {
@@ -63,27 +59,6 @@ namespace Entidades{
 			else if (getPosition().y <= min && speed.y < 0) {
 				speed.y *= -1;
 			}
-			/*	if (getPosition().y > max)
-			{
-				fundo = true;
-			}
-
-			if (getPosition().y < min) {
-				topo = true;
-			}
-
-			if (topo)
-			{
-				speed.y *= -1;
-				topo = false;
-			}
-
-			if (fundo)
-			{
-				speed.y *= -1;
-				fundo = false;
-			}*/
-
 			move();
 		}
 

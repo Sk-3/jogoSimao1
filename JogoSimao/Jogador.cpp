@@ -28,7 +28,7 @@ namespace Entidades{
 			tipo = TipoPersonagem::PLAYER;
 			maxSpeed = 6;
 			health = 55;
-			jumps = 7;
+			jumps = 2;
 			shape.setTexture(*pGerGraphic->getPlayerTexture());
 			shape.setTextureRect(sf::IntRect(0, 0, 16, 16));
 			shape.setScale(5, 5);
@@ -170,6 +170,16 @@ namespace Entidades{
 		{
 			salvarPersonagem();
 			buffer << pontos;
+		}
+
+		void Jogador::resetarJogador()
+		{
+			setAtivo(1);
+			setVelocidade(0,0);
+			setVida(55);
+			setPosicao(100, 100);
+			setPontuacao(0);
+			setPulos(2);
 		}
 
 		
