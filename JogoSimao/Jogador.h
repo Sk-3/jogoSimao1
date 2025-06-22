@@ -20,6 +20,7 @@ namespace Entidades{
 			int pontos;
 			float maxSpeed;
 			sf::Vector2f center;
+			bool jogadorDois;
 		public:
 			Jogador();
 			Jogador(sf::Vector2f pos);
@@ -32,8 +33,8 @@ namespace Entidades{
 			void dash();
 			void stopAxisX();
 			void aumentarPontos();
+			void setJogadorDois(bool);
 			int getPontos();
-			
 			void executar(); 
 			std::string salvar();
 			void salvarJogador();

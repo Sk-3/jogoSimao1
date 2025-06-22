@@ -26,27 +26,26 @@
 */
 
 
-namespace Gerenciadores{
-	class GerenciadorEstado : public Ente
-	{
-	private:
-		Entidades::Personagens::Jogador* jogador1;
-		Entidades::Personagens::Jogador* jogador2;
-		int pontos; 
-		sf::RenderWindow* window;
-		std::vector<State*> stack;
-	public:
-		void setJogador1(Entidades::Personagens::Jogador* jogador);
-		void setJogador2(Entidades::Personagens::Jogador* jogador);
-		GerenciadorEstado(Entidades::Personagens::Jogador* jogador_1,Entidades::Personagens::Jogador* jogador_2);
-		void handleEvent();
-		void update();
-		void draw();
-		void executar();
-		void pop();
-		void push(State* newState);
-		void clear();
+	namespace Gerenciadores{
+		class GerenciadorEstado : public Ente
+		{
+		private:
+			Entidades::Personagens::Jogador* jogador1;
+			Entidades::Personagens::Jogador* jogador2; 
+			sf::RenderWindow* window;
+			std::vector<State*> stack;
+		public:
+			void setJogador1(Entidades::Personagens::Jogador* jogador);
+			void setJogador2(Entidades::Personagens::Jogador* jogador);
+			GerenciadorEstado(Entidades::Personagens::Jogador* jogador_1,Entidades::Personagens::Jogador* jogador_2);
+			void handleEvent();
+			void update();
+			void draw();
+			void executar();
+			void pop();
+			void push(State* newState);
+			void clear();
 
-	};
+		};
 
-}
+	}

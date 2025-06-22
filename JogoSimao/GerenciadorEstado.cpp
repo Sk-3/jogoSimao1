@@ -138,11 +138,6 @@ namespace Gerenciadores {
 		if (!stack.empty()) {
 			stack.back()->executar();
 		}
-
-		if (!jogador1->vivo()) {
-			pontos = jogador1->getPontos();
-			pontos += jogador2->getPontos();
-		}
 	}
 
 	void GerenciadorEstado::pop()

@@ -97,6 +97,7 @@ namespace Fases{
 			case sf::Event::KeyPressed:
 				if (ev.key.code == sf::Keyboard::P) {
 					if (!player2Ativo) {
+						hud.setPlayer2(player2);
 						player2Ativo = 1;
 						listaEntidades.inserirNoFim(player2);
 						gerenciadorColisao.incluirJogador2(player2);
@@ -124,7 +125,16 @@ namespace Fases{
 		window->clear();
 		pGerGraphic->desenharBackground();
 		pGerGraphic->setView(view);
-		view.setCenter(player->getPosition());
+		if (player2Ativo) {
+			sf::Vector2f centro;
+			centro.x = (player->getCenter().x + player2->getCenter().x)/ 2.f;
+			centro.y = (player->getCenter().y + player2->getCenter().y)/2.f;
+			view.setCenter(centro);
+		}
+		else {
+			view.setCenter(player->getCenter());
+		}
+		
 	}
 
 	int Fase::getPontuacaoTotal()
@@ -141,13 +151,16 @@ namespace Fases{
 
 		std::ifstream arquivo("save.txt");
 		std::string linha;
-		
 		if (arquivo.is_open()) {
+			std::getline(arquivo, linha);
+			std::getline(arquivo, linha);
+			std::istringstream linhaOutput(linha);
+			linhaOutput >> player2Ativo;
 			std::map<int, Entidades::Personagens::Cachorro*> cachorrosMap;
-			
 			std::map<int, Entidades::Personagens::Atirador*> atiradoresMap;
 			std::map<int, Entidades::Personagens::Personagem*> personagensMap;
 			std::vector<Entidades::Projetil*> projeteis;
+
 			while (std::getline(arquivo, linha)) {
 				
 				std::istringstream linhaOutput(linha);
@@ -161,6 +174,7 @@ namespace Fases{
 				int nivelMaldade;
 				//VARIAVEL JOGADOR
 				int pontuacao;
+				bool jogadorDois;
 				//VARIAVEL ESQUELETO
 				int forca;
 				//IDENTIFICADOR DONO/FILHO
@@ -177,15 +191,28 @@ namespace Fases{
 				linhaOutput >> tipoEntidade;
 
 				if (tipoEntidade == "JOGADOR") {
-					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> vida >> pulos >> pontuacao;
-					player->setId(idEntidade);
-					player->setAtivo(ativo);
-					player->setPosicao(posicaoX, posicaoY);
-					player->setVelocidade(velocidadeX, velocidadeY);
-					player->setVida(vida);
-					player->setPulos(pulos);
-					player->setPontuacao(pontuacao);
-					personagensMap.emplace(idEntidade, player);
+					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> vida >> pulos >> pontuacao >> jogadorDois;
+					
+					if(!jogadorDois){
+						player->setId(idEntidade);
+						player->setAtivo(ativo);
+						player->setPosicao(posicaoX, posicaoY);
+						player->setVelocidade(velocidadeX, velocidadeY);
+						player->setVida(vida);
+						player->setPulos(pulos);
+						player->setPontuacao(pontuacao);
+						personagensMap.emplace(idEntidade, player);
+					}
+					else {
+						player2->setId(idEntidade);
+						player2->setAtivo(ativo);
+						player2->setPosicao(posicaoX, posicaoY);
+						player2->setVelocidade(velocidadeX, velocidadeY);
+						player2->setVida(vida);
+						player2->setPulos(pulos);
+						player2->setPontuacao(pontuacao);
+						personagensMap.emplace(idEntidade, player2);
+					}
 				}
 				else if (tipoEntidade == "CACHORRO") {
 					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> vida >> pulos >> nivelMaldade >> identificadorDonoFilho;
@@ -281,6 +308,11 @@ namespace Fases{
 				}
 			}
 		}
+		if (player2Ativo) {
+			listaEntidades.inserirNoFim(player2);
+			gerenciadorColisao.incluirJogador2(player2);
+			hud.setPlayer2(player2);
+		}
 	}
 
 	void Fase::carregamentoPadrao()
@@ -364,6 +396,7 @@ namespace Fases{
 		std::ofstream arquivo("save.txt");
 		if (arquivo.is_open()) {
 			arquivo << id << std::endl;
+			arquivo << player2Ativo << std::endl;
 			arquivo.close();
 		}
 		listaEntidades.salvar();

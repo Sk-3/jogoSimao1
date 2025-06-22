@@ -16,7 +16,7 @@
 namespace Gerenciadores {
 	class GerenciadorColisao;
 }
-class Arma;
+
 namespace Entidades{
 
 	namespace Obstaculos{
@@ -24,6 +24,7 @@ namespace Entidades{
 	}
 
 	namespace Personagens {
+		class Arma;
 		class Personagem : public Entidade
 		{
 		protected:

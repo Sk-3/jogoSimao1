@@ -42,9 +42,8 @@ namespace Fases{
 		Gerenciadores::GerenciadorColisao gerenciadorColisao;
 		//LISTA ENTIDADES
 		Listas::ListaEntidades listaEntidades;
+
 		bool player2Ativo;
-
-
 		//PLAYERS
 		Entidades::Personagens::Jogador* player2;
 		Entidades::Personagens::Jogador* player;	

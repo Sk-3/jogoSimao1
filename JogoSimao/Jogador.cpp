@@ -22,6 +22,7 @@ namespace Entidades{
 		Jogador::Jogador( sf::Vector2f pos)
 			:Personagem( pos)
 		{
+			jogadorDois = 0;
 			id = Id::Jogador;
 			pontos = 0;
 			arma = new Arma(this, Armas::METRALHADORA);
@@ -142,6 +143,11 @@ namespace Entidades{
 			pontos++;
 		}
 
+		void Jogador::setJogadorDois(bool jg2)
+		{
+			jogadorDois = jg2;
+		}
+
 		int Jogador::getPontos()
 		{
 			return pontos;
@@ -169,7 +175,7 @@ namespace Entidades{
 		void Jogador::salvarJogador()
 		{
 			salvarPersonagem();
-			buffer << pontos;
+			buffer << pontos << " " << jogadorDois;
 		}
 
 		void Jogador::resetarJogador()
