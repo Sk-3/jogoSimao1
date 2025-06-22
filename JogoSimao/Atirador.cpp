@@ -7,13 +7,12 @@ namespace Entidades{
 		Personagens::Atirador::Atirador(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao) :
 			Inimigo(pos, player, listaEntidade, gerenciadorColisao)
 		{
-
+			cachorro = nullptr;
+			idCachorro = -1;
 			id = Id::Atirador;
 			arma = new Arma(this, Armas::RIFLE);
-
-			Clocktiro.restart();
 			health = 20;
-			range = 1000;
+			range = 2000;
 			nivel_maldade = 5 + (rand() % 10);
 			setMoveSpeed(2);
 			tipo = TipoPersonagem::INIMIGO;
@@ -24,10 +23,42 @@ namespace Entidades{
 		Atirador::~Atirador()
 		{
 		}
-		void Atirador::adicionarCachorro(Cachorro* cachorro)
+		void Atirador::adicionarCachorro(Cachorro* pCachorro)
 		{
-			cachorros.emplace_back(cachorro);
+			cachorro = pCachorro;
+			idCachorro = cachorro->getIdUnico();
 		}
+		void Atirador::setIdCachorro(int id)
+		{
+			idCachorro = id;
+		}
+
+		int Atirador::getIdCachorro() const
+ 		{
+			return idCachorro;
+		}
+
+		void Atirador::danificar(Jogador* jogador)
+		{
+			if (danoContatoRelogio.getElapsedTime().asSeconds() > danoContatoCooldown) {
+				danoContatoRelogio.restart();
+				jogador->tiraVida(nivel_maldade);
+			}
+		}
+
+
+		
+		std::string Atirador::salvar() {
+			salvarAtirador();
+			return buffer.str();
+		}
+		void Atirador::salvarAtirador()
+		{
+			salvarInimigo();
+
+			buffer << idCachorro;
+		}
+	
 		void Atirador::executar() {
 			
 			caiuDoMapa();
@@ -37,20 +68,23 @@ namespace Entidades{
 			}
 
 			if (jogadorNoAlcance()) {
-				for (const auto& cach : cachorros) {
-					if(cach->ativado()){
-						cach->mandarCacar();
+				if(cachorro){
+					if(cachorro->ativado()){
+						cachorro->mandarCacar();
 					}
 				}
+				
 				perseguirJogador();
 				atirar(listaEntidade, gerColisao);
 			}
 			else {
-				for (const auto& cach : cachorros) {
-					if(cach->ativado()){
-						cach->mandarSeguir();
+			
+				if(cachorro){
+					if(cachorro->ativado()){
+						cachorro->mandarSeguir();
 					}
 				}
+				
 			}
 
 			move();

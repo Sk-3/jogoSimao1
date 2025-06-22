@@ -2,6 +2,9 @@
 
 menuState::~menuState()
 {
+	for (auto& botao : buttonVector) {
+		delete botao;
+	}
 }
 
 menuState::menuState()

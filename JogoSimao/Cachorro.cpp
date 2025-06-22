@@ -7,6 +7,7 @@ namespace Entidades{
 			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(dono), velocidade(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
 		{
 			id = Id::Cachorro;
+			idDono = dono->getIdUnico();
 			health = 1;
 			range = 500;
 			nivel_maldade = 1 + (rand() % 10);
@@ -30,6 +31,9 @@ namespace Entidades{
 			*@brief Construtor da classe Cachorro
 			*@detail Construtor que inicializa o tamanho, a posicao do cachorro e a cor
 			*/
+
+			idDono = -1;
+			id = Id::Cachorro;
 			health = 1;
 			range = 500;
 			nivel_maldade = 1 + (rand() % 10);
@@ -59,6 +63,21 @@ namespace Entidades{
 
 		}
 
+		int Cachorro::getIdDono() const
+		{
+			return idDono;
+		}
+
+		void Cachorro::setDono(Personagem* dono)
+		{
+			pDono = dono;
+		}
+
+		void Cachorro::setIdDono(int id)
+		{
+			idDono = id;
+		}
+
 		void Cachorro::setEstado(EstadoCachorro* novoEstado)
 		{
 			if (estadoAtual) {
@@ -75,7 +94,7 @@ namespace Entidades{
 		void Cachorro::mandarAtacar()
 		{
 			if (estadoAtual) {
-				if (estadoAtual->getId() != 1) {
+				if (estadoAtual->getIdCachorro() != 1) {
 					setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroAtacar()));
 				}
 			}
@@ -88,7 +107,7 @@ namespace Entidades{
 		void Cachorro::mandarSeguir()
 		{
 			if (estadoAtual) {
-				if (estadoAtual->getId() != 2) {
+				if (estadoAtual->getIdCachorro() != 2) {
 					setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroSeguir()));
 				}
 			}
@@ -101,7 +120,7 @@ namespace Entidades{
 		void Cachorro::mandarCacar()
 		{
 			if (estadoAtual) {
-				if (estadoAtual->getId() != 3) {
+				if (estadoAtual->getIdCachorro() != 3) {
 					setEstado(dynamic_cast<EstadoCachorro*>(new EstadoCachorroCacar()));
 				}
 			}
@@ -111,6 +130,26 @@ namespace Entidades{
 			}
 		}	
 			
+		std::string Cachorro::salvar()
+		{
+			salvarCachorro();
+			return buffer.str();
+		}
+
+		void Cachorro::danificar(Jogador* jogador)
+		{
+			if (danoContatoRelogio.getElapsedTime().asSeconds() > danoContatoCooldown) {
+				danoContatoRelogio.restart();
+				jogador->tiraVida(nivel_maldade);
+			}
+		}
+
+
+		void Cachorro::salvarCachorro()
+		{
+			salvarInimigo();
+			buffer << idDono;
+		}
 
 		void Cachorro::executar() {
 			/**

@@ -7,8 +7,10 @@ namespace Entidades{
 		Personagem::Personagem()
 			:Entidade()
 		{
-			Clocktiro.restart();
-			tiroCooldown = 0.2;
+			arma = nullptr;
+			tipo = TipoPersonagem::INIMIGO;
+			maxSpeed = 6;
+			moveSpeed = 3;
 			jumps = 2;
 			health = 10;
 			speed.x = 0;
@@ -52,14 +54,21 @@ namespace Entidades{
 		{
 			return tipo;
 		}
-
-		const float Personagem::getTiroCoooldown() const
-		{
-			return tiroCooldown;
-		}
 		const bool Personagem::vivo() const
 		{
 			return (health > 0);
+		}
+		const int Personagem::getDanoArma() const
+		{
+			return danoArma;
+		}
+		void Personagem::setVida(int vida)
+		{
+			health = vida;
+		}
+		void Personagem::setPulos(int pulos)
+		{
+			jumps = pulos;
 		}
 		const Directions Personagem::getDirection() const
 		{
@@ -69,13 +78,6 @@ namespace Entidades{
 		{
 			return health;
 		}
-
-		const float Personagem::getClockTiro() const
-		{
-			return Clocktiro.getElapsedTime().asSeconds();
-		}
-
-
 		//SETTERS
 
 
@@ -126,11 +128,6 @@ namespace Entidades{
 		{
 			health -= dano;
 		}
-
-		void Personagem::resetClockTiro()
-		{
-			Clocktiro.restart();
-		}
 		void Personagem::setMoveSpeed(float moveSpeed)
 
 		{
@@ -138,6 +135,13 @@ namespace Entidades{
 		}
 		void Personagem::atirar(Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao) {
 			arma->atirar(listaEntidade, gerenciadorColisao);
+		}
+
+		void Personagem::salvarPersonagem()
+		{
+			salvarEntidade();
+			buffer << health << " ";
+			buffer << jumps << " ";
 		}
 
 		void Personagem::executar() {

@@ -7,6 +7,7 @@ namespace Entidades{
 		Jogador::Jogador()
 			:Personagem()
 		{
+			ativo = 1;
 			tipo = TipoPersonagem::PLAYER;
 			jumps = 2;
 
@@ -21,12 +22,13 @@ namespace Entidades{
 		Jogador::Jogador( sf::Vector2f pos)
 			:Personagem( pos)
 		{
+			jogadorDois = 0;
 			id = Id::Jogador;
 			pontos = 0;
 			arma = new Arma(this, Armas::METRALHADORA);
 			tipo = TipoPersonagem::PLAYER;
 			maxSpeed = 6;
-			health = 30;
+			health = 55;
 			jumps = 2;
 			shape.setTexture(*pGerGraphic->getPlayerTexture());
 			shape.setTextureRect(sf::IntRect(0, 0, 16, 16));
@@ -45,35 +47,46 @@ namespace Entidades{
 			return shape.getPosition();
 		}
 
-		void Jogador::moveUp()
+		void Jogador::setPontuacao(int pontuacao)
 		{
-			if (jumps) {
-				speed.y = -8;
-				jumps--;
-			}
-	
-	
+			pontos = pontuacao;
 		}
 
-		void Jogador::moveDown()
+		void Jogador::movimentar(Directions direcao)
 		{
-			direction = Directions::DOWN;
-			speed.y += 0.3;
-		}
+			switch (direcao){
+				case Directions::UP:{
+					if (jumps && (RelogioPuloCooldown.getElapsedTime().asSeconds() >= puloCooldown)) {
+						RelogioPuloCooldown.restart();
+						speed.y = -8;
+						jumps--;
+					}
+						break;
+					}
+				case Directions::DOWN: {
+					direction = Directions::DOWN;
+					speed.y += 0.3;
+					break;
+				}
+				case Directions::LEFT: {
+					direction = Directions::LEFT;
+					if (speed.x >= -maxSpeed) {
+						speed.x -= 0.4;
+					}
+					break;
+				}
+				case Directions::RIGHT: {
+					direction = Directions::RIGHT;
+					if (speed.x <= maxSpeed) {
+						speed.x += 0.4;
+					}
+					break;
+				}
+				default:
+				{
+					break;
+				}
 
-		void Jogador::moveLeft()
-		{
-			direction = Directions::LEFT;
-			if(speed.x >= -maxSpeed) {
-				speed.x -= 0.4;
-			}
-		}
-
-		void Jogador::moveRight()
-		{
-			direction = Directions::RIGHT;
-			if (speed.x <= maxSpeed) {
-				speed.x += 0.4;
 			}
 		}
 
@@ -84,17 +97,19 @@ namespace Entidades{
 
 		void Jogador::dash()
 		{
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-				speed.x = -20;
+			if (dashRelogio.getElapsedTime().asSeconds() > dashCooldown) {
+				dashRelogio.restart();
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+					speed.x = -20;
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+					speed.x = 20;
+				}
+				else {
+					speed.x = 20;
+				}
 			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-				speed.x = 20;
-			}
-			else {
-				speed.x = 0;
-				speed.y = 0;
-			}
+			
 		}
 
 		void Jogador::stopAxisX()
@@ -128,6 +143,11 @@ namespace Entidades{
 			pontos++;
 		}
 
+		void Jogador::setJogadorDois(bool jg2)
+		{
+			jogadorDois = jg2;
+		}
+
 		int Jogador::getPontos()
 		{
 			return pontos;
@@ -145,6 +165,27 @@ namespace Entidades{
 				shape.setTexture(*pGerGraphic->getPlayerTexture());
 			}
 			move();
+		}
+
+		std::string Jogador::salvar()
+		{
+			salvarJogador();
+			return buffer.str();
+		}
+		void Jogador::salvarJogador()
+		{
+			salvarPersonagem();
+			buffer << pontos << " " << jogadorDois;
+		}
+
+		void Jogador::resetarJogador()
+		{
+			setAtivo(1);
+			setVelocidade(0,0);
+			setVida(55);
+			setPosicao(100, 100);
+			setPontuacao(0);
+			setPulos(2);
 		}
 
 		

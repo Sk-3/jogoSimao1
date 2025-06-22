@@ -15,13 +15,20 @@ namespace Entidades{
 		class Atirador : public Inimigo  
 		{  
 		private:
-			std::vector<Cachorro*> cachorros;
+			Cachorro* cachorro;
+			int idCachorro;
 		public: 
 
 			Atirador(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
 			~Atirador();  
 			void adicionarCachorro(Cachorro* cachorro);
 
+
+			void setIdCachorro(int id);
+			int getIdCachorro() const;
+			void danificar(Jogador* jogador);
+			std::string salvar();
+			void salvarAtirador();
 			void executar();  
 		};  
 	}  

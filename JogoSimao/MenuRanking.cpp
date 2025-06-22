@@ -3,10 +3,72 @@
 MenuRanking::MenuRanking()
 :menuState()
 {
-	voltar = new Entidades::Button( sf::Vector2f(50.f, 100.f), "Voltar", Actions::VOLTAR_1_MENU);
-	buttonVector.push_back(voltar);
+	carregarBotoes();
+	textoRanking.setPosition(300, 300);
+	textoRanking.setFont(*(pGerGraphic->getFont()));
+	textoRanking.setString("O RANKING SERÁ EXIBIDO AQUI");
+	setFigura(&textoRanking);
+	carregarRanking();
 }
 
 MenuRanking::~MenuRanking()
 {
+	
+}
+
+void MenuRanking::carregarBotoes()
+{
+	buttonVector.push_back(new Entidades::Button(sf::Vector2f(50.f, 100.f), "Voltar", Actions::VOLTAR_1_MENU));
+}
+void MenuRanking::executar() {
+	/**
+	*@brief executa o menuState
+	*@details Atualiza a posicao do mouse, limpa a janela e le e executa os botoes
+	*@return void
+	*/
+	pGerGraphic->clear();
+	pGerGraphic->updateMousePosition();
+	handleEvent();
+	readButtons();
+	execButtons();
+	desenhar();
+}
+
+
+void MenuRanking::carregarRanking()
+{
+    std::string linha;
+    std::ifstream arquivo("ranking.txt");
+    std::multimap<int, std::string> mapLeitura;
+
+    if (arquivo.is_open()) {
+        std::string nome;
+        int pontos;
+        while (std::getline(arquivo, linha)) {
+            std::istringstream arquivoOutput(linha);
+            if (arquivoOutput >> nome >> pontos) {
+                mapLeitura.insert({ pontos, nome });
+            }
+        }
+        arquivo.close();
+    }
+
+    std::vector<std::pair<int, std::string>> rankingsOrdenados;
+
+    for (auto it = mapLeitura.rbegin(); it != mapLeitura.rend(); ++it) {
+        rankingsOrdenados.push_back({ it->first, it->second });
+    }
+    std::stringstream texto("");
+    int count = 0;
+
+    for (const auto& rank : rankingsOrdenados) {
+        if (count < 5) {
+            texto << "Pontos: " << rank.first << " Nome: " << rank.second << "\n";
+            count++;
+        }
+        else {
+            break;
+        }
+    }
+    textoRanking.setString(texto.str());
 }

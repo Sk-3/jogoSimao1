@@ -4,6 +4,8 @@ namespace Entidades{
 		Plataforma::Plataforma(sf::Vector2f pos, float vel, float h_Max, float h_Min)
 			:Obstaculo(pos)
 		{
+			id = Id::Plataforma;
+			velocidade = vel;
 			colidivel = 1;
 			shape.setTexture(*pGerGraphic->getChaoTexture());
 			shape.setTextureRect(sf::IntRect(192, 96, 96, 32));			
@@ -11,8 +13,6 @@ namespace Entidades{
 			speed.y = vel;
 			max = h_Max;
 			min = h_Min;
-			topo = true;
-			fundo = true;
 			obstaculou = false;
 		}
 
@@ -22,8 +22,6 @@ namespace Entidades{
 			speed.y = 1;
 			max = 800;
 			min = 300;
-			topo = false;
-			fundo = false;
 			obstaculou = false;
 		}
 
@@ -31,40 +29,52 @@ namespace Entidades{
 		{
 		}
 
+		float Plataforma::getMax()
+		{
+			return max;
+		}
+		float Plataforma::getMin() {
+			return min;
+		}
 		void Plataforma::obstacular(Personagens::Personagem* pPersonagem)
 		{
 			if (!obstaculou) {
 				if (pPersonagem->getTipo() == TipoPersonagem::PLAYER)
 				{
-					speed.y *= 1.2;					
+					speed.y *= 1.5;
+					pPersonagem->changeSpeed(sf::Vector2f(-3, 0));
 				}
 				obstaculou = true;
 			}
 		}
 		void Plataforma::mover()
-		{			
-			if (topo) {
-				if (getPosition().y < min)
-				{
-					fundo = true;
-					topo = false;
-					speed.y *= -1;					
-				}
+		{
+			if (speed.y > 25 || speed.y < -25) {
+				speed.y *= 0.5;
 			}
-			if (fundo) {
-				if (getPosition().y > max) {
-					topo = true;
-					fundo = false;
-					speed.y *= -1;					
-				}
-			}			
-			speed.y -= 0.2; // compenssar a gravidade
+
+			if (getPosition().y >= max && speed.y > 0) {
+				speed.y *= -1;
+			}
+			else if (getPosition().y <= min && speed.y < 0) {
+				speed.y *= -1;
+			}
 			move();
 		}
 
 		void Plataforma::executar()
 		{			
 			mover();
+		}
+		std::string Plataforma::salvar()
+		{
+			salvarPlataforma();
+			return buffer.str();
+		}
+		void Plataforma::salvarPlataforma()
+		{
+			salvarObstaculo();
+			buffer << velocidade << " " << max << " " << min << " " << obstaculou;
 		}
 
 	}

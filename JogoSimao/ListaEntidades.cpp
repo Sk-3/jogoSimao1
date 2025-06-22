@@ -1,5 +1,5 @@
 #include "ListaEntidades.h"
-
+#include <fstream>
 namespace Listas
 {
     ListaEntidades::ListaEntidades()
@@ -82,10 +82,14 @@ namespace Listas
 
     void ListaEntidades::salvar()
     {
+        std::ofstream arquivo("Save.txt", std::ios::app);
+
+        if (arquivo.is_open()) {
+            for (it = inicio(); it != fim(); ++it)
+                arquivo << (*it)->salvar() << std::endl;
+            arquivo.close();
+        }
         
-        for (it = inicio(); it != fim(); ++it)
-            std::cout << "Estou sendo chamado";
-            //(*it)->salvar();
     }
 
     void ListaEntidades::desenhar()

@@ -1,20 +1,23 @@
 #include "Fase2.h"
 namespace Fases{
-	Fase2::Fase2(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2):
-	Fase(jg1,jg2)
+	Fase2::Fase2(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2, bool carregaArquivo):
+	Fase(jg1,jg2, carregaArquivo)
 	{
 		id = 2;
-		jg1->posicionarNoInicio();
-		jg2->posicionarNoInicio();
-		criarCenario();		
-		criarInimigos();
-		criarObstaculo();
+		criarCenario();
+		if (carregaArquivo) {
+			carregarSalvamento();
+		}
+		else {
+			carregamentoPadrao();
+		}
 	}
 
 	Fase2::~Fase2()
 	{
 	}
 
+	
 	void Fase2::criarAtiradores()
 	{
 		for (int i = 0; i < 3; i++) {
@@ -101,5 +104,6 @@ namespace Fases{
 		hud.draw();
 		
 		controladorEstado(id);
+		pontuacaoTotal = player->getPontos() + player2->getPontos();
 	}
 }

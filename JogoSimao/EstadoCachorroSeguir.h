@@ -11,7 +11,6 @@ namespace Entidades {
 			~EstadoCachorroSeguir();
 			void atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao);			
 		};
-
 	}
 }
 

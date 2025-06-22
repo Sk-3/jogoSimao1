@@ -1,20 +1,21 @@
 #include "Fase1.h"
 
 namespace Fases{
-	Fase1::Fase1(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2) :
-		Fase(jg1,jg2) 
+	Fase1::Fase1(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2, bool carregaArquivo) :
+		Fase(jg1,jg2, carregaArquivo) 
 	{
 		id = 1;
-		jg1->posicionarNoInicio();
-		jg2->posicionarNoInicio();
-		criarCenario();				
-		criarInimigos();
-		criarObstaculo();
+		criarCenario();
+		if (carregaArquivo) {
+			carregarSalvamento();
+		}
+		else {
+			carregamentoPadrao();
+		}
 	}
 
 	Fase1::~Fase1()
 	{
-		Entidades::Personagens::Inimigo::zerarInimigos();
 	}
 
 	void Fase1::criarEsqueletos()
@@ -38,12 +39,7 @@ namespace Fases{
 
 	void Fase1::criarEspinhos()
 	{		
-		for (int i = 0; i < 10; i++) {
-
-			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 3800, 670), TipoEstrutura::CHAO);
-			listaEntidades.inserirNoFim(estrutura);
-			gerenciadorColisao.incluirEstrutura(estrutura);
-		}
+		
 		
 		for (int i = 0; i <3; i++) {
 
@@ -99,6 +95,7 @@ namespace Fases{
 		hud.executar();
 		hud.draw();
 		controladorEstado(id);
+		pontuacaoTotal = player->getPontos() + player2->getPontos();
 		
 	}
 

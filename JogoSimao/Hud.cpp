@@ -8,6 +8,7 @@ Hud::Hud()
 	*@return void
 	*/
 	player = nullptr;
+	player2 = nullptr;
 	hud.setFont(*(pGerGraphic->getFont()));
 
 	hud.setCharacterSize(30);
@@ -16,6 +17,11 @@ Hud::Hud()
 
 Hud::~Hud()
 {
+}
+
+void Hud::setPlayer2(Entidades::Personagens::Jogador* player)
+{
+	player2 = player;
 }
 
 void Hud::setPlayer(Entidades::Personagens::Jogador* player)
@@ -49,7 +55,13 @@ void Hud::executar()
 	*@return void
 	*/
 	std::stringstream ss;
-	ss <<"\nVida:"<< player->getHealth() << "\nPontos :" << player->getPontos();
+
+	if (player2) {
+		ss << "Jogador 1:" << "\nVida:" << player->getHealth() <<"\nJogador 2:" << "\n Vida:" << player2->getHealth() << "\nPontos :" << player->getPontos() + player2->getPontos();
+	}
+	else {
+		ss <<"\nVida:"<< player->getHealth() << "\nPontos :" << player->getPontos();
+	}
 	hud.setString(ss.str());
 
 }

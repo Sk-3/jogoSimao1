@@ -6,6 +6,7 @@ namespace Entidades{
 		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEnt, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
 			:Personagem(pos), pPlayer(player), gerColisao(gerenciadorColisao), listaEntidade(listaEnt)
 		{
+			danoContatoCooldown = 1;
 			quantidadeInimigos++;
 			nivel_maldade = 0;
 			range = 1000;
@@ -13,6 +14,12 @@ namespace Entidades{
 
 		Inimigo::~Inimigo() {
 
+		}
+
+		void Inimigo::setNivelMaldade(int maldade)
+		{
+			nivel_maldade = maldade;
+			shape.setScale(1 + (float)nivel_maldade / 10, 1 + (float)nivel_maldade / 10);
 		}
 
 		void Inimigo::zerarInimigos()
@@ -27,6 +34,12 @@ namespace Entidades{
 
 		void Inimigo::aumentarPontos() {
 
+		}
+
+		void Inimigo::salvarInimigo()
+		{
+			salvarPersonagem();
+			buffer << nivel_maldade << " ";
 		}
 
 		bool Inimigo::jogadorNoAlcance()
@@ -49,7 +62,12 @@ namespace Entidades{
 			return 0;
 		}
 
-
+		void Inimigo::setAtivo(bool at){
+			ativo = at;
+			if (!ativo) {
+				diminuirInimigos();
+			}
+		}
 		const Personagem* Inimigo::getPlayer() const
 		{
 			return pPlayer;

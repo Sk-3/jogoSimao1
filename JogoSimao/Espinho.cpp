@@ -25,6 +25,12 @@ namespace Entidades {
 		{
 		}
 
+		void Espinho::setAltura(float alt)
+		{
+			altura = alt;
+			shape.setScale(1, 1 * altura);
+		}
+
 		const float Espinho::getDanoCooldown() const
 		{
 			return danoCooldown;
@@ -35,6 +41,17 @@ namespace Entidades {
 
 		void Espinho::executar() {
 
+		}
+
+		std::string Espinho::salvar()
+		{
+			salvarEspinho();
+			return buffer.str();
+		}
+		void Espinho::salvarEspinho()
+		{
+			salvarObstaculo();
+			buffer << altura;
 		}
 
 		void Espinho::obstacular(Personagens::Personagem* pPersonagem) {

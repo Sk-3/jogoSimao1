@@ -22,7 +22,12 @@ namespace Entidades{
 		public:
 			Esqueleto(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, int forca);
 			~Esqueleto();
+
+			void danificar(Jogador* jogador);
 			void executar();
+
+			std::string salvar();
+			void salvarEsqueleto();
 		};
 
 }

@@ -23,5 +23,10 @@ namespace Entidades{
 			return colidivel;
 		}
 
+		void Obstaculo::salvarObstaculo()
+		{
+			salvarEntidade();
+		}
+
 	}
 }

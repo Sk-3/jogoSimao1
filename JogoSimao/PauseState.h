@@ -14,14 +14,10 @@ class PauseState : public menuState
 {
 private:
 	Fases::Fase* fase;
-	sf::RectangleShape box;
-	Entidades::Button* resume;
-	Entidades::Button* salvar;
-	Entidades::Button* quit;
-
 public:
 	PauseState(Fases::Fase* pFase);
 	~PauseState();
 	void readButtons() override;
+	void carregarBotoes();
 };
 

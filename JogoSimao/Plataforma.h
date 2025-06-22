@@ -15,16 +15,21 @@ namespace Entidades {
 		class Plataforma : public Obstaculo
 		{
 		private:
-			bool topo, fundo, obstaculou;
-			float max, min; 
+			bool obstaculou;
+			float max, min, velocidade; 
 
 		public:
 			Plataforma(sf::Vector2f pos, float vel, float h_Max, float h_Min);
 			Plataforma();
 			~Plataforma();
+			float getMax();
+			float getMin();
 			void obstacular(Personagens::Personagem* pPersonagem);
 			void mover();
 			void executar();
+			std::string salvar();
+			void salvarPlataforma();
+
 		};
 
 	}

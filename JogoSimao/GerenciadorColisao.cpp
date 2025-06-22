@@ -29,6 +29,30 @@ namespace Gerenciadores{
 		return ent1Bounds.intersects(ent2Bounds);
 	}
 
+
+
+	void GerenciadorColisao::tratarColisoesJogsInimigos()
+	{
+		if (jogador1) {
+			for (auto& inimigo : inimigos) {
+				if(inimigo->ativado()){
+					if (verificarColisao(jogador1, inimigo)) {
+						inimigo->danificar(jogador1);
+					}
+				}
+			}
+		}
+		if (jogador2) {
+			for (auto& inimigo : inimigos) {
+				if (inimigo->ativado()) {
+					if (verificarColisao(jogador2, inimigo)) {
+						inimigo->danificar(jogador2);
+					}
+				}
+			}
+		}
+	}
+
 	void GerenciadorColisao::tratarColisoesJogsObstaculos()
 	{
 		if(jogador1){
@@ -254,6 +278,7 @@ namespace Gerenciadores{
 		tratarColisaoInimigos();
 		tratarColisoesJogsObstaculos();
 		tratarColisoesJogsEstruturas();
+		tratarColisoesJogsInimigos();
 		
 	}
 

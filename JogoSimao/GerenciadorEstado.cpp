@@ -49,14 +49,16 @@ namespace Gerenciadores {
 			break;
 		}
 		case Actions::FASE_1: {
-			push(new Fases::Fase1(jogador1, jogador2));
+			push(new Fases::Fase1(jogador1, jogador2, 0));
 			break;
 		}
 		case Actions::FASE_2: {
-			push(new Fases::Fase2(jogador1, jogador2));
+			push(new Fases::Fase2(jogador1, jogador2, 0));
 			break;
 		}
 		case Actions::VOLTAR_2_MENUS: {
+			jogador1->resetarJogador();
+			jogador2->resetarJogador();
 			pop();
 			pop();
 			break;
@@ -71,13 +73,17 @@ namespace Gerenciadores {
 		}
 		case Actions::GAME_OVER:
 		{
-			push(new GameOver());
+			push(new GameOver(static_cast<Fases::Fase*>(stack.back())));
+			jogador1->resetarJogador();
+			jogador2->resetarJogador();
 			break;
 		}
 		case Actions::PASSOU_DE_FASE:
 		{
 			pop();
-			push(new Fases::Fase2(jogador1, jogador2));
+			jogador1->setPosicao(100, 100);
+			jogador2->setPosicao(100, 100);
+			push(new Fases::Fase2(jogador1, jogador2, 0));
 			break;
 		}
 		case Actions::SALVAR:
@@ -86,6 +92,23 @@ namespace Gerenciadores {
 			stack.back()->setAction(Actions::SALVAR);
 			break;
 			
+		}
+		case Actions::CARREGAR_SAVE: {
+			push(new MenuSelectLvl());
+			std::ifstream arquivoLeitura("save.txt");
+			std::string linha;
+
+			if (arquivoLeitura.is_open()) {
+				std::getline(arquivoLeitura, linha);
+				if (linha[0] == '1') {
+					push(new Fases::Fase1(jogador1, jogador2, 1));
+				}
+				else if (linha[0] == '2') {
+					push(new Fases::Fase2(jogador1, jogador2, 1));
+				}
+			}
+
+			break;
 		}
 
 		default:
@@ -104,6 +127,7 @@ namespace Gerenciadores {
 		* @details Verifica se há algum estado na pilha e chama o método executar do estado atual.
 		* @return void
 		*/
+		
 		if (stack.empty()) {
 			pGerGraphic->close();
 			return;
@@ -153,6 +177,9 @@ namespace Gerenciadores {
 			stack.pop_back();
 
 		}
+
+
+
 	}
 
 }

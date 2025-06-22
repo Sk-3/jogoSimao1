@@ -1,10 +1,5 @@
 #pragma once
 #include "Fase.h"
-#include "Inimigo.h"
-#include "Cachorro.h"
-#include "Atirador.h"
-#include "Esqueleto.h"
-#include "Fosso.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 * 
@@ -20,7 +15,7 @@ namespace Fases{
 	private:
 		const int maxAtiradores = 4;
 	public:
-		Fase2(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2);
+		Fase2(Entidades::Personagens::Jogador* jg1, Entidades::Personagens::Jogador* jg2, bool carregaArquivo);
 		~Fase2();
 		void criarAtiradores();		
 		void criarFosso();

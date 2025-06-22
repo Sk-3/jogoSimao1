@@ -4,15 +4,18 @@
 namespace Entidades{
 
 	Projetil::Projetil( sf::Vector2f pos, Personagens::Personagem* pDono)
-		:Entidade(pos), dano(3), dono(pDono)
+		:Entidade(pos), dono(pDono)
 	{
 		/**
 		*@brief Inicializa o projetil com o tamanho, posicao e direcao
 		*@param pos Posicao do projetil
 		*@param tipo Tipo do personagem que disparou o projetil
 		*/
+		
 		id = Id::Projetil;
-
+		dano = dono->getDanoArma();
+		idDono = dono->getIdUnico();
+		
 		tipo = pDono->getTipo();
 		clock.restart();
 		if (dono->getDirection() == Directions::LEFT) {
@@ -28,6 +31,28 @@ namespace Entidades{
 			shape.setTextureRect(sf::IntRect(0,0,64,64));
 			shape.setScale(0.4, 0.4);
 		}
+	}
+
+	void Projetil::setDono(Personagens::Personagem* pdono) {
+		dono = pdono;
+
+		idDono = dono->getIdUnico();
+		dano = dono->getDanoArma();
+		tipo = dono->getTipo();
+
+		if (dono->getTipo() == TipoPersonagem::INIMIGO)
+		{
+			shape.setTexture(*pGerGraphic->getFireball());
+			shape.setTextureRect(sf::IntRect(0, 0, 64, 64));
+			shape.setScale(0.4, 0.4);
+		}
+
+	}
+	Projetil::Projetil(sf::Vector2f pos)
+		:Entidade(pos)
+	{
+		id = Id::Projetil;
+		dono = nullptr;
 	}
 
 	Projetil::Projetil()
@@ -46,13 +71,20 @@ namespace Entidades{
 		*@brief Executa o projetil, movendo-o e desenhando-o na tela
 		*@return void
 		*/
-		if(clock.getElapsedTime().asSeconds() > 0.5){
+		if(clock.getElapsedTime().asSeconds() > 1){
 			desativar();
 		}
 		if(ativado()){
 			move();
 		}
 	}
+	void Projetil::setIdDono(int id) {
+		idDono = id;
+	}
+	int Projetil::getIdDono() {
+		return idDono;
+	}
+
 	void Projetil::setTipo(TipoPersonagem tipo)
 	{
 		/**
@@ -61,6 +93,16 @@ namespace Entidades{
 		*@return void
 		*/
 		this->tipo = tipo;
+	}
+	std::string Projetil::salvar() {
+		salvarProjetil();
+		return buffer.str();
+	}
+
+	void Projetil::salvarProjetil()
+	{
+		salvarEntidade();
+		buffer << idDono;
 	}
 
 	const TipoPersonagem Projetil::getTipo() const

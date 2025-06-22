@@ -7,10 +7,8 @@ namespace Entidades{
 			:Inimigo( pos, player, listaEntidade, gerenciadorColisao)
 		{
 			id = Id::Esqueleto;
-			
 			tipo = TipoPersonagem::INIMIGO;
 			arma = new Arma(this, Armas::ARMAESQUELETO);
-			Clocktiro.restart();
 			this->forca = forca;
 			health = 5 + (5 * forca);
 			range = 800;
@@ -26,6 +24,14 @@ namespace Entidades{
 		}
 
 		
+
+		void Esqueleto::danificar(Jogador* jogador)
+		{
+			if (danoContatoRelogio.getElapsedTime().asSeconds() > danoContatoCooldown) {
+				danoContatoRelogio.restart();
+				jogador->tiraVida(nivel_maldade);
+			}
+		}
 
 		void Esqueleto::executar() {
 
@@ -43,6 +49,17 @@ namespace Entidades{
 			}
 
 			move();
+		}
+		std::string Esqueleto::salvar()
+		{
+			salvarEsqueleto();
+			return buffer.str();
+		}
+
+		void Esqueleto::salvarEsqueleto()
+		{
+			salvarInimigo();
+			buffer << forca << " ";
 		}
 	}
 }
