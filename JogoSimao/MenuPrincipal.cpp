@@ -8,9 +8,9 @@ MenuPrincipal::MenuPrincipal()
 	*@details Cria os botões start, quit e ranking do menu principal e os adiciona ao vetor de botões.
 	*@return void
 	*/
-	start = new Entidades::Button(sf::Vector2f(200.f, 300.f), "Iniciar Jogo", Actions::SELECIONAR_FASE);
+	start = new Entidades::Button(sf::Vector2f(200.f, 300.f), "Start Game", Actions::SELECIONAR_FASE);
 
-	quit = new Entidades::Button(sf::Vector2f(200.f, 400.f), "Sair do Jogo", Actions::VOLTAR_1_MENU);
+	quit = new Entidades::Button(sf::Vector2f(200.f, 400.f), "Quit Game", Actions::VOLTAR_1_MENU);
 
 	ranking = new Entidades::Button(sf::Vector2f(200.f, 500.f), "Ranking", Actions::MENU_RANKING);
 	buttonVector.push_back(start);
