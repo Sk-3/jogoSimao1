@@ -9,7 +9,7 @@ namespace Entidades{
 		{
 			tipo = TipoPersonagem::PLAYER;
 			jumps = 2;
-			pontos = 0;
+
 			position = sf::Vector2f(300.f, 0.f);
 			shape.setPosition(position);
 			maxSpeed = 6;

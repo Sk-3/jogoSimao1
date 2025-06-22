@@ -9,7 +9,7 @@ namespace Entidades {
 		public:
 			EstadoCachorroSeguir();
 			~EstadoCachorroSeguir();
-			void atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao, Jogador* jogador);			
+			void atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao);			
 		};
 
 	}

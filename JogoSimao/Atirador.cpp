@@ -4,8 +4,8 @@
 namespace Entidades{
 	namespace Personagens
 	{
-		Personagens::Atirador::Atirador(sf::Vector2f pos,Jogador* jogador, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao) :
-			Inimigo(pos, jogador, listaEntidade, gerenciadorColisao)
+		Personagens::Atirador::Atirador(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao) :
+			Inimigo(pos, player, listaEntidade, gerenciadorColisao)
 		{
 
 			id = Id::Atirador;
@@ -28,13 +28,6 @@ namespace Entidades{
 		{
 			cachorros.emplace_back(cachorro);
 		}
-
-		void Atirador::danificar(Jogador* pJogador)
-		{
-			atirar(listaEntidade, gerColisao);
-		}
-				
-
 		void Atirador::executar() {
 			
 			caiuDoMapa();
@@ -50,7 +43,7 @@ namespace Entidades{
 					}
 				}
 				perseguirJogador();
-				danificar(this->getJogador());
+				atirar(listaEntidade, gerColisao);
 			}
 			else {
 				for (const auto& cach : cachorros) {

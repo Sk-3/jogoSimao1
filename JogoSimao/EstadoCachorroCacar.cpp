@@ -14,10 +14,10 @@ namespace Entidades {
 		{
 		}
 
-		void EstadoCachorroCacar::atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao, Jogador* jogador)
+		void EstadoCachorroCacar::atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao)
 		{
 			cachorro->setRange(alcance);
-			if (jogador && jogador->getHealth() >= 0) {								
+			if (cachorro->getPlayer() && cachorro->getPlayer()->getHealth() >= 0) {								
 				cachorro->perseguirJogador();
 				if (cachorro->jogadorNoAlcance()) {
 					cachorro->atirar(lista, gerColisao);

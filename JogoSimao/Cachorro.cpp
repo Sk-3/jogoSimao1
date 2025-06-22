@@ -3,8 +3,8 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Cachorro::Cachorro(sf::Vector2f pos, Jogador* jogador, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, Personagem* dono)
-			:Inimigo(pos, jogador, listaEntidade, gerenciadorColisao), pDono(dono), velocidade(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
+		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, Personagem* dono)
+			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(dono), velocidade(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
 		{
 			id = Id::Cachorro;
 			health = 1;
@@ -23,8 +23,8 @@ namespace Entidades{
 			shape.setScale(1 + (float)nivel_maldade / 10, 1 + (float)nivel_maldade / 10);
 		}
 
-		Cachorro::Cachorro(sf::Vector2f pos, Jogador* jogador, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
-			:Inimigo(pos, jogador, listaEntidade, gerenciadorColisao), pDono(nullptr), velocidade(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
+		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
+			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(nullptr), velocidade(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
 		{
 			/**
 			*@brief Construtor da classe Cachorro
@@ -58,11 +58,6 @@ namespace Entidades{
 			}
 
 		}
-
-		void Cachorro::danificar(Jogador* pJogador)
-		{
-			estadoAtual->atualizar(this, listaEnt, gerColisao, pJogador);
-		}		
 
 		void Cachorro::setEstado(EstadoCachorro* novoEstado)
 		{
@@ -129,7 +124,10 @@ namespace Entidades{
 				desativar();
 				diminuirInimigos();
 			}
-			danificar(this->getJogador());
+
+			estadoAtual->atualizar(this,listaEnt, gerColisao);
+
+
 			move();
 		}
 	}

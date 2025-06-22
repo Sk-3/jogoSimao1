@@ -3,8 +3,8 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Esqueleto::Esqueleto(sf::Vector2f pos, Jogador* jogador, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, int forca)
-			:Inimigo( pos, jogador, listaEntidade, gerenciadorColisao)
+		Esqueleto::Esqueleto(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, int forca)
+			:Inimigo( pos, player, listaEntidade, gerenciadorColisao)
 		{
 			id = Id::Esqueleto;
 			
@@ -14,7 +14,8 @@ namespace Entidades{
 			this->forca = forca;
 			health = 5 + (5 * forca);
 			range = 800;
-			nivel_maldade = 2 + (rand() % 10);						
+			nivel_maldade = 2 + (rand() % 10);
+			pPlayer = player;			
 			shape.setTexture(*pGerGraphic->getBoss());
 			shape.setTextureRect(sf::IntRect(0, 0, 81, 89));
 			shape.setScale(1 + (float)nivel_maldade / 10, 1 + (float)nivel_maldade / 10);
@@ -24,10 +25,7 @@ namespace Entidades{
 		{
 		}
 
-		void Esqueleto::danificar(Jogador* pJogador)
-		{
-			atirar(listaEntidade, gerColisao);
-		}	
+		
 
 		void Esqueleto::executar() {
 
@@ -38,7 +36,7 @@ namespace Entidades{
 			}
 			if (jogadorNoAlcance()) {
 				perseguirJogador();
-				danificar(this->getJogador());
+				atirar(listaEntidade, gerColisao);
 			}
 			else {
 				speed.x = 0;

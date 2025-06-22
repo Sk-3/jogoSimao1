@@ -3,8 +3,8 @@
 int Entidades::Personagens::Inimigo::quantidadeInimigos = 0;
 namespace Entidades{
 	namespace Personagens {
-		Inimigo::Inimigo(sf::Vector2f pos, Jogador* jogador, Listas::ListaEntidades* listaEnt, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
-			:Personagem(pos), pJogador(jogador), gerColisao(gerenciadorColisao), listaEntidade(listaEnt)
+		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEnt, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
+			:Personagem(pos), pPlayer(player), gerColisao(gerenciadorColisao), listaEntidade(listaEnt)
 		{
 			quantidadeInimigos++;
 			nivel_maldade = 0;
@@ -38,8 +38,8 @@ namespace Entidades{
 
 			//Vetor do boss até o jogador:
 			sf::Vector2f dist;
-			dist.x = pJogador->getCenter().x - getCenter().x;
-			dist.y = pJogador->getCenter().y - getCenter().y;
+			dist.x = pPlayer->getCenter().x - getCenter().x;
+			dist.y = pPlayer->getCenter().y - getCenter().y;
 			//modulo da distancia
 			double modDist = sqrt((dist.x * dist.x) + (dist.y * dist.y));
 			if (modDist < range) {
@@ -50,9 +50,9 @@ namespace Entidades{
 		}
 
 
-		Jogador* Inimigo::getJogador()
+		const Personagem* Inimigo::getPlayer() const
 		{
-			return pJogador;
+			return pPlayer;
 		}
 
 		int Inimigo::getQuantidadeInimigos()
@@ -66,7 +66,7 @@ namespace Entidades{
 		/**
 		*@brief Move o inimigo na direção do jogador, se o jogador estiver no alcance.
 		*/
-			if (getPosition().x - pJogador->getPosition().x < 0) {
+			if (getPosition().x - pPlayer->getPosition().x < 0) {
 				speed.x = moveSpeed;
 				direction = Directions::RIGHT;
 			}

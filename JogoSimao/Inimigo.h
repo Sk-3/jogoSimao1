@@ -1,7 +1,5 @@
 #pragma once
 #include "Personagem.h"
-#include "Jogador.h"
-
 /**
 *	Felipe Simbalista: 25/05/2025
 *	Classe abstrata inimigo
@@ -14,23 +12,22 @@ namespace Entidades{
 		protected:
 			static int quantidadeInimigos;
 			int nivel_maldade;
-			Jogador* pJogador;
+			Personagem* pPlayer;
 			Listas::ListaEntidades* listaEntidade;
 			Gerenciadores::GerenciadorColisao* gerColisao;
 			float range;
 		public:
-			Inimigo(sf::Vector2f pos, Jogador* pJogador, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
+			Inimigo(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
 			~Inimigo();
 			
 			//GETTERS
-			Jogador* getJogador();
+			const Personagem* getPlayer() const;
 			static int getQuantidadeInimigos();
 			//SETTERS
 			static void zerarInimigos();
 			void diminuirInimigos();
 			void aumentarPontos();
 			virtual void executar() = 0;
-			virtual void danificar(Jogador* pJogador) = 0;
 			virtual void perseguirJogador();
 			virtual bool jogadorNoAlcance();
 		};

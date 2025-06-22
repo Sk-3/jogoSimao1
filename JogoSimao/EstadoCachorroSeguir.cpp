@@ -17,7 +17,7 @@ namespace Entidades {
 		{
 		}
 
-		void EstadoCachorroSeguir::atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao, Jogador* jogador)
+		void EstadoCachorroSeguir::atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao)
 		{
 			if (seguir)
 			{
