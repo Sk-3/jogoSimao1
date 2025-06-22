@@ -16,7 +16,7 @@ namespace Entidades {
 		Espinho::Espinho()
 			:Obstaculo()
 		{
-			this->altura = altura;
+			altura = 1;
 			danoso = 1;			
 			danoCooldown = 0.5;
 			colidivel = 0;
