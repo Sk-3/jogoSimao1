@@ -11,8 +11,8 @@ namespace Entidades{
 			speed.y = vel;
 			max = h_Max;
 			min = h_Min;
-			topo = false;
-			fundo = false;
+			topo = true;
+			fundo = true;
 			obstaculou = false;
 		}
 
@@ -36,35 +36,29 @@ namespace Entidades{
 			if (!obstaculou) {
 				if (pPersonagem->getTipo() == TipoPersonagem::PLAYER)
 				{
-					speed.y *= 1.5;
+					speed.y *= 1.2;					
 				}
 				obstaculou = true;
 			}
 		}
 		void Plataforma::mover()
-		{
-			
-			if (getPosition().y > max)
-			{
-				fundo = true;
+		{			
+			if (topo) {
+				if (getPosition().y < min)
+				{
+					fundo = true;
+					topo = false;
+					speed.y *= -1;					
+				}
 			}
-
-			if (getPosition().y < min) {
-				topo = true;
-			}
-
-			if (topo)
-			{
-				speed.y *= -1;
-				topo = false;
-			}
-
-			if (fundo)
-			{
-				speed.y *= -1;
-				fundo = false;
-			}
-
+			if (fundo) {
+				if (getPosition().y > max) {
+					topo = true;
+					fundo = false;
+					speed.y *= -1;					
+				}
+			}			
+			speed.y -= 0.2; // compenssar a gravidade
 			move();
 		}
 
