@@ -170,7 +170,6 @@ namespace Entidades{
 		{
 			salvarPersonagem();
 			buffer << pontos;
-			std::cout << buffer.str() << "\n";
 		}
 
 		

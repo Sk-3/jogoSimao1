@@ -4,6 +4,7 @@ namespace Fases{
 	Fase(jg1,jg2, carregaArquivo)
 	{
 		id = 2;
+		criarCenario();
 		if (carregaArquivo) {
 			carregarSalvamento();
 		}
@@ -103,5 +104,6 @@ namespace Fases{
 		hud.draw();
 		
 		controladorEstado(id);
+		pontuacaoTotal = player->getPontos() + player2->getPontos();
 	}
 }

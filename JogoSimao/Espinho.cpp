@@ -52,7 +52,6 @@ namespace Entidades {
 		{
 			salvarObstaculo();
 			buffer << altura;
-			std::cout << buffer.str() << "\n";
 		}
 
 		void Espinho::obstacular(Personagens::Personagem* pPersonagem) {

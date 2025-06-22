@@ -32,6 +32,7 @@ namespace Gerenciadores{
 	private:
 		Entidades::Personagens::Jogador* jogador1;
 		Entidades::Personagens::Jogador* jogador2;
+		int pontos; 
 		sf::RenderWindow* window;
 		std::vector<State*> stack;
 	public:

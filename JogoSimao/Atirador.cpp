@@ -57,7 +57,6 @@ namespace Entidades{
 			salvarInimigo();
 
 			buffer << idCachorro;
-			std::cout << buffer.str() <<"\n";
 		}
 	
 		void Atirador::executar() {

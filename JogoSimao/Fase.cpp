@@ -8,13 +8,15 @@ namespace Fases{
 		player2Ativo(0),
 		view(pGerGraphic->getStdView())
 	{
+		pontuacaoTotal = 0;
+		id = 0;
 		Entidades::Personagens::Inimigo::zerarInimigos();
 		gerenciadorColisao.incluirJogador1(player);
 		listaEntidades.inserirNoFim(player);
 		hud.setPlayer(player);
 		pGerGraphic->setView(view);
 
-		criarCenario();
+		
 		
 		
 	}
@@ -125,11 +127,14 @@ namespace Fases{
 		view.setCenter(player->getPosition());
 	}
 
+	int Fase::getPontuacaoTotal()
+	{
+		return pontuacaoTotal;
+	}
+
 	void Fase::carregarSalvamento()
 	{
 		Entidades::Personagens::Inimigo::zerarInimigos();
-		gerenciadorColisao.incluirJogador1(player);
-		listaEntidades.inserirNoFim(player);
 		hud.setPlayer(player);
 		pGerGraphic->setView(view);
 
@@ -139,6 +144,7 @@ namespace Fases{
 		
 		if (arquivo.is_open()) {
 			std::map<int, Entidades::Personagens::Cachorro*> cachorrosMap;
+			
 			std::map<int, Entidades::Personagens::Atirador*> atiradoresMap;
 			std::map<int, Entidades::Personagens::Personagem*> personagensMap;
 			std::vector<Entidades::Projetil*> projeteis;
@@ -172,7 +178,6 @@ namespace Fases{
 
 				if (tipoEntidade == "JOGADOR") {
 					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> vida >> pulos >> pontuacao;
-					std::cout << tipoEntidade << idEntidade << ativo << posicaoX << posicaoY << velocidadeX << velocidadeY << vida << pulos << pontuacao;
 					player->setId(idEntidade);
 					player->setAtivo(ativo);
 					player->setPosicao(posicaoX, posicaoY);
@@ -248,6 +253,8 @@ namespace Fases{
 					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> identificadorDonoFilho;
 					Entidades::Projetil* projetil = new Entidades::Projetil(sf::Vector2f(posicaoX, posicaoY));
 					projetil->setIdDono(identificadorDonoFilho);
+					projetil->setVelocidade(velocidadeX, velocidadeY);
+					projetil->setAtivo(ativo);
 					listaEntidades.inserirNoFim(projetil);
 					gerenciadorColisao.incluirProjetil(projetil);
 					projeteis.push_back(projetil);
@@ -334,7 +341,7 @@ namespace Fases{
 	void Fase::controladorEstado(int idFase)
 	{
 		if(idFase == 1){
-			if (!player->vivo())
+			if (!player->vivo() || !player2->vivo())
 			{
 				setAction(Actions::GAME_OVER);
 			}
@@ -343,7 +350,7 @@ namespace Fases{
 			}
 		}
 		if (idFase == 2) {
-			if (!player->vivo())
+			if (!player->vivo() || !player2->vivo())
 			{
 				setAction(Actions::GAME_OVER);
 			}
@@ -382,7 +389,7 @@ namespace Fases{
 		}
 
 
-		if (id = 1) {
+		if (id == 1) {
 			for (int i = 0; i < 10; i++) {
 
 				Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 3800, 670), TipoEstrutura::CHAO);

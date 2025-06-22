@@ -73,7 +73,7 @@ namespace Gerenciadores {
 		}
 		case Actions::GAME_OVER:
 		{
-			push(new GameOver());
+			push(new GameOver(static_cast<Fases::Fase*>(stack.back())));
 			break;
 		}
 		case Actions::PASSOU_DE_FASE:
@@ -125,6 +125,7 @@ namespace Gerenciadores {
 		* @details Verifica se há algum estado na pilha e chama o método executar do estado atual.
 		* @return void
 		*/
+		
 		if (stack.empty()) {
 			pGerGraphic->close();
 			return;
@@ -134,6 +135,11 @@ namespace Gerenciadores {
 		update();
 		if (!stack.empty()) {
 			stack.back()->executar();
+		}
+
+		if (!jogador1->vivo()) {
+			pontos = jogador1->getPontos();
+			pontos += jogador2->getPontos();
 		}
 	}
 
@@ -174,6 +180,9 @@ namespace Gerenciadores {
 			stack.pop_back();
 
 		}
+
+
+
 	}
 
 }

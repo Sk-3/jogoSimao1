@@ -32,11 +32,12 @@ namespace Entidades{
 			void diminuirInimigos();
 			void aumentarPontos();
 			void salvarInimigo();
-			
+			void setAtivo(bool) override;
 			virtual std::string salvar() = 0;
 			virtual void executar() = 0;
 			virtual void danificar(Jogador* jogador) = 0;
 			virtual void perseguirJogador();
+			
 			virtual bool jogadorNoAlcance();
 		};
 		

@@ -33,6 +33,7 @@ namespace Fases{
 	class Fase : public State
 	{
 	protected:
+		int pontuacaoTotal;
 		int id;
 		//CONTROLADOR DE JANELA		
 		sf::View view;
@@ -59,6 +60,7 @@ namespace Fases{
 		
 		
 		//CRIAR ENTIDADES
+		int getPontuacaoTotal(); 
 		void carregarSalvamento();
 		virtual void carregamentoPadrao();
 

@@ -53,8 +53,17 @@ namespace Entidades{
 		}
 		void Plataforma::mover()
 		{
-			
-			if (getPosition().y > max)
+			if (speed.y > 25 || speed.y < -25) {
+				speed.y *= 0.1;
+			}
+
+			if (getPosition().y >= max && speed.y > 0) {
+				speed.y *= -1;
+			}
+			else if (getPosition().y <= min && speed.y < 0) {
+				speed.y *= -1;
+			}
+			/*	if (getPosition().y > max)
 			{
 				fundo = true;
 			}
@@ -73,7 +82,7 @@ namespace Entidades{
 			{
 				speed.y *= -1;
 				fundo = false;
-			}
+			}*/
 
 			move();
 		}
@@ -91,8 +100,6 @@ namespace Entidades{
 		{
 			salvarObstaculo();
 			buffer << velocidade << " " << max << " " << min << " " << obstaculou;
-
-			std::cout << buffer.str() <<"\n";
 		}
 
 	}

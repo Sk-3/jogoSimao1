@@ -19,6 +19,7 @@ namespace Entidades{
 		void Inimigo::setNivelMaldade(int maldade)
 		{
 			nivel_maldade = maldade;
+			shape.setScale(1 + (float)nivel_maldade / 10, 1 + (float)nivel_maldade / 10);
 		}
 
 		void Inimigo::zerarInimigos()
@@ -61,7 +62,12 @@ namespace Entidades{
 			return 0;
 		}
 
-
+		void Inimigo::setAtivo(bool at){
+			ativo = at;
+			if (!ativo) {
+				diminuirInimigos();
+			}
+		}
 		const Personagem* Inimigo::getPlayer() const
 		{
 			return pPlayer;

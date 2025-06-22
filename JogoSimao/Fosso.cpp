@@ -65,7 +65,6 @@ namespace Entidades {
 		{
 			salvarObstaculo();
 			buffer << largura << " " << obstaculou;
-			std::cout << buffer.str() <<"\n";
 		}
 	}
 }

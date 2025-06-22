@@ -60,7 +60,6 @@ namespace Entidades{
 		{
 			salvarInimigo();
 			buffer << forca << " ";
-			std::cout << buffer.str() << "\n";
 		}
 	}
 }

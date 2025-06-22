@@ -56,6 +56,5 @@ namespace Entidades {
 			break;
 		}
 		}
-		std::cout << buffer.str() <<"\n";
 	}
 }

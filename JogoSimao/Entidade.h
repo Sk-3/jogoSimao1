@@ -42,7 +42,7 @@ namespace Entidades{
 		bool ativado() const;
 		//SETTERS
 		void setId(int id);
-		void setAtivo(bool); 
+		virtual void setAtivo(bool); 
 		void setPosicao(float x, float y);
 		void setVelocidade(float x, float y);
 

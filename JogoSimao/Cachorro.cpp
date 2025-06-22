@@ -149,7 +149,6 @@ namespace Entidades{
 		{
 			salvarInimigo();
 			buffer << idDono;
-			std::cout<< buffer.str()<< "\n";
 		}
 
 		void Cachorro::executar() {

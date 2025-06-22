@@ -11,8 +11,11 @@ namespace Entidades{
 		*@param pos Posicao do projetil
 		*@param tipo Tipo do personagem que disparou o projetil
 		*/
+		
 		id = Id::Projetil;
 		dano = dono->getDanoArma();
+		idDono = dono->getIdUnico();
+		
 		tipo = pDono->getTipo();
 		clock.restart();
 		if (dono->getDirection() == Directions::LEFT) {
@@ -36,12 +39,6 @@ namespace Entidades{
 		idDono = dono->getIdUnico();
 		dano = dono->getDanoArma();
 		tipo = dono->getTipo();
-		if (dono->getDirection() == Directions::LEFT) {
-			speed = sf::Vector2f(-35.f, 0.f);
-		}
-		else {
-			speed = sf::Vector2f(35.f, 0.f);
-		}
 
 		if (dono->getTipo() == TipoPersonagem::INIMIGO)
 		{
@@ -52,6 +49,7 @@ namespace Entidades{
 
 	}
 	Projetil::Projetil(sf::Vector2f pos)
+		:Entidade(pos)
 	{
 		id = Id::Projetil;
 		dono = nullptr;
@@ -73,7 +71,7 @@ namespace Entidades{
 		*@brief Executa o projetil, movendo-o e desenhando-o na tela
 		*@return void
 		*/
-		if(clock.getElapsedTime().asSeconds() > 0.5){
+		if(clock.getElapsedTime().asSeconds() > 1){
 			desativar();
 		}
 		if(ativado()){

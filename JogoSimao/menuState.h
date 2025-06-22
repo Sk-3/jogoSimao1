@@ -20,7 +20,7 @@ public:
 	virtual ~menuState();
 	menuState();
 
-
+	virtual void carregarBotoes() = 0; 
 	virtual void readButtons();
 	void execButtons();
 	virtual void handleEvent();
