@@ -10,13 +10,12 @@ namespace Entidades{
 			ativo = 1;
 			tipo = TipoPersonagem::PLAYER;
 			jumps = 2;
-
+			jogadorDois = 0;
+			pontos = 0;
 			position = sf::Vector2f(300.f, 0.f);
 			shape.setPosition(position);
 			maxSpeed = 6;
-
-			shape.setTexture(*pGerGraphic->getPlayerTexture());
-			
+			shape.setTexture(*pGerGraphic->getPlayerTexture());			
 		}
 
 		Jogador::Jogador( sf::Vector2f pos)

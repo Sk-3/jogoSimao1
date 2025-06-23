@@ -14,6 +14,8 @@ namespace Entidades{
 			max = h_Max;
 			min = h_Min;
 			obstaculou = false;
+			topo = true;
+			fundo = true;
 		}
 
 		Plataforma::Plataforma()
@@ -23,6 +25,9 @@ namespace Entidades{
 			max = 800;
 			min = 300;
 			obstaculou = false;
+			topo = true;
+			fundo = true;
+			velocidade = 3;
 		}
 
 		Plataforma::~Plataforma()
@@ -49,16 +54,22 @@ namespace Entidades{
 		}
 		void Plataforma::mover()
 		{
-			if (speed.y > 25 || speed.y < -25) {
-				speed.y *= 0.5;
+			if (topo) {				
+					if (getPosition().y < min)
+					{
+						fundo = true;
+						topo = false;
+						speed.y *= -1;
+					}
 			}
-
-			if (getPosition().y >= max && speed.y > 0) {
-				speed.y *= -1;
-			}
-			else if (getPosition().y <= min && speed.y < 0) {
-				speed.y *= -1;
-			}
+			if (fundo) {
+				if (getPosition().y > max) {
+					topo = true;
+					fundo = false;
+					speed.y *= -1;
+				}
+			}			
+			speed.y -= 0.2; // compenssar a gravidade
 			move();
 		}
 
