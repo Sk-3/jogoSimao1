@@ -54,10 +54,7 @@ namespace Fases{
 		virtual void executar() = 0;
 		virtual void executarJanela();
 		void salvar();
-
-
-		
-		
+				
 		//CRIAR ENTIDADES
 		int getPontuacaoTotal(); 
 		void carregarSalvamento();

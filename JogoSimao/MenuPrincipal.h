@@ -11,6 +11,7 @@
 class MenuPrincipal : public menuState
 {
 private:
+
 public:
 	
 	MenuPrincipal();
