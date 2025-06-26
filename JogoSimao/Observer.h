@@ -1,10 +1,11 @@
 #pragma once
+#include "Actions.h"
 class Observer
 {
 private:
 public:
 	Observer();
 	~Observer();
-	void Update();
+	virtual void Update(Actions act) = 0;
 };
 

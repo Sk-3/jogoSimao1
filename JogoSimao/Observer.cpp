@@ -1,5 +1,10 @@
 #include "Observer.h"
 
-void Observer::Update()
+Observer::Observer()
 {
 }
+
+Observer::~Observer()
+{
+}
+

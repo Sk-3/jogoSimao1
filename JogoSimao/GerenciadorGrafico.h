@@ -27,6 +27,7 @@ namespace Gerenciadores{
 
 			sf::Texture background3;
 			sf::Sprite backgroundSprite3;
+			sf::Texture fundoMenu;
 		//TEXTURAS ENTIDADES
 			sf::Texture projetil;
 			sf::Texture chao;
@@ -58,7 +59,10 @@ namespace Gerenciadores{
 			sf::Vector2i* getMousePosition();
 			sf::Font* getFont();
 			bool isOpen();
+
 			sf::RenderWindow* getWindow();
+			
+			sf::Texture* getFundoMenu();
 			sf::Texture* getProjetilTexture();
 			sf::Texture* getChaoTexture();
 			sf::Texture* getAtiradorTexture();

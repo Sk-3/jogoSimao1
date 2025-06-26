@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "Actions.h"
+#include "mediadorEventos.h"
 
 /**
 *	Felipe Simbalista: 25/05/2025
@@ -19,22 +20,17 @@ namespace Entidades{
 	{
 	private:
 
-
+		mediadorEventos* mediador;
 		sf::Text buttonText;
 		Actions buttonAction;
-		Actions actualAction;
+
 
 
 	
 	public:
 		Button(sf::Vector2f pos,std::string txt = "", Actions action = Actions::NADA);
 		~Button();
-
-
-		void setAction(Actions act);
-		virtual bool getClicked(sf::Vector2i* mousePos);
-		const Actions getAction();
-		void action();
+		virtual void getClicked(sf::Vector2i* mousePos);
 		void executar();
 	};
 

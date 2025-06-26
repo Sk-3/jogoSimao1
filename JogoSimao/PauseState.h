@@ -17,7 +17,6 @@ private:
 public:
 	PauseState(Fases::Fase* pFase);
 	~PauseState();
-	void readButtons() override;
 	void carregarBotoes();
 };
 

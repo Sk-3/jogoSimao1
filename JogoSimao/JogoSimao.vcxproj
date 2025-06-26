@@ -142,6 +142,7 @@
     <ClCompile Include="EstadoCachorroAtacar.cpp" />
     <ClCompile Include="Estrutura.cpp" />
     <ClCompile Include="Fosso.cpp" />
+    <ClCompile Include="mediadorEventos.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="EstadoCachorroAtacar.h" />
     <ClInclude Include="Fosso.h" />
     <ClInclude Include="Id.h" />
+    <ClInclude Include="mediadorEventos.h" />
     <ClInclude Include="TipoEstrutura.h" />
     <ClInclude Include="Cachorro.h" />
     <ClInclude Include="Estrutura.h" />

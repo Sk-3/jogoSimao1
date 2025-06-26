@@ -10,25 +10,10 @@ menuState::~menuState()
 menuState::menuState()
 	:State()
 {
+	fundoMenu.setTexture(*pGerGraphic->getFundoMenu());
+	fundoMenu.setScale(0.84, 0.7);
+	setFigura(&fundoMenu);
 }
-
-void menuState::readButtons()
-{
-	/**
-	* @brief le os botoes do menu e executa a acao
-	* @details Percorre o vetor de botoes e verifica se a acao do botao houve alguma alteracao,
-	*		   Caso tenha ocorrido, a acao do menuState eh alterada para a acao do botao
-	*/
-	for (const auto& x : buttonVector) {
-		if (x->getAction() != Actions::NADA) {
-
-			this->setAction(x->getAction());
-			x->setAction(Actions::NADA);
-
-		}
-	}
-}
-
 void menuState::execButtons()
 {
 	/**
@@ -36,7 +21,6 @@ void menuState::execButtons()
 	*@return void
 	*/
 	for (const auto& buttons : buttonVector) {
-		buttons->executar();
 		buttons->desenhar();
 	}
 }
@@ -47,11 +31,14 @@ void menuState::executar() {
 	*@details Atualiza a posicao do mouse, limpa a janela e le e executa os botoes
 	*@return void
 	*/
+
+	
 	pGerGraphic->clear();
 	pGerGraphic->updateMousePosition();
+	desenhar();
 	handleEvent();
-	readButtons();
 	execButtons();
+
 }
 
 void menuState::handleEvent()
@@ -61,16 +48,16 @@ void menuState::handleEvent()
 	*@return void
 	*/
 	sf::Event ev;
-	while(this->window->pollEvent(ev)){
+	while (pGerGraphic->getWindow()->pollEvent(ev)) {
 		switch (ev.type) {
 		case sf::Event::Closed:
 		{
-			setAction(Actions::VOLTAR_1_MENU);
+			mediador->notify(Actions::VOLTAR_1_MENU);
 		}
 		case  sf::Event::KeyPressed:
 		{
 			if (ev.key.code == sf::Keyboard::Escape) {
-				setAction(Actions::VOLTAR_1_MENU);
+				mediador->notify(Actions::VOLTAR_1_MENU);
 			}
 			break;
 		}
@@ -94,8 +81,6 @@ void menuState::mouseClick()
 	*@return void
 	*/
 	for (const auto& x : buttonVector) {
-		if (x->getClicked(mousePos)) {
-			x->action();
-		}
+		x->getClicked(mousePos);
 	}
 }

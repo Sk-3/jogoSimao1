@@ -1,7 +1,7 @@
 #include "Button.h"
 namespace Entidades{
 	Button::Button(sf::Vector2f pos, std::string txt, Actions action)
-		:Ente(), buttonAction(action), actualAction(Actions::NADA)
+		:Ente(), buttonAction(action)
 	{
 		/**
 		*@brief Cria um botao com o tamanho, posicao, texto e acao especificados
@@ -10,6 +10,7 @@ namespace Entidades{
 		*@param txt Texto do botao
 		*@param action Ação que o botao executa quando clicado
 		*/
+		mediador = mediadorEventos::getMediadorEventos();
 		buttonText.setPosition(pos);
 		buttonText.setFont(*(pGerGraphic->getFont()));
 		buttonText.setString(txt);
@@ -20,43 +21,20 @@ namespace Entidades{
 
 	}
 
-	void Button::action()
-	{
-		/**
-		*@brief Executa a ação associada ao botão
-		*/
-		actualAction = buttonAction;
-	}
-
 	void Button::executar()
 	{
 		
 	}
 
-	bool Button::getClicked(sf::Vector2i* mousePos)
+	void Button::getClicked(sf::Vector2i* mousePos)
 	{
 		/**
 		* @brief Verifica se o botao foi clicado
 		* @param mousePos Posição do mouse	
 		* @return Verdadeiro se o botao contem a posicao do mouse, falso caso contrario
 		*/
-		return buttonText.getGlobalBounds().contains(sf::Vector2f((float)mousePos->x, (float)mousePos->y));
+		if (buttonText.getGlobalBounds().contains(sf::Vector2f((float)mousePos->x, (float)mousePos->y))) {
+			mediador->notify(buttonAction);
+		}
 	}
-
-	const Actions Button::getAction() {
-		/**
-		*@brief Retorna a ação associada ao botão
-		* 
-		*@return Ação atual do botão
-		*/
-		return actualAction;
-	}
-
-	void Button::setAction(Actions act) {
-		/**
-		*@brief Define a ação associada ao botão
-		*/
-		actualAction = act;
-	}
-
 }

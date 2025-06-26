@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <fstream>
+#include "Subject.h"
 #include "Actions.h"
 #include "Ente.h"
 #include <vector>
@@ -27,23 +28,25 @@
 
 
 	namespace Gerenciadores{
-		class GerenciadorEstado : public Ente
+		class GerenciadorEstado : public Ente, public Subject
 		{
 		private:
 			Entidades::Personagens::Jogador* jogador1;
 			Entidades::Personagens::Jogador* jogador2; 
 			sf::RenderWindow* window;
 			std::vector<State*> stack;
+			Actions pendingChange;
 		public:
 			void setJogador1(Entidades::Personagens::Jogador* jogador);
 			void setJogador2(Entidades::Personagens::Jogador* jogador);
 			GerenciadorEstado(Entidades::Personagens::Jogador* jogador_1,Entidades::Personagens::Jogador* jogador_2);
-			void handleEvent();
-			void update();			
+			void aplicarMudancas();	
+			void update(Actions act);
 			void executar();
 			void pop();
 			void push(State* newState);
 			void clear();
+			
 
 		};
 

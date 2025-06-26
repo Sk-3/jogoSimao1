@@ -7,7 +7,6 @@ MenuRanking::MenuRanking()
 	textoRanking.setPosition(300, 300);
 	textoRanking.setFont(*(pGerGraphic->getFont()));
 	textoRanking.setString("O RANKING SERÁ EXIBIDO AQUI");
-	setFigura(&textoRanking);
 	carregarRanking();
 }
 
@@ -28,9 +27,11 @@ void MenuRanking::executar() {
 	*/
 	pGerGraphic->clear();
 	pGerGraphic->updateMousePosition();
+    setFigura(&fundoMenu);
+    desenhar();
 	handleEvent();
-	readButtons();
 	execButtons();
+    setFigura(&textoRanking);
 	desenhar();
 }
 

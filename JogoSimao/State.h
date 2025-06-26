@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Ente.h"
 #include "Actions.h"
+#include "mediadorEventos.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 * 
@@ -18,16 +19,11 @@ class State : public Ente
 {
 protected:
 	sf::View* view;
-	sf::RenderWindow* window;
-	Actions action2;
-	sf::Font* font;
+	mediadorEventos* mediador;
 	sf::Vector2i* mousePos;
 public:
 	State();
 	virtual ~State();
-	const Actions getAction() const;
-	void setAction(Actions action);
-	
 	virtual void handleEvent() = 0;
 	virtual void executar() = 0;
 

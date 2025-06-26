@@ -1,4 +1,5 @@
 #pragma once
+#include "Actions.h"
 #include <vector>
 class Observer;
 
@@ -10,8 +11,6 @@ private:
 public:
 	Subject();
 	~Subject();
-	void attach(Observer* observer);
-	void detach(Observer* observer);
-	void notify();
+	virtual void update(Actions act) = 0;
 };
 

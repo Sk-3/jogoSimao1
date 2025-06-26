@@ -27,10 +27,11 @@ void GameOver::salvarRanking()
 void GameOver::executar() {
 	pGerGraphic->clear();
 	pGerGraphic->updateMousePosition();
+	setFigura(&fundoMenu);
+	desenhar();
 	handleEvent();
-	readButtons();
 	execButtons();
-
+	setFigura(&textoNomeJogador);
 	std::stringstream texto;
 	texto << "NOME: " << nomeJogador ;
 	textoNomeJogador.setString(texto.str());
@@ -47,11 +48,11 @@ void GameOver::handleEvent()
 	*/
 
 	sf::Event ev;
-	while (this->window->pollEvent(ev)) {
+	while (pGerGraphic->getWindow()->pollEvent(ev)) {
 		switch (ev.type) {
 		case sf::Event::Closed:
 		{
-			setAction(Actions::VOLTAR_1_MENU);
+			mediador->notify(Actions::VOLTAR_1_MENU);
 			break;
 		}
 		case  sf::Event::KeyPressed:
@@ -168,11 +169,11 @@ void GameOver::handleEvent()
 			}
 			if (ev.key.code == sf::Keyboard::Enter) {
 				salvarRanking();
-				setAction(Actions::VOLTAR_2_MENUS);
+				mediador->notify(Actions::VOLTAR_2_MENUS);
 			}
 
 			if (ev.key.code == sf::Keyboard::Escape) {
-				setAction(Actions::VOLTAR_2_MENUS);
+				mediador->notify(Actions::VOLTAR_2_MENUS);
 			}
 			break;
 		}

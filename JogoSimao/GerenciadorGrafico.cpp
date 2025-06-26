@@ -41,6 +41,7 @@ namespace Gerenciadores {
 	void GerenciadorGrafico::carregarTexturas()
 	{
 		try {
+			
 			if (!font->loadFromFile("..//JogoSimao//TypeLightSans-KV84p.otf")) {
 				std::cerr << "Erro ao carregar a fonte";
 			}
@@ -73,6 +74,9 @@ namespace Gerenciadores {
 
 			if (!player.loadFromFile("..//textures//AIM.PNG")) {
 				std::cout << "Falha ao carregar textura Aim.PNG";
+			}
+			if (!fundoMenu.loadFromFile("..//background//menuFundo.PNG")) {
+				std::cout << "Falha ao carregar menuFundo.png";
 			}
 			sf::Image playerInvertido;
 			if (!playerInvertido.loadFromFile("..//textures//AIM.PNG")) {
@@ -109,6 +113,7 @@ namespace Gerenciadores {
 		}
 		catch (const std::exception& e) {
 			std::cerr << "Exceção capturada durante o carregamento das texturas: " << e.what() << "\n";
+			exit(1);
 		}
 	}
 	void GerenciadorGrafico::desenharBackground()
@@ -139,6 +144,11 @@ namespace Gerenciadores {
 	sf::RenderWindow* GerenciadorGrafico::getWindow()
 	{
 		return window;
+	}
+
+	sf::Texture* GerenciadorGrafico::getFundoMenu()
+	{
+		return &fundoMenu;
 	}
 
 	sf::Texture* GerenciadorGrafico::getProjetilTexture() {

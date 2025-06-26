@@ -15,13 +15,12 @@ class menuState : public State
 {
 protected:
 	std::vector<Entidades::Button*> buttonVector;
-	
+	sf::Sprite fundoMenu;
 public:
 	virtual ~menuState();
 	menuState();
 
 	virtual void carregarBotoes() = 0; 
-	virtual void readButtons();
 	void execButtons();
 	virtual void handleEvent();
 	virtual void executar();

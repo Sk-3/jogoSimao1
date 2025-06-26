@@ -17,108 +17,97 @@ namespace Gerenciadores {
 		jogador1 = jogador_1;
 		jogador2 = jogador_2;
 		push(new MenuPrincipal());
-		
 	}
 
-	void GerenciadorEstado::handleEvent()
+	void GerenciadorEstado::aplicarMudancas()
 	{
-		/**
-		* @brief Trata os eventos do estado atual do jogo.
-		* @details Verifica se há algum estado na pilha e chama o método handleEvent do estado atual.
-		* @return void
-		*/
-		if (!stack.empty()) {
-			stack.back()->handleEvent();
-		}
-	}
-
-	void GerenciadorEstado::update()
-	{
-		/**
-		*@brief Atualiza o estado atual do jogo, verificando a ação a ser tomada.
-		*@details Dependendo da ação, pode-se mudar de fase, voltar ao menu principal, selecionar uma fase, ou entrar no estado de pausa.
-		*@return void
-		*/
-		switch (stack.back()->getAction()) {
-		case Actions::VOLTAR_1_MENU: {
+		if (pendingChange == Actions::VOLTAR_1_MENU) {
 			pop();
-			break;
 		}
-		case Actions::MENU_RANKING: {
-			push(new MenuRanking());
-			break;
-		}
-		case Actions::FASE_1: {
-			push(new Fases::Fase1(jogador1, jogador2, 0));
-			break;
-		}
-		case Actions::FASE_2: {
-			push(new Fases::Fase2(jogador1, jogador2, 0));
-			break;
-		}
-		case Actions::VOLTAR_2_MENUS: {
-			jogador1->resetarJogador();
-			jogador2->resetarJogador();
-			pop();
-			pop();
-			break;
-		}
-		case Actions::SELECIONAR_FASE: {
-			push(new MenuSelectLvl());
-			break;
-		}
-		case Actions::PAUSE: {
-			push(new PauseState(static_cast<Fases::Fase*>(stack.back())));
-			break;
-		}
-		case Actions::GAME_OVER:
-		{
-			push(new GameOver(static_cast<Fases::Fase*>(stack.back())));
-			jogador1->resetarJogador();
-			jogador2->resetarJogador();
-			break;
-		}
-		case Actions::PASSOU_DE_FASE:
-		{
+		else if (pendingChange == Actions::PASSOU_DE_FASE) {
 			pop();
 			jogador1->setPosicao(100, 100);
 			jogador2->setPosicao(100, 100);
 			push(new Fases::Fase2(jogador1, jogador2, 0));
-			break;
 		}
-		case Actions::SALVAR:
-		{
+		else if (pendingChange == Actions::VOLTAR_2_MENUS) {
+			jogador1->resetarJogador();
+			jogador2->resetarJogador();
 			pop();
-			stack.back()->setAction(Actions::SALVAR);
-			break;
-			
-		}
-		case Actions::CARREGAR_SAVE: {
-			push(new MenuSelectLvl());
-			std::ifstream arquivoLeitura("save.txt");
-			std::string linha;
-
-			if (arquivoLeitura.is_open()) {
-				std::getline(arquivoLeitura, linha);
-				if (linha[0] == '1') {
-					push(new Fases::Fase1(jogador1, jogador2, 1));
-				}
-				else if (linha[0] == '2') {
-					push(new Fases::Fase2(jogador1, jogador2, 1));
-				}
-			}
-
-			break;
-		}
-
-		default:
-			break;
-
+			pop();
 		}
 
 
+		pendingChange = Actions::NADA;
 	}
+	void GerenciadorEstado::update(Actions act) {
+		switch (act) {
+			case Actions::SALVAR: {
+				Fases::Fase* pEstadoAnterior = static_cast<Fases::Fase*>(stack[stack.size() - 2]);
+				pEstadoAnterior->salvar();
+				}
+			case Actions::VOLTAR_1_MENU: {
+				pendingChange = act;
+				break;
+			}
+			case Actions::MENU_RANKING: {
+				push(new MenuRanking());
+				break;
+			}
+			case Actions::FASE_1: {
+				push(new Fases::Fase1(jogador1, jogador2, 0));
+				break;
+			}
+			case Actions::FASE_2: {
+				push(new Fases::Fase2(jogador1, jogador2, 0));
+				break;
+			}
+			case Actions::VOLTAR_2_MENUS: {
+				pendingChange = Actions::VOLTAR_2_MENUS;
+				break;
+			}
+			case Actions::SELECIONAR_FASE: {
+				push(new MenuSelectLvl());
+				break;
+			}
+			case Actions::PAUSE: {
+				push(new PauseState(static_cast<Fases::Fase*>(stack.back())));
+				break;
+			}
+			case Actions::GAME_OVER:
+			{
+				push(new GameOver(static_cast<Fases::Fase*>(stack.back())));
+				jogador1->resetarJogador();
+				jogador2->resetarJogador();
+				break;
+			}
+			case Actions::PASSOU_DE_FASE:
+			{
+				pendingChange = Actions::PASSOU_DE_FASE;
+				break;
+			}
+			case Actions::CARREGAR_SAVE: {
+				push(new MenuSelectLvl());
+				std::ifstream arquivoLeitura("save.txt");
+				std::string linha;
 
+				if (arquivoLeitura.is_open()) {
+					std::getline(arquivoLeitura, linha);
+					if (linha[0] == '1') {
+						push(new Fases::Fase1(jogador1, jogador2, 1));
+					}
+					else if (linha[0] == '2') {
+						push(new Fases::Fase2(jogador1, jogador2, 1));
+					}
+				}
+
+				break;
+			}
+			default:
+				break;
+
+			}
+	}
 
 	void GerenciadorEstado::executar()
 	{
@@ -132,12 +121,11 @@ namespace Gerenciadores {
 			pGerGraphic->close();
 			return;
 		}
-
-
-		update();
 		if (!stack.empty()) {
 			stack.back()->executar();
 		}
+
+		aplicarMudancas();
 	}
 
 	void GerenciadorEstado::pop()
@@ -150,9 +138,6 @@ namespace Gerenciadores {
 		if (!stack.empty()) {
 			delete stack.back();
 			stack.pop_back();
-		}
-		if (!stack.empty()) {
-			stack.back()->setAction(Actions::NADA);
 		}
 	}
 
@@ -171,15 +156,10 @@ namespace Gerenciadores {
 		* @return void
 		*/
 		int i;
-
 		for (i = stack.size() - 1; i >= 0; i--) {
 			delete (*stack.begin() + i);
 			stack.pop_back();
-
 		}
-
-
-
 	}
 
 }

@@ -8,6 +8,7 @@ namespace Fases{
 		player2Ativo(0),
 		view(pGerGraphic->getStdView())
 	{
+		mediador = mediadorEventos::getMediadorEventos();
 		pontuacaoTotal = 0;
 		id = 0;
 		Entidades::Personagens::Inimigo::zerarInimigos();
@@ -15,10 +16,6 @@ namespace Fases{
 		listaEntidades.inserirNoFim(player);
 		hud.setPlayer(player);
 		pGerGraphic->setView(view);
-
-		
-		
-		
 	}
 
 	
@@ -89,7 +86,7 @@ namespace Fases{
 			}
 		}
 		sf::Event ev;
-		while (window->pollEvent(ev)) {
+		while (pGerGraphic->getWindow()->pollEvent(ev)) {
 			switch (ev.type) {
 			case sf::Event::Closed:
 				pGerGraphic->close();
@@ -104,13 +101,9 @@ namespace Fases{
 					}
 				}
 				if (ev.key.code == sf::Keyboard::Escape) {
-					setAction(Actions::PAUSE);
+					mediador->notify(Actions::PAUSE);
 				}
 				break;
-			case sf::Event::MouseButtonPressed:
-				if (ev.mouseButton.button == sf::Mouse::Left) {
-					//mouseClick();
-				}
 			}
 		}
 	}
@@ -122,7 +115,7 @@ namespace Fases{
 		* @details Limpa a janela, define a view e atualiza o centro da view com a posição do jogador.
 		* @return void
 		*/
-		window->clear();
+		pGerGraphic->clear();
 		pGerGraphic->desenharBackground();
 		pGerGraphic->setView(view);
 		if (player2Ativo) {
@@ -375,19 +368,19 @@ namespace Fases{
 		if(idFase == 1){
 			if (!player->vivo() || !player2->vivo())
 			{
-				setAction(Actions::GAME_OVER);
+				mediador->notify(Actions::GAME_OVER);
 			}
 			if (verificarQuantidadeInimigos() == 0) {
-				setAction(Actions::PASSOU_DE_FASE);
+				mediador->notify(Actions::PASSOU_DE_FASE);
 			}
 		}
 		if (idFase == 2) {
 			if (!player->vivo() || !player2->vivo())
 			{
-				setAction(Actions::GAME_OVER);
+				mediador->notify(Actions::GAME_OVER);
 			}
 			if (verificarQuantidadeInimigos() == 0) {
-				setAction(Actions::GAME_OVER);
+				mediador->notify(Actions::GAME_OVER);
 			}
 		}
 	}
