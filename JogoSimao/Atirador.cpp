@@ -4,8 +4,8 @@
 namespace Entidades{
 	namespace Personagens
 	{
-		Personagens::Atirador::Atirador(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao) :
-			Inimigo(pos, player, listaEntidade, gerenciadorColisao)
+		Personagens::Atirador::Atirador(sf::Vector2f pos, Personagem* player) :
+			Inimigo(pos, player)
 		{
 			cachorro = nullptr;
 			idCachorro = -1;
@@ -75,7 +75,7 @@ namespace Entidades{
 				}
 				
 				perseguirJogador();
-				atirar(listaEntidade, gerColisao);
+				atirar();
 			}
 			else {
 			

@@ -3,8 +3,8 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, Personagem* dono)
-			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(dono), velocidade(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
+		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, Personagem* dono)
+			:Inimigo(pos, player), pDono(dono), velocidade(3)
 		{
 			id = Id::Cachorro;
 			idDono = dono->getIdUnico();
@@ -24,8 +24,8 @@ namespace Entidades{
 			shape.setScale(1 + (float)nivel_maldade / 10, 1 + (float)nivel_maldade / 10);
 		}
 
-		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
-			:Inimigo(pos, player, listaEntidade, gerenciadorColisao), pDono(nullptr), velocidade(3), gc(gerenciadorColisao), listaEnt(listaEntidade)
+		Cachorro::Cachorro(sf::Vector2f pos, Personagem* player)
+			:Inimigo(pos, player), pDono(nullptr), velocidade(3)
 		{
 			/**
 			*@brief Construtor da classe Cachorro
@@ -164,7 +164,7 @@ namespace Entidades{
 				diminuirInimigos();
 			}
 
-			estadoAtual->atualizar(this,listaEnt, gerColisao);
+			estadoAtual->atualizar(this);
 
 
 			move();

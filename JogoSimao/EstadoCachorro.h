@@ -13,7 +13,7 @@ namespace Entidades{
 			int id;
 		public:
 			virtual ~EstadoCachorro(){}
-			virtual void atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao) = 0;
+			virtual void atualizar(Cachorro* cachorro) = 0;
 			const int getIdCachorro() const;
 		};
 	}

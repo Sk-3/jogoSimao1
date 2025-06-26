@@ -10,7 +10,7 @@ namespace Entidades {
 		public:
 			EstadoCachorroCacar();
 			~EstadoCachorroCacar();
-			void atualizar(Cachorro* cachorro, ListaEntidades* lista, Gerenciadores::GerenciadorColisao* gerColisao);			
+			void atualizar(Cachorro* cachorro);			
 		};
 
 	}

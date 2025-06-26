@@ -19,7 +19,7 @@ namespace Entidades{
 			int idCachorro;
 		public: 
 
-			Atirador(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
+			Atirador(sf::Vector2f pos, Personagem* player);
 			~Atirador();  
 			void adicionarCachorro(Cachorro* cachorro);
 

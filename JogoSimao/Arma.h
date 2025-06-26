@@ -10,7 +10,8 @@ namespace Entidades {
 		class Arma
 		{
 		private:
-			Gerenciadores::GerenciadorColisao* gerenciadorColisao;
+			static ListaEntidades* listaEntidades;
+			static Gerenciadores::GerenciadorColisao* gerenciadorColisao;
 			Entidades::Personagens::Personagem* pDono;
 			float VelocidadeProjetil;
 			sf::Clock Clocktiro;
@@ -18,7 +19,8 @@ namespace Entidades {
 		public:
 			Arma(Entidades::Personagens::Personagem* pDono, Armas arma);
 			~Arma();
-			void atirar(Listas::ListaEntidades* lista,Gerenciadores::GerenciadorColisao* gerColisao);
+			void atirar();
+			static void setContexto(Gerenciadores::GerenciadorColisao*, ListaEntidades*);
 
 		};
 	}

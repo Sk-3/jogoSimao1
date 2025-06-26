@@ -2,6 +2,9 @@
 #include "Personagem.h"
 namespace Entidades {
 	namespace Personagens {
+		Listas::ListaEntidades* Arma::listaEntidades = nullptr;
+		Gerenciadores::GerenciadorColisao* Arma::gerenciadorColisao = nullptr;
+
 		Arma::Arma(Entidades::Personagens::Personagem* dono, Armas arma)
 			: pDono(dono)
 		{
@@ -38,7 +41,7 @@ namespace Entidades {
 
 
 
-		void Arma::atirar(Listas::ListaEntidades* listaEntidades, Gerenciadores::GerenciadorColisao* gerColisao) {
+		void Arma::atirar() {
 			/**
 			*@brief Dispara projeteis
 			*@details verifica se o tempo passado desde o ultimo reset de clockTiro é maior que o cooldown do tiro
@@ -48,9 +51,14 @@ namespace Entidades {
 			if (Clocktiro.getElapsedTime().asSeconds() > tiroCooldown) {
 				Entidades::Projetil* projetil = new Entidades::Projetil(pDono->getCenter(), pDono);
 				listaEntidades->inserirNoFim(projetil);
-				gerColisao->incluirProjetil(projetil);
+				gerenciadorColisao->incluirProjetil(projetil);
 				Clocktiro.restart();
 			}
+		}
+		void Arma::setContexto(Gerenciadores::GerenciadorColisao* GC, ListaEntidades* lista)
+		{
+			listaEntidades = lista;
+			gerenciadorColisao = GC;
 		}
 	}
 }

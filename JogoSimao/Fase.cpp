@@ -8,6 +8,7 @@ namespace Fases{
 		player2Ativo(0),
 		view(pGerGraphic->getStdView())
 	{
+		Entidades::Personagens::Arma::setContexto(&gerenciadorColisao, &listaEntidades);
 		mediador = mediadorEventos::getMediadorEventos();
 		pontuacaoTotal = 0;
 		id = 0;
@@ -56,7 +57,7 @@ namespace Fases{
 				player2->dash();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-				player2->atirar(&listaEntidades, &gerenciadorColisao);
+				player2->atirar();
 			}
 		}
 
@@ -82,7 +83,7 @@ namespace Fases{
 				player->dash();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
-				player->atirar(&listaEntidades,&gerenciadorColisao);
+				player->atirar();
 			}
 		}
 		sf::Event ev;
@@ -209,7 +210,7 @@ namespace Fases{
 				}
 				else if (tipoEntidade == "CACHORRO") {
 					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> vida >> pulos >> nivelMaldade >> identificadorDonoFilho;
-					Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(posicaoX, posicaoY), player, &listaEntidades, &gerenciadorColisao);
+					Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(posicaoX, posicaoY), player);
 					listaEntidades.inserirNoFim(cachorro);
 					gerenciadorColisao.incluirInimigo(cachorro);
 					cachorro->setId(idEntidade);
@@ -223,7 +224,7 @@ namespace Fases{
 				}
 				else if (tipoEntidade == "ATIRADOR") {
 					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> vida >> pulos >> nivelMaldade >> identificadorDonoFilho;
-					Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(posicaoX, posicaoY), player, &listaEntidades, &gerenciadorColisao);
+					Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(posicaoX, posicaoY), player);
 					listaEntidades.inserirNoFim(atirador);
 					gerenciadorColisao.incluirInimigo(atirador);
 					atirador->setId(idEntidade);
@@ -238,7 +239,7 @@ namespace Fases{
 				}
 				else if (tipoEntidade == "ESQUELETO") {
 					linhaOutput >> idEntidade >> ativo >> posicaoX >> posicaoY >> velocidadeX >> velocidadeY >> vida >> pulos >> nivelMaldade >> forca;
-					Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(posicaoX, posicaoY), player, &listaEntidades, &gerenciadorColisao, forca);
+					Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(posicaoX, posicaoY), player, forca);
 					listaEntidades.inserirNoFim(esqueleto);
 					gerenciadorColisao.incluirInimigo(esqueleto);
 					esqueleto->setId(idEntidade);
@@ -320,7 +321,7 @@ namespace Fases{
 
 	void Fase::criarCachorro(Entidades::Personagens::Atirador* dono) {
 		if(dono){
-			Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(dono->getPosition().x + rand() % 300, dono->getPosition().y + (rand() % 300)), player, &listaEntidades, &gerenciadorColisao, dono);
+			Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(dono->getPosition().x + rand() % 300, dono->getPosition().y + (rand() % 300)), player, dono);
 			listaEntidades.inserirNoFim(cachorro);
 			gerenciadorColisao.incluirInimigo(cachorro);
 			dono->adicionarCachorro(cachorro);
@@ -329,12 +330,12 @@ namespace Fases{
 	void Fase::criarCachorro()
 	{
 		for (int i = 0; i < 3; i++) {
-			Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(2500 + (250*i), 300), player, &listaEntidades, &gerenciadorColisao);
+			Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(2500 + (250*i), 300), player);
 			listaEntidades.inserirNoFim(cachorro);
 			gerenciadorColisao.incluirInimigo(cachorro);
 		}
 		if (rand() % 2) {
-			Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(3500, 300), player, &listaEntidades, &gerenciadorColisao);
+			Entidades::Personagens::Cachorro* cachorro = new Entidades::Personagens::Cachorro(sf::Vector2f(3500, 300), player);
 			listaEntidades.inserirNoFim(cachorro);
 			gerenciadorColisao.incluirInimigo(cachorro);
 		}

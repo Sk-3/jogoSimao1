@@ -22,14 +22,14 @@ namespace Fases{
 	{
 		for (int i = 0; i < 3; i++) {
 			
-			Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(5000 + (500*i), 300), player, &listaEntidades, &gerenciadorColisao, i);
+			Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(5000 + (500*i), 300), player, i);
 			gerenciadorColisao.incluirInimigo(esqueleto);
 			listaEntidades.inserirNoFim(esqueleto);			
 		}
 		for (int i = 3; i < maxEsqueletos; i++) {
 			if (rand() % 2) {
 				
-				Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(4000 + (500 * 1.5*i), 300), player, &listaEntidades, &gerenciadorColisao, i);
+				Entidades::Personagens::Esqueleto* esqueleto = new Entidades::Personagens::Esqueleto(sf::Vector2f(4000 + (500 * 1.5*i), 300), player, i);
 				gerenciadorColisao.incluirInimigo(esqueleto);
 				listaEntidades.inserirNoFim(esqueleto);				
 			}

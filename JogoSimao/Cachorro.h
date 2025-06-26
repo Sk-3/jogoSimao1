@@ -17,8 +17,8 @@ namespace Entidades{
 			Personagem* pDono;
 			EstadoCachorro* estadoAtual;
 		public:
-			Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, Personagem* dono);
-			Cachorro(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
+			Cachorro(sf::Vector2f pos, Personagem* player, Personagem* dono);
+			Cachorro(sf::Vector2f pos, Personagem* player);
 			~Cachorro();
 			//SETTERS
 			void setIdDono(int id);

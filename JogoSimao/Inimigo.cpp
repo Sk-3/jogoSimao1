@@ -3,8 +3,8 @@
 int Entidades::Personagens::Inimigo::quantidadeInimigos = 0;
 namespace Entidades{
 	namespace Personagens {
-		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEnt, Gerenciadores::GerenciadorColisao* gerenciadorColisao)
-			:Personagem(pos), pPlayer(player), gerColisao(gerenciadorColisao), listaEntidade(listaEnt)
+		Inimigo::Inimigo(sf::Vector2f pos, Personagem* player)
+			:Personagem(pos), pPlayer(player)
 		{
 			danoContatoCooldown = 1;
 			quantidadeInimigos++;

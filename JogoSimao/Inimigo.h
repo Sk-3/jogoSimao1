@@ -16,11 +16,9 @@ namespace Entidades{
 			static int quantidadeInimigos;
 			int nivel_maldade;
 			Personagem* pPlayer;
-			Listas::ListaEntidades* listaEntidade;
-			Gerenciadores::GerenciadorColisao* gerColisao;
 			float range;
 		public:
-			Inimigo(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao);
+			Inimigo(sf::Vector2f pos, Personagem* player);
 			~Inimigo();
 			
 			//GETTERS

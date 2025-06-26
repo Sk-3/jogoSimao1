@@ -133,8 +133,8 @@ namespace Entidades{
 		{
 			this->moveSpeed = moveSpeed;
 		}
-		void Personagem::atirar(Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao) {
-			arma->atirar(listaEntidade, gerenciadorColisao);
+		void Personagem::atirar() {
+			arma->atirar();
 		}
 
 		void Personagem::salvarPersonagem()

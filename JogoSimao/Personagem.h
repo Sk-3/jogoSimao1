@@ -43,13 +43,9 @@ namespace Entidades{
 		public:
 			//construtor padrão
 			Personagem();
-			//define posição e tamanho inicial do personagem
 			Personagem(sf::Vector2f pos);
 			~Personagem();
-
-			void atirar(Listas::ListaEntidades* listaEntidade,Gerenciadores::GerenciadorColisao* gerenciadorColisao);
-			//RELACIONADO A COLISÃO
-				//Funções que não permitem o jogador entrar dentro do obstaculo passado como parametro
+			void atirar();
 			void colidiu(Entidade* entidade, Directions direction);
 			//GETTERS
 				const TipoPersonagem getTipo() const;

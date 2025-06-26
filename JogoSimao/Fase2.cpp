@@ -21,7 +21,7 @@ namespace Fases{
 	void Fase2::criarAtiradores()
 	{
 		for (int i = 0; i < 3; i++) {
-			Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(5000 + (i * 500), 300), player, &listaEntidades, &gerenciadorColisao);
+			Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(5000 + (i * 500), 300), player);
 			gerenciadorColisao.incluirInimigo(atirador);
 			listaEntidades.inserirNoFim(atirador);
 			criarCachorro(atirador);
@@ -29,7 +29,7 @@ namespace Fases{
 
 		for (int i = 3; i < maxAtiradores; i++) {
 			if (rand() % 2) {
-				Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(5000 + (i * 500), 300), player, &listaEntidades, &gerenciadorColisao);
+				Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(5000 + (i * 500), 300), player);
 				gerenciadorColisao.incluirInimigo(atirador);
 				listaEntidades.inserirNoFim(atirador);
 				criarCachorro(atirador);

@@ -3,8 +3,8 @@
 
 namespace Entidades{
 	namespace Personagens{
-		Esqueleto::Esqueleto(sf::Vector2f pos, Personagem* player, Listas::ListaEntidades* listaEntidade, Gerenciadores::GerenciadorColisao* gerenciadorColisao, int forca)
-			:Inimigo( pos, player, listaEntidade, gerenciadorColisao)
+		Esqueleto::Esqueleto(sf::Vector2f pos, Personagem* player, int forca)
+			:Inimigo( pos, player)
 		{
 			id = Id::Esqueleto;
 			tipo = TipoPersonagem::INIMIGO;
@@ -42,7 +42,7 @@ namespace Entidades{
 			}
 			if (jogadorNoAlcance()) {
 				perseguirJogador();
-				atirar(listaEntidade, gerColisao);
+				atirar();
 			}
 			else {
 				speed.x = 0;
