@@ -345,23 +345,32 @@ namespace Fases{
 
 	void Fase::criarPlataformas()
 	{
-		int sentido = -1;
-		if (rand() % 2) {
-			for (int i = 0; i < 4; i++) {
-				Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900+(200*i), 600), (3 + id) * sentido, 800, 300);
-				listaEntidades.inserirNoFim(plat);
-				gerenciadorColisao.incluirObstaculo(plat);
-				sentido *= -1;
-			}			
-		}
-		else {
-			for (int i = 0; i < 3; i++) {
-				Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f(900 + (300 * i), 600), (3 + id) * sentido, 800, 300);
-				listaEntidades.inserirNoFim(plat);
-				gerenciadorColisao.incluirObstaculo(plat);
-				sentido *= -1;
+		std::ifstream arquivo("FaseTileMap.txt");
+		std::string linha;
+		if (arquivo.is_open()) {
+			int y = 0;
+			while (std::getline(arquivo, linha)) {
+
+				int i = 0;
+				for (auto& num : linha) {
+					if (num == '2') {
+						Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f((100 * i) - 700, 100 * y), (3 + (rand() % 5)), (y*100) + 250, (y*100) - 250);
+						listaEntidades.inserirNoFim(plat);
+						gerenciadorColisao.incluirObstaculo(plat);
+					}
+					if (num == '3') {
+						if (rand() % 2) {
+							Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f((100 * i) - 700, 100 * y), (3 + (rand() % 5)), (y * 100) + 250, (y * 100) - 250);
+							listaEntidades.inserirNoFim(plat);
+							gerenciadorColisao.incluirObstaculo(plat);
+						}
+					}
+					i++;
+				}
+				y++;
 			}
-		}		
+			arquivo.close();
+		}
 	}
 
 	void Fase::controladorEstado(int idFase)
@@ -397,51 +406,24 @@ namespace Fases{
 	}
 	void Fase::criarCenario()
 	{
-		for (int i = 0; i < 15; i++) {
-
-			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) - 700, 670), TipoEstrutura::CHAO);
-			listaEntidades.inserirNoFim(estrutura);
-			gerenciadorColisao.incluirEstrutura(estrutura);
-		}
-
-		Entidades::Estrutura* parada = new Entidades::Estrutura(sf::Vector2f(1800, 638), TipoEstrutura::CHAO);
-		listaEntidades.inserirNoFim(parada);
-		gerenciadorColisao.incluirEstrutura(parada);
-
-		for (int i = 0; i < 20; i++) {
-
-			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) +1800, 670), TipoEstrutura::CHAO);
-			listaEntidades.inserirNoFim(estrutura);
-			gerenciadorColisao.incluirEstrutura(estrutura);
-		}
-
-
-		if (id == 1) {
-			for (int i = 0; i < 10; i++) {
-
-				Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 3800, 670), TipoEstrutura::CHAO);
-				listaEntidades.inserirNoFim(estrutura);
-				gerenciadorColisao.incluirEstrutura(estrutura);
+		std::ifstream arquivo("FaseTileMap.txt");
+		std::string linha;
+		if (arquivo.is_open()) {
+			int y = 0;
+			while (std::getline(arquivo, linha)) {
+				
+				int i = 0;
+				for (auto& num : linha) {
+					if (num == '1') {
+						Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) - 700, 100*y), TipoEstrutura::CHAO);
+						listaEntidades.inserirNoFim(estrutura);
+						gerenciadorColisao.incluirEstrutura(estrutura);
+					}
+					i++;
+				}
+				y++;
 			}
-		}
-
-		for (int i = 0; i < 30; i++) {
-
-			Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) + 4800, 670), TipoEstrutura::CHAO);
-			listaEntidades.inserirNoFim(estrutura);
-			gerenciadorColisao.incluirEstrutura(estrutura);
-		}
-
-		for (int i = 0; i < 3; i++) {
-
-			Entidades::Estrutura* parede1 = new Entidades::Estrutura(sf::Vector2f(-400 + (-100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
-			
-			listaEntidades.inserirNoFim(parede1);
-			gerenciadorColisao.incluirEstrutura(parede1);
-
-			Entidades::Estrutura* parede2 = new Entidades::Estrutura(sf::Vector2f(7500 + (100 * i), (-330 + 670)), TipoEstrutura::PAREDE);
-			listaEntidades.inserirNoFim(parede2);
-			gerenciadorColisao.incluirEstrutura(parede2);
+			arquivo.close();	
 		}
 	}
 

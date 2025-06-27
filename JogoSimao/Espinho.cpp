@@ -40,7 +40,7 @@ namespace Entidades {
 		}
 
 		void Espinho::executar() {
-
+			move();
 		}
 
 		std::string Espinho::salvar()

@@ -30,6 +30,7 @@ namespace Gerenciadores{
 	}
 
 
+	
 
 	void GerenciadorColisao::tratarColisoesJogsInimigos()
 	{
@@ -94,6 +95,17 @@ namespace Gerenciadores{
 			for (auto& estrutur : estruturas) {
 				if (verificarColisao(estrutur, jogador2)) {
 					empurrarPersonagem(jogador2, estrutur);
+				}
+			}
+		}
+	}
+
+	void GerenciadorColisao::tratarColisoesObstaculosEstruturas()
+	{
+		for (auto& obst : obstaculos) {
+			for (const auto& estrut : estruturas) {
+				if (verificarColisao(obst, estrut)) {
+					obst->setVelocidade(0, 0);
 				}
 			}
 		}
@@ -279,7 +291,7 @@ namespace Gerenciadores{
 		tratarColisoesJogsObstaculos();
 		tratarColisoesJogsEstruturas();
 		tratarColisoesJogsInimigos();
-		
+		tratarColisoesObstaculosEstruturas();
 	}
 
 }
