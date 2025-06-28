@@ -188,6 +188,7 @@
     <ClInclude Include="Fosso.h" />
     <ClInclude Include="Id.h" />
     <ClInclude Include="mediadorEventos.h" />
+    <ClInclude Include="texturas.h" />
     <ClInclude Include="TipoEstrutura.h" />
     <ClInclude Include="Cachorro.h" />
     <ClInclude Include="Estrutura.h" />

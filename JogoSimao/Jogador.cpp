@@ -15,7 +15,7 @@ namespace Entidades{
 			position = sf::Vector2f(300.f, 0.f);
 			shape.setPosition(position);
 			maxSpeed = 6;
-			shape.setTexture(*pGerGraphic->getPlayerTexture());			
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::player));			
 		}
 
 		Jogador::Jogador( sf::Vector2f pos)
@@ -29,7 +29,7 @@ namespace Entidades{
 			maxSpeed = 6;
 			health = 55;
 			jumps = 2;
-			shape.setTexture(*pGerGraphic->getPlayerTexture());
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::player));
 			shape.setTextureRect(sf::IntRect(0, 0, 16, 16));
 			shape.setScale(5, 5);
 			setFigura(&shape);
@@ -157,11 +157,11 @@ namespace Entidades{
 			caiuDoMapa();
 			//move o player a atualiza a posição da camera
 			if (direction == Directions::LEFT) {
-				shape.setTexture(*pGerGraphic->getPlayerInvertido());
+				shape.setTexture(*pGerGraphic->getTextura(Texturas::playerLeft));
 				
 			}
 			else {
-				shape.setTexture(*pGerGraphic->getPlayerTexture());
+				shape.setTexture(*pGerGraphic->getTextura(Texturas::player));
 			}
 			move();
 		}

@@ -14,7 +14,7 @@ namespace Entidades{
 			range = 800;
 			nivel_maldade = 2 + (rand() % 10);
 			pPlayer = player;			
-			shape.setTexture(*pGerGraphic->getBoss());
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::boss));
 			shape.setTextureRect(sf::IntRect(0, 0, 81, 89));
 			shape.setScale(1 + (float)nivel_maldade / 10, 1 + (float)nivel_maldade / 10);
 		}

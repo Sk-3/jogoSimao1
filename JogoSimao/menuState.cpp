@@ -10,7 +10,7 @@ menuState::~menuState()
 menuState::menuState()
 	:State()
 {
-	fundoMenu.setTexture(*pGerGraphic->getFundoMenu());
+	fundoMenu.setTexture(*pGerGraphic->getTextura(Texturas::fundoMenu));
 	fundoMenu.setScale(0.84, 0.7);
 	setFigura(&fundoMenu);
 }

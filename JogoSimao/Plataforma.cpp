@@ -7,7 +7,7 @@ namespace Entidades{
 			id = Id::Plataforma;
 			velocidade = vel;
 			colidivel = 1;
-			shape.setTexture(*pGerGraphic->getChaoTexture());
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::chao));
 			shape.setTextureRect(sf::IntRect(192, 96, 96, 32));			
 			shape.setScale(1.1, 1.1);
 			speed.y = vel;

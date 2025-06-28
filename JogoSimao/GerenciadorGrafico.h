@@ -1,6 +1,8 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 
+#include <SFML/Graphics.hpp>
+#include "texturas.h"
+#include <map>;
 /**
 *	Felipe Simbalista: 25/05/2025
 *
@@ -18,27 +20,14 @@ namespace Gerenciadores{
 	class GerenciadorGrafico
 	{
 	private:
+		std::map<Texturas, sf::Texture> mapTexturas;
 		//TEXTURA BACKGROUND
 			sf::Texture background1;
 			sf::Sprite backgroundSprite1;
-
 			sf::Texture background2;
 			sf::Sprite backgroundSprite2;
-
 			sf::Texture background3;
 			sf::Sprite backgroundSprite3;
-			sf::Texture fundoMenu;
-		//TEXTURAS ENTIDADES
-			sf::Texture projetil;
-			sf::Texture chao;
-			sf::Texture player;
-			sf::Texture playerLeft;
-			sf::Texture atirador;
-			sf::Texture parede;
-			sf::Texture boss;
-			sf::Texture cachorro;
-			sf::Texture espinho;
-			sf::Texture fireball;
 
 		float winWidth;
 		float winHeight;
@@ -59,22 +48,8 @@ namespace Gerenciadores{
 			sf::Vector2i* getMousePosition();
 			sf::Font* getFont();
 			bool isOpen();
-
 			sf::RenderWindow* getWindow();
-			
-			sf::Texture* getFundoMenu();
-			sf::Texture* getProjetilTexture();
-			sf::Texture* getChaoTexture();
-			sf::Texture* getAtiradorTexture();
-			sf::Texture* getPlayerTexture();
-			sf::Texture* getParedeTexture();
-			sf::Texture* getPlayerInvertido();
-			sf::Texture* getBoss();
-			sf::Texture* getCachorro();
-			sf::Texture* getEspinho();
-			sf::Texture* getFireball();
-
-
+			sf::Texture* getTextura(Texturas);
 		//SETTERS
 			void setFrameLimit(int fps);
 			void setView(sf::View);
@@ -84,6 +59,11 @@ namespace Gerenciadores{
 			void close();
 			void display();
 			void carregarTexturas();
+			void carregarTexturaInimigos();
+			void carregarTexturaCenario();
+			void carregarProjeteis();
+			void carregarBackground();
+			void carregarTexturaJogador();
 			void desenharBackground();
 			void desenharEnte(Ente* ente);
 			void updateMousePosition();

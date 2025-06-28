@@ -23,13 +23,13 @@ namespace Entidades {
 	{
 		if (tipoE == TipoEstrutura::CHAO)
 		{
-			shape.setTexture(*pGerGraphic->getChaoTexture());
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::chao));
 			shape.setTextureRect(sf::IntRect(192, 96, 96, 32));			
 			shape.setScale(1.1, 1.1);
 		}
 		else
 		{
-			shape.setTexture(*pGerGraphic->getParedeTexture());
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::parede));
 			shape.setTextureRect(sf::IntRect(0, 400, 100, 300));			
 			shape.setScale(1.1, 1.1);
 		}

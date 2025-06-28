@@ -16,7 +16,7 @@ namespace Entidades{
 			nivel_maldade = 5 + (rand() % 10);
 			setMoveSpeed(2);
 			tipo = TipoPersonagem::INIMIGO;
-			shape.setTexture(*pGerGraphic->getAtiradorTexture());
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::atirador));
 			shape.setTextureRect(sf::IntRect(0, 0, 46, 71));
 			shape.setScale(1 + (float)nivel_maldade/10, 1 + (float)nivel_maldade/10);
 		}

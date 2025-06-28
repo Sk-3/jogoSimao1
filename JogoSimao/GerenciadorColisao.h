@@ -19,6 +19,10 @@ namespace Gerenciadores{
 	class GerenciadorColisao
 	{
 	private:
+		const int tamVetorX = 100;
+		const int tamVetorY = 100;
+		Entidades::Estrutura* estruturaArray[100][100];
+
 		std::vector<Entidades::Personagens::Inimigo*> inimigos;
 		std::vector<Entidades::Obstaculos::Obstaculo*> obstaculos;
 		std::vector<Entidades::Projetil*> projeteis;

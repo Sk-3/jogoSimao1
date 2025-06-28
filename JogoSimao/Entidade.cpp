@@ -11,7 +11,7 @@ namespace Entidades{
 		ativo = 1; 
 		shape.scale(3, 3);
 		shape.setPosition(position);
-		shape.setTexture(*pGerGraphic->getProjetilTexture());
+		shape.setTexture(*pGerGraphic->getTextura(Texturas::projetil));
 		setFigura(&shape);
 	}
 
@@ -28,7 +28,7 @@ namespace Entidades{
 		ativo = 1;
 		shape.scale(3, 3);
 		shape.setPosition(pos);
-		shape.setTexture(*pGerGraphic->getProjetilTexture());
+		shape.setTexture(*pGerGraphic->getTextura(Texturas::projetil));
 		setFigura(&shape);
 	}
 

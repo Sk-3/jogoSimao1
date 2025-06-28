@@ -8,7 +8,7 @@ namespace Entidades {
 			id = Id::Fosso;
 			obstaculou = false;
 			this->largura = largura;
-			shape.setTexture(*pGerGraphic->getChaoTexture());
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::chao));
 			shape.setTextureRect(sf::IntRect(192, 128, 96, 32));
 			shape.setScale(1.1 * largura, 1.1);
 		}

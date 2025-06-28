@@ -8,9 +8,16 @@ namespace Gerenciadores{
 	
 	}
 	GerenciadorColisao::GerenciadorColisao()
+		:tamVetorX(100),
+		tamVetorY(100),
+		jogador1(nullptr),
+		jogador2(nullptr)
 	{
-		jogador1 = nullptr;
-		jogador2 = nullptr;
+		for (int i = 0; i < tamVetorX; i++) {
+			for (int j = 0; j < tamVetorY; j++) {
+				estruturaArray[i][j] = nullptr;
+			}
+		}
 	
 	}
 
@@ -29,8 +36,6 @@ namespace Gerenciadores{
 		return ent1Bounds.intersects(ent2Bounds);
 	}
 
-
-	
 
 	void GerenciadorColisao::tratarColisoesJogsInimigos()
 	{
@@ -85,18 +90,43 @@ namespace Gerenciadores{
 	void GerenciadorColisao::tratarColisoesJogsEstruturas()
 	{
 		if (jogador1) {
-			for (auto& estrutur : estruturas) {
-				if (verificarColisao(estrutur, jogador1)) {
-					empurrarPersonagem(jogador1, estrutur);
+			int minX = static_cast<int>(jogador1->getPosition().x/100) - 3;
+			int minY = static_cast<int>(jogador1->getPosition().y/100) - 3;
+			
+			int maxX = static_cast<int>(jogador1->getPosition().x / 100) + 3;
+			int maxY = static_cast<int>(jogador1->getPosition().y / 100) + 3;
+			for (int i = minX; i < maxX; i++) {
+				for (int j = minY; j < maxY; j++) {
+					if(j >= 0 && i >= 0 && i < 100 && j < 100){
+						if (estruturaArray[i][j]) {
+							if (verificarColisao(estruturaArray[i][j], jogador1)) {
+								empurrarPersonagem(jogador1, estruturaArray[i][j]);
+							}
+						}
+						
+					}
 				}
 			}
 		}
 		if (jogador2) {
-			for (auto& estrutur : estruturas) {
-				if (verificarColisao(estrutur, jogador2)) {
-					empurrarPersonagem(jogador2, estrutur);
+			int minX = static_cast<int>(jogador2->getPosition().x / 100) - 3;
+			int minY = static_cast<int>(jogador2->getPosition().y / 100) - 3;
+
+			int maxX = static_cast<int>(jogador2->getPosition().x / 100) + 3;
+			int maxY = static_cast<int>(jogador2->getPosition().y / 100) + 3;
+			for (int i = minX; i < maxX; i++) {
+				for (int j = minY; j < maxY; j++) {
+					if (j >= 0 && i >= 0 && i < 100 && j < 100) {
+						if (estruturaArray[i][j]) {
+							if (verificarColisao(estruturaArray[i][j], jogador2)) {
+								empurrarPersonagem(jogador2, estruturaArray[i][j]);
+							}
+						}
+
+					}
 				}
 			}
+
 		}
 	}
 
@@ -171,17 +201,23 @@ namespace Gerenciadores{
 			}
 		}
 
-		
-	
-
-
 		for (auto& charact : inimigos) {
 			if(charact->ativado()){
-				for (const auto& estrut : estruturas) {
-					if (verificarColisao(estrut, charact)) {
-					
-						empurrarPersonagem(charact, estrut);
-					
+				int minX = static_cast<int>(charact->getPosition().x / 100) - 3;
+				int minY = static_cast<int>(charact->getPosition().y / 100) - 3;
+
+				int maxX = static_cast<int>(charact->getPosition().x / 100) + 3;
+				int maxY = static_cast<int>(charact->getPosition().y / 100) + 3;
+				for (int i = minX; i < maxX; i++) {
+					for (int j = minY; j < maxY; j++) {
+						if (j >= 0 && i >= 0 && i < 100 && j < 100) {
+							if (estruturaArray[i][j]) {
+								if (verificarColisao(estruturaArray[i][j], charact)) {
+									empurrarPersonagem(charact, estruturaArray[i][j]);
+								}
+							}
+
+						}
 					}
 				}
 			}
@@ -192,22 +228,20 @@ namespace Gerenciadores{
 	{
 		inimigos.emplace_back(inimigo);
 	}
-
 	void GerenciadorColisao::incluirObstaculo(Entidades::Obstaculos::Obstaculo* obstaculo)
 	{
 		obstaculos.emplace_back(obstaculo);
 	}
-
 	void GerenciadorColisao::incluirProjetil(Entidades::Projetil* projetil)
 	{
 		projeteis.emplace_back(projetil);
 	}
-
 	void GerenciadorColisao::incluirEstrutura(Entidades::Estrutura* estrutura)
 	{
 		estruturas.emplace_back(estrutura);
+		std::cout << "\nPos x: " << estrutura->getPosition().x / 100 << ",pos Y: " << estrutura->getPosition().y;
+		estruturaArray[static_cast<int>(estrutura->getPosition().x/100)][static_cast<int>(estrutura->getPosition().y/100)] = estrutura;
 	}
-
 	void GerenciadorColisao::incluirJogador1(Entidades::Personagens::Jogador* jogador)
 	{
 		jogador1 = jogador;
@@ -274,9 +308,6 @@ namespace Gerenciadores{
 			}
 		}
 	}
-
-	
-
 	void GerenciadorColisao::colision()
 	{
 		/**

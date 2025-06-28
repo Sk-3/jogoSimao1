@@ -354,13 +354,13 @@ namespace Fases{
 				int i = 0;
 				for (auto& num : linha) {
 					if (num == '2') {
-						Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f((100 * i) - 700, 100 * y), (3 + (rand() % 5)), (y*100) + 250, (y*100) - 250);
+						Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f((100 * i) , 100 * y), (3 + (rand() % 5)), (y*100) + 250, (y*100) - 250);
 						listaEntidades.inserirNoFim(plat);
 						gerenciadorColisao.incluirObstaculo(plat);
 					}
 					if (num == '3') {
 						if (rand() % 2) {
-							Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f((100 * i) - 700, 100 * y), (3 + (rand() % 5)), (y * 100) + 250, (y * 100) - 250);
+							Entidades::Obstaculos::Plataforma* plat = new Entidades::Obstaculos::Plataforma(sf::Vector2f((100 * i), 100 * y), (3 + (rand() % 5)), (y * 100) + 250, (y * 100) - 250);
 							listaEntidades.inserirNoFim(plat);
 							gerenciadorColisao.incluirObstaculo(plat);
 						}
@@ -415,7 +415,7 @@ namespace Fases{
 				int i = 0;
 				for (auto& num : linha) {
 					if (num == '1') {
-						Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i) - 700, 100*y), TipoEstrutura::CHAO);
+						Entidades::Estrutura* estrutura = new Entidades::Estrutura(sf::Vector2f((100 * i), 100*y), TipoEstrutura::CHAO);
 						listaEntidades.inserirNoFim(estrutura);
 						gerenciadorColisao.incluirEstrutura(estrutura);
 					}

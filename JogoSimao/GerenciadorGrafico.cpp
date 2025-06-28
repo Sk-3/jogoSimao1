@@ -40,81 +40,143 @@ namespace Gerenciadores {
 	}
 	void GerenciadorGrafico::carregarTexturas()
 	{
+
+		carregarTexturaInimigos();
+		carregarTexturaCenario();
+		carregarTexturaJogador();
+		carregarProjeteis();
+		carregarBackground();
+		
+	}
+	void GerenciadorGrafico::carregarTexturaInimigos()
+	{
+		sf::Texture tempText;
 		try {
-			
+			if (!tempText.loadFromFile("..//textures//atirador.PNG")) {
+				throw std::exception("Falha ao carregar textura atirador.PNG");
+			}
+			mapTexturas.insert({ Texturas::atirador, tempText });
+
+			if (!tempText.loadFromFile("..//textures//cachorro.PNG")) {
+				throw std::exception("Falha ao carregar textura cachorro.PNG");
+			}
+			mapTexturas.insert({ Texturas::cachorro, tempText });
+			if (!tempText.loadFromFile("..//textures//boss.PNG")) {
+				throw std::exception("Falha ao carregar textura boss.PNG");
+			}
+			mapTexturas.insert({ Texturas::boss, tempText });
+
+
+		}
+		catch(const std::exception& e){
+			std::cerr << "Exceção capturada durante o carregamento das texturas dos inimigos: \n" << e.what() << "\n";
+			exit(1);
+		}
+
+	}
+	void GerenciadorGrafico::carregarTexturaCenario()
+	{
+		sf::Texture tempText;
+		try {
+			if (!tempText.loadFromFile("..//textures//espinhos.PNG")) {
+				throw std::exception("Falha ao carregar textura espinhos.PNG");
+			}
+			mapTexturas.insert({ Texturas::espinho, tempText });
+			if (!tempText.loadFromFile("..//textures//arvore.PNG")) {
+				throw std::exception("Falha ao carregar textura arvore.PNG");
+			}
+			mapTexturas.insert({ Texturas::parede, tempText });
+			if (!tempText.loadFromFile("..//textures//tileset_32x32.PNG")) {
+				throw std::exception("Falha ao carregar textura tileset_32x32.PNG");
+			}
+			mapTexturas.insert({Texturas::chao, tempText});
+
+		}
+		catch (const std::exception& e) {
+			std::cerr << "Exceção capturada durante o carregamento das texturas do cenário:\n " << e.what() << "\n";
+			exit(1);
+		}
+	}
+	void GerenciadorGrafico::carregarProjeteis()
+	{
+		sf::Texture tempText;
+		try {
+			if (!tempText.loadFromFile("..//textures//fireball.PNG")) {
+				throw std::exception("Falha ao carregar textura fireball.PNG");
+			}
+			mapTexturas.insert({ Texturas::fireball, tempText });
+
+			if (!tempText.loadFromFile("..//textures//orb.PNG")) {
+
+				throw std::exception("Falha ao carregar textura orb");
+			}
+			mapTexturas.insert({ Texturas::projetil, tempText });
+		}
+		catch (const std::exception& e) {
+			std::cerr << "Exceção capturada durante o carregamento das texturas dos projeteis:\n " << e.what() << "\n";
+			exit(1);
+		}
+
+	}
+	void GerenciadorGrafico::carregarBackground()
+	{
+		sf::Texture tempText;
+		try {
 			if (!font->loadFromFile("..//JogoSimao//TypeLightSans-KV84p.otf")) {
-				std::cerr << "Erro ao carregar a fonte";
+				throw std::exception("Erro ao carregar a fonte");
 			}
 			if (!background1.loadFromFile(("..//background//background_layer_1.PNG"))) {
-				std::cout << "Falha ao carregar textura Background_layer_1";
+				throw std::exception("Falha ao carregar textura Background_layer_1");
 			}
 			backgroundSprite1.setTexture(background1);
 			backgroundSprite1.setScale(4, 4);
 
 			if (!background2.loadFromFile(("..//background//background_layer_2.PNG"))) {
-				std::cout << "Falha ao carregar textura Background_layer_2";
+				throw std::exception("Falha ao carregar textura Background_layer_2");
 			}
 			backgroundSprite2.setTexture(background2);
 			backgroundSprite2.setScale(4, 4);
 
 			if (!background3.loadFromFile(("..//background//background_layer_3.PNG"))) {
-				std::cout << "Falha ao carregar textura Background_layer_3";
+				throw std::exception("Falha ao carregar textura Background_layer_3");
 			}
 			backgroundSprite3.setTexture(background3);
 			backgroundSprite3.setScale(4, 4);
 
-
-			if (!projetil.loadFromFile("..//textures//orb.PNG")) {
-				std::cout << "Falha ao carregar textura orb";
-			}
-
-			if (!chao.loadFromFile("..//textures//tileset_32x32.PNG")) {
-				std::cout << "Falha ao carregar textura tileset_32x32.PNG";
-			}
-
-			if (!player.loadFromFile("..//textures//AIM.PNG")) {
-				std::cout << "Falha ao carregar textura Aim.PNG";
-			}
-			if (!fundoMenu.loadFromFile("..//background//menuFundo.PNG")) {
+			if (!tempText.loadFromFile("..//background//menuFundo.PNG")) {
 				std::cout << "Falha ao carregar menuFundo.png";
 			}
-			sf::Image playerInvertido;
-			if (!playerInvertido.loadFromFile("..//textures//AIM.PNG")) {
-				std::cout << "Falha ao carregar textura Aim.PNG";
-			}
-			else {
-				playerInvertido.flipHorizontally();
-				playerLeft.loadFromImage(playerInvertido);
-			}		
-
-			if (!atirador.loadFromFile("..//textures//atirador.PNG")) {
-				std::cout << "Falha ao carregar textura atirador.PNG";
-			}
-
-			if (!parede.loadFromFile("..//textures//arvore.PNG")) {
-				std::cout << "Falha ao carregar textura arvore.PNG";
-			}
-
-			if (!boss.loadFromFile("..//textures//boss.PNG")) {
-				std::cout << "Falha ao carregar textura arvore.PNG";
-			}
-
-			if (!cachorro.loadFromFile("..//textures//cachorro.PNG")) {
-				std::cout << "Falha ao carregar textura arvore.PNG";
-			}
-
-			if (!espinho.loadFromFile("..//textures//espinhos.PNG")) {
-				std::cout << "Falha ao carregar textura espinhos.PNG";
-			}
-
-			if (!fireball.loadFromFile("..//textures//fireball.PNG")) {
-				std::cout << "Falha ao carregar textura fireball.PNG";
-			}
+			mapTexturas.insert({ Texturas::fundoMenu, tempText});
 		}
 		catch (const std::exception& e) {
-			std::cerr << "Exceção capturada durante o carregamento das texturas: " << e.what() << "\n";
+			std::cerr << "Exceção capturada durante o carregamento das texturas de background: " << e.what() << "\n";
 			exit(1);
 		}
+	}
+	void GerenciadorGrafico::carregarTexturaJogador()
+	{
+		sf::Texture tempText;
+		try {
+			if (!tempText.loadFromFile("..//textures//AIM.PNG")) {
+				throw std::exception("Falha ao carregar textura Aim.PNG");
+			}
+			mapTexturas.insert({ Texturas::player, tempText });
+			sf::Image playerInvertido;
+			if (!playerInvertido.loadFromFile("..//textures//AIM.PNG")) {
+				throw std::exception("Falha ao carregar textura Aim.PNG");
+			}
+			playerInvertido.flipHorizontally();
+			if (!tempText.loadFromImage(playerInvertido)) {
+				throw std::exception("Falha ao inverter imagem do jogador");
+			}
+			mapTexturas.insert({ Texturas::playerLeft, tempText });
+		}
+		catch (const std::exception& e) {
+			std::cerr << "Exceção capturada durante o carregamento das texturas do jogador:\n " << e.what() << "\n";
+			exit(1);
+		}
+	
+
 	}
 	void GerenciadorGrafico::desenharBackground()
 	{
@@ -146,54 +208,10 @@ namespace Gerenciadores {
 		return window;
 	}
 
-	sf::Texture* GerenciadorGrafico::getFundoMenu()
+	sf::Texture* GerenciadorGrafico::getTextura(Texturas idText)
 	{
-		return &fundoMenu;
+		return &mapTexturas.at(idText);
 	}
-
-	sf::Texture* GerenciadorGrafico::getProjetilTexture() {
-		return &projetil; 
-	}
-
-	sf::Texture* GerenciadorGrafico::getChaoTexture()
-	{
-		return &chao;
-	}
-
-	sf::Texture* GerenciadorGrafico::getAtiradorTexture()
-	{
-		return &atirador;
-	}
-
-	sf::Texture* GerenciadorGrafico::getPlayerTexture() {
-		return &player;
-	}
-	sf::Texture* GerenciadorGrafico::getParedeTexture()
-	{
-		return &parede;
-	}
-	sf::Texture* GerenciadorGrafico::getPlayerInvertido()
-	{
-		return &playerLeft;
-	}
-	sf::Texture* GerenciadorGrafico::getBoss()
-	{
-		return &boss;
-	}
-	sf::Texture* GerenciadorGrafico::getCachorro()
-	{
-		return &cachorro;
-	}
-	sf::Texture* GerenciadorGrafico::getEspinho()
-	{
-		return &espinho;
-	}
-	sf::Texture* GerenciadorGrafico::getFireball()
-	{
-		return &fireball;
-	}
-
-
 
 	void GerenciadorGrafico::clear() {
 		window->clear();

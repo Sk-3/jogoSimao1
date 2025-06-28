@@ -19,7 +19,7 @@ namespace Entidades{
 				mandarAtacar();
 			}
 			arma = new Arma(this, Armas::ARMACACHORRO);
-			shape.setTexture(*pGerGraphic->getCachorro());
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::cachorro));
 			shape.setTextureRect(sf::IntRect(0, 0, 65, 64));
 			shape.setScale(1 + (float)nivel_maldade / 10, 1 + (float)nivel_maldade / 10);
 		}
@@ -40,7 +40,7 @@ namespace Entidades{
 			moveSpeed = velocidade;
 			mandarAtacar();
 			arma = new Arma(this, Armas::ARMACACHORRO);
-			shape.setTexture(*pGerGraphic->getCachorro());
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::cachorro));
 			shape.setTextureRect(sf::IntRect(0, 0, 65, 64));
 			shape.setScale(1 + (float)nivel_maldade / 10, 1 + (float)nivel_maldade / 10);
 		}

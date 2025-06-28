@@ -3,6 +3,7 @@
 #include "Directions.h"
 #include <ostream>
 #include <sstream>
+#include "texturas.h"
 /**
 *	Felipe Simbalista: 25/05/2025
 * 

@@ -27,7 +27,7 @@ namespace Entidades{
 
 		if (dono->getTipo() == TipoPersonagem::INIMIGO)
 		{
-			shape.setTexture(*pGerGraphic->getFireball());
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::fireball));
 			shape.setTextureRect(sf::IntRect(0,0,64,64));
 			shape.setScale(0.4, 0.4);
 		}
@@ -42,7 +42,7 @@ namespace Entidades{
 
 		if (dono->getTipo() == TipoPersonagem::INIMIGO)
 		{
-			shape.setTexture(*pGerGraphic->getFireball());
+			shape.setTexture(*pGerGraphic->getTextura(Texturas::fireball));
 			shape.setTextureRect(sf::IntRect(0, 0, 64, 64));
 			shape.setScale(0.4, 0.4);
 		}
