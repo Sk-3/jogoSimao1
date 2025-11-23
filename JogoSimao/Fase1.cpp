@@ -52,15 +52,12 @@ namespace Fases{
 		*/
 
 		criarAtirador();
-
-		Entidades::Personagens::Boss* boss = new Entidades::Personagens::Boss( sf::Vector2f(2500, 300), &listaEntidades ,player);
-		listaEntidades.inserirNoFim(boss);
+		listaEntidades.inserirNoFim(new Entidades::Personagens::Boss(sf::Vector2f(2500, 300), &listaEntidades, player));
 	}
 
 	void Fase1::criarAtirador()
 	{
-		Entidades::Personagens::Atirador* atirador = new Entidades::Personagens::Atirador(sf::Vector2f(1500, 300),&listaEntidades ,player);
-		listaEntidades.inserirNoFim(atirador);
+		listaEntidades.inserirNoFim(new Entidades::Personagens::Atirador(sf::Vector2f(1500, 300), &listaEntidades, player));
 	}
 
 	void Fase1::criarCachorro()

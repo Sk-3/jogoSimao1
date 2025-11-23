@@ -1,9 +1,8 @@
-#include "GameState.h"
+#include "Fase.h"
 namespace Fases{
 
 	GameState::GameState():
 		State(),
-		characters(listaEntidades.getPersonagens()),
 		gravity(&listaEntidades),
 		colision(&listaEntidades),
 		player(new Entidades::Personagens::Player(sf::Vector2f(100, 100), &listaEntidades)),

@@ -33,7 +33,6 @@ namespace Entidades{
 			*@brief Executa o atirador
 			*@return void
 			*/
-			//eliminarCachorros();
 			if (!vivo()) {
 				desativar();
 			}

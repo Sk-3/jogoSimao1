@@ -1,5 +1,5 @@
 #pragma once
-#include "GameState.h"
+#include "Fase.h"
 #include "Cachorro.h"
 #include "Atirador.h"
 #include "Boss.h"
