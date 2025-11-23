@@ -1,4 +1,0 @@
-Jogo Bitwood++:
-- Sistema Operacional: Windows
-- Compilador: Microsoft Visual C++, versão 14.0.23918.0.
-- Biblioteca Gráfica: SFML 2.6.1
