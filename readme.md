@@ -15,10 +15,10 @@ A arquitetura do projeto foi desenhada seguindo princípios estritos de Orienta�
 
 ### Destaques da Implementação Técnica:
 
-* **State Pattern (Padrão de Estado):** Implementação de uma Máquina de Estados Finitos (FSM) para gerenciar os comportamentos das entidades (Inimigos e Jogador) e os estados do jogo (Menu, Gameplay, Pause), evitando cadeias complexas de `if/else`.
-* **Gerenciamento de Memória:** Controle manual de alocação e desalocação de objetos. Uso de listas encadeadas personalizadas para gerenciar as entidades ativas na cena, garantindo performance e evitando vazamento de memória (memory leaks).
-* **Polimorfismo e Herança:** Uso de uma classe base abstrata `Entidade` (ou `Ente`) da qual derivam todos os objetos do jogo (`Personagem`, `Projetil`, `Obstaculo`), permitindo que o gerenciador trate todos os objetos de forma genérica.
-* **Gerenciadores (Managers):** Separação de responsabilidades com classes dedicadas para gerenciar Colisões, Gráficos e Eventos.
+* **State Pattern (Padrão de Estado):** Implementação de uma Máquina de Estados para gerenciar os comportamentos das entidades (Inimigos e Jogador) e os estados do jogo (Menu, Gameplay, Pause), evitando cadeias complexas de `if/else`.
+* **Gerenciamento de Memória:** Controle manual de alocação e desalocação de objetos. Uso de listas encadeadas personalizadas para gerenciar as entidades ativas na cena, garantindo performance e evitando memory leaks.
+* **Polimorfismo e Herança:** Uso de uma classe base abstrata `Entidade` da qual derivam todos os objetos do jogo (`Personagem`, `Projetil`, `Obstaculo`), permitindo que o gerenciador trate todos os objetos de forma genérica.
+* **Gerenciadores (Managers):** Separação de responsabilidades com classes dedicadas para gerenciar Colisões, Gráficos e Estados.
 
 ---
 
@@ -26,31 +26,24 @@ A arquitetura do projeto foi desenhada seguindo princípios estritos de Orienta�
 
 * **Linguagem:** C++ (Padrão C++11/14)
 * **Biblioteca Gráfica:** SFML (Simple and Fast Multimedia Library)
-* **Padrões de Projeto:** State, Strategy, Singleton (nos Gerenciadores).
-* **Ferramentas:** Visual Studio / VS Code, Git.
+* **Padrões de Projeto:** State, Adapter, Singleton, Iterator, Mediator e Observer.
+* **Ferramentas:** Visual Studio, Git.
 
 ---
 
 ## 🚀 Funcionalidades da Engine
 
-1.  **Sistema de Física Vetorial:** Cálculo manual de velocidade, aceleração e gravidade utilizando álgebra linear.
-2.  **Colisão AABB:** Implementação de algoritmo de detecção de colisão (Axis-Aligned Bounding Box) para interações precisas entre entidades.
-3.  **Persistência de Dados:** Sistema de salvamento e carregamento de estado do jogo (Save/Load) utilizando arquivos binários ou texto.
-4.  **Sistema de Listas Dinâmicas:** Implementação de Templates (se houver) e Iterators para percorrer as entidades do jogo de forma eficiente.
-
+1.  **Sistema de Física Vetorial:** Cálculo manual de velocidade, aceleração e gravidade utilizando geometria analítica e álgebra linear.
+2.  **Colisão AABB:** Implementação de algoritmo de detecção de colisão AABB para interações precisas entre entidades.
+3.  **Persistência de Dados:** Sistema de salvamento e carregamento de estado do jogo (Save/Load) utilizando arquivos texto.
+4.  **Sistema de Listas Dinâmicas:** Implementação de Templates e Iterators para percorrer as entidades do jogo de forma eficiente.
 ---
-
 ## 👨‍💻 Autores
 
 Projeto desenvolvido como parte da disciplina de Técnicas de Programação na UTFPR.
 
 * **Felipe Simbalista** - [GitHub](https://github.com/Sk-3) | [LinkedIn](https://www.linkedin.com/in/felipe-simbalista)
-    * *Foco:* Arquitetura da Engine, Lógica de Ponteiros e Otimização.
+    * *Foco:* Arquitetura da Engine, Lógica e Otimização do código.
 * **Ramon Vargas**
-    * *Foco:* Design de Níveis e Mecânicas de Gameplay.
-
+    * *Foco:* Documentação por meio do desenvolvimento de um diagrama UML e da escrita do relatório.
 ---
-
-## 📄 Licença
-
-Este projeto é de fins educacionais e está sob a licença MIT.
